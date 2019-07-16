@@ -16,6 +16,7 @@ def main():
     config.read(dir_path+"/Config.ini")
     ETH_port = config['Blockchain']['ETH_port']
     SmartContract_folder = dir_path + "/"+config['Files']['SmartContract_folder']
+    Rapports_folder = dir_path + "/" + config['Files']['rapports_folder']
     affirmative = ["y", "Y", "yes", "Yes", "YES"]
     negative = ["n", "N", "no", "No", "NO"]
     proper_response = False
@@ -94,7 +95,7 @@ def main():
                     rapport = create_rapport(archives, tSuite)
                     rapports = rapports + [rapport]
                     print("Writing Rapport...")
-                    with open(os.path.abspath(folder+".txt"), 'w') as f:
+                    with open(os.path.abspath(Rapports_folder+folder+".txt"), 'w') as f:
                         f.write(rapport)
 
         proper_response = False
