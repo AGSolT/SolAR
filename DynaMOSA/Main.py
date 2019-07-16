@@ -121,7 +121,7 @@ def create_rapport(archives, tSuite):
     contractName = tSuite.smartContract.contractName
     relevant_branches = determine_relevant_targets(tSuite.smartContract.CDG.CompactEdges, tSuite.smartContract.CDG.CompactNodes)
     if sum(relevant_branches) == 0:
-        return ""
+        return "No branches found, any method call will work!"
     best_tests = [best_test for best_test, relevant in zip(archives[-1], relevant_branches) if relevant]
     rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t{}\nNumber of Branches Covered:\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), tSuite.smartContract.methods[0]['inputs'], tSuite.smartContract.methods[0]['stateMutability'])
     for method in tSuite.smartContract.methods[1:]:
