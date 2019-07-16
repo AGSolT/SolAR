@@ -93,6 +93,9 @@ def main():
                     archives, tSuite = DynaMOSA(config)
                     rapport = create_rapport(archives, tSuite)
                     rapports = rapports + [rapport]
+                    print("Writing Rapport...")
+                    with open(os.path.abspath(folder+".txt"), 'w') as f:
+                        f.write(rapport)
 
         proper_response = False
         while not proper_response:
@@ -106,9 +109,6 @@ def main():
                 proper_response = True
             else:
                 print('Please type "y" or "n" to confirm or deny.')
-        with open(os.path.abspath("rapports.txt"), 'w') as f:
-            for rapport in rapports:
-                f.write(rapport+"\n\n")
         print("Finished!")
     return
 
