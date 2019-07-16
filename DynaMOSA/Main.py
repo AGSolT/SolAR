@@ -85,13 +85,14 @@ def main():
 
         # Run DynaMOSA and Create Rapports
         rapports = []
-        for file in os.listdir(SmartContract_folder):
-            if file not in config['CFG']['Ignorefiles']:
-                config.set('Files','contract_json_location',r'{}'.format(os.path.abspath(SmartContract_folder+"/"+file)))
-                # run DynaMOSA on it with these settings.
-                archives, tSuite = DynaMOSA(config)
-                rapport = create_rapport(archives, tSuite)
-                rapports = rapports + [rapport]
+        for folder in os.listdir(SmartContract_folder):
+            for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
+                if file not in config['CFG']['Ignorefiles']:
+                    config.set('Files','contract_json_location',r'{}'.format(os.path.abspath(SmartContract_folder+folder+"/build/contracts""/"+file)))
+                    # run DynaMOSA on it with these settings.
+                    archives, tSuite = DynaMOSA(config)
+                    rapport = create_rapport(archives, tSuite)
+                    rapports = rapports + [rapport]
 
         proper_response = False
         while not proper_response:

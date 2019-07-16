@@ -87,12 +87,6 @@ def DynaMOSA(config):
     poss_methods = tSuite.smartContract.methods[1:]
 
     for i in range(search_budget):
-#        if not None in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
-#            print("Full branch coverage achieved with {}!\nExiting...".format([best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]))
-#            for best_test in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
-#                best_test.show_test()
-#                print("")
-#            break
         print("Entering main loop iteration {}/{} at {}".format(i+1, search_budget-1 ,datetime.datetime.now().time()))
         print("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
         print("The following branches have been covered:")
