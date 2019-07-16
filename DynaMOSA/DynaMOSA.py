@@ -19,9 +19,10 @@ def DynaMOSA(config):
     """
     # config = configparser.ConfigParser()
     # config.read("Config.ini")
+    dir_path = os.path.dirname(os.path.realpath(__file__))
     ETH_port = config['Blockchain']['ETH_port']
     max_accounts = int(config['Parameters']['max_accounts'])
-    accounts_file_location = config['Files']['accounts_file_location']
+    accounts_file_location = dir_path + "/" + config['Files']['accounts_file_location']
     contract_json_location = config['Files']['contract_json_location']
     predicates = config['CFG']['Predicates']
     population_size = int(config['Parameters']['population_size'])

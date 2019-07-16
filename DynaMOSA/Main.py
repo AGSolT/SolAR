@@ -11,10 +11,11 @@ from pyfiglet import figlet_format
 import json, pickle, configparser, os, json, ast, subprocess, sys, datetime
 
 def main():
+    dir_path = os.path.dirname(os.path.realpath(__file__))
     config = configparser.ConfigParser()
-    config.read("Config.ini")
+    config.read(dir_path+"/Config.ini")
     ETH_port = config['Blockchain']['ETH_port']
-    SmartContract_folder = config['Files']['SmartContract_folder']
+    SmartContract_folder = dir_path + "/"+config['Files']['SmartContract_folder']
     affirmative = ["y", "Y", "yes", "Yes", "YES"]
     negative = ["n", "N", "no", "No", "NO"]
     proper_response = False
