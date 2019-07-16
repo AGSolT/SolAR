@@ -94,8 +94,8 @@ def main():
                     archives, tSuite = DynaMOSA(config)
                     rapport = create_rapport(archives, tSuite)
                     rapports = rapports + [rapport]
-                    print("Writing Rapport to {}".format(Rapports_folder+folder+".txt"))
-                    with open(os.path.abspath(Rapports_folder+folder+".txt"), 'w') as f:
+                    print("Writing Rapport to {}".format(Rapports_folder+"/"+folder+".txt"))
+                    with open(os.path.abspath(Rapports_folder+"/"folder+".txt"), 'w') as f:
                         f.write(rapport)
 
         proper_response = False
