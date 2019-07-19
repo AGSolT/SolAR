@@ -3,7 +3,7 @@ from SmartContract import *
 from Test_Suite import *
 from Preference_Sorting import *
 from Generate_Offspring import *
-import json, pickle, configparser, os, json, ast, subprocess, sys, datetime
+import json, pickle, configparser, os, json, ast, subprocess, sys, datetime, time
 
 def DynaMOSA(config):
     """
@@ -102,6 +102,22 @@ def DynaMOSA(config):
         R = parents.union(offspring)
 
         tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(R), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
+
+        # We restart the Ganache blockchain for memory efficiency
+        print("\tResetting Blockchain...")
+        callstring = 'screen -p ganache -X stuff "^C"'
+        subprocess.call(callstring)
+        callstring = 'screen -p ganache -X stuff "ganache-cli\r"'
+        subprocess.call(callstring)
+
+        # Wait for Ganache to start, this takes about 3 seconds
+        time.sleep(3)
+
+        accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
+        if eval(config['Parameters']['deploying_accounts']) == []:
+            deploying_accounts = accounts
+        else:
+            deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
         callstring = "nodejs SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 
