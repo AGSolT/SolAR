@@ -106,9 +106,9 @@ def DynaMOSA(config):
         # We restart the Ganache blockchain for memory efficiency
         print("\tResetting Blockchain...")
         callstring = 'screen -p ganache -X stuff "^C"'
-        subprocess.call(callstring)
+        os.sytem(callstring)
         callstring = 'screen -p ganache -X stuff "ganache-cli\r"'
-        subprocess.call(callstring)
+        os.system(callstring)
 
         # Wait for Ganache to start, this takes about 3 seconds
         time.sleep(3)
