@@ -239,17 +239,23 @@ class MethodCall():
         if varType == "bool":
             return random.choice(True, False)
         elif varType[:3] == "int":
-            return random.randint(-255, 255)
+            intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*', varType)), None)
+            assert intsize in [8*i for i in range(1, 33)], "int was followed by something unusual: {}".format(varType)
+            return random.randint(-(2**intsize-1), 2**intsize-1)
         elif varType[:4] == "uint":
-            return random.randint(0,255)
+            intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*', varType)), None)
+            assert intsize in [8*i for i in range(1, 33)], "int was followed by something unusual: {}".format(varType)
+            # TODO: Large integers return problems for now, maybe these should be passed as strings or bignumbers in javascript?
+            return random.randint(0,2**8-1)
+            return random.randint(0,2**intsize-1)
         elif varType == "address":
             return random.choice(accounts)
         elif varType == "string":
             string_length = random.randint(1,255)
-            str = ''.join(random.choice(string.ascii_letters+" ") for x in range(string_length))
+            str = ''.join(random.choice(string.ascii_letters+"""\ \n\'\"\b\f\r\t\v""") for x in range(string_length))
             return np.random.choice(["Standard String", str], 1, [0.1, 0.9])[0]
         else:
-            assert False, "This method has an unsupported type!"
+            assert False, "This method has an unsupported type: {}".format(varType)
             return 0
 
     # bool, int8-int256, uint8-uint256, address/address_payable, Contract: Should be excluded , fixed_bytarrays?, dynamic_bytearrays?, string, rational/integer literal? Enums/Types: should be exluded. Function Types should also be excluded

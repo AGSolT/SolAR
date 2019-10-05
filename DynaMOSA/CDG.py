@@ -361,3 +361,11 @@ class CDG():
         eval = "NONE"
         pc = bb.start.pc
         return eval, pc
+
+    def Show_CDG(self):
+        print("Nodes:")
+        for cNode in self.CompactNodes:
+            cNode.show_CompactNode()
+        print("Edges:")
+        for cEdge in self.CompactEdges:
+            cEdge.show_CompactEdge()

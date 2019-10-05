@@ -1,0 +1,26 @@
+Contract:			TestContract
+
+Number of Relevant Branches:	3
+Number of Branches Covered:		3
+Runtime: 											339.977593
+Iterations										1
+
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+TestOne:
+	Inputs: [{'name': 'a', 'type': 'uint256'}]
+	Outputs: [{'name': 'success', 'type': 'bool'}]
+	Payable: False
+
+--------------------------------------------------
+TESTS:
+
+	(1) constructor([], from: 0x17a286b6bF18172Af64Fab99aD9Ad70B2E313e63, value: 0)
+	(2) TestOne([19], from: 0xc90f9FE167ae7791C32223C0Fb65713D7D4bB9c4, value: 0)	Returns: true
+
+	(1) constructor([], from: 0xAc5B0A43D18F7c1D0307Da68705b634934B6814c, value: 0)
+	(2) TestOne([6], from: 0xc90f9FE167ae7791C32223C0Fb65713D7D4bB9c4, value: 0)	Returns: true

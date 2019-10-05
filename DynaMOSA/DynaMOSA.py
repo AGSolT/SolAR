@@ -17,6 +17,9 @@ def DynaMOSA(config):
         - archives: A list containing the best test cases for each branch at each generation of the algorithm, the final archive in the list contains the best test cases found by the algorithm.
         - tSuite: The TestSuite object that was used by the DynaMOSA algorithm.
     """
+    # Register the time when the algorithm starts
+    start_time = datetime.datetime.now()
+
     # config = configparser.ConfigParser()
     # config.read("Config.ini")
     dir_path = os.path.dirname(os.path.realpath(__file__))
@@ -53,7 +56,7 @@ def DynaMOSA(config):
         print("No branching paths were detected!")
         return [], tSuite
 
-    callstring = "nodejs SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
+    callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 
     print("Deploying and calling smart contracts for the first time...")
     subprocess.call(callstring)
@@ -86,14 +89,21 @@ def DynaMOSA(config):
 
     poss_methods = tSuite.smartContract.methods[1:]
 
+    print("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
+    print("The following test cases have been are currently in the Archive:")
+    for best_test in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
+        if best_test is not None:
+            best_test.show_test()
+            print("")
+
+    # Keep track of the number of iterations necessary to achieve branch coverage
+    iterations = 1
+
     for i in range(search_budget):
-        print("Entering main loop iteration {}/{} at {}".format(i+1, search_budget-1 ,datetime.datetime.now().time()))
-        print("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
-        print("The following branches have been covered:")
-        for best_test in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
-            if best_test is not None:
-                best_test.show_test()
-                print("")
+        # Cancel if branch coverage has already been achieved
+        if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
+            break
+        print("Entering main loop iteration {}/{} at {}".format(i+2, search_budget ,datetime.datetime.now().time()))
 
         print("\tGenerating Offspring...")
         offspring = generate_offspring(parents, sc, accounts, deploying_accounts, poss_methods, population_size, min(tournament_size, population_size), max_method_calls, crossover_probability, mutation_probability, remove_probability, change_probability, insert_probability)
@@ -106,7 +116,7 @@ def DynaMOSA(config):
         # We restart the Ganache blockchain for memory efficiency
         print("\tResetting Blockchain...")
         callstring = 'screen -p ganache -X stuff "^C"'
-        os.sytem(callstring)
+        os.system(callstring)
         callstring = 'screen -p ganache -X stuff "ganache-cli\r"'
         os.system(callstring)
 
@@ -119,7 +129,7 @@ def DynaMOSA(config):
         else:
             deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
-        callstring = "nodejs SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
+        callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 
         print("\tDeploying and testing...")
         subprocess.call(callstring)
@@ -151,15 +161,18 @@ def DynaMOSA(config):
         archives = archives + [archive]
         testSuites = testSuites + [tSuite]
 
+        # Update the iteration counter
+        iterations += 1
+
     archive = update_archive(parents, archive, relevant_targets)
-    print("Done")
-    with open("archives.p", "wb") as f:
-        pickle.dump(archives, f)
-
-    with open("testSuites.p", "wb") as f:
-        pickle.dump(testSuites, f)
-
-    return archives, tSuite
+    # print("Done")
+    # with open("archives.p", "wb") as f:
+    #     pickle.dump(archives, f)
+    #
+    # with open("testSuites.p", "wb") as f:
+    #     pickle.dump(testSuites, f)
+    runtime = datetime.datetime.now() - start_time
+    return archives, tSuite, runtime.total_seconds(), iterations
 
 def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location):
     """
@@ -171,7 +184,7 @@ def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_
     Outputs:
         - accounts: The accounts on the blockchain that will be used for the deployment of and interaction with the smart contract.
     """
-    callstring = "nodejs get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
+    callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
     subprocess.call(callstring)
     with open(accounts_file_location) as f:
         res = f.read()

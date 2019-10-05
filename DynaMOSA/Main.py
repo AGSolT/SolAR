@@ -14,16 +14,53 @@ def main():
     dir_path = os.path.dirname(os.path.realpath(__file__))
     config = configparser.ConfigParser()
     config.read(dir_path+"/Config.ini")
+    affirmative = ["y", "Y", "yes", "Yes", "YES"]
+    negative = ["n", "N", "no", "No", "NO"]
     ETH_port = config['Blockchain']['ETH_port']
     SmartContract_folder = dir_path + "/"+config['Files']['SmartContract_folder']
+    config = set_settings(config, ETH_port, SmartContract_folder)
     Rapports_folder = dir_path + "/" + config['Files']['rapports_folder']
+    Execution_Times = int(config['Parameters']['execution_times'])
+
+    # Run DynaMOSA and Create Rapports
+    rapports = []
+    for folder in os.listdir(SmartContract_folder):
+        for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
+            if file not in config['CFG']['Ignorefiles']:
+                config.set('Files','contract_json_location',r'{}'.format(os.path.abspath(SmartContract_folder+folder+"/build/contracts""/"+file)))
+                # run DynaMOSA on it with these settings.
+                for i in range(Execution_Times):
+                    archives, tSuite, run_time, iterations = DynaMOSA(config)
+                    rapport = create_rapport(archives, tSuite, run_time, iterations)
+                    rapports = rapports + [rapport]
+                    print("Writing Rapport to {}".format(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"))
+                    with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
+                        f.write(rapport)
+
+    # After finishing one rapport ask to show rapports.
+    proper_response = False
+    while not proper_response:
+        response = input("""Finished for all smart contracts.\nShow rapports now? (y/n)""")
+        if response in affirmative:
+            proper_response = True
+            for rapport in rapports:
+                input("Press any key to show rapport...")
+                print(rapport)
+        elif response in negative:
+            proper_response = True
+        else:
+            print('Please type "y" or "n" to confirm or deny.')
+    print("Finished!")
+    return
+
+def set_settings(_config, _ETH_port, _SmartContract_folder):
     affirmative = ["y", "Y", "yes", "Yes", "YES"]
     negative = ["n", "N", "no", "No", "NO"]
     proper_response = False
 
     welcome_string = """Welcome to SolMOSA, the world's first meta-heuristic test-case generator for Solidity-based Ethereuem smart contracts based on DynaMOSA!\nThis script will guide you through the necessary steps for the automated test-case generation.\n"""
-    ETH_port_string  = """Please make sure you have a local blockchain running, currently the settings expect the blockchain to be listening on port {}\n\nIs this still correct? (y/n)""".format(ETH_port)
-    SmartContract_location_string = """\nCurrently the tool will look for smart contract json-files in "{}".\nIs this still correct? (y/n)""".format(os.path.abspath(SmartContract_folder))
+    ETH_port_string  = """Please make sure you have a local blockchain running, currently the settings expect the blockchain to be listening on port {}\n\nIs this still correct? (y/n)""".format(_ETH_port)
+    SmartContract_location_string = """\nCurrently the tool will look for smart contract json-files in "{}".\nIs this still correct? (y/n)""".format(os.path.abspath(_SmartContract_folder))
     Settings_string = """\nThe parameter settings can be changed by changing the "Config.ini"-file located at {}. Would you like to display the parameter settings? (y/n)""".format(os.path.dirname(os.path.realpath(__file__)))
 
     print(figlet_format("SolMOSA"))
@@ -50,80 +87,53 @@ def main():
         else:
             print('Please type "y" or "n" to confirm or deny.')
 
-        # Set the correct smart contract folder
-        proper_response = False
-        while not proper_response:
-            response = input("{} ".format(SmartContract_location_string))
-            if response in affirmative:
-                proper_response = True
-            elif response in negative:
-                while not proper_response:
-                    response = input("\nPlease type the folder location, either as an absolute or a relative path. ")
-                    SmartContract_folder = response
-                    response = input('I will use the smart contract "{}" instead. Is this correct? (y/n) '.format(os.path.abspath(SmartContract_folder)))
-                    if response in affirmative:
-                        proper_response = True
-                        config.set('Files','SmartContract_folder',r'{}'.format(os.path.abspath(SmartContract_folder)))
-                    elif response not in negative:
-                        print('Please type "y" or "n" to confirm or deny.')
-            else:
-                print('Please type "y" or "n" to confirm or deny.')
+    # Set the correct smart contract folder
+    proper_response = False
+    while not proper_response:
+        response = input("{} ".format(SmartContract_location_string))
+        if response in affirmative:
+            proper_response = True
+        elif response in negative:
+            while not proper_response:
+                response = input("\nPlease type the folder location, either as an absolute or a relative path. ")
+                SmartContract_folder = response
+                response = input('I will use the smart contract "{}" instead. Is this correct? (y/n) '.format(os.path.abspath(SmartContract_folder)))
+                if response in affirmative:
+                    proper_response = True
+                    config.set('Files','SmartContract_folder',r'{}'.format(os.path.abspath(SmartContract_folder)))
+                elif response not in negative:
+                    print('Please type "y" or "n" to confirm or deny.')
+        else:
+            print('Please type "y" or "n" to confirm or deny.')
 
-        # Show settings if needed
-        proper_response = False
-        while not proper_response:
-            response = input(Settings_string)
-            if response in affirmative:
-                print("")
-                show_settings(config)
-                input("\nPress any key to start...\n")
-                proper_response = True
-            elif response in negative:
-                print("")
-                proper_response = True
-            else:
-                print('Please type "y" or "n" to confirm or deny.')
+    # Show settings if needed
+    proper_response = False
+    while not proper_response:
+        response = input(Settings_string)
+        if response in affirmative:
+            print("")
+            show_settings(config)
+            input("\nPress any key to start...\n")
+            proper_response = True
+        elif response in negative:
+            print("")
+            proper_response = True
+        else:
+            print('Please type "y" or "n" to confirm or deny.')
 
-        # Run DynaMOSA and Create Rapports
-        rapports = []
-        for folder in os.listdir(SmartContract_folder):
-            for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
-                if file not in config['CFG']['Ignorefiles']:
-                    config.set('Files','contract_json_location',r'{}'.format(os.path.abspath(SmartContract_folder+folder+"/build/contracts""/"+file)))
-                    # run DynaMOSA on it with these settings.
-                    archives, tSuite = DynaMOSA(config)
-                    rapport = create_rapport(archives, tSuite)
-                    rapports = rapports + [rapport]
-                    print("Writing Rapport to {}".format(Rapports_folder+"/"+folder+".txt"))
-                    with open(os.path.abspath(Rapports_folder+"/"+folder+".txt"), 'w') as f:
-                        f.write(rapport)
-
-        proper_response = False
-        while not proper_response:
-            response = input("""Finished for all smart contracts. Rapports will be written to {}.\nShow rapports now? (y/n)""".format(os.path.abspath("rapports.txt")))
-            if response in affirmative:
-                proper_response = True
-                for rapport in rapports:
-                    input("Press any key to show rapport...")
-                    print(rapport)
-            elif response in negative:
-                proper_response = True
-            else:
-                print('Please type "y" or "n" to confirm or deny.')
-        print("Finished!")
-    return
+    return _config
 
 def show_settings(config):
     for setting in config['Parameters']:
         print("{}: {}".format(setting, config['Parameters'][setting]))
 
-def create_rapport(archives, tSuite):
+def create_rapport(archives, tSuite, run_time, iterations):
     contractName = tSuite.smartContract.contractName
     relevant_branches = determine_relevant_targets(tSuite.smartContract.CDG.CompactEdges, tSuite.smartContract.CDG.CompactNodes)
     if sum(relevant_branches) == 0:
         return "No branches found, any method call will work!"
     best_tests = [best_test for best_test, relevant in zip(archives[-1], relevant_branches) if relevant]
-    rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t{}\nNumber of Branches Covered:\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), tSuite.smartContract.methods[0]['inputs'], tSuite.smartContract.methods[0]['stateMutability'])
+    rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t{}\nNumber of Branches Covered:\t\t{}\nRuntime: \t\t\t\t\t\t\t\t\t\t\t{}\nIterations\t\t\t\t\t\t\t\t\t\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), run_time, iterations, tSuite.smartContract.methods[0]['inputs'], tSuite.smartContract.methods[0]['stateMutability'])
     for method in tSuite.smartContract.methods[1:]:
         methodstring = """\n{}:\n\tInputs: {}\n\tOutputs: {}\n\tPayable: {}""".format(method['name'], method['inputs'], method['outputs'], method['payable'])
         rapport = rapport + methodstring
