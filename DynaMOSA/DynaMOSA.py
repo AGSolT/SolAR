@@ -16,6 +16,8 @@ def DynaMOSA(config):
     Outputs:
         - archives: A list containing the best test cases for each branch at each generation of the algorithm, the final archive in the list contains the best test cases found by the algorithm.
         - tSuite: The TestSuite object that was used by the DynaMOSA algorithm.
+        - runtime: The time it took to generate the tests.
+        - iterations: The number of times the genetic loop was executed.
     """
     # Register the time when the algorithm starts
     start_time = datetime.datetime.now()
@@ -54,7 +56,7 @@ def DynaMOSA(config):
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
     if sum(relevant_targets) == 0:
         print("No branching paths were detected!")
-        return [], tSuite, 0
+        return [], tSuite, 0, 0
 
     callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 

@@ -112,7 +112,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         response = input(Settings_string)
         if response in affirmative:
             print("")
-            show_settings(config)
+            show_settings(_config)
             input("\nPress any key to start...\n")
             proper_response = True
         elif response in negative:
