@@ -54,7 +54,7 @@ def DynaMOSA(config):
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
     if sum(relevant_targets) == 0:
         print("No branching paths were detected!")
-        return [], tSuite
+        return [], tSuite, 0
 
     callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 
