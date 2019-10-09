@@ -110,9 +110,6 @@ def DynaMOSA(config):
     callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
     os.system(callstring)
 
-    # Wait for Ganache to start, this takes about 3 seconds
-    time.sleep(3)
-
     accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
     if eval(config['Parameters']['deploying_accounts']) == []:
         deploying_accounts = accounts
@@ -134,8 +131,6 @@ def DynaMOSA(config):
         updated_targets = update_targets(parents, archive, relevant_targets)
         R = parents.union(offspring)
 
-        tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(R), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
-
         # We restart the Ganache blockchain for memory efficiency
         print("\tResetting Blockchain...")
         callstring = 'screen -S ganache -X stuff "^C"'
@@ -147,14 +142,13 @@ def DynaMOSA(config):
         callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
         os.system(callstring)
 
-        # Wait for Ganache to start, this takes about 3 seconds
-        time.sleep(3.1)
-
         accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
         if eval(config['Parameters']['deploying_accounts']) == []:
             deploying_accounts = accounts
         else:
             deploying_accounts = eval(config['Parameters']['deploying_accounts'])
+
+        tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(R), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
 
         callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 

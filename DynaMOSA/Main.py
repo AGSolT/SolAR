@@ -24,7 +24,6 @@ def main():
 
     # Run DynaMOSA and Create Rapports
     rapports = []
-    # time.sleep(3)
     for folder in os.listdir(SmartContract_folder):
         for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
             if file not in config['CFG']['Ignorefiles']:
