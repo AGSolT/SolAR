@@ -24,6 +24,7 @@ def main():
 
     # Run DynaMOSA and Create Rapports
     rapports = []
+    # time.sleep(3)
     for folder in os.listdir(SmartContract_folder):
         for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
             if file not in config['CFG']['Ignorefiles']:
@@ -37,7 +38,7 @@ def main():
                     with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
                         f.write(rapport)
 
-    # After finishing one rapport ask to show rapports.
+    # After finishing all rapports ask to show rapports.
     proper_response = False
     while not proper_response:
         response = input("""Finished for all smart contracts.\nShow rapports now? (y/n)""")
@@ -59,6 +60,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
     proper_response = False
 
     welcome_string = """Welcome to SolMOSA, the world's first meta-heuristic test-case generator for Solidity-based Ethereuem smart contracts based on DynaMOSA!\nThis script will guide you through the necessary steps for the automated test-case generation.\n"""
+    Ganache_string = """Would you like to start a Ganache client for easy testing on GNU screen "ganache"? (y/n)"""
     ETH_port_string  = """Please make sure you have a local blockchain running, currently the settings expect the blockchain to be listening on port {}\n\nIs this still correct? (y/n)""".format(_ETH_port)
     SmartContract_location_string = """\nCurrently the tool will look for smart contract json-files in "{}".\nIs this still correct? (y/n)""".format(os.path.abspath(_SmartContract_folder))
     Settings_string = """\nThe parameter settings can be changed by changing the "Config.ini"-file located at {}. Would you like to display the parameter settings? (y/n)""".format(os.path.dirname(os.path.realpath(__file__)))
@@ -66,8 +68,26 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
     print(figlet_format("SolMOSA"))
     print(welcome_string)
 
-    # Set the correct port for the listening local blockchain.
+    # Give the user a chance to launch a ganache blockchain
     while not proper_response:
+        response = input("{}".format(Ganache_string))
+        if response in affirmative:
+            # Launch a ganache-client in another screen
+            callstring = 'screen -dmS ganache'
+            os.system(callstring)
+            callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
+            os.system(callstring)
+            proper_response = True
+            blockchain_running = True
+        elif response in negative:
+            proper_response = True
+            blockchain_running = False
+        else:
+            print('Please type "y" or "n" to confirm or deny.')
+
+    # Set the correct port for the listening local blockchain.
+    proper_response = False
+    while not proper_response | blockchain_running:
         response = input("{} ".format(ETH_port_string))
         if response in affirmative:
             proper_response = True

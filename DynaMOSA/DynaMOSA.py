@@ -42,6 +42,7 @@ def DynaMOSA(config):
     tournament_size = int(config['Parameters']['tournament_size'])
 
     accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
+
     if eval(config['Parameters']['deploying_accounts']) == []:
         deploying_accounts = accounts
     else:
@@ -98,6 +99,26 @@ def DynaMOSA(config):
             best_test.show_test()
             print("")
 
+    # We restart the Ganache blockchain for memory efficiency
+    print("\tResetting Blockchain...")
+    callstring = 'screen -S ganache -X stuff "^C"'
+    os.system(callstring)
+    # Clear old blockchain from the /tmp directory
+    callstring = "rm -r /tmp/tmp-*"
+    subprocess.call(callstring, shell=True)
+    #  Start new instance of Ganache
+    callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
+    os.system(callstring)
+
+    # Wait for Ganache to start, this takes about 3 seconds
+    time.sleep(3)
+
+    accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
+    if eval(config['Parameters']['deploying_accounts']) == []:
+        deploying_accounts = accounts
+    else:
+        deploying_accounts = eval(config['Parameters']['deploying_accounts'])
+
     # Keep track of the number of iterations necessary to achieve branch coverage
     iterations = 1
 
@@ -117,13 +138,17 @@ def DynaMOSA(config):
 
         # We restart the Ganache blockchain for memory efficiency
         print("\tResetting Blockchain...")
-        callstring = 'screen -p ganache -X stuff "^C"'
+        callstring = 'screen -S ganache -X stuff "^C"'
         os.system(callstring)
-        callstring = 'screen -p ganache -X stuff "ganache-cli\r"'
+        # Clear old blockchain from the /tmp directory
+        callstring = "rm -r /tmp/tmp-*"
+        subprocess.call(callstring, shell=True)
+        #  Start new instance of Ganache
+        callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
         os.system(callstring)
 
         # Wait for Ganache to start, this takes about 3 seconds
-        time.sleep(3)
+        time.sleep(3.1)
 
         accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
         if eval(config['Parameters']['deploying_accounts']) == []:
