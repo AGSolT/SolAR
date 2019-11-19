@@ -12,6 +12,10 @@ class CompactNode():
         - basic_blocks: The list of basic_blocks that are in the CompactNode.
         - inc_node_ids: The node_id's of CompactNodes that have edges leading into this node.
         - outg_node_ids: The node_id's of CompactNodes that are connected to this Node through outgoing Edges.
+        - predicate: The predicate in this node that is controlling any Edges leaving from it in the CDG.
+        - semi: The semidominator, used for the Lengauer-Tarjan algorithm.
+        - bucket: The set of nodes for which this node is the semidominator
+        - dom: The immediate dominator of this node.
     """
     node_id     = ("", 0)
     start_pc    = 0
@@ -19,14 +23,23 @@ class CompactNode():
     basic_blocks   = []
     inc_node_ids   = []
     outg_node_ids  = []
+    predicate      = None
+    semi           = 0
+    bucket         = set()
+    dom            = None
 
-    def __init__(self, _node_id, _start_pc, _end_pc, _basic_blocks, _inc_node_ids, _outg_node_ids):
+    def __init__(self, _node_id, _start_pc, _end_pc, _basic_blocks, _inc_node_ids, _outg_node_ids, _predicate=None, _vertex=0, _semi=0, _bucket=set(), _dom=None):
         self.node_id = _node_id
         self.start_pc = _start_pc
         self.end_pc = _end_pc
         self.basic_blocks = _basic_blocks
         self.inc_node_ids = _inc_node_ids
         self.outg_node_ids = _outg_node_ids
+        self.predicate = _predicate
+        self.vertex = _vertex
+        self.semi = _semi
+        self.bucket = _bucket
+        self.dom = _dom
 
     def show_CompactNode(self, log=False):
         """
@@ -88,6 +101,13 @@ class Predicate():
         self.pc = _pc
         self.node_id = _node_id
 
+    def show_Predicate(self, verbose=True):
+        info = "Predicate with eval: {}, at pc: {} and node_id: {}".format(self.eval, self.pc, self.node_id)
+        if(verbose):
+            print(info)
+        else:
+            return info
+
 class CDG():
     """
     A control-dependency-graph object created using the evm_cfg_builder tool.
@@ -96,11 +116,15 @@ class CDG():
         - CompactNodes: A list of all the CompactNodes in the CDG.
         - CompactEdges: A list of all the CompactEdges in the CDG.
         - StartNodes: The CompactNodes that are the start of a method.
+        - vertex: An ordered list of vertices used for the Lengauer-Tarjan algorithm.
+        - n: A global counter used for the Lengauer-Tarjan algorithm
     """
     name = ""
     CompactNodes = []
     CompactEdges  = []
     StartNodes  = []
+    vertex = []
+    n = 0
 
     def __init__(self, _name, _bytecode, _predicates):
         """
@@ -121,11 +145,13 @@ class CDG():
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
         E, s = self.Find_Compact_Edges_StartPoints(N, _predicates)
         N, E = self.Select_Relevant(N, E)
-        E = list(self.CFG_to_CDG(N, E))
+        # E = list(self.CFG_to_CDG(N, E))
         self.name = _name
         self.CompactNodes = N
         self.CompactEdges = E
         self.StartNodes = s
+        self.vertex = [None] * len(self.CompactNodes)
+        self.n = 0
 
     def Select_Relevant(self, cNodes, cEdges):
         """
@@ -170,53 +196,6 @@ class CDG():
             relNodes = relNodes + [mergeNode]
 
         return relNodes, relEdges
-
-    def CFG_to_CDG(self, cNodes, cEdges):
-        """
-        Converts a Compactified CFG to a CDG
-        Inputs:
-            - cNodes: The nodes of the compactified CFG
-            - cEdges: The edges of the compactified CFG
-        Outputs:
-            - CDG_Edges: The edges of the CDG
-        """
-        sNode = next((cNode for cNode in cNodes if cNode.node_id == ("_dispatcher", 1)), None)
-        # sNode = The first Node that has a branch. What to do if there are no branches?
-        CDG_Edges = self.Find_Control_Dependencies(sNode, None, cNodes, cEdges, set(), sNode.node_id)
-        return CDG_Edges
-
-    def Find_Control_Dependencies(self, curNode, firstChild, cNodes, cEdges, CDG_Edges, startNode_id):
-        """
-        Recursively finds the control dependencies in the CFG and creates edges accordingly.
-        Inputs:
-            - curNode: the current node whose control dependency is being found.
-            - prev_Node: the last node whose control dependency was being found.
-            - cNodes: The nodes of the CFG.
-            - CDG_Edges: The current set of CDG edges.
-            - startNode_id: The node dominating the current node.
-        Outputs:
-            - CDG_Edges: The edges of the CDG.
-        """
-        if len(curNode.outg_node_ids) == 0:
-            predicate = next((cEdge.predicate for cEdge in cEdges if (cEdge.startNode_id == startNode_id) & (cEdge.endNode_id == firstChild.node_id)), None)
-            new_Edge = CompactEdge(startNode_id, curNode.node_id, predicate)
-            return CDG_Edges.union({new_Edge})
-        elif len(curNode.outg_node_ids) > 1:
-            assert len(curNode.outg_node_ids) == 2, "A Node exists with more than 2 outgoing nodes: {}".format(curNode.node_id)
-            child1 = next((cNode for cNode in cNodes if (cNode.node_id) == curNode.outg_node_ids[0]), None)
-            child2 = next((cNode for cNode in cNodes if (cNode.node_id) == curNode.outg_node_ids[1]), None)
-            if curNode.node_id == startNode_id:
-                return CDG_Edges.union(self.Find_Control_Dependencies(child1, child1, cNodes, cEdges, CDG_Edges, curNode.node_id), self.Find_Control_Dependencies(child2, child2, cNodes, cEdges, CDG_Edges, curNode.node_id))
-            else:
-                predicate = next((cEdge.predicate for cEdge in cEdges if (cEdge.startNode_id == startNode_id) & (cEdge.endNode_id == firstChild.node_id)), None)
-                new_Edge = CompactEdge(startNode_id, curNode.node_id, predicate)
-                return CDG_Edges.union({new_Edge}, self.Find_Control_Dependencies(curNode, child1, cNodes, cEdges, CDG_Edges, curNode.node_id), self.Find_Control_Dependencies(curNode, child2, cNodes, cEdges, CDG_Edges, curNode.node_id))
-        else:
-            child = next((cNode for cNode in cNodes if cNode.node_id in curNode.outg_node_ids), None)
-            assert child is not None, "There should be a child node here!"
-            predicate = next((cEdge.predicate for cEdge in cEdges if (cEdge.startNode_id == startNode_id) & (cEdge.endNode_id == firstChild.node_id)), None)
-            new_Edge = CompactEdge(startNode_id, curNode.node_id, predicate)
-            return CDG_Edges.union({new_Edge}, self.Find_Control_Dependencies(child, firstChild, cNodes, cEdges, CDG_Edges, startNode_id))
 
     def Compactify_method(self, method, node_ctr, bbs, rbbs, compactNodes, simple_edges):
         """
@@ -333,9 +312,7 @@ class CDG():
         for cNode in cNodes:
             for outg_node_id in cNode.outg_node_ids:
                 inc_node_id = cNode.node_id
-                eval, pc = self.Find_Predicate(cNode.basic_blocks[-1], predicates)
-                predicate = Predicate(eval, pc, cNode.node_id)
-                E = E + [CompactEdge(inc_node_id, outg_node_id, predicate)]
+                E = E + [CompactEdge(inc_node_id, outg_node_id, None)]
                 if len(cNode.inc_node_ids) == 0:
                     s.add(cNode)
 
@@ -352,19 +329,124 @@ class CDG():
             - pc: The pc where the eval is present in the deployed bytecode.
         TODO: This method might not always work and warrents more investigation. Specifically a problem might be that a boolean b_1 is already on the stack when a new Opcode is executed that pushes another boolean b_2 onto the stack and the booleans could then be switched. This is definitely not the case for the contracts that I tested on but could still be relevant.
         """
+        # First we look from front to back for a valid Predicate
         for i, inst in enumerate(bb.instructions):
             if inst.name in predicates:
                 eval = inst.name
                 pc = inst.pc
                 return eval, pc
+        # Then we look backwards for ISZERO
         for i, inst in reversed(list(enumerate(bb.instructions))):
             if inst.name == "ISZERO":
                 eval = inst.name
                 pc = inst.pc
                 return eval, pc
+        # If neither are found the predicate is NONE
         eval = "NONE"
         pc = bb.start.pc
         return eval, pc
+
+    def LT(self, predicates):
+        # Create the spanning Tree using Depth-First-Search
+        self.DFS(next(sNode for sNode in self.StartNodes))
+        self.n -=1
+
+        # While creating the CDG a we keep track of a forest which is initialised here
+        forestEdges = set()
+
+        # Find semidominators and initialise immediate dominators
+        for i in range(self.n, 0, -1):
+            w = self.vertex[i]
+            # Finding semidominators
+            for v_id in w.inc_node_ids:
+                v = next((compactNode for compactNode in self.CompactNodes if compactNode.node_id == v_id), None)
+                assert v is not None, "No Node was found from the list of incoming nodes!"
+                u = self.EVAL(v, forestEdges)
+                if u.semi<w.semi:
+                    w.semi = u.semi
+            # Add w to the bucket of its semidominator
+            self.vertex[w.semi].bucket.add(w)
+            newEdge = next((cEdge for cEdge in self.CompactEdges if (cEdge.startNode_id == w.parent.node_id) & (cEdge.endNode_id == w.node_id)), None)
+            assert newEdge is not None, "No Edge was found between a node and its parent!"
+            forestEdges.add(newEdge)
+            # Initialise immediate dominators
+            parent_bucket = w.parent.bucket.copy()
+            for v in parent_bucket:
+                # Remove v from the parents bucket
+                w.parent.bucket.remove(v)
+                u = self.EVAL(v, forestEdges)
+                if u.semi<v.semi:
+                    v.dom = u
+                else:
+                    v.dom = w.parent
+
+        # Finally find immediate dominators not found in previous step
+        for w in self.vertex[1:]:
+            if w.dom != self.vertex[w.semi]:
+                w.dom = w.dom.dom
+            # The outgoing_node_ids will be set later on.
+            w.outg_node_ids = []
+            # Set the predicates of each node
+            e, pc = self.Find_Predicate(w.basic_blocks[-1], predicates)
+            predicate = Predicate(e, pc, w.node_id)
+            w.predicate = predicate
+
+        # Do the same for the root node
+        self.vertex[0].dom = None
+        self.vertex[0].outg_node_ids = []
+        e, pc = self.Find_Predicate(self.vertex[0].basic_blocks[-1], predicates)
+        predicate = Predicate(e, pc, self.vertex[0].node_id)
+        self.vertex[0].predicate = predicate
+
+        # The incoming and outgoing node_ids can be set by using the dom_ids, the edges go from each node to their dominator
+        Edges = []
+        for i in range(self.n, 0, -1):
+            self.vertex[i].inc_node_ids = [self.vertex[i].dom.node_id]
+            self.vertex[i].outg_node_ids = [cNode.node_id for cNode in self.vertex if cNode.dom == self.vertex[i]]
+            assert self.vertex[i].dom is not None, "There is a non-root node without an immediate dominator!"
+            Edges = Edges + [CompactEdge(self.vertex[i].dom.node_id, self.vertex[i].node_id, self.vertex[i].dom.predicate)]
+
+        self.vertex[0].outg_node_ids = [cNode.node_id for cNode in self.vertex if cNode.dom == self.vertex[0]]
+
+        # The Compactnodes are now equal to self.vertex
+        assert len(self.CompactNodes) == len(self.vertex), "There is a different number of nodes in self.CompactNodes ({}) than in vertex ({})".format(len(self.compactNodes), len(self.vertex))
+        self.CompactNodes = self.vertex
+
+        # The CompactNodes are equal to the edges from the forest
+        self.CompactEdges = Edges
+
+    def DFS(self, v):
+        v.semi = self.n
+        self.vertex[self.n] = v
+        self.n+=1
+        for w_id in v.outg_node_ids:
+            w = next((compactNode for compactNode in self.CompactNodes if compactNode.node_id == w_id), None)
+            assert w is not None, "No Node was found to be a parent!"
+            if w.semi == 0:
+                w.parent = v
+                self.DFS(w)
+                assert v.node_id in w.inc_node_ids, "Something went wrong with the Incoming Node ids!"
+
+    def EVAL(self, _v, _forestEdges):
+        if self.isRoot(_v, _forestEdges):
+            return _v
+        else:
+            min_semi = _v.semi
+            min_node = _v
+            pot_root = next((cNode for cNode in self.CompactNodes if cNode.node_id == next((cEdge.startNode_id for cEdge in _forestEdges if cEdge.endNode_id == _v.node_id), None)), None)
+            assert pot_root is not None, "EVAL cannot find a root node in the forest!"
+            while not self.isRoot(pot_root, _forestEdges):
+                if pot_root.semi<=min_semi:
+                    min_semi = pot_root.semi
+                    min_node = pot_root
+                    pot_root = next((cNode for cNode in self.CompactNodes if cNode.node_id == next((cEdge.startNode_id for cEdge in _forestEdges if cEdge.endNode_id == pot_root.node_id), None)), None)
+            return pot_root
+
+    def isRoot(self, v, _forestEdges):
+        for cEdge in _forestEdges:
+            if cEdge.endNode_id == v.node_id:
+                return False
+        return True
 
     def Show_CDG(self, log=False):
         if log:

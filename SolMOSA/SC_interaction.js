@@ -37,7 +37,6 @@ async function runTest(){
     input_args = method.inputVars;
     from = method.fromAcc;
     method_name = method.name
-
     if(method_name == 'constructor'){
       if(i > 0){
         constTrace = await debug.getTransactionTrace(constHash, {});

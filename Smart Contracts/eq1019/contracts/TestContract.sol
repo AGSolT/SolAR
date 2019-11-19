@@ -35,4 +35,5 @@ function TestOne(uint a, uint b, uint c, uint d, uint e, uint f, uint g, uint h,
     ans = ans + 1;
   }
 }
+return true;
 }
