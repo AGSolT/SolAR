@@ -55,8 +55,6 @@ def SolMOSA(config):
 
     tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls)
 
-    tSuite.save_TestSuite("/Users/stefan/Desktop/TS.p")
-
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
     if sum(relevant_targets) == 0:
