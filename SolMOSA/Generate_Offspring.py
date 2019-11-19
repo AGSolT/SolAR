@@ -3,7 +3,7 @@ from Test_Suite import *
 from Test import *
 import ast, random, copy
 
-def generate_offspring(test_cases, SmartContract, accounts, deploying_accounts, poss_methods, pop_size, tournament_size, max_method_calls, crossover_probability, mutation_probability, remove_probability, change_probability, insert_probability):
+def generate_offspring(test_cases, SmartContract, accounts, deploying_accounts, poss_methods, pop_size, tournament_size, max_method_calls, crossover_probability, remove_probability, change_probability, insert_probability):
     """
     Given a set of parent test-cases generates offspring by applying selection, crossover and mutation. TODO: Ask Stefano about the merrits of crossover probability when parents are also added for elitism.
     Inputs:
@@ -21,18 +21,19 @@ def generate_offspring(test_cases, SmartContract, accounts, deploying_accounts, 
     while len(Q)<pop_size:
         parent1 = tournament_selection(test_cases, tournament_size)
         parent2 = tournament_selection(test_cases, tournament_size)
-        # if random.uniform(0,1)<= crossover_probability:
-        child1, child2 = crossover(parent1, parent2, SmartContract, accounts, deploying_accounts, max_method_calls)
-        # else:
-        #     child1 = copy.deepcopy(parent1)
-        #     child2 = copy.deepcopy(parent2)
-        Q.add(child1)
-        Q.add(child2)
+        if random.uniform(0,1)<= crossover_probability:
+            child1, child2 = crossover(parent1, parent2, SmartContract, accounts, deploying_accounts, max_method_calls)
+        else:
+            child1 = copy.deepcopy(parent1)
+            child2 = copy.deepcopy(parent2)
 
-    for child in Q:
-        if random.uniform(0, 1)<mutation_probability:
-            mutate(child, accounts, poss_methods, max_method_calls, remove_probability, change_probability, insert_probability)
-
+        mutate(child1, accounts, poss_methods, max_method_calls, remove_probability, change_probability, insert_probability)
+        mutate(child2, accounts, poss_methods, max_method_calls, remove_probability, change_probability, insert_probability)
+        if child1 == parent1:
+            assert child2==parent2, "child1 is the same as parent1 but child2 is not the same as parent2 during crossover!"
+        else:
+            Q.add(child1)
+            Q.add(child2)
     return Q
 
 def tournament_selection(testCases, tournament_size):
@@ -71,7 +72,7 @@ def crossover(testCase1, testCase2, SmartContract, accounts, deploying_accounts,
     return ans1, ans2
 
 # Each mutation type is applied with probability 1/3
-def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probability, change_probability, insert_probability):
+def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probability, change_probability, insert_probability, val_dict = {}):
     """
     Mutates a given test case by removing one or more method calls, changing the method calls input value or inserting new method calls.
     Inputs:
@@ -134,7 +135,7 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
     if random.uniform(0,1)<=insert_probability:
         # Insert mutation
         add_new = True
-        prop = 3
+        prop = 0
         while(add_new) & (len(testCase.methodCalls)<max_method_calls):
             new_methodCall = MethodCall(None, None, None, None, methodDict = random.choice(poss_methods), accounts = accounts)
             if len(testCase.methodCalls) == 1:
@@ -142,6 +143,6 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
             else:
                 loc = random.choice(range(1,len(testCase.methodCalls)))
             testCase.methodCalls.insert(loc, new_methodCall)
-            prop = 3*prop
-            add_new = random.uniform(0,prop)<=1
+            prop += 1
+            add_new = random.uniform(0,1)<=0.5**prop
     return

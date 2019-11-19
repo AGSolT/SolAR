@@ -3,7 +3,7 @@ from SmartContract import *
 from Test_Suite import *
 from Preference_Sorting import *
 from Generate_Offspring import *
-import json, pickle, configparser, os, json, ast, subprocess, sys, datetime, time
+import json, pickle, configparser, os, json, ast, subprocess, sys, datetime, time, logging
 
 def SolMOSA(config):
     """
@@ -34,7 +34,6 @@ def SolMOSA(config):
     max_method_calls = int(config['Parameters']['max_method_calls'])
     min_method_calls = int(config['Parameters']['min_method_calls'])
     crossover_probability = float(config['Parameters']['crossover_probability'])
-    mutation_probability = float(config['Parameters']['mutation_probability'])
     remove_probability = float(config['Parameters']['remove_probability'])
     change_probability = float(config['Parameters']['change_probability'])
     insert_probability = float(config['Parameters']['insert_probability'])
@@ -48,21 +47,31 @@ def SolMOSA(config):
     else:
         deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
+    # Create the CDG
     cdg = CDG(contract_name, deployed_bytecode, predicates)
+    cdg.LT(predicates)
 
     sc = SmartContract(contract_json, cdg)
 
     tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls)
+
+    tSuite.save_TestSuite("/Users/stefan/Desktop/TS.p")
+
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
-        return [], tSuite, 0, 0
+        return [], tSuite, (datetime.datetime.now() - start_time).total_seconds(), 0, 0
 
     callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
 
+    blockchain_start_time = datetime.datetime.now()
+
     logging.info("Deploying and calling smart contracts for the first time...")
     subprocess.call(callstring)
+
+    blockchain_end_time = datetime.datetime.now()
+    blockchain_time = blockchain_end_time-blockchain_start_time
 
     with open('debugs.txt', 'r') as f:
         callResults = f.read()
@@ -92,13 +101,6 @@ def SolMOSA(config):
 
     poss_methods = tSuite.smartContract.methods[1:]
 
-    logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
-    logging.info("The following test cases are currently in the Archive:")
-    for best_test in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
-        if best_test is not None:
-            best_test.show_test(log=True)
-            logging.info("")
-
     # Keep track of the number of iterations necessary to achieve branch coverage
     iterations = 1
 
@@ -106,20 +108,26 @@ def SolMOSA(config):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
             break
-        logging.info("Entering main loop iteration {}/{} at {}".format(i+2, search_budget ,datetime.datetime.now().time()))
+        logging.info("Entering main loop iteration {}/{} at {}:{}".format(i+2, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
+
+        logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
+        logging.info("The following test cases are currently in the Archive:")
+        for best_test in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
+            if best_test is not None:
+                best_test.show_test(log=True)
+                logging.info("")
 
         logging.info("\tGenerating Offspring...")
-        offspring = generate_offspring(parents, sc, accounts, deploying_accounts, poss_methods, population_size, min(tournament_size, population_size), max_method_calls, crossover_probability, mutation_probability, remove_probability, change_probability, insert_probability)
-        archive = update_archive(parents, archive, relevant_targets)
-        updated_targets = update_targets(parents, archive, relevant_targets)
-        R = parents.union(offspring)
+        offspring = generate_offspring(parents, sc, accounts, deploying_accounts, poss_methods, population_size, min(tournament_size, population_size), max_method_calls, crossover_probability, remove_probability, change_probability, insert_probability)
 
-        tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(R), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
+        tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(offspring), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
 
         callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
 
         logging.info("\tDeploying and testing...")
+        blockchain_start_time = datetime.datetime.now()
         subprocess.call(callstring)
+        blockchain_time += datetime.datetime.now()-blockchain_start_time
 
         with open('debugs.txt', 'r') as f:
             callResults = f.read()
@@ -131,6 +139,10 @@ def SolMOSA(config):
 
         logging.info("\tUpdating test distances...")
         tSuite.update_test_distances(results, returnvals)
+
+        archive = update_archive(offspring, archive, relevant_targets)
+        updated_targets = update_targets(offspring, archive, relevant_targets)
+        R = parents.union(offspring)
 
         Fs = preference_sorting(R, updated_targets, population_size)
         parents = set()
@@ -153,7 +165,7 @@ def SolMOSA(config):
 
     archive = update_archive(parents, archive, relevant_targets)
     runtime = datetime.datetime.now() - start_time
-    return archives, tSuite, runtime.total_seconds(), iterations
+    return archives, tSuite, runtime.total_seconds(), blockchain_time.total_seconds(), iterations
 
 def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location):
     """

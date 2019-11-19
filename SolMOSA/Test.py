@@ -120,10 +120,16 @@ class TestCase():
 
                 for j, cEdge in enumerate(compactEdges):
                     if (cEdge.startNode_id == curNode.node_id):
+                        # print("methodCall: {}".format(methodCall.methodName))
+                        # print("input: {}".format(methodCall.inputvars))
+                        # print("edge: {}".format(j))
+                        # print("branch_dist: {}".format(self.branch_dist(nextNode.node_id, node_stack_items, cEdge)))
                         test_scores[j] = min(test_scores[j], self.branch_dist(nextNode.node_id, node_stack_items, cEdge))
+                        # print("test_score: {}".format(test_scores[j]))
                         if (cEdge.endNode_id == nextNode.node_id):
                             edgeset.add(j)
                     if cEdge.endNode_id == nextNode.node_id:
+                        #TODO: Check if this really correct
                         if cEdge.startNode_id in [visitedNode.node_id for visitedNode in visited]:
                             test_scores[j] = 0
                             edgeset.add(j)
@@ -154,10 +160,10 @@ class TestCase():
             if stack is None:
                 stack = next((stackItem['stack'] for stackItem in stack_items if stackItem['op'] == compactEdge.predicate.eval))
             assert not stack is None, "There was a missing stackitem!"
-            s_1 = int(stack[0], 16)
+            s_1 = int(stack[-1], 16)
             if pred_eval == 'ISZERO':
                 return self.normalise(np.abs(s_1))
-            s_2 = int(stack[1], 16)
+            s_2 = int(stack[-2], 16)
             if pred_eval == 'EQ':
                 if s_1 == s_2: # The other branch is found by s_1 != s_2
                     return 1

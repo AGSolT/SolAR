@@ -8,7 +8,7 @@ from Test_Suite import *
 from Preference_Sorting import *
 from Generate_Offspring import *
 from pyfiglet import figlet_format
-import json, pickle, configparser, os, json, ast, subprocess, sys, datetime, logging
+import json, pickle, configparser, os, json, ast, subprocess, sys, datetime, logging, time, csv
 logging.basicConfig(filename='SolMOSA.log', filemode='w', level=logging.DEBUG)
 
 def main():
@@ -18,12 +18,20 @@ def main():
     affirmative = ["y", "Y", "yes", "Yes", "YES"]
     negative = ["n", "N", "no", "No", "NO"]
     ETH_port = config['Blockchain']['ETH_port']
-    SmartContract_folder = dir_path + "/"+config['Files']['SmartContract_folder']
+    SmartContract_folder = dir_path + "/"+config['Files']['SmartContract_folder'] + "/"
     config = set_settings(config, ETH_port, SmartContract_folder)
+    SmartContract_folder = config['Files']['SmartContract_folder'] + "/"
     Rapports_folder = dir_path + "/" + config['Files']['rapports_folder']
     Execution_Times = int(config['Parameters']['execution_times'])
 
     # Run SolMOSA and Create Rapports
+    # First we initialise the csv file that can easily be analyzed by the computer
+    columns = ["Name", "Tot. Branches", "Branches Covered", "Generations", "Blockchain Time", "Offchain Time", "Total time"]
+    with open("results.csv", mode="w") as f:
+        f_writer = csv.writer(f, delimiter=',', quotechar = "'", quoting=csv.QUOTE_MINIMAL)
+        f_writer.writerow(columns)
+
+    # Then we create the rapports and fill out the csv file
     rapports = []
     for folder in os.listdir(SmartContract_folder):
         for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
@@ -31,17 +39,17 @@ def main():
                 config.set('Files','contract_json_location',r'{}'.format(os.path.abspath(SmartContract_folder+folder+"/build/contracts""/"+file)))
                 # run SolMOSA on it with these settings.
                 for i in range(Execution_Times):
-                    archives, tSuite, run_time, iterations = SolMOSA(config)
-                    rapport = create_rapport(archives, tSuite, run_time, iterations)
+                    archives, tSuite, run_time, blockchain_time, iterations = SolMOSA(config)
+                    rapport = create_rapport(archives, tSuite, run_time, blockchain_time, iterations)
                     rapports = rapports + [rapport]
                     logging.info("Writing Rapport to {}".format(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"))
                     with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
                         f.write(rapport)
                     # We log the current size of our system and /tmp/ folder in specific
-                    logging.debug("Folder Sizes in / before resetting Ganache")
-                    log_du("/")
-                    logging.debug("Sizes in /tmp/")
-                    log_du("/tmp/")
+                    # logging.debug("Folder Sizes in / before resetting Ganache")
+                    # log_du("/")
+                    # logging.debug("Sizes in /tmp/")
+                    # log_du("/tmp/")
 
                     # We restart the Ganache blockchain for memory efficiency
                     logging.info("\tResetting Blockchain...")
@@ -50,10 +58,10 @@ def main():
                     # Clear old blockchain from the /tmp directory
                     callstring = "rm -r /tmp/tmp-*"
                     subprocess.call(callstring, shell=True)
-                    logging.debug("Folder Sizes in / after resetting Ganache")
-                    log_du("/")
-                    loggin.debug("Sizes in /tmp/")
-                    log_du("/tmp/")
+                    # logging.debug("Folder Sizes in / after resetting Ganache")
+                    # log_du("/")
+                    # logging.debug("Sizes in /tmp/")
+                    # log_du("/tmp/")
                     #  Start new instance of Ganache
                     callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
                     os.system(callstring)
@@ -121,7 +129,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
                 response = input("I will use the port {} instead. Is this correct? (y/n) ".format(ETH_port))
                 if response in affirmative:
                     proper_response = True
-                    config.set('Blockchain','ETH_port',r'{}'.format(ETH_port))
+                    _config.set('Blockchain','ETH_port',r'{}'.format(ETH_port))
                 elif response not in negative:
                     print('Please type "y" or "n" to confirm or deny.')
         else:
@@ -137,10 +145,10 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
             while not proper_response:
                 response = input("\nPlease type the folder location, either as an absolute or a relative path. ")
                 SmartContract_folder = response
-                response = input('I will use the smart contract "{}" instead. Is this correct? (y/n) '.format(os.path.abspath(SmartContract_folder)))
+                response = input('I will test the smart contracts in folder "{}" instead. Is this correct? (y/n) '.format(os.path.abspath(SmartContract_folder)))
                 if response in affirmative:
                     proper_response = True
-                    config.set('Files','SmartContract_folder',r'{}'.format(os.path.abspath(SmartContract_folder)))
+                    _config.set('Files','SmartContract_folder',r'{}'.format(os.path.abspath(SmartContract_folder)))
                 elif response not in negative:
                     print('Please type "y" or "n" to confirm or deny.')
         else:
@@ -167,30 +175,59 @@ def show_settings(config):
     for setting in config['Parameters']:
         print("{}: {}".format(setting, config['Parameters'][setting]))
 
-def create_rapport(archives, tSuite, run_time, iterations):
+def create_rapport(archives, tSuite, run_time, blockchain_time, iterations):
+    """
+    Takes the result of a test run and writes a rapport.
+    Inputs:
+        - archives: The archive of each generation during the testing process (the last archive is the final test suite.)
+        - tSuite: The test suite object at the end of the testing process.
+        - run_time: The total time that it took to test a single smart contract once.
+        - blockchain_time: The time spent on blockchain interaction during the total run time.
+        - iterations: The number of iterations it took to reach branch coverage if branch coverage was achieved. The maximum number of generations otherwise
+    Output:
+        - A human-readable rapport file is created
+        - The main results are added to a csv file for easy processing.
+    """
     contractName = tSuite.smartContract.contractName
     relevant_branches = determine_relevant_targets(tSuite.smartContract.CDG.CompactEdges, tSuite.smartContract.CDG.CompactNodes)
     if sum(relevant_branches) == 0:
+        with open("results.csv", "a") as f:
+            f_writer = csv.writer(f, delimiter=',', quotechar = "'", quoting=csv.QUOTE_MINIMAL)
+            f_writer.writerow([contractName, 1, 1, iterations, blockchain_time, run_time-blockchain_time, run_time])
         return "No branches found, any method call will work!"
-    best_tests = [best_test for best_test, relevant in zip(archives[-1], relevant_branches) if relevant]
-    rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t{}\nNumber of Branches Covered:\t\t{}\nRuntime: \t\t\t\t\t\t\t\t\t\t\t{}\nIterations\t\t\t\t\t\t\t\t\t\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), run_time, iterations, tSuite.smartContract.methods[0]['inputs'], tSuite.smartContract.methods[0]['stateMutability'])
-    for method in tSuite.smartContract.methods[1:]:
-        methodstring = """\n{}:\n\tInputs: {}\n\tOutputs: {}\n\tPayable: {}""".format(method['name'], method['inputs'], method['outputs'], method['payable'])
-        rapport = rapport + methodstring
-    shown_tests = []
-    rapport = rapport + """\n\n--------------------------------------------------\nTESTS:"""
-    archive = archives[-1]
-    for testCase in archive:
-        if (testCase is not None) & (testCase not in shown_tests):
-            shown_tests = shown_tests + [testCase]
-            teststring = """\n"""
-            for i, methodCall in enumerate(testCase.methodCalls):
-                methodcallstring = """\n\t({}) {}({}, from: {}, value: {})""".format(i+1, methodCall.methodName, methodCall.inputvars, methodCall.fromAcc, methodCall.value)
-                if methodCall.methodName != 'constructor':
-                    methodcallstring = methodcallstring + """\tReturns: {}""".format(testCase.returnVals[i])
-                teststring = teststring + methodcallstring
-            rapport = rapport + teststring
-    return rapport
+    else:
+        best_tests = [best_test for best_test, relevant in zip(archives[-1], relevant_branches) if relevant]
+        a = contractName
+        b = sum(relevant_branches)
+        c = len([best_test for best_test in best_tests if best_test is not None])
+        d = run_time
+        e = blockchain_time
+        f = iterations
+        g = tSuite.smartContract.methods[0]['inputs']
+        h = tSuite.smartContract.methods[0]['stateMutability']
+        rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t\t{}\nNumber of Branches Covered:\t\t{}\nRuntime: \t\t\t\t{}\nBlockchain Time: \t\t\t{}\nIterations\t\t\t\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), run_time, blockchain_time, iterations, tSuite.smartContract.methods[0]['inputs'], tSuite.smartContract.methods[0]['stateMutability'])
+        for method in tSuite.smartContract.methods[1:]:
+            methodstring = """\n{}:\n\tInputs: {}\n\tOutputs: {}\n\tPayable: {}""".format(method['name'], method['inputs'], method['outputs'], method['payable'])
+            rapport = rapport + methodstring
+        shown_tests = []
+        rapport = rapport + """\n\n--------------------------------------------------\nTESTS:"""
+        archive = archives[-1]
+        for testCase in archive:
+            if (testCase is not None) & (testCase not in shown_tests):
+                shown_tests = shown_tests + [testCase]
+                teststring = """\n"""
+                for i, methodCall in enumerate(testCase.methodCalls):
+                    methodcallstring = """\n\t({}) {}({}, from: {}, value: {})""".format(i+1, methodCall.methodName, methodCall.inputvars, methodCall.fromAcc, methodCall.value)
+                    if methodCall.methodName != 'constructor':
+                        methodcallstring = methodcallstring + """\tReturns: {}""".format(testCase.returnVals[i])
+                    teststring = teststring + methodcallstring
+                rapport = rapport + teststring
+
+        with open("results.csv", "a") as f:
+            f_writer = csv.writer(f, delimiter=',', quotechar = "'", quoting=csv.QUOTE_MINIMAL)
+            f_writer.writerow([contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), iterations, blockchain_time, run_time-blockchain_time, run_time])
+
+        return rapport
 
 def log_du(path):
     """disk usage in human readable format (e.g. '2,1GB')"""
