@@ -7,11 +7,12 @@ const options = {
     transactionConfirmationBlocks: 1,
 }
 
+var data = fs.readFileSync('tests.txt', 'utf8');
+const methods = eval(data);
 const port = args.ETH_port;
 const web3 = new Web3(new Web3.providers.HttpProvider(port), null, options);
 const debug = new Debug(new Web3.providers.HttpProvider(port), null, options);
 
-const methods = eval(args.methods);
 const contract_Abi = eval(args.abi);
 const bytecode = eval(args.bytecode);
 
