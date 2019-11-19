@@ -61,7 +61,11 @@ def SolMOSA(config):
         logging.info("No branching paths were detected!")
         return [], tSuite, (datetime.datetime.now() - start_time).total_seconds(), 0, 0
 
-    callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
+    test_inputs = tSuite.generate_test_inputs()
+    with open("tests.txt", "w") as f:
+        f.write(test_inputs)
+
+    callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
 
     blockchain_start_time = datetime.datetime.now()
 
@@ -106,7 +110,7 @@ def SolMOSA(config):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
             break
-        logging.info("Entering main loop iteration {}/{} at {}:{}".format(i+2, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
+        logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i+2, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
 
         logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
         logging.info("The following test cases are currently in the Archive:")
@@ -120,7 +124,11 @@ def SolMOSA(config):
 
         tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(offspring), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
 
-        callstring = "node SC_interaction.js --methods".split() + [tSuite.generate_test_inputs()] + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
+        test_inputs = tSuite.generate_test_inputs()
+        with open("tests.txt", "w") as f:
+            f.write(test_inputs)
+
+        callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
 
         logging.info("\tDeploying and testing...")
         blockchain_start_time = datetime.datetime.now()
