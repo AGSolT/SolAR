@@ -110,13 +110,6 @@ def SolMOSA(config):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
             break
-
-        # We log the current size of our system and /tmp/ folder in specific
-        logging.debug("Folder Sizes in / before resetting Ganache")
-        log_du("/")
-        logging.debug("Sizes in /tmp/")
-        log_du("/tmp/")
-
         logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i+2, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
 
         logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
