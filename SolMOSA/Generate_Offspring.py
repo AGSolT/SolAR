@@ -91,7 +91,7 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
         delprob = len(testCase.methodCalls)
         for i, methodCall in enumerate(testCase.methodCalls):
             # Each methodcall is deleted with probability 1/length(testCase.methodCalls)
-            if random.uniform(0, delprob))<=1:
+            if random.uniform(0, delprob)<=1:
                 if i == 0:
                     pass # We can not delete the constructor
                 else:

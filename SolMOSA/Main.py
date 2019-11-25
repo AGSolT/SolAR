@@ -46,18 +46,14 @@ def main():
                     with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
                         f.write(rapport)
                     # We log the current size of our system and /tmp/ folder in specific
-<<<<<<< HEAD
                     logging.debug("Folder Sizes in / before resetting Ganache")
                     log_du("/")
                     logging.debug("Sizes in /tmp/")
                     log_du("/tmp/")
-=======
-                    # logging.debug("Folder Sizes in / before resetting Ganache")
-                    # log_du("/")
-                    # logging.debug("Sizes in /tmp/")
-                    # log_du("/tmp/")
->>>>>>> 9e9e44cfaebf47f2f2cbe7f9808881952c1d12d7
-
+                    logging.debug("Folder Sizes in / before resetting Ganache")
+                    log_du("/")
+                    logging.debug("Sizes in /tmp/")
+                    log_du("/tmp/")
                     # We restart the Ganache blockchain for memory efficiency
                     logging.info("\tResetting Blockchain...")
                     callstring = 'screen -S ganache -X stuff "^C"'
@@ -65,17 +61,14 @@ def main():
                     # Clear old blockchain from the /tmp directory
                     callstring = "rm -r /tmp/tmp-*"
                     subprocess.call(callstring, shell=True)
-<<<<<<< HEAD
                     logging.debug("Folder Sizes in / after resetting Ganache")
                     log_du("/")
                     logging.debug("Sizes in /tmp/")
                     log_du("/tmp/")
-=======
-                    # logging.debug("Folder Sizes in / after resetting Ganache")
-                    # log_du("/")
-                    # logging.debug("Sizes in /tmp/")
-                    # log_du("/tmp/")
->>>>>>> 9e9e44cfaebf47f2f2cbe7f9808881952c1d12d7
+                    logging.debug("Folder Sizes in / after resetting Ganache")
+                    log_du("/")
+                    logging.debug("Sizes in /tmp/")
+                    log_du("/tmp/")
                     #  Start new instance of Ganache
                     callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
                     os.system(callstring)

@@ -128,11 +128,9 @@ def SolMOSA(config):
         with open("tests.txt", "w") as f:
             f.write(test_inputs)
 
-        callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
-
         logging.info("\tDeploying and testing...")
         blockchain_start_time = datetime.datetime.now()
-        if i % 10 == 0:
+        if i % 10 == 9:
             # We restart the Ganache blockchain for memory efficiency
             logging.info("\tResetting Blockchain...")
             callstring = 'screen -S ganache -X stuff "^C"'
@@ -147,6 +145,8 @@ def SolMOSA(config):
             #  Start new instance of Ganache
             callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
             os.system(callstring)
+
+        callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
         subprocess.call(callstring)
         blockchain_time += datetime.datetime.now()-blockchain_start_time
 
