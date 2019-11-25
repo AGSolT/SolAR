@@ -110,6 +110,13 @@ def SolMOSA(config):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
             break
+
+        # We log the current size of our system and /tmp/ folder in specific
+        logging.debug("Folder Sizes in / before resetting Ganache")
+        log_du("/")
+        logging.debug("Sizes in /tmp/")
+        log_du("/tmp/")
+
         logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i+2, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
 
         logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
@@ -132,6 +139,21 @@ def SolMOSA(config):
 
         logging.info("\tDeploying and testing...")
         blockchain_start_time = datetime.datetime.now()
+        if i % 10 == 0:
+            # We restart the Ganache blockchain for memory efficiency
+            logging.info("\tResetting Blockchain...")
+            callstring = 'screen -S ganache -X stuff "^C"'
+            os.system(callstring)
+            # Clear old blockchain from the /tmp directory
+            callstring = "rm -r /tmp/tmp-*"
+            subprocess.call(callstring, shell=True)
+            logging.debug("Folder Sizes in / after resetting Ganache")
+            log_du("/")
+            logging.debug("Sizes in /tmp/")
+            log_du("/tmp/")
+            #  Start new instance of Ganache
+            callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
+            os.system(callstring)
         subprocess.call(callstring)
         blockchain_time += datetime.datetime.now()-blockchain_start_time
 
@@ -262,3 +284,8 @@ def determine_relevant_targets(compactEdges, compactNodes):
         elif cEdge.startNode_id[0] == "_dispatcher":
             relevant_targets[i] = False
     return relevant_targets
+
+def log_du(path):
+    """disk usage in human readable format (e.g. '2,1GB')"""
+    for file in os.listdir(path):
+        logging.debug("file" + subprocess.check_output(['du','-hcs', path+file]).split()[0].decode('utf-8'))

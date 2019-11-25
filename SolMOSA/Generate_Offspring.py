@@ -88,9 +88,10 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
     """
     if random.uniform(0,1)<=remove_probability:
         # Remove mutation
+        delprob = len(testCase.methodCalls)
         for i, methodCall in enumerate(testCase.methodCalls):
             # Each methodcall is deleted with probability 1/length(testCase.methodCalls)
-            if random.uniform(0, len(testCase.methodCalls))<=1:
+            if random.uniform(0, delprob))<=1:
                 if i == 0:
                     pass # We can not delete the constructor
                 else:
@@ -103,7 +104,7 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
             new_fromAcc = methodCall.fromAcc
             # Each methodcall is changed with probability 1/length(testCase.methodCalls)
             if random.uniform(0, len(testCase.methodCalls))<=1:
-                if random.uniform(0,1)<=0.9: # mutate inputvars
+                if random.uniform(0,1)<=0.95: # mutate inputvars
                     if len(old_inputvars) == 0:
                         pass
                     else:
@@ -125,7 +126,7 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
                                 else:
                                     assert False, "Unknown input variable type: {}".format(old_inputvar)
                                 new_inputvars[j] = new_inputvar
-                elif random.uniform(0,1)<=0.1: # mutate fromAcc
+                elif random.uniform(0,1)<=0.05: # mutate fromAcc
                     new_fromAcc = random.choice(accounts)
             # mutate value
             methodName = methodCall.methodName

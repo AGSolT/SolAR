@@ -46,10 +46,10 @@ def main():
                     with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
                         f.write(rapport)
                     # We log the current size of our system and /tmp/ folder in specific
-                    # logging.debug("Folder Sizes in / before resetting Ganache")
-                    # log_du("/")
-                    # logging.debug("Sizes in /tmp/")
-                    # log_du("/tmp/")
+                    logging.debug("Folder Sizes in / before resetting Ganache")
+                    log_du("/")
+                    logging.debug("Sizes in /tmp/")
+                    log_du("/tmp/")
 
                     # We restart the Ganache blockchain for memory efficiency
                     logging.info("\tResetting Blockchain...")
@@ -58,10 +58,10 @@ def main():
                     # Clear old blockchain from the /tmp directory
                     callstring = "rm -r /tmp/tmp-*"
                     subprocess.call(callstring, shell=True)
-                    # logging.debug("Folder Sizes in / after resetting Ganache")
-                    # log_du("/")
-                    # logging.debug("Sizes in /tmp/")
-                    # log_du("/tmp/")
+                    logging.debug("Folder Sizes in / after resetting Ganache")
+                    log_du("/")
+                    logging.debug("Sizes in /tmp/")
+                    log_du("/tmp/")
                     #  Start new instance of Ganache
                     callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
                     os.system(callstring)
