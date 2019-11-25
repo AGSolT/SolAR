@@ -143,7 +143,7 @@ def SolMOSA(config):
             logging.debug("Sizes in /tmp/")
             log_du("/tmp/")
             #  Start new instance of Ganache
-            callstring = 'screen -S ganache -X stuff "ganache-cli\r"'
+            callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
             os.system(callstring)
 
         callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
