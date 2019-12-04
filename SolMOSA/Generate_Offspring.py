@@ -117,7 +117,7 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
                                     if random.uniform(0,1)<=0.5:
                                         new_inputvar = max(0, old_inputvar-delta)
                                     else:
-                                        new_inputvar = old_inputvar+delta
+                                        new_inputvar = min(255, old_inputvar+delta)
                                 elif type(old_inputvar == str):
                                     if old_inputvar in accounts:
                                         new_inputvar = random.choice(accounts)

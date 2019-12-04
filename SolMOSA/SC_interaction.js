@@ -76,7 +76,4 @@ runTest().then(function(arr){
       }
   });
   return arr;
-}).catch(function(error){
-  console.log("Didn't manage to connect to the Blockchain, trying again...");
-  setTimeout(function(){runTest();}, 1000);
 });

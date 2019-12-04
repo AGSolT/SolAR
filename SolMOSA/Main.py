@@ -40,7 +40,7 @@ def main():
                 # run SolMOSA on it with these settings.
                 for i in range(Execution_Times):
                     archives, tSuite, run_time, blockchain_time, iterations = SolMOSA(config)
-                    rapport = create_rapport(archives, tSuite, run_time, blockchain_time, iterations)
+                    rapport = create_rapport(archives, tSuite, run_time, blockchain_time, iterations, folder)
                     rapports = rapports + [rapport]
                     logging.info("Writing Rapport to {}".format(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"))
                     with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
@@ -182,7 +182,7 @@ def show_settings(config):
     for setting in config['Parameters']:
         print("{}: {}".format(setting, config['Parameters'][setting]))
 
-def create_rapport(archives, tSuite, run_time, blockchain_time, iterations):
+def create_rapport(archives, tSuite, run_time, blockchain_time, iterations, folder):
     """
     Takes the result of a test run and writes a rapport.
     Inputs:
@@ -232,7 +232,7 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations):
 
         with open("results.csv", "a") as f:
             f_writer = csv.writer(f, delimiter=',', quotechar = "'", quoting=csv.QUOTE_MINIMAL)
-            f_writer.writerow([contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), iterations, blockchain_time, run_time-blockchain_time, run_time])
+            f_writer.writerow([folder, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), iterations, blockchain_time, run_time-blockchain_time, run_time])
 
         return rapport
 

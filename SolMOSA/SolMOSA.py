@@ -110,7 +110,7 @@ def SolMOSA(config):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
             break
-        logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i+2, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
+        logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i+1, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
 
         logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
         logging.info("The following test cases are currently in the Archive:")
@@ -130,21 +130,29 @@ def SolMOSA(config):
 
         logging.info("\tDeploying and testing...")
         blockchain_start_time = datetime.datetime.now()
-        if i % 10 == 9:
+        if i % 10 == 1:
+            print("before")
             # We restart the Ganache blockchain for memory efficiency
             logging.info("\tResetting Blockchain...")
             callstring = 'screen -S ganache -X stuff "^C"'
             os.system(callstring)
+            print("after 1")
             # Clear old blockchain from the /tmp directory
             callstring = "rm -r /tmp/tmp-*"
             subprocess.call(callstring, shell=True)
-            logging.debug("Folder Sizes in / after resetting Ganache")
-            log_du("/")
-            logging.debug("Sizes in /tmp/")
-            log_du("/tmp/")
+            print("after 2")
+            # logging.debug("Folder Sizes in / after resetting Ganache")
+            # log_du("/")
+            # logging.debug("Sizes in /tmp/")
+            # log_du("/tmp/")
             #  Start new instance of Ganache
             callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
             os.system(callstring)
+            print("got here")
+            callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location] + [" > Ganache_Interaction.log"]
+            subprocess.call(callstring)
+            print("and finally here")
+
 
         callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
         subprocess.call(callstring)
