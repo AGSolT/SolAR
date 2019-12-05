@@ -5,8 +5,8 @@ contract TestContract{
 constructor() public {
 }
 
-function TestOne(uint a, uint b) public view returns(bool success){
-  if (a < b){
+function TestOne(uint a) public view returns(bool success){
+  if (a < 13){
     return false;
   }
   else{
@@ -14,8 +14,8 @@ function TestOne(uint a, uint b) public view returns(bool success){
   }
 }
 
-function TestTwo(uint c, uint d) public view returns(bool success){
-  if (c < d){
+function TestTwo(uint b) public view returns(bool success){
+  if (b < 13){
     return false;
   }
   else{
@@ -23,8 +23,8 @@ function TestTwo(uint c, uint d) public view returns(bool success){
   }
 }
 
-function TestThree(uint e, uint f) public view returns(bool success){
-  if (e < f){
+function TestThree(uint c) public view returns(bool success){
+  if (c < 13){
     return false;
   }
   else{
