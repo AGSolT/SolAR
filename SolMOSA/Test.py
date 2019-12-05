@@ -99,7 +99,8 @@ class TestCase():
 
             i = 0
             node_stack_items = []
-            while len(curNode.outg_node_ids)>0:
+
+            while curNode.basic_blocks[-1].end.name!="RETURN":
                 start_pc = curNode.basic_blocks[-1].start.pc
                 end_pc = curNode.basic_blocks[-1].end.pc
                 while not ((cur_pc>=start_pc) & (cur_pc <= end_pc)):
@@ -115,7 +116,6 @@ class TestCase():
                     if (cur_pc>=potential_nextNode.basic_blocks[0].start.pc) & (cur_pc <= potential_nextNode.basic_blocks[0].end.pc):
                         nextNode = potential_nextNode
                         break
-
                 visited = visited.union({curNode})
 
                 for j, cEdge in enumerate(compactEdges):
@@ -129,7 +129,6 @@ class TestCase():
                         if (cEdge.endNode_id == nextNode.node_id):
                             edgeset.add(j)
                     if cEdge.endNode_id == nextNode.node_id:
-                        #TODO: Check if this really correct
                         if cEdge.startNode_id in [visitedNode.node_id for visitedNode in visited]:
                             test_scores[j] = 0
                             edgeset.add(j)
