@@ -1,6 +1,7 @@
 import pprint, configparser, os, json, re, copy, logging
 import numpy as np
 from evm_cfg_builder.cfg import CFG
+from operator import itemgetter, attrgetter
 
 class CompactNode():
     """
@@ -78,7 +79,10 @@ class CompactEdge():
         """
         Shows all information of the Edge.
         """
-        info = "Edge from {}, to {} with predicate {}".format(self.startNode_id, self.endNode_id, self.predicate.eval)
+        if self.predicate is None:
+            info = "Edge from {}, to {} ".format(self.startNode_id, self.endNode_id)
+        else:
+            info = "Edge from {}, to {} with predicate {}".format(self.startNode_id, self.endNode_id, self.predicate.eval)
         if log:
             logging.info(info)
         else:
@@ -163,25 +167,34 @@ class CDG():
             - relNodes: the relevant compact nodes.
             - relEdges: the relevant compact edges.
         """
-        mergeNodes = []
-        relNodes = []
+        mergeNodes = set()
+        irrelNodes = set()
         for cNode in cNodes:
             if (cNode.basic_blocks[-1].instructions[-1].name == "REVERT") & (cNode.node_id[0] != '_dispatcher') & (cNode.node_id[0] !=
             '_fallback'):
+                assert len(cNode.outg_node_ids) == 0, "Node {} ends with a REVERT OpCode but also has outgoing nodes?!".format(cNode.node_id)
                 for incNode in [iNode for iNode in cNodes if iNode.node_id in cNode.inc_node_ids]:
                     incNode.outg_node_ids.remove(cNode.node_id)
-                    mergeNodes = mergeNodes + [incNode]
-            else:
-                relNodes = relNodes + [cNode]
-        relEdges = [cEdge for cEdge in cEdges if cEdge.endNode_id in [cNode.node_id for cNode in relNodes]]
+                    irrelNodes = irrelNodes.union(set([cNode]))
+                cNodes, pNodes, newMergeNodes, newIrrelNodes = self.getMergeNodes(cNodes, set([pNode for pNode in cNodes if pNode.node_id in cNode.inc_node_ids]), set(), set())
+                mergeNodes = mergeNodes.union(newMergeNodes)
+                irrelNodes = irrelNodes.union(newIrrelNodes)
 
-        for mergeNode in list(reversed(mergeNodes)):
+        relNodes = list(set(cNodes)-irrelNodes)
+        relNode_ids = [relNode.node_id for relNode in relNodes]
+        relEdges = [cEdge for cEdge in cEdges if (cEdge.endNode_id in relNode_ids) | (cEdge.startNode_id in relNode_ids)]
+        mergeNodeids = sorted([mNode.node_id for mNode in mergeNodes], key=itemgetter(0,1), reverse=True)
+        mergenodeList = sorted(list(mergeNodes), key=attrgetter('node_id'), reverse=True)
+
+        for mergeNode in mergenodeList:
             assert len(mergeNode.outg_node_ids) == 1, "After removing a REVERT-ing node, it's parent node has {} outgoing nodes".format(len(mergeNode.outg_node_ids))
             nextNode = [nNode for nNode in cNodes if nNode.node_id in mergeNode.outg_node_ids][0]
             assert len(nextNode.inc_node_ids) == 1, "After removing a REVERT-ing node the other child of it's parent still had {} incoming nodes".format(len(nextNode.inc_node_ids))
+
             mergeNode.end_pc = nextNode.end_pc
             mergeNode.basic_blocks = mergeNode.basic_blocks + nextNode.basic_blocks
             mergeNode.outg_node_ids = nextNode.outg_node_ids
+
             relEdges = [relEdge for relEdge in relEdges if relEdge.startNode_id != mergeNode.node_id]
 
             for relEdge in relEdges:
@@ -196,6 +209,45 @@ class CDG():
             relNodes = relNodes + [mergeNode]
 
         return relNodes, relEdges
+
+    def getMergeNodes(self, _cNodes, _pNodes, _mergeNodes, _irrelNodes):
+        """
+        The mergenodes are those nodes who have exactly two children: one child is relevant and the other child will be part of a single branch that leads to REVERT and is therefore irrelevant.
+        This function looks at all the parents of child that is part of a single branch that leads to a REVERT and checks whether they are mergenodes, or if they are irrelevant in which case their parents might be mergenodes
+        At the same time, this function removes childNodes from the mergedNodes and in doing so updates cNodes.
+        Inputs:
+            _cNodes: the current list of compactNodes
+            _pNodes: the current list of parent Nodes that are potentially mergenodes
+            _mergeNodes: the currently identified mergenodes
+            _irrelNodes: the currently identified irrelevant nodes
+        Outputs:
+            see Inputs
+        """
+        if not bool(_pNodes):
+            # If _pNodes is the emptyset
+            return _cNodes, set(), _mergeNodes, _irrelNodes
+        pNode = _pNodes.pop()
+        if len(pNode.outg_node_ids)>1:
+            # The parent node has multiple children after removing the irrelevant child
+            return self.getMergeNodes(_cNodes, _pNodes, _mergeNodes, _irrelNodes)
+        elif len(pNode.outg_node_ids)>0:
+            # The parent has exactly 1 child after removing the irrelevant child, therefore it could potentially be merged
+            assert len(pNode.outg_node_ids) == 1, "After removing a REVERT-ing node, it's parent node has {} outgoing nodes".format(len(pNode.outg_node_ids))
+            nextNode = [nNode for nNode in _cNodes if nNode.node_id in pNode.outg_node_ids][0]
+            if len(nextNode.inc_node_ids) > 1:
+                # The parents only child has multiple parents, no merging is needed.
+                return self.getMergeNodes(_cNodes, _pNodes, _mergeNodes, _irrelNodes, _irrelNodes)
+            else:
+                # The parent's only child has only one parent: they should be merged
+                return self.getMergeNodes(_cNodes, _pNodes, set([pNode]).union(_mergeNodes), _irrelNodes)
+        else:
+            # The parent has 0 children after removing the irrelevant child: it is itself irrelevant
+            irrelNodes = _irrelNodes.union(set([pNode]))
+            nextpNodes = [npNode for npNode in _cNodes if npNode.node_id in pNode.outg_node_ids]
+            for nextpNode in nextpNodes:
+                nextpNode.outg_node_ids.remove(pNode.node_id)
+            pNodes = _pNodes.union(set(nextpNodes))
+            return self.getMergeNodes(_cNodes, pNodes, _mergeNodes, irrelNodes)
 
     def Compactify_method(self, method, node_ctr, bbs, rbbs, compactNodes, simple_edges):
         """
@@ -421,7 +473,9 @@ class CDG():
         self.n+=1
         for w_id in v.outg_node_ids:
             w = next((compactNode for compactNode in self.CompactNodes if compactNode.node_id == w_id), None)
-            assert w is not None, "No Node was found to be a parent!"
+            if w is None:
+                v.show_CompactNode()
+            assert w is not None, "No child node was found!"
             if w.semi == 0:
                 w.parent = v
                 self.DFS(w)

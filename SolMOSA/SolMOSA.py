@@ -104,12 +104,15 @@ def SolMOSA(config):
     poss_methods = tSuite.smartContract.methods[1:]
 
     # Keep track of the number of iterations necessary to achieve branch coverage
-    iterations = 1
+    iterations = 0
 
     for i in range(search_budget):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
+            logging.info("Branch coverage was achieved before after random initialisation")
             break
+        # Update the iteration counter
+        iterations += 1
         logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i+1, search_budget ,datetime.datetime.now().date(), datetime.datetime.now().time()))
 
         logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
@@ -131,16 +134,13 @@ def SolMOSA(config):
         logging.info("\tDeploying and testing...")
         blockchain_start_time = datetime.datetime.now()
         if i % 10 == 1:
-            print("before")
             # We restart the Ganache blockchain for memory efficiency
             logging.info("\tResetting Blockchain...")
             callstring = 'screen -S ganache -X stuff "^C"'
             os.system(callstring)
-            print("after 1")
             # Clear old blockchain from the /tmp directory
             callstring = "rm -r /tmp/tmp-*"
             subprocess.call(callstring, shell=True)
-            print("after 2")
             # logging.debug("Folder Sizes in / after resetting Ganache")
             # log_du("/")
             # logging.debug("Sizes in /tmp/")
@@ -148,10 +148,8 @@ def SolMOSA(config):
             #  Start new instance of Ganache
             callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
             os.system(callstring)
-            print("got here")
             callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location] + [" > Ganache_Interaction.log"]
             subprocess.call(callstring)
-            print("and finally here")
 
 
         callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
@@ -188,9 +186,6 @@ def SolMOSA(config):
         assert len(parents) == population_size, "The set of new parents should be of a size equal to the population size."
         archives = archives + [archive]
         testSuites = testSuites + [tSuite]
-
-        # Update the iteration counter
-        iterations += 1
 
     archive = update_archive(parents, archive, relevant_targets)
     runtime = datetime.datetime.now() - start_time
