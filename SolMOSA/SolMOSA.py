@@ -39,6 +39,9 @@ def SolMOSA(config):
     insert_probability = float(config['Parameters']['insert_probability'])
     search_budget = int(config['Parameters']['search_budget'])
     tournament_size = int(config['Parameters']['tournament_size'])
+    passBlocks = config['Parameters']['passBlocks'] == "True"
+    passTime = config['Parameters']['passTime'] == "True"
+    passTimeTime = int(config['Parameters']['passTimeTime'])
 
     accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
 
@@ -53,7 +56,7 @@ def SolMOSA(config):
 
     sc = SmartContract(contract_json, cdg)
 
-    tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls)
+    tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls, _passBlocks=passBlocks, _passTime=passTime, _passTimeTime=passTimeTime)
 
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
@@ -65,16 +68,18 @@ def SolMOSA(config):
     with open("tests.txt", "w") as f:
         f.write(test_inputs)
 
-    callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
+    callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
 
     blockchain_start_time = datetime.datetime.now()
 
     logging.info("Deploying and calling smart contracts for the first time...")
-    subprocess.call(callstring)
+    with open("Ganache_Interaction.log", "a") as f:
+        subprocess.call(callstring, stdout=f)
 
     blockchain_end_time = datetime.datetime.now()
     blockchain_time = blockchain_end_time-blockchain_start_time
 
+    logging.info("Reading results...")
     with open('debugs.txt', 'r') as f:
         callResults = f.read()
 
@@ -109,7 +114,7 @@ def SolMOSA(config):
     for i in range(search_budget):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
-            logging.info("Branch coverage was achieved before after random initialisation")
+            logging.info("Branch coverage was achieved after random initialisation")
             break
         # Update the iteration counter
         iterations += 1
@@ -148,12 +153,14 @@ def SolMOSA(config):
             #  Start new instance of Ganache
             callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
             os.system(callstring)
-            callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location] + [" > Ganache_Interaction.log"]
-            subprocess.call(callstring)
+            callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
+            with open("Ganache_Interaction.log", "a") as f:
+                subprocess.call(callstring, stdout=f)
 
 
-        callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port] + [" > Ganache_Interaction.log"]
-        subprocess.call(callstring)
+        callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
+        with open("Ganache_Interaction.log", "a") as f:
+            subprocess.call(callstring, stdout=f)
         blockchain_time += datetime.datetime.now()-blockchain_start_time
 
         with open('debugs.txt', 'r') as f:
@@ -201,8 +208,9 @@ def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_
     Outputs:
         - accounts: The accounts on the blockchain that will be used for the deployment of and interaction with the smart contract.
     """
-    callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location] + [" > Ganache_Interaction.log"]
-    subprocess.call(callstring)
+    callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
+    with open("Ganache_Interaction.log", "w") as f:
+        subprocess.call(callstring, stdout=f)
     with open(accounts_file_location) as f:
         res = f.read()
         accounts = res.split(',')

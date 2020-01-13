@@ -140,11 +140,12 @@ class CDG():
         """
         cfg = CFG(_bytecode)
         N = []
+        bbs = cfg.basic_blocks
         s = []
         simple_E = []
         for method in cfg.functions:
             node_ctr = 0
-            N, method_sEdges = self.Compactify_method(method, node_ctr, cfg.basic_blocks, [], N, [])
+            N, method_sEdges = self.Compactify_method(method, node_ctr, bbs, [], N, [])
             simple_E = simple_E + method_sEdges
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
         E, s = self.Find_Compact_Edges_StartPoints(N, _predicates)
@@ -173,12 +174,16 @@ class CDG():
             if (cNode.basic_blocks[-1].instructions[-1].name == "REVERT") & (cNode.node_id[0] != '_dispatcher') & (cNode.node_id[0] !=
             '_fallback'):
                 assert len(cNode.outg_node_ids) == 0, "Node {} ends with a REVERT OpCode but also has outgoing nodes?!".format(cNode.node_id)
+                isExtraNode = False
                 for incNode in [iNode for iNode in cNodes if iNode.node_id in cNode.inc_node_ids]:
-                    incNode.outg_node_ids.remove(cNode.node_id)
-                    irrelNodes = irrelNodes.union(set([cNode]))
-                cNodes, pNodes, newMergeNodes, newIrrelNodes = self.getMergeNodes(cNodes, set([pNode for pNode in cNodes if pNode.node_id in cNode.inc_node_ids]), set(), set())
-                mergeNodes = mergeNodes.union(newMergeNodes)
-                irrelNodes = irrelNodes.union(newIrrelNodes)
+                    if incNode.node_id[1]==1:
+                        incNode.outg_node_ids.remove(cNode.node_id)
+                        irrelNodes = irrelNodes.union(set([cNode]))
+                        isExtraNode = True
+                if isExtraNode:
+                    cNodes, pNodes, newMergeNodes, newIrrelNodes = self.getMergeNodes(cNodes, set([pNode for pNode in cNodes if pNode.node_id in cNode.inc_node_ids]), set(), set())
+                    mergeNodes = mergeNodes.union(newMergeNodes)
+                    irrelNodes = irrelNodes.union(newIrrelNodes)
 
         relNodes = list(set(cNodes)-irrelNodes)
         relNode_ids = [relNode.node_id for relNode in relNodes]
@@ -282,15 +287,19 @@ class CDG():
         Inputs:
             - method: A function object of the control-flow-graph
             - node_ctr: Counts the number of nodes in this method and gives them a unique id.
-            - bbs: The basic blocks of the control-flow-graph that have not yet been added to a CompactNode.
+            - bbs: The basic blocks of the control-flow-graph that have not yet been added to a CompactNode of any method.
+            - rbbs: The basic blocks that have been removed from bbs and cannot be added to any other CompactNode anymore.
         Outputs:
             - bb: The basic block that will be the start of the next CompactNode
-            - bbs: The basic blocks that have not yet been added to any CompactNode and cannot be put into the CompactNode under creation.
-            - rbbs: The basic blocks that have been removed from bbs and cannot be added to any other CompactNode anymore.
+            - bbs: The basic blocks that have not yet been added to any CompactNode of any method and can be put into the CompactNode under creation.
+            - rbbs: The basic blocks that have been removed from bbs and cannot be added to any other CompactNode anymore afte this function has run.
         """
         for i, bb in enumerate(method.basic_blocks):
             illegal_inc_bbs = [x for x in method.basic_blocks if x not in rbbs]
-            if (not bb in rbbs) & (not any([x in illegal_inc_bbs for x in bb.incoming_basic_blocks(method.key)])):
+            bb_not_removed = not bb in rbbs
+            bb_is_reachable = not all([x in illegal_inc_bbs for x in bb.incoming_basic_blocks(method.key)])
+            bb_has_no_incoming_blocks = len(bb.incoming_basic_blocks(method.key)) == 0
+            if bb_not_removed & (bb_is_reachable | bb_has_no_incoming_blocks):
                 bbs.remove(bb)
                 rbbs = rbbs + [bb]
                 return bb, bbs, rbbs, True

@@ -147,3 +147,43 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
             prop += 1
             add_new = random.uniform(0,1)<=0.5**prop
     return
+
+
+def mutate_string(s):
+    """
+    Takes a string and mutates it by applying remove, change and insert operation
+    Inputs:
+     - s: the string that needs to be mutated.
+    Outputs:
+     - s_out: the string after mutation.
+    """
+    # remove
+    if random.uniform(0,1)<=1/3:
+        s_out = ""
+        del_prob=1/len(s)
+        for i in range(len(s)):
+            if random.uniform(0,1)>del_prob:
+                s_out = s_out+s[i]
+    else:
+        s_out = s
+
+    # change
+    if random.uniform(0,1)<=1/3:
+        change_prob = 0.95
+        for i in range(len(s_out)):
+            if random.uniform(0,1)<=change_prob:
+                s_out = s_out[:i] + random.choice(string.ascii_letters+"""\ \n\'\"\b\f\r\t\v""") + s_out[i+1:]
+
+    # insert
+    if random.uniform(0,1)<=1/3:
+        # Insert mutation
+        add_new = True
+        prop = 0
+        while(add_new) & (len(s_out)<256):
+            new_char = random.choice(string.ascii_letters+"""\ \n\'\"\b\f\r\t\v""")
+            loc = random.choice(range(0,len(s_out)))
+            s_out = s_out[:loc] + new_char + s_out[loc:]
+            prop += 1
+            add_new = random.uniform(0,1)<=0.5**prop
+
+    return s_out

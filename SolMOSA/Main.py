@@ -34,6 +34,7 @@ def main():
     # Then we create the rapports and fill out the csv file
     rapports = []
     for folder in os.listdir(SmartContract_folder):
+        print("Smart Contract: {}".format(folder))
         for file in os.listdir(SmartContract_folder+folder+"/build/contracts"):
             if file not in config['CFG']['Ignorefiles']:
                 config.set('Files','contract_json_location',r'{}'.format(os.path.abspath(SmartContract_folder+folder+"/build/contracts""/"+file)))
