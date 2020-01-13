@@ -267,7 +267,7 @@ class MethodCall():
         Generates a random allowed input variable given the the variable's type. TODO: Expand the allowed variable types.
         """
         if varType == "bool":
-            return random.choice(True, False)
+            return random.choice([True, False])
         elif varType[:3] == "int":
             intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*', varType)), None)
             assert intsize in [8*i for i in range(1, 33)], "int was followed by something unusual: {}".format(varType)

@@ -144,13 +144,15 @@ class CDG():
         s = []
         simple_E = []
         for method in cfg.functions:
+            N_old = N
             node_ctr = 0
             N, method_sEdges = self.Compactify_method(method, node_ctr, bbs, [], N, [])
             simple_E = simple_E + method_sEdges
+
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
         E, s = self.Find_Compact_Edges_StartPoints(N, _predicates)
         N, E = self.Select_Relevant(N, E)
-        # E = list(self.CFG_to_CDG(N, E))
+
         self.name = _name
         self.CompactNodes = N
         self.CompactEdges = E
@@ -177,7 +179,11 @@ class CDG():
                 isExtraNode = False
                 for incNode in [iNode for iNode in cNodes if iNode.node_id in cNode.inc_node_ids]:
                     if incNode.node_id[1]==1:
-                        incNode.outg_node_ids.remove(cNode.node_id)
+                        if len(cNode.inc_node_ids)>1:
+                            for inc_to_extra_Node in [iNode for iNode in cNodes if iNode.node_id in cNode.inc_node_ids]:
+                                inc_to_extra_Node.outg_node_ids.remove(cNode.node_id)
+                        else:
+                            incNode.outg_node_ids.remove(cNode.node_id)
                         irrelNodes = irrelNodes.union(set([cNode]))
                         isExtraNode = True
                 if isExtraNode:
@@ -408,6 +414,7 @@ class CDG():
         return eval, pc
 
     def LT(self, predicates):
+        self.Show_CDG()
         # Create the spanning Tree using Depth-First-Search
         self.DFS(next(sNode for sNode in self.StartNodes))
         self.n -=1
