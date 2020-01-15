@@ -53,6 +53,8 @@ def SolMOSA(config):
     # Create the CDG
     cdg = CDG(contract_name, deployed_bytecode, predicates)
     cdg.LT(predicates)
+    # REMOVE THIS
+    cdg.Show_CDG()
 
     sc = SmartContract(contract_json, cdg)
 
@@ -75,7 +77,8 @@ def SolMOSA(config):
     logging.info("Deploying and calling smart contracts for the first time...")
     with open("Ganache_Interaction.log", "a") as f:
         subprocess.call(callstring, stdout=f)
-
+    # REMOVE THIS
+    return
     blockchain_end_time = datetime.datetime.now()
     blockchain_time = blockchain_end_time-blockchain_start_time
 

@@ -103,6 +103,10 @@ async function runTest(){
       ans.push(txTrace.structLogs);
       returnvals.push(tx.status);
     }
+    // REMOVE THIS
+    if (method_name.substring(0,7) == 'TestOne') {
+      break;
+    }
   }
   constTrace = await debug.getTransactionTrace(constHash, {});
   ans.splice(constpos, 0, constTrace.structLogs);

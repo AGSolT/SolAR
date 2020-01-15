@@ -414,7 +414,6 @@ class CDG():
         return eval, pc
 
     def LT(self, predicates):
-        self.Show_CDG()
         # Create the spanning Tree using Depth-First-Search
         self.DFS(next(sNode for sNode in self.StartNodes))
         self.n -=1

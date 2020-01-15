@@ -78,11 +78,27 @@ class TestCase():
         """
         ans = """"""
         for methodCall in self.methodCalls:
-            input_dict_string = """{{name: '{}', inputVars: {}, fromAcc: '{}', value: {}}}""".format(methodCall.methodName, methodCall.inputvars, methodCall.fromAcc, methodCall.value)
+            input_dict_string = """{{name: '{}', inputVars: {}, fromAcc: '{}', value: {}}}""".format(methodCall.methodName, self.InputVars_to_String(methodCall.inputvars), methodCall.fromAcc, methodCall.value)
             if len(ans)>0:
                 ans = ans + """, """ + input_dict_string
             else:
                 ans = input_dict_string
+        return ans
+
+    def InputVars_to_String(self, _inputvars):
+        ans = """["""
+        for i, iv in enumerate(_inputvars):
+            if i>0 & i<len(_inputvars)-1:
+                ans = ans + ""","""
+            if iv==True:
+                ans = ans + """true"""
+            elif iv==False:
+                ans = ans + """false"""
+            elif type(iv)==str:
+                ans = ans + """'{}'""".format(iv)
+            else:
+                ans = ans + """{}""".format(iv)
+        ans = ans + """]"""
         return ans
 
     def update_distance(self, methodResults, returnvals, compactNodes, compactEdges, approach_levels):
@@ -270,10 +286,14 @@ class MethodCall():
             return random.choice([True, False])
         elif varType[:3] == "int":
             intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*', varType)), None)
+            if intsize is None:
+                intsize = 256
             assert intsize in [8*i for i in range(1, 33)], "int was followed by something unusual: {}".format(varType)
             return random.randint(-(2**intsize-1), 2**intsize-1)
         elif varType[:4] == "uint":
             intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*', varType)), None)
+            if intsize is None:
+                intsize = 256
             assert intsize in [8*i for i in range(1, 33)], "int was followed by something unusual: {}".format(varType)
             # TODO: Large integers return problems for now, maybe these should be passed as strings or bignumbers in javascript?
             return random.randint(0,2**8-1)
