@@ -90,9 +90,9 @@ class TestCase():
         for i, iv in enumerate(_inputvars):
             if i>0 & i<len(_inputvars)-1:
                 ans = ans + ""","""
-            if iv==True:
+            if (iv==True) & (type(iv)==type(True)):
                 ans = ans + """true"""
-            elif iv==False:
+            if (iv==False) & (type(iv)==type(False)):
                 ans = ans + """false"""
             elif type(iv)==str:
                 ans = ans + """'{}'""".format(iv)
@@ -180,12 +180,12 @@ class TestCase():
             try:
                 stack = next((stackItem['stack'] for stackItem in stack_items if stackItem['pc'] == compactEdge.predicate.pc), None)
             except:
-                print("Could not find stack item to match branch predicate with predicate_pc: {} and stack\n{}".format(compactEdge.predicate.pc, stack_items))
+                loggint.info("Could not find stack item to match branch predicate with predicate_pc: {} and stack\n{}".format(compactEdge.predicate.pc, stack_items))
             if stack is None:
                 try:
                     stack = next((stackItem['stack'] for stackItem in stack_items if stackItem['op'] == compactEdge.predicate.eval))
                 except:
-                    print("Could not find stack item to match branch predicate with predicate: {} and stack\n{}".format(compactEdge.predicate.eval, stack_items))
+                    loggint.info("Could not find stack item to match branch predicate with predicate: {} and stack\n{}".format(compactEdge.predicate.eval, stack_items))
             assert not stack is None, "There was a missing stackitem!"
             s_1 = int(stack[-1], 16)
             if pred_eval == 'ISZERO':
@@ -302,8 +302,9 @@ class MethodCall():
             return random.choice(accounts)
         elif varType == "string":
             string_length = random.randint(1,255)
-            str = ''.join(random.choice(string.ascii_letters+"""\ \n\'\"\b\f\r\t\v""") for x in range(string_length))
-            return np.random.choice(["Standard String", str], 1, [0.1, 0.9])[0]
+            str = ''.join(random.choice(string.ascii_letters+""" """) for x in range(string_length))
+            ans = random.choices(["Standard String", str], weights=[0.1, 0.9], k=1)[0]
+            return ans
         else:
             assert False, "This method has an unsupported type: {}".format(varType)
             return 0

@@ -41,7 +41,7 @@ async function runTest(){
     input_args = method.inputVars;
     from = method.fromAcc;
     method_name = method.name
-    console.log(`calling ${method_name}${input_args} from ${from}`)
+    console.log(`calling ${method_name}(${input_args}) from ${from}`)
     if(method_name == 'constructor'){
       if(i > 0){
         constTrace = await debug.getTransactionTrace(constHash, {});
@@ -56,7 +56,6 @@ async function runTest(){
       constpos = i;
     }
     else if (method_name.substring(0,8) == 'passTime') {
-      console.log("I'm really gonna do it!");
       web3.currentProvider.send({method: "evm_increaseTime", params: input_args},function(err, result){});
       ans.push(method_name);
       returnvals.push(method_name);
@@ -102,10 +101,6 @@ async function runTest(){
       last_TxTrace=txTrace;
       ans.push(txTrace.structLogs);
       returnvals.push(tx.status);
-    }
-    // REMOVE THIS
-    if (method_name.substring(0,7) == 'TestOne') {
-      break;
     }
   }
   constTrace = await debug.getTransactionTrace(constHash, {});
