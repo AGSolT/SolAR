@@ -24,6 +24,7 @@ async function runTest(){
   var method;
   var input_args;
   var from;
+  // var value;
   var deployed;
   var constHash;
   var tx;
@@ -40,7 +41,8 @@ async function runTest(){
     method = methods[i];
     input_args = method.inputVars;
     from = method.fromAcc;
-    method_name = method.name
+    method_name = method.name;
+    // value = method.value; Then simply  add it to the calls
     console.log(`calling ${method_name}(${input_args}) from ${from}`)
     if(method_name == 'constructor'){
       if(i > 0){

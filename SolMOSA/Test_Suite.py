@@ -14,7 +14,7 @@ class TestSuite():
     tests = []
     accounts = []
 
-    def __init__(self, _SmartContract, _accounts, _deploying_accounts, _pop_size=50, _random=True, _tests=[], _max_method_calls=10, _min_method_calls=0, _passBlocks=False, _passTime=False, _passTimeTime=None):
+    def __init__(self, _SmartContract, _accounts, _deploying_accounts, _pop_size=50, _random=True, _tests=[], _max_method_calls=10, _min_method_calls=0, _passBlocks=False, _passTime=False, _passTimeTime=None, _maxWei=10000000000000000000):
         """
         A Test Suite can either be initialised random, or created by passing all of it's properties explicitly.
         """
@@ -29,7 +29,7 @@ class TestSuite():
             self.accounts = _accounts
             tests = []
             for i in range(_pop_size):
-                tests = tests + [TestCase(_methodCalls = None, _random = True, SmartContract = _SmartContract, accounts = _accounts, deploying_accounts = _deploying_accounts, max_method_calls = _max_method_calls, min_method_calls = _min_method_calls, passBlocks=_passBlocks, passTime=_passTime, passTimeTime=_passTimeTime)]
+                tests = tests + [TestCase(_methodCalls = None, _random = True, SmartContract = _SmartContract, accounts = _accounts, deploying_accounts = _deploying_accounts, max_method_calls = _max_method_calls, min_method_calls = _min_method_calls, passBlocks=_passBlocks, passTime=_passTime, passTimeTime=_passTimeTime, _maxWei=_maxWei)]
             self.tests = tests
 
     def show_tests(self, _top_n=None, log=False):

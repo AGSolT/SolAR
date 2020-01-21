@@ -20,7 +20,7 @@ class TestCase():
     rank = math.inf
     subvector_dist = 0
 
-    def __init__(self, _methodCalls, _random=False, SmartContract=None, accounts=None, deploying_accounts = None, max_method_calls=None, min_method_calls=0, passBlocks=False, passTime=False, passTimeTime=None):
+    def __init__(self, _methodCalls, _random=False, SmartContract=None, accounts=None, deploying_accounts = None, max_method_calls=None, min_method_calls=0, passBlocks=False, passTime=False, passTimeTime=None, _maxWei=10000000000000000000):
         """
         A test case can either be created by passing all of it's properties or initialised randomly by generating a randmm number of random methodcalls.
         When a testcase is created, it never has distances assigned to it or any information about domination.
@@ -66,7 +66,7 @@ class TestCase():
         """
         info = """"""
         for i, methodCall in enumerate(self.methodCalls):
-            info = info + "\t({}) {}({}, from: {}, value: {}\n)".format(i+1, methodCall.methodName, methodCall.inputvars, methodCall.fromAcc, methodCall.value)
+            info = info + "\t({}) {}({}, from: {}, value: {})\n".format(i+1, methodCall.methodName, methodCall.inputvars, methodCall.fromAcc, methodCall.value)
         if log:
             logging.info(info)
         else:
@@ -117,6 +117,7 @@ class TestCase():
         visited = set()
 
         for methodCall, methodResult in zip(self.methodCalls[1:], methodResults[1:]):
+            logging.info("MethodCall: {}".format(methodCall))
             if methodResult in ["passTime", "passBlocks"]:
                 pass
             else:
@@ -147,6 +148,8 @@ class TestCase():
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):
+                            logging.info("current node: {}")
+                            curNode.show_CompactNode(True)
                             test_scores[j] = min(test_scores[j], self.branch_dist(nextNode.node_id, node_stack_items, cEdge))
                             if (cEdge.endNode_id == nextNode.node_id):
                                 edgeset.add(j)
@@ -180,12 +183,17 @@ class TestCase():
             try:
                 stack = next((stackItem['stack'] for stackItem in stack_items if stackItem['pc'] == compactEdge.predicate.pc), None)
             except:
-                loggint.info("Could not find stack item to match branch predicate with predicate_pc: {} and stack\n{}".format(compactEdge.predicate.pc, stack_items))
+                logging.info("Could not find stack item to match branch predicate with predicate_pc: {} and stack\n{}".format(compactEdge.predicate.pc, stack_items))
             if stack is None:
                 try:
                     stack = next((stackItem['stack'] for stackItem in stack_items if stackItem['op'] == compactEdge.predicate.eval))
                 except:
-                    loggint.info("Could not find stack item to match branch predicate with predicate: {} and stack\n{}".format(compactEdge.predicate.eval, stack_items))
+                    logging.info("Could not find stack item to match branch predicate with predicate: {} and stack\n{}".format(compactEdge.predicate.eval, stack_items))
+                    logging.info("Something went wrong when testing test:")
+                    self.show_test(True)
+                    logging.info("Checking against Edge: ")
+                    compactEdge.show_CompactEdge(True)
+                    logging.info("When going to node: {}".format(nextNode_id))
             assert not stack is None, "There was a missing stackitem!"
             s_1 = int(stack[-1], 16)
             if pred_eval == 'ISZERO':
@@ -237,7 +245,7 @@ class MethodCall():
     fromAcc = ""
     value = 0
 
-    def __init__(self, _methodName, _inputvars, _fromAcc, _value, methodDict=None, accounts = None, deploying_accounts = None, _passTimeTime = None):
+    def __init__(self, _methodName, _inputvars, _fromAcc, _value, methodDict=None, accounts = None, deploying_accounts = None, _passTimeTime = None, _maxWei=10000000000000000000):
         """
         A MethodCall can either be initialised by passing all of it's properties or randomly by choosing the properties from within the specified allowed values.
         """
@@ -276,7 +284,7 @@ class MethodCall():
             if methodDict['payable'] == False:
                 self.value = 0
             else:
-                self.value = randint(0, 1000000000000000000000) # TODO: make maximum value a parameter
+                self.value = randint(0, _maxWei) # TODO: make maximum value a parameter
 
     def Random_Inputvar(self, varType, accounts):
         """

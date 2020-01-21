@@ -42,6 +42,8 @@ def SolMOSA(config):
     passBlocks = config['Parameters']['passBlocks'] == "True"
     passTime = config['Parameters']['passTime'] == "True"
     passTimeTime = int(config['Parameters']['passTimeTime'])
+    memory_efficient = config['Parameters']['memory_efficient'] == "True"
+    maxWei=int(config['Parameters']['maxWei'])
 
     accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
 
@@ -56,7 +58,7 @@ def SolMOSA(config):
 
     sc = SmartContract(contract_json, cdg)
 
-    tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls, _passBlocks=passBlocks, _passTime=passTime, _passTimeTime=passTimeTime)
+    tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls, _passBlocks=passBlocks, _passTime=passTime, _passTimeTime=passTimeTime, _maxWei=maxWei)
 
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
@@ -136,25 +138,23 @@ def SolMOSA(config):
             f.write(test_inputs)
 
         logging.info("\tDeploying and testing...")
+
         blockchain_start_time = datetime.datetime.now()
-        if i % 10 == 1:
-            # We restart the Ganache blockchain for memory efficiency
-            logging.info("\tResetting Blockchain...")
-            callstring = 'screen -S ganache -X stuff "^C"'
-            os.system(callstring)
-            # Clear old blockchain from the /tmp directory
-            callstring = "rm -r /tmp/tmp-*"
-            subprocess.call(callstring, shell=True)
-            # logging.debug("Folder Sizes in / after resetting Ganache")
-            # log_du("/")
-            # logging.debug("Sizes in /tmp/")
-            # log_du("/tmp/")
-            #  Start new instance of Ganache
-            callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
-            os.system(callstring)
-            callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
-            with open("Ganache_Interaction.log", "a") as f:
-                subprocess.call(callstring, stdout=f)
+        if memory_efficient:
+            if i % 10 == 1:
+                # We restart the Ganache blockchain for memory efficiency
+                logging.info("\tResetting Blockchain...")
+                callstring = 'screen -S ganache -X stuff "^C"'
+                os.system(callstring)
+                # Clear old blockchain from the /tmp directory
+                callstring = "rm -r /tmp/tmp-*"
+                subprocess.call(callstring, shell=True)
+                #  Start new instance of Ganache
+                callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
+                os.system(callstring)
+                callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
+                with open("Ganache_Interaction.log", "a") as f:
+                    subprocess.call(callstring, stdout=f)
 
 
         callstring = "node SC_interaction.js".split() + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]

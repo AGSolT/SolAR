@@ -23,6 +23,7 @@ def main():
     SmartContract_folder = config['Files']['SmartContract_folder'] + "/"
     Rapports_folder = dir_path + "/" + config['Files']['rapports_folder']
     Execution_Times = int(config['Parameters']['execution_times'])
+    memory_efficient = config['Parameters']['memory_efficient'] == "True"
 
     # Run SolMOSA and Create Rapports
     # First we initialise the csv file that can easily be analyzed by the computer
@@ -46,30 +47,32 @@ def main():
                     logging.info("Writing Rapport to {}".format(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"))
                     with open(os.path.abspath(Rapports_folder+"/"+folder+"_{}".format(i+1)+".txt"), 'w') as f:
                         f.write(rapport)
-                    # We log the current size of our system and /tmp/ folder in specific
-                    logging.debug("Folder Sizes in / before resetting Ganache")
-                    log_du("/")
-                    logging.debug("Sizes in /tmp/")
-                    log_du("/tmp/")
-                    logging.debug("Folder Sizes in / before resetting Ganache")
-                    log_du("/")
-                    logging.debug("Sizes in /tmp/")
-                    log_du("/tmp/")
+                    if memory_efficient:
+                        # We log the current size of our system and /tmp/ folder in specific
+                        logging.debug("Folder Sizes in / before resetting Ganache")
+                        log_du("/")
+                        logging.debug("Sizes in /tmp/")
+                        log_du("/tmp/")
+                        logging.debug("Folder Sizes in / before resetting Ganache")
+                        log_du("/")
+                        logging.debug("Sizes in /tmp/")
+                        log_du("/tmp/")
                     # We restart the Ganache blockchain for memory efficiency
                     logging.info("\tResetting Blockchain...")
                     callstring = 'screen -S ganache -X stuff "^C"'
                     os.system(callstring)
-                    # Clear old blockchain from the /tmp directory
-                    callstring = "rm -r /tmp/tmp-*"
-                    subprocess.call(callstring, shell=True)
-                    logging.debug("Folder Sizes in / after resetting Ganache")
-                    log_du("/")
-                    logging.debug("Sizes in /tmp/")
-                    log_du("/tmp/")
-                    logging.debug("Folder Sizes in / after resetting Ganache")
-                    log_du("/")
-                    logging.debug("Sizes in /tmp/")
-                    log_du("/tmp/")
+                    if memory_efficient:
+                        # Clear old blockchain from the /tmp directory
+                        callstring = "rm -r /tmp/tmp-*"
+                        subprocess.call(callstring, shell=True)
+                        logging.debug("Folder Sizes in / after resetting Ganache")
+                        log_du("/")
+                        logging.debug("Sizes in /tmp/")
+                        log_du("/tmp/")
+                        logging.debug("Folder Sizes in / after resetting Ganache")
+                        log_du("/")
+                        logging.debug("Sizes in /tmp/")
+                        log_du("/tmp/")
                     #  Start new instance of Ganache
                     callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
                     os.system(callstring)
