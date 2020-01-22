@@ -148,8 +148,6 @@ class TestCase():
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):
-                            logging.info("current node: {}")
-                            curNode.show_CompactNode(True)
                             test_scores[j] = min(test_scores[j], self.branch_dist(nextNode.node_id, node_stack_items, cEdge))
                             if (cEdge.endNode_id == nextNode.node_id):
                                 edgeset.add(j)
@@ -316,5 +314,3 @@ class MethodCall():
         else:
             assert False, "This method has an unsupported type: {}".format(varType)
             return 0
-
-    # bool, int8-int256, uint8-uint256, address/address_payable, Contract: Should be excluded , fixed_bytarrays?, dynamic_bytearrays?, string, rational/integer literal? Enums/Types: should be exluded. Function Types should also be excluded

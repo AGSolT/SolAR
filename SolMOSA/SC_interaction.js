@@ -111,6 +111,7 @@ async function runTest(){
   return [ans, returnvals];
 }
 
+console.log("Starting a new round of tests.");
 runTest().then(function(arr){
   fs.writeFile("debugs.txt", JSON.stringify(arr[0]), function(err) {
       if(err) {

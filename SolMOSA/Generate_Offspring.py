@@ -172,7 +172,7 @@ def mutate_string(s):
         change_prob = 0.95
         for i in range(len(s_out)):
             if random.uniform(0,1)<=change_prob:
-                s_out = s_out[:i] + random.choice(string.ascii_letters+"""\ \n\'\"\b\f\r\t\v""") + s_out[i+1:]
+                s_out = s_out[:i] + random.choice(string.ascii_letters+""" """) + s_out[i+1:]
 
     # insert
     if random.uniform(0,1)<=1/3:
@@ -180,7 +180,7 @@ def mutate_string(s):
         add_new = True
         prop = 0
         while(add_new) & (len(s_out)<256):
-            new_char = random.choice(string.ascii_letters+"""\ \n\'\"\b\f\r\t\v""")
+            new_char = random.choice(string.ascii_letters+""" """)
             loc = random.choice(range(0,len(s_out)))
             s_out = s_out[:loc] + new_char + s_out[loc:]
             prop += 1

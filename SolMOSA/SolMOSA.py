@@ -149,8 +149,8 @@ def SolMOSA(config):
                 # Clear old blockchain from the /tmp directory
                 callstring = "rm -r /tmp/tmp-*"
                 subprocess.call(callstring, shell=True)
-                #  Start new instance of Ganache
-                callstring = 'screen -S ganache -X stuff "ganache-cli -d\r"'
+                #  Start new instance of Ganache with a ridiculus amount of ether for each account
+                callstring = 'screen -S ganache -X stuff "ganache-cli -d -e 100000000000000\r"'
                 os.system(callstring)
                 callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + ["{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
                 with open("Ganache_Interaction.log", "a") as f:
