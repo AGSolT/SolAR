@@ -34,7 +34,29 @@ class TestCase():
             self.rank = math.inf
             self.subvector_dist = 0
         else:
-            poss_methods = SmartContract.methods.copy() # TODO: add potential time wait and potential block waits
+            poss_methods = SmartContract.methods.copy()
+            for i, poss_method in enumerate(poss_methods):
+                if poss_method['type'] == 'constructor':
+                    # A modern smart contract with a constructor.
+                    poss_methods.insert(0, poss_methods.pop(i))
+                    break
+                elif poss_method['name'] == SmartContract.contractName:
+                    # An old fashioned smart contract, we rename stuff to constructor.
+                    poss_method['name'] = 'constructor'
+                    assert poss_method['type'] == 'constructor', "You need to also change the type of poss method, but I wanted to see first what type it was, right now it has type: {}".format(poss_method['type'])
+                    poss_methods.insert(0, poss_methods.pop(i))
+                else:
+                    # A smart contract without constructor, we create an artificial constructor.
+                    poss_methods.insert(0, {
+                  "inputs": [],
+                  "payable": False,
+                  "stateMutability": "nonpayable",
+                  "type": "constructor"
+                })
+                break
+            assert poss_methods[0]['type'] == 'constructor', "The first method in a SmartContract should always be it's constructor."
+
+
             if passTime:
                 assert passTimeTime is not None, "a passTime block is trying to be created but no time has been specified!"
                 passTimeMethod = {"constant": 'true', "inputs": [{"name": "", "type": "int256"}], "name": "passTime", "outputs": [], "payable": False, "stateMutability": "view", "type": "passTime"}
@@ -42,7 +64,7 @@ class TestCase():
             if passBlocks:
                 passBlocksMethod = {"constant": 'true', "inputs": [], "name": "passBlocks", "outputs": [], "payable": False, "stateMutability": "view", "type": "passBlocks"}
                 poss_methods = poss_methods + [passBlocksMethod]
-            assert poss_methods[0]['type'] == 'constructor', "The first method in a SmartContract should always be it's contructor."
+
             methodCalls = [MethodCall(_methodName = None, _inputvars = None, _fromAcc = None, _value = None, methodDict = poss_methods[0], accounts = accounts, deploying_accounts = deploying_accounts)]
             poss_methods.pop(0)
             assert len(poss_methods)>0, "A contract should have at least one method other than it's constructor."
@@ -282,7 +304,7 @@ class MethodCall():
             if methodDict['payable'] == False:
                 self.value = 0
             else:
-                self.value = randint(0, _maxWei) # TODO: make maximum value a parameter
+                self.value = random.randint(0, _maxWei) # TODO: make maximum value a parameter
 
     def Random_Inputvar(self, varType, accounts):
         """
