@@ -151,7 +151,7 @@ class CDG():
 
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
         E, s = self.Find_Compact_Edges_StartPoints(N, _predicates)
-        N, E = self.Select_Relevant(N, E)
+        N, E = self.Payable_Check(N, E)
 
         self.name = _name
         self.CompactNodes = N
@@ -160,7 +160,8 @@ class CDG():
         self.vertex = [None] * len(self.CompactNodes)
         self.n = 0
 
-    def Select_Relevant(self, cNodes, cEdges):
+    def Payable_Check(self, cNodes, cEdges):
+        # TODO: This function should only be applied when the function is not payable, otherwise the nodes are all relevant and none should be removedb
         """
         During compilation of Solidity code, extra nodes are created that check whether arguments are valid and if data is stored properly, these are not of interest to our control-dependency-graph and can be safely removed.
         Inputs:

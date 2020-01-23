@@ -139,7 +139,6 @@ class TestCase():
         visited = set()
 
         for methodCall, methodResult in zip(self.methodCalls[1:], methodResults[1:]):
-            logging.info("MethodCall: {}".format(methodCall))
             if methodResult in ["passTime", "passBlocks"]:
                 pass
             else:
@@ -156,7 +155,17 @@ class TestCase():
                     while not ((cur_pc>=start_pc) & (cur_pc <= end_pc)):
                         node_stack_items = node_stack_items + [methodResult[i]]
                         i += 1
-                        cur_pc = methodResult[i]['pc']
+                        # REMOVE try-except, keep the part in try
+                        try:
+                            cur_pc = methodResult[i]['pc']
+                        except:
+                            logging.info("i: {}".format(i))
+                            logging.info('methodResult: {}'.format(methodResult))
+                            logging.info("MethodCall: {}".format(methodCall.methodName))
+                            logging.info("curNode:")
+                            curNode.show_CompactNode(log=True)
+                            logging.info("curNode.basic_blocks[-1].end.name: {}".format(curNode.basic_blocks[-1].end.name))
+                            logging.info("cur_pc: {}".format(cur_pc))
                     while (cur_pc>=start_pc) & (cur_pc <= end_pc):
                         node_stack_items = node_stack_items + [methodResult[i]]
                         i += 1
