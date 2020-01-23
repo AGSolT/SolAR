@@ -304,7 +304,7 @@ class MethodCall():
             if methodDict['payable'] == False:
                 self.value = 0
             else:
-                self.value = random.randint(0, _maxWei) # TODO: make maximum value a parameter
+                self.value = random.randint(0, _maxWei)
 
     def Random_Inputvar(self, varType, accounts):
         """

@@ -24,7 +24,7 @@ async function runTest(){
   var method;
   var input_args;
   var from;
-  // var value;
+  var value;
   var deployed;
   var constHash;
   var tx;
@@ -42,7 +42,7 @@ async function runTest(){
     input_args = method.inputVars;
     from = method.fromAcc;
     method_name = method.name;
-    // value = method.value; Then simply  add it to the calls
+    value = method.value;
     console.log(`calling ${method_name}(${input_args}) from ${from}`)
     if(method_name == 'constructor'){
       if(i > 0){
@@ -72,7 +72,7 @@ async function runTest(){
     else{
       try{
         // See if the transaction executes without returning an error
-        tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from})`);
+        tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value})`);
       }
       catch(err){
         // Revert errors are good and should still be processed!
