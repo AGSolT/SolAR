@@ -130,7 +130,7 @@ def SolMOSA(config):
                 logging.info("")
 
         logging.info("\tGenerating Offspring...")
-        offspring = generate_offspring(parents, sc, accounts, deploying_accounts, poss_methods, population_size, min(tournament_size, population_size), max_method_calls, crossover_probability, remove_probability, change_probability, insert_probability)
+        offspring = generate_offspring(parents, sc, accounts, deploying_accounts, poss_methods, population_size, min(tournament_size, population_size), max_method_calls, crossover_probability, remove_probability, change_probability, insert_probability, maxWei)
 
         tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = False, _tests = list(offspring), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
 

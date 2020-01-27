@@ -65,14 +65,14 @@ class TestCase():
                 passBlocksMethod = {"constant": 'true', "inputs": [], "name": "passBlocks", "outputs": [], "payable": False, "stateMutability": "view", "type": "passBlocks"}
                 poss_methods = poss_methods + [passBlocksMethod]
 
-            methodCalls = [MethodCall(_methodName = None, _inputvars = None, _fromAcc = None, _value = None, methodDict = poss_methods[0], accounts = accounts, deploying_accounts = deploying_accounts)]
+            methodCalls = [MethodCall(_methodName = None, _inputvars = None, _fromAcc = None, _value = None, _payable=None, methodDict = poss_methods[0], accounts = accounts, deploying_accounts = deploying_accounts)]
             poss_methods.pop(0)
             assert len(poss_methods)>0, "A contract should have at least one method other than it's constructor."
             nr_of_method_calls = random.randint(min_method_calls, max_method_calls)
 
             for i in range(nr_of_method_calls):
                 randMethod = random.choice(poss_methods)
-                methodCalls = methodCalls + [MethodCall(_methodName = None, _inputvars = None, _fromAcc = None, _value = None, methodDict = randMethod, accounts = accounts, deploying_accounts = deploying_accounts, _passTimeTime=passTimeTime)]
+                methodCalls = methodCalls + [MethodCall(_methodName = None, _inputvars = None, _fromAcc = None, _value = None, _payable=None, methodDict = randMethod, accounts = accounts, deploying_accounts = deploying_accounts, _passTimeTime=passTimeTime)]
 
             self.methodCalls = methodCalls
             self.returnVals = []
@@ -277,8 +277,9 @@ class MethodCall():
     inputvars = []
     fromAcc = ""
     value = 0
+    payable = False
 
-    def __init__(self, _methodName, _inputvars, _fromAcc, _value, methodDict=None, accounts = None, deploying_accounts = None, _passTimeTime = None, _maxWei=10000000000000000000):
+    def __init__(self, _methodName, _inputvars, _fromAcc, _value, _payable, methodDict=None, accounts = None, deploying_accounts = None, _passTimeTime = None, _maxWei=10000000000000000000):
         """
         A MethodCall can either be initialised by passing all of it's properties or randomly by choosing the properties from within the specified allowed values.
         """
@@ -287,6 +288,7 @@ class MethodCall():
             self.inputvars = _inputvars
             self.fromAcc = _fromAcc
             self.value = _value
+            self.payable = _payable
         else:
             assert accounts is not None, "A random method call is trying to be created but no accounts were passed."
             if methodDict['type'] == 'constructor':
@@ -316,8 +318,10 @@ class MethodCall():
                 self.inputvars = inputvars
             if methodDict['payable'] == False:
                 self.value = 0
+                self.payable = False
             else:
                 self.value = random.randint(0, _maxWei)
+                self.payable = True
 
     def Random_Inputvar(self, varType, accounts):
         """

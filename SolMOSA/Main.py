@@ -84,7 +84,7 @@ def main():
         if response in affirmative:
             proper_response = True
             for rapport in rapports:
-                input("Press any key to show rapport...")
+                input("Press any enter to show rapport...")
                 print(rapport)
         elif response in negative:
             proper_response = True
@@ -172,7 +172,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         if response in affirmative:
             print("")
             show_settings(_config)
-            input("\nPress any key to start...\n")
+            input("\nPress any enter to start...\n")
             proper_response = True
         elif response in negative:
             print("")
