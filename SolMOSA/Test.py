@@ -181,15 +181,14 @@ class TestCase():
                             nextNode = potential_nextNode
                             break
                     visited = visited.union({curNode})
+                    assert curNode != nextNode, f"The nextNode that was found: {nextNode} was the same as the curNode: {curNode}"
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):
+                            # Look at all the edges that were not neccessarily traversed
                             test_scores[j] = min(test_scores[j], self.branch_dist(nextNode.node_id, node_stack_items, cEdge))
-                            if (cEdge.endNode_id == nextNode.node_id):
-                                edgeset.add(j)
-                        if cEdge.endNode_id == nextNode.node_id:
-                            if cEdge.startNode_id in [visitedNode.node_id for visitedNode in visited]:
-                                test_scores[j] = 0
+                            if test_scores[j] == 0:
+                                # The edge has been traversed
                                 edgeset.add(j)
                     curNode = nextNode
 
