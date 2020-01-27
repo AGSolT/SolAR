@@ -62,9 +62,7 @@ def SolMOSA(config):
 
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
-    # REMOVE THIS
-    show_relevant_targets(cdg.CompactEdges, relevant_targets)
-    # REMOVE THIS
+
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
         return [], tSuite, (datetime.datetime.now() - start_time).total_seconds(), 0, 0
@@ -283,9 +281,6 @@ def determine_relevant_targets(compactEdges, compactNodes):
     """
     relevant_targets = [True] * len(compactEdges)
     for i, cEdge in enumerate(compactEdges):
-        # REMOVE THIS
-        # if "REVERT" == next((cNode.basic_blocks[-1].instructions[-1].name for cNode in compactNodes if cNode.node_id == cEdge.endNode_id), None):
-        #     relevant_targets[i] = False
         if cEdge.endNode_id[0] == "_fallback":
             relevant_targets[i] = False
         elif cEdge.startNode_id[0] == "_dispatcher":

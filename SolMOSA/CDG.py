@@ -455,7 +455,6 @@ class CDG():
             parent_bucket = w.parent.bucket.copy()
             for v in parent_bucket:
                 w.parent.bucket.remove(v)
-                v.show_CompactNode(log=True)
                 u = self.EVAL(v)
 
                 if u.semi<v.semi:
