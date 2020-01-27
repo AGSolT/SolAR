@@ -43,7 +43,7 @@ async function runTest(){
     from = method.fromAcc;
     method_name = method.name;
     value = method.value;
-    console.log(`calling ${method_name}(${input_args}) from ${from}`)
+    console.log(`calling ${method_name}(${input_args}) from ${from} with value ${value}`)
     if(method_name == 'constructor'){
       if(i > 0){
         constTrace = await debug.getTransactionTrace(constHash, {});

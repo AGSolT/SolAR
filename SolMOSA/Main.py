@@ -215,16 +215,20 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations, fold
         e = blockchain_time
         f = iterations
         g = tSuite.smartContract.methods[0]['inputs']
-        h = tSuite.smartContract.methods[0]['stateMutability']
-        rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t\t{}\nNumber of Branches Covered:\t\t{}\nRuntime: \t\t\t\t{}\nBlockchain Time: \t\t\t{}\nIterations\t\t\t\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), run_time, blockchain_time, iterations, tSuite.smartContract.methods[0]['inputs'], tSuite.smartContract.methods[0]['stateMutability'])
-        for method in tSuite.smartContract.methods[1:]:
+        try:
+            h = tSuite.smartContract.methods[0]['stateMutability']
+        except:
+            h = "Old version."
+        rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t{}\nNumber of Branches Covered:\t\t{}\nRuntime: \t\t\t\t\t\t\t\t\t\t\t{}\nBlockchain Time: \t\t\t\t\t\t\t{}\nIterations\t\t\t\t\t\t\t\t\t\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), run_time, blockchain_time, iterations, tSuite.smartContract.methods[0]['inputs'], h)
+        for method in tSuite.smartContract.methods[0:]:
             methodstring = """\n{}:\n\tInputs: {}\n\tOutputs: {}\n\tPayable: {}""".format(method['name'], method['inputs'], method['outputs'], method['payable'])
             rapport = rapport + methodstring
         shown_tests = []
         rapport = rapport + """\n\n--------------------------------------------------\nTESTS:"""
         archive = archives[-1]
         for testCase in archive:
-            if (testCase is not None) & (testCase not in shown_tests):
+            # ADD THIS:  & (testCase not in shown_tests)
+            if (testCase is not None):
                 shown_tests = shown_tests + [testCase]
                 teststring = """\n"""
                 for i, methodCall in enumerate(testCase.methodCalls):

@@ -17,6 +17,7 @@ class CompactNode():
         - semi: The semidominator, used for the Lengauer-Tarjan algorithm.
         - bucket: The set of nodes for which this node is the semidominator
         - dom: The immediate dominator of this node.
+        - ancestor: one of the ancestors of the vertex, used for the Lengauer-Tarjan algorithm
     """
     node_id     = ("", 0)
     start_pc    = 0
@@ -28,8 +29,10 @@ class CompactNode():
     semi           = 0
     bucket         = set()
     dom            = None
+    ancestor       = None
+    label          = None
 
-    def __init__(self, _node_id, _start_pc, _end_pc, _basic_blocks, _inc_node_ids, _outg_node_ids, _predicate=None, _vertex=0, _semi=0, _bucket=set(), _dom=None):
+    def __init__(self, _node_id, _start_pc, _end_pc, _basic_blocks, _inc_node_ids, _outg_node_ids, _predicate=None, _semi=0, _bucket=set(), _dom=None):
         self.node_id = _node_id
         self.start_pc = _start_pc
         self.end_pc = _end_pc
@@ -37,10 +40,11 @@ class CompactNode():
         self.inc_node_ids = _inc_node_ids
         self.outg_node_ids = _outg_node_ids
         self.predicate = _predicate
-        self.vertex = _vertex
         self.semi = _semi
-        self.bucket = _bucket
+        self.bucket = set()
         self.dom = _dom
+        self.ancestor = None
+        self.label = 0
 
     def show_CompactNode(self, log=False):
         """
@@ -129,7 +133,6 @@ class CDG():
     StartNodes  = []
     vertex = []
     n = 0
-
     def __init__(self, _name, _bytecode, _predicates):
         """
         Creates a control-dependency-graph by going through all the methods in the smart contract and extracing their (start-)nodes and edges.
@@ -143,15 +146,20 @@ class CDG():
         bbs = cfg.basic_blocks
         s = []
         simple_E = []
+        payableMethodNames = []
         for method in cfg.functions:
             N_old = N
             node_ctr = 0
             N, method_sEdges = self.Compactify_method(method, node_ctr, bbs, [], N, [])
             simple_E = simple_E + method_sEdges
 
+            #Check if the method is payable
+            if 'payable' in method.attributes:
+                payableMethodNames.append(method.name)
+
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
         E, s = self.Find_Compact_Edges_StartPoints(N, _predicates)
-        N, E = self.Payable_Check(N, E)
+        N, E = self.Payable_Check(N, E, payableMethodNames)
 
         self.name = _name
         self.CompactNodes = N
@@ -160,7 +168,7 @@ class CDG():
         self.vertex = [None] * len(self.CompactNodes)
         self.n = 0
 
-    def Payable_Check(self, cNodes, cEdges):
+    def Payable_Check(self, cNodes, cEdges, _payableMethodNames):
         # TODO: This function should only be applied when the function is not payable, otherwise the nodes are all relevant and none should be removedb
         """
         During compilation of Solidity code, extra nodes are created that check whether arguments are valid and if data is stored properly, these are not of interest to our control-dependency-graph and can be safely removed.
@@ -174,8 +182,9 @@ class CDG():
         mergeNodes = set()
         irrelNodes = set()
         for cNode in cNodes:
+            # This check removes the extra reverts that result from nonpayable functions
             if (cNode.basic_blocks[-1].instructions[-1].name == "REVERT") & (cNode.node_id[0] != '_dispatcher') & (cNode.node_id[0] !=
-            '_fallback'):
+            '_fallback') & (cNode.node_id[0] not in _payableMethodNames):
                 assert len(cNode.outg_node_ids) == 0, "Node {} ends with a REVERT OpCode but also has outgoing nodes?!".format(cNode.node_id)
                 isExtraNode = False
                 for incNode in [iNode for iNode in cNodes if iNode.node_id in cNode.inc_node_ids]:
@@ -419,30 +428,36 @@ class CDG():
         self.DFS(next(sNode for sNode in self.StartNodes))
         self.n -=1
 
-        # While creating the CDG a we keep track of a forest which is initialised here
+        # While creating the CDG a we keep track of a forest which is initialised here. This is the equivalen of LINK.
         forestEdges = set()
 
         # Find semidominators and initialise immediate dominators
         for i in range(self.n, 0, -1):
             w = self.vertex[i]
+            w.label = i
             # Finding semidominators
             for v_id in w.inc_node_ids:
                 v = next((compactNode for compactNode in self.CompactNodes if compactNode.node_id == v_id), None)
                 assert v is not None, "No Node was found from the list of incoming nodes!"
-                u = self.EVAL(v, forestEdges)
+                u = self.EVAL(v)
                 if u.semi<w.semi:
                     w.semi = u.semi
+
             # Add w to the bucket of its semidominator
             self.vertex[w.semi].bucket.add(w)
             newEdge = next((cEdge for cEdge in self.CompactEdges if (cEdge.startNode_id == w.parent.node_id) & (cEdge.endNode_id == w.node_id)), None)
-            assert newEdge is not None, "No Edge was found between a node and its parent!"
+            assert newEdge is not None, "No Edge was found between a node and its parent!" # Maybe a new Edge should be created here instead. I wouldn't be surprised if this would start yielding errors.
             forestEdges.add(newEdge)
+            w.ancestor = w.parent
+            w.label = i
+
             # Initialise immediate dominators
             parent_bucket = w.parent.bucket.copy()
             for v in parent_bucket:
-                # Remove v from the parents bucket
                 w.parent.bucket.remove(v)
-                u = self.EVAL(v, forestEdges)
+                v.show_CompactNode(log=True)
+                u = self.EVAL(v)
+
                 if u.semi<v.semi:
                     v.dom = u
                 else:
@@ -484,6 +499,11 @@ class CDG():
         self.CompactEdges = Edges
 
     def DFS(self, v):
+        """
+        Depth-First Search
+        inputs:
+            -
+        """
         v.semi = self.n
         self.vertex[self.n] = v
         self.n+=1
@@ -497,26 +517,19 @@ class CDG():
                 self.DFS(w)
                 assert v.node_id in w.inc_node_ids, "Something went wrong with the Incoming Node ids!"
 
-    def EVAL(self, _v, _forestEdges):
-        if self.isRoot(_v, _forestEdges):
+    def EVAL(self, _v,):
+        if _v.ancestor is None:
             return _v
         else:
-            min_semi = _v.semi
-            min_node = _v
-            pot_root = next((cNode for cNode in self.CompactNodes if cNode.node_id == next((cEdge.startNode_id for cEdge in _forestEdges if cEdge.endNode_id == _v.node_id), None)), None)
-            assert pot_root is not None, "EVAL cannot find a root node in the forest!"
-            while not self.isRoot(pot_root, _forestEdges):
-                if pot_root.semi<=min_semi:
-                    min_semi = pot_root.semi
-                    min_node = pot_root
-                    pot_root = next((cNode for cNode in self.CompactNodes if cNode.node_id == next((cEdge.startNode_id for cEdge in _forestEdges if cEdge.endNode_id == pot_root.node_id), None)), None)
-            return pot_root
+            self.COMPRESS(_v)
+            return self.vertex[_v.label]
 
-    def isRoot(self, v, _forestEdges):
-        for cEdge in _forestEdges:
-            if cEdge.endNode_id == v.node_id:
-                return False
-        return True
+    def COMPRESS(self, _v):
+        if _v.ancestor.ancestor is not None:
+            self.COMPRESS(_v.ancestor)
+            if self.vertex[_v.ancestor.label].semi<self.vertex[_v.label].semi:
+                _v.label = _v.ancestor.label
+            _v.ancestor = _v.ancestor.ancestor
 
     def Show_CDG(self, log=False):
         if log:

@@ -1,4 +1,4 @@
-import json, random, string, math, logging
+import json, random, string, math, logging, sys
 import numpy as np
 from CDG import *
 
@@ -149,7 +149,7 @@ class TestCase():
                 i = 0
                 node_stack_items = []
 
-                while (curNode.basic_blocks[-1].end.name!="RETURN")&(curNode.basic_blocks[-1].end.name!="REVERT"):
+                while (curNode.basic_blocks[-1].end.name!="RETURN")&(curNode.basic_blocks[-1].end.name!="REVERT")&(curNode.basic_blocks[-1].end.name!="STOP"):
                     start_pc = curNode.basic_blocks[-1].start.pc
                     end_pc = curNode.basic_blocks[-1].end.pc
                     while not ((cur_pc>=start_pc) & (cur_pc <= end_pc)):
@@ -169,7 +169,12 @@ class TestCase():
                     while (cur_pc>=start_pc) & (cur_pc <= end_pc):
                         node_stack_items = node_stack_items + [methodResult[i]]
                         i += 1
-                        cur_pc = methodResult[i]['pc']
+                        # REMOVE try-except, keep the part in try
+                        try:
+                            cur_pc = methodResult[i]['pc']
+                        except:
+                            logging.info("Coudln't get the new cur_pc. The old cur_pc was: {} which occurs at position: {}.\nThe start_pc: {} should be smaller than the cur_pc and the end_pc: {} should be larger than it.\nNevertheless, the methodResult has run out:\n{}".format(cur_pc, i-1, start_pc, end_pc, methodResult[i-1]))
+                            sys.exit("REMOVE THIS")
 
                     for potential_nextNode in compactNodes:
                         if (cur_pc>=potential_nextNode.basic_blocks[0].start.pc) & (cur_pc <= potential_nextNode.basic_blocks[0].end.pc):

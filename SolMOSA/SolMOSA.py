@@ -62,6 +62,9 @@ def SolMOSA(config):
 
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
+    # REMOVE THIS
+    show_relevant_targets(cdg.CompactEdges, relevant_targets)
+    # REMOVE THIS
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
         return [], tSuite, (datetime.datetime.now() - start_time).total_seconds(), 0, 0
@@ -271,7 +274,7 @@ def update_targets(tests, archive, relevant_targets):
 
 def determine_relevant_targets(compactEdges, compactNodes):
     """
-    Nodes that end with the `REVERT' Opcode are a result of the Solidity code is compiled and are not relevant for our tests. This function identifies the edges leading to those nodes.
+    We don't really care for edges in the dispactcher or the fallback function if it has not been explicitly defined
     Inputs:
         - compactEdges: The edges of the CDG of the smart contract.
         - compactNodes: The nodes of the CDG of the smart contract.
@@ -280,13 +283,20 @@ def determine_relevant_targets(compactEdges, compactNodes):
     """
     relevant_targets = [True] * len(compactEdges)
     for i, cEdge in enumerate(compactEdges):
-        if "REVERT" == next((cNode.basic_blocks[-1].instructions[-1].name for cNode in compactNodes if cNode.node_id == cEdge.endNode_id), None):
-            relevant_targets[i] = False
-        elif cEdge.endNode_id[0] == "_fallback":
+        # REMOVE THIS
+        # if "REVERT" == next((cNode.basic_blocks[-1].instructions[-1].name for cNode in compactNodes if cNode.node_id == cEdge.endNode_id), None):
+        #     relevant_targets[i] = False
+        if cEdge.endNode_id[0] == "_fallback":
             relevant_targets[i] = False
         elif cEdge.startNode_id[0] == "_dispatcher":
             relevant_targets[i] = False
     return relevant_targets
+
+def show_relevant_targets(_compactEdges, _relevant_targets):
+    logging.debug("Showing Relevant Targets")
+    for cEdge, rt in zip(_compactEdges, _relevant_targets):
+        if rt:
+            cEdge.show_CompactEdge(log=True)
 
 def log_du(path):
     """disk usage in human readable format (e.g. '2,1GB')"""
