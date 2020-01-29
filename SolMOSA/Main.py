@@ -84,7 +84,7 @@ def main():
         if response in affirmative:
             proper_response = True
             for rapport in rapports:
-                input("Press any enter to show rapport...")
+                input("Press enter to show rapport...")
                 print(rapport)
         elif response in negative:
             proper_response = True
@@ -172,7 +172,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         if response in affirmative:
             print("")
             show_settings(_config)
-            input("\nPress any enter to start...\n")
+            input("\nPress enter to start...\n")
             proper_response = True
         elif response in negative:
             print("")
@@ -220,9 +220,10 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations, fold
         except:
             h = "Old version."
         rapport = """Contract:\t\t\t{}\n\nNumber of Relevant Branches:\t{}\nNumber of Branches Covered:\t\t{}\nRuntime: \t\t\t\t\t\t\t\t\t\t\t{}\nBlockchain Time: \t\t\t\t\t\t\t{}\nIterations\t\t\t\t\t\t\t\t\t\t{}\n\n--------------------------------------------------\nMETHODS:\n\nConstructor:\n\tInputs :{}\n\tPayable: {}""".format(contractName, sum(relevant_branches), len([best_test for best_test in best_tests if best_test is not None]), run_time, blockchain_time, iterations, tSuite.smartContract.methods[0]['inputs'], h)
-        for method in tSuite.smartContract.methods[0:]:
+        for method in tSuite.smartContract.methods[1:]:
             methodstring = """\n{}:\n\tInputs: {}\n\tOutputs: {}\n\tPayable: {}""".format(method['name'], method['inputs'], method['outputs'], method['payable'])
             rapport = rapport + methodstring
+            
         shown_tests = []
         rapport = rapport + """\n\n--------------------------------------------------\nTESTS:"""
         archive = archives[-1]

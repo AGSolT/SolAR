@@ -1,4 +1,4 @@
-import pprint, configparser, os, json, re, copy, logging
+import pprint, configparser, os, json, re, copy, logging, sys
 import numpy as np
 from evm_cfg_builder.cfg import CFG
 from operator import itemgetter, attrgetter
@@ -133,7 +133,7 @@ class CDG():
     StartNodes  = []
     vertex = []
     n = 0
-    def __init__(self, _name, _bytecode, _predicates):
+    def __init__(self, _name, _bytecode, _predicates, _ignorefunctionNames):
         """
         Creates a control-dependency-graph by going through all the methods in the smart contract and extracing their (start-)nodes and edges.
         Inputs:
@@ -147,8 +147,15 @@ class CDG():
         s = []
         simple_E = []
         payableMethodNames = []
-        for method in cfg.functions:
-            N_old = N
+
+        ignoreFunctions = [function for function in cfg.functions if function.name in _ignorefunctionNames]
+        if len(ignoreFunctions)>0:
+            cfg = self.Remove_ignoreFunctionBlocks(cfg, ignoreFunctions)
+
+        methods = [method for method in cfg.functions if method not in ignoreFunctions]
+
+        for method in methods:
+            # N_old = N # REMOVE THIS?
             node_ctr = 0
             N, method_sEdges = self.Compactify_method(method, node_ctr, bbs, [], N, [])
             simple_E = simple_E + method_sEdges
@@ -158,7 +165,7 @@ class CDG():
                 payableMethodNames.append(method.name)
 
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
-        E, s = self.Find_Compact_Edges_StartPoints(N, _predicates)
+        E, s = self.Find_Compact_Edges_StartPoints(N)
         N, E = self.Payable_Check(N, E, payableMethodNames)
 
         self.name = _name
@@ -373,12 +380,11 @@ class CDG():
                 endNode.inc_node_ids.append(startNode.node_id)
         return compactNodes
 
-    def Find_Compact_Edges_StartPoints(self, cNodes, predicates):
+    def Find_Compact_Edges_StartPoints(self, cNodes):
         """
         Goes through all the CompactNodes in the control-dependency-graph and identifies the corresponding CompactEdges.
         Inputs:
             - cNodes: The CompactNodes of the control-dependency-graph
-            - predicates: The relevant Opcodes for the predicates that control branches.
         Outputs:
             - E: The CompactEdges of the control-dependency-graph
             - s: The startNodes of the control-dependency-graph
@@ -404,7 +410,6 @@ class CDG():
         Outputs:
             - eval: A string describing the predicate that controls whether the Edge is traversed or not.
             - pc: The pc where the eval is present in the deployed bytecode.
-        TODO: This method might not always work and warrents more investigation. Specifically a problem might be that a boolean b_1 is already on the stack when a new Opcode is executed that pushes another boolean b_2 onto the stack and the booleans could then be switched. This is definitely not the case for the contracts that I tested on but could still be relevant.
         """
         # First we look from front to back for a valid Predicate
         for i, inst in enumerate(bb.instructions):
@@ -422,6 +427,22 @@ class CDG():
         eval = "NONE"
         pc = bb.start.pc
         return eval, pc
+
+    def Remove_ignoreFunctionBlocks(self, _cfg, _ignoreFunctions):
+        dispatcher = next((function for function in _cfg.functions if function.name == "_dispatcher"), None)
+        assert dispatcher is not None, "No dispatcher was found!"
+
+        ignorebbs = []
+        for ignoreFunction in _ignoreFunctions:
+            ignorebbs = ignorebbs + ignoreFunction.basic_blocks
+
+        for bb in sorted(dispatcher.basic_blocks, key=lambda x:x.start.pc):
+            new_obb = bb._outgoing_basic_blocks[dispatcher.key].copy()
+            for i, obb in enumerate(bb._outgoing_basic_blocks[dispatcher.key]):
+                if obb in ignorebbs:
+                    del new_obb[i]
+            bb._outgoing_basic_blocks[dispatcher.key] = new_obb
+        return _cfg
 
     def LT(self, predicates):
         # Create the spanning Tree using Depth-First-Search

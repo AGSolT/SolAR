@@ -103,6 +103,7 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
             new_inputvars = old_inputvars.copy()
             new_fromAcc = methodCall.fromAcc
             new_value = methodCall.value
+            old_value = new_value
             # Each methodcall is changed with probability 1/length(testCase.methodCalls)
             if random.uniform(0, len(testCase.methodCalls))<=1:
                 if random.uniform(0,1)<=0.95: # mutate inputvars
@@ -145,7 +146,10 @@ def mutate(testCase, accounts, poss_methods, max_method_calls, remove_probabilit
         add_new = True
         prop = 0
         while(add_new) & (len(testCase.methodCalls)<max_method_calls):
-            new_methodCall = MethodCall(None, None, None, None, _payable=None, methodDict = random.choice(poss_methods), accounts = accounts)
+            try:
+                new_methodCall = MethodCall(None, None, None, None, _payable=None, methodDict = random.choice(poss_methods), accounts = accounts)
+            except:
+                sys.exit(f"couldn't create a new methodCall, I'm guessing there's something wrong with poss_methods: {poss_methods}")
             if len(testCase.methodCalls) == 1:
                 loc = 1
             else:

@@ -14,15 +14,37 @@ class SmartContract():
     CDG = None
     approach_levels = None
 
-    def __init__(self, contract_json, _cdg):
+    def __init__(self, contract_json, _cdg, _ignorefunctionNames):
         self.contractName = contract_json['contractName']
         methods = []
         for method in contract_json['abi']:
             if method['type'] == 'function':
-                methods = methods + [method]
+                if method['name'] not in _ignorefunctionNames:
+                    methods = methods + [method]
             elif method['type'] == 'constructor':
                 # The constructor is always the first method in the list.
                 methods = [method] + methods
+
+            # Check if there is a constructor now
+            for i, poss_method in enumerate(methods):
+                if poss_method['type'] == 'constructor':
+                    # A modern smart contract with a constructor.
+                    methods.insert(0, methods.pop(i))
+                    break
+                elif poss_method['name'] == contract_json['contractName']:
+                    # An old fashioned smart contract, we rename stuff to constructor.
+                    poss_method['name'] = 'constructor'
+                    assert poss_method['type'] == 'constructor', "You need to also change the type of poss method, but I wanted to see first what type it was, right now it has type: {}".format(poss_method['type'])
+                    methods.insert(0, methods.pop(i))
+                else:
+                    # A smart contract without constructor, we create an artificial constructor.
+                    methods.insert(0, {
+                  "inputs": [],
+                  "payable": False,
+                  "stateMutability": "nonpayable",
+                  "type": "constructor"
+                })
+                break
         self.methods = methods
         self.CDG = _cdg
         cEdges = _cdg.CompactEdges

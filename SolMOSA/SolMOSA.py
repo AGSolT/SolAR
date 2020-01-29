@@ -29,7 +29,7 @@ def SolMOSA(config):
     max_accounts = int(config['Parameters']['max_accounts'])
     accounts_file_location = dir_path + "/" + config['Files']['accounts_file_location']
     contract_json_location = config['Files']['contract_json_location']
-    predicates = config['CFG']['Predicates']
+    predicates = eval(config['CFG']['Predicates'])
     population_size = int(config['Parameters']['population_size'])
     max_method_calls = int(config['Parameters']['max_method_calls'])
     min_method_calls = int(config['Parameters']['min_method_calls'])
@@ -44,6 +44,7 @@ def SolMOSA(config):
     passTimeTime = int(config['Parameters']['passTimeTime'])
     memory_efficient = config['Parameters']['memory_efficient'] == "True"
     maxWei=int(config['Parameters']['maxWei'])
+    ignorefunctionNames =  eval(config['CFG']['IgnoreFunctions'])
 
     accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location)
 
@@ -53,15 +54,17 @@ def SolMOSA(config):
         deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
     # Create the CDG
-    cdg = CDG(contract_name, deployed_bytecode, predicates)
+    cdg = CDG(contract_name, deployed_bytecode, predicates, ignorefunctionNames)
     cdg.LT(predicates)
+    logging.info("Contract CDG has been created and looks as follows:\n")
+    cdg.Show_CDG(log=True)
 
-    sc = SmartContract(contract_json, cdg)
+    sc = SmartContract(contract_json, cdg, ignorefunctionNames)
 
     tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size = population_size, _random = True, _tests = [], _max_method_calls = max_method_calls, _min_method_calls = min_method_calls, _passBlocks=passBlocks, _passTime=passTime, _passTimeTime=passTimeTime, _maxWei=maxWei)
 
     logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
-    relevant_targets = determine_relevant_targets(cdg.CompactEdges, cdg.CompactNodes)
+    relevant_targets = determine_relevant_targets(cdg.CompactEdges, log=True)
 
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
@@ -96,9 +99,7 @@ def SolMOSA(config):
     init_archive = [None] * len(tSuite.smartContract.CDG.CompactEdges)
     parents = set(tSuite.tests)
 
-    relevant_targets = determine_relevant_targets(tSuite.smartContract.CDG.CompactEdges, tSuite.smartContract.CDG.CompactNodes)
-
-    archive = update_archive(parents, init_archive, relevant_targets)
+    archive = update_archive(parents, init_archive, relevant_targets, tSuite.smartContract.CDG.CompactEdges)
     archives = [archive]
     testSuites = [tSuite]
     updated_targets = update_targets(parents, archive, relevant_targets)
@@ -116,7 +117,10 @@ def SolMOSA(config):
     for i in range(search_budget):
         # Cancel if branch coverage has already been achieved
         if not None in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
-            logging.info("Branch coverage was achieved after random initialisation")
+            if i == 0:
+                logging.info("Branch coverage was achieved after random initialisation")
+            else:
+                logging.info("Branch coverage was achieved at iteration {}".format(i))
             break
         # Update the iteration counter
         iterations += 1
@@ -174,7 +178,7 @@ def SolMOSA(config):
         logging.info("\tUpdating test distances...")
         tSuite.update_test_distances(results, returnvals)
 
-        archive = update_archive(offspring, archive, relevant_targets)
+        archive = update_archive(offspring, archive, relevant_targets, tSuite.smartContract.CDG.CompactEdges)
         updated_targets = update_targets(offspring, archive, relevant_targets)
         R = parents.union(offspring)
 
@@ -194,7 +198,7 @@ def SolMOSA(config):
         archives = archives + [archive]
         testSuites = testSuites + [tSuite]
 
-    archive = update_archive(parents, archive, relevant_targets)
+    archive = update_archive(parents, archive, relevant_targets, tSuite.smartContract.CDG.CompactEdges)
     runtime = datetime.datetime.now() - start_time
     return archives, tSuite, runtime.total_seconds(), blockchain_time.total_seconds(), iterations
 
@@ -227,7 +231,7 @@ def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_
     abi = abi.replace("False", "false")
     return accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi
 
-def update_archive(tests, archive, relevant_targets):
+def update_archive(tests, archive, relevant_targets, _edges):
     """
     Given an archive and a set of tests, replaces the archived tests by better tests.
     Inputs:
@@ -242,8 +246,18 @@ def update_archive(tests, archive, relevant_targets):
             for test in tests:
                 if test.distance_vector[i] == 0:
                     if best_test is None:
+                        logging.info(f"There was no best test yet for relevant_target {i} with edge:\n")
+                        _edges[i].show_CompactEdge(log=True)
+                        logging.info(f"now entering the archive is test: \n")
+                        test.show_test(log=True)
                         best_test = test
                     elif len(test.methodCalls)<len(best_test.methodCalls):
+                        logging.info(f"A better test was found for relevant_target {i} with edge:\n")
+                        _edges[i].show_CompactEdge(log=True)
+                        logging.info(f"the old test was:\n")
+                        best_test.show_test(log=True)
+                        logging.info("\nThe new test is:\n")
+                        test.show_test(log=True)
                         best_test = test
         archive[i] = best_test
     return archive
@@ -270,21 +284,25 @@ def update_targets(tests, archive, relevant_targets):
                         break
     return updated_targets
 
-def determine_relevant_targets(compactEdges, compactNodes):
+def determine_relevant_targets(_compactEdges, log=False):
     """
     We don't really care for edges in the dispactcher or the fallback function if it has not been explicitly defined
     Inputs:
-        - compactEdges: The edges of the CDG of the smart contract.
-        - compactNodes: The nodes of the CDG of the smart contract.
+        - _compactEdges: The edges of the CDG of the smart contract.
+        - log: Indication of whether the relevant targets should be logged.
     Outputs:
         - relevant_targets: An ordered list of Booleans indicating whether each edge is relevant for branch coverage.
     """
-    relevant_targets = [True] * len(compactEdges)
-    for i, cEdge in enumerate(compactEdges):
-        if cEdge.endNode_id[0] == "_fallback":
+    relevant_targets = [True] * len(_compactEdges)
+    for i, cEdge in enumerate(_compactEdges):
+        if (cEdge.endNode_id[0] == "_fallback") | (cEdge.endNode_id[0] == "_dispatcher"):
             relevant_targets[i] = False
-        elif cEdge.startNode_id[0] == "_dispatcher":
-            relevant_targets[i] = False
+    if log:
+        logging.info("Relevant targets have been identified as follows: \n")
+        for relevant, cEdge in zip(relevant_targets, _compactEdges):
+            if relevant:
+                logging.info(f"Target {i}")
+                cEdge.show_CompactEdge(log=True)
     return relevant_targets
 
 def show_relevant_targets(_compactEdges, _relevant_targets):

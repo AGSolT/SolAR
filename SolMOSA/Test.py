@@ -35,25 +35,6 @@ class TestCase():
             self.subvector_dist = 0
         else:
             poss_methods = SmartContract.methods.copy()
-            for i, poss_method in enumerate(poss_methods):
-                if poss_method['type'] == 'constructor':
-                    # A modern smart contract with a constructor.
-                    poss_methods.insert(0, poss_methods.pop(i))
-                    break
-                elif poss_method['name'] == SmartContract.contractName:
-                    # An old fashioned smart contract, we rename stuff to constructor.
-                    poss_method['name'] = 'constructor'
-                    assert poss_method['type'] == 'constructor', "You need to also change the type of poss method, but I wanted to see first what type it was, right now it has type: {}".format(poss_method['type'])
-                    poss_methods.insert(0, poss_methods.pop(i))
-                else:
-                    # A smart contract without constructor, we create an artificial constructor.
-                    poss_methods.insert(0, {
-                  "inputs": [],
-                  "payable": False,
-                  "stateMutability": "nonpayable",
-                  "type": "constructor"
-                })
-                break
             assert poss_methods[0]['type'] == 'constructor', "The first method in a SmartContract should always be it's constructor."
 
 
