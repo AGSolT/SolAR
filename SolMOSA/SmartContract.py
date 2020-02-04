@@ -1,4 +1,7 @@
 from CDG import *
+import numpy as np
+import logging
+
 
 class SmartContract():
     """
@@ -7,7 +10,8 @@ class SmartContract():
         - contractName: The name of the smart contract.
         - methods: A list of all methods in the smart contract.
         - CDG: The control-dependency-graph of the smart contract.
-        - approach_levels: A matrix containg the approach levels between any two nodes. The index of the matrix contains the maximum approach level for that edge.
+        - approach_levels: A matrix containg the approach levels between any two nodes.
+        The index of the matrix contains the maximum approach level for that edge.
     """
     contractName = ""
     methods = []
@@ -25,34 +29,44 @@ class SmartContract():
                 # The constructor is always the first method in the list.
                 methods = [method] + methods
 
-            # Check if there is a constructor now
-            for i, poss_method in enumerate(methods):
-                if poss_method['type'] == 'constructor':
-                    # A modern smart contract with a constructor.
-                    methods.insert(0, methods.pop(i))
-                    break
-                elif poss_method['name'] == contract_json['contractName']:
-                    # An old fashioned smart contract, we rename stuff to constructor.
-                    poss_method['name'] = 'constructor'
-                    assert poss_method['type'] == 'constructor', "You need to also change the type of poss method, but I wanted to see first what type it was, right now it has type: {}".format(poss_method['type'])
-                    methods.insert(0, methods.pop(i))
-                else:
-                    # A smart contract without constructor, we create an artificial constructor.
-                    methods.insert(0, {
-                  "inputs": [],
-                  "payable": False,
-                  "stateMutability": "nonpayable",
-                  "type": "constructor"
-                })
+        # Check if there is a constructor now
+        found = False
+        for i, poss_method in enumerate(methods):
+            if poss_method['type'] == 'constructor':
+                # A modern smart contract with a constructor.
+                methods.insert(0, methods.pop(i))
+                found = True
                 break
+            elif poss_method['name'] == contract_json['contractName']:
+                # An old fashioned smart contract, we rename stuff to constructor.
+                poss_method['name'] = 'constructor'
+                assert poss_method['type'] == 'constructor', "You need to also change the type of poss method,\
+                but I wanted to see first what type it was, right now it has type: {}".format(
+                    poss_method['type'])
+                methods.insert(0, methods.pop(i))
+                found = True
+                break
+
+        if not found:
+            # A smart contract without constructor, we create an artificial constructor.
+            logging.info("No constructor was found, inserting an empty constructor")
+            methods.insert(0, {
+                "inputs": [],
+                "payable": False,
+                "stateMutability": "nonpayable",
+                "type": "constructor"
+            })
+
         self.methods = methods
         self.CDG = _cdg
         cEdges = _cdg.CompactEdges
 
-        # The approach levels: the approach level for the j-th edge to the i-th edge is stored in app_lvls[i][j] with the trace containing the maximal approach level (i.e. the approach level from the start of the corresponding method.)
+        # The approach levels: the approach level for the j-th edge to the i-th edge is stored in app_lvls[i][j] with the trace containing
+        # the maximal approach level (i.e. the approach level from the start of the corresponding method.)
         app_lvls = np.zeros(shape=(len(cEdges), len(cEdges)))
         for i, cEdge1 in enumerate(cEdges):
-            queue = [(startNode, 1) for startNode in _cdg.CompactNodes if startNode.node_id == (cEdge1.startNode_id[0], 1)]
+            queue = [(startNode, 1) for startNode in _cdg.CompactNodes if startNode.node_id == (
+                cEdge1.startNode_id[0], 1)]
             assert len(queue) == 1, "There should be precisely one starting node"
             traversed = [cNode[0].node_id for cNode in queue]
             max_al = self.approach_level(queue, _cdg.CompactNodes, cEdge1, traversed)
@@ -61,22 +75,25 @@ class SmartContract():
                 if i == j:
                     pass
                 else:
-                    startNode = next((cNode for cNode in _cdg.CompactNodes if cNode.node_id == cEdge2.endNode_id), None)
+                    startNode = next(
+                        (cNode for cNode in _cdg.CompactNodes if cNode.node_id == cEdge2.endNode_id), None)
                     queue = [(startNode, 0)]
                     traversed = [cNode[0].node_id for cNode in queue]
                     al = self.approach_level(queue, _cdg.CompactNodes, cEdge1, traversed, max_al)
                     app_lvls[j][i] = al
         self.approach_levels = app_lvls
 
-    def approach_level(self, queue, cNodes, goal, traversed, max_al = None):
+    def approach_level(self, queue, cNodes, goal, traversed, max_al=None):
         """
-        A breadth-first search algorithm to find either the maximum approach level of a single node (i.e. the approach level from the start of a function or the approach level from one edge to another).
+        A breadth-first search algorithm to find either the maximum approach level of a single node
+        (i.e. the approach level from the start of a function or the approach level from one edge to another).
         Inputs:
             - queue: a queue consisting of all the next nodes to visit.
             - cNodes: a list of all the CompactNodes in the control-dependency-graph
             - goal: The node that we're calculating the approach level for.
             - traversed: A list of nodes that have already been traversed by our depth-first algorithm.
-            -max_al: The maximum approach level of the goal, (i.e. the approach level from the start of a function or the approach level from one edge to another).
+            -max_al: The maximum approach level of the goal, (i.e. the approach level from the start of a function
+            or the approach level from one edge to another).
         Outputs:
             - max_al/depth+1: The approach level of the goal.
         """
@@ -85,16 +102,18 @@ class SmartContract():
             return max_al
 
         curNode, depth = queue.pop(0)
-        assert curNode.node_id in traversed, "A node is being investigated but it is not registered as traversed: node with id: {}".format(curNode.node_id)
+        assert curNode.node_id in traversed, "A node is being investigated but it is not registered as traversed: node with id: {}".format(
+            curNode.node_id)
         if max_al is not None:
-            if depth >= max_al: # We don't need to go deeper than the maximum approach_level
+            if depth >= max_al:  # We don't need to go deeper than the maximum approach_level
                 return max_al
 
         if curNode.node_id == goal.startNode_id:
             # The goal can be reached at this depth
             return depth
         else:
-            childNodes = [cNode for cNode in cNodes if (cNode.node_id not in traversed) & (cNode.node_id in curNode.outg_node_ids)]
+            childNodes = [cNode for cNode in cNodes if (
+                cNode.node_id not in traversed) & (cNode.node_id in curNode.outg_node_ids)]
             traversed = traversed + [cNode.node_id for cNode in childNodes]
-            queue = queue + [(childNode, depth+1) for childNode in childNodes]
+            queue = queue + [(childNode, depth + 1) for childNode in childNodes]
             return self.approach_level(queue, cNodes, goal, traversed, max_al)
