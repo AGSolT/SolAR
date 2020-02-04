@@ -97,10 +97,6 @@ class TestCase():
         """
         ans = """"""
         for methodCall in self.methodCalls:
-            if methodCall.methodName == "constructor":
-                print(f"inputvars: {methodCall.inputvars}")
-                if len(methodCall.inputvars) == 0:
-                    self.show_test()
             input_dict_string = """{{name: '{}', inputVars: {}, fromAcc: '{}', value: {}}}""".format(
                 methodCall.methodName, self.InputVars_to_String(methodCall.inputvars), methodCall.fromAcc, methodCall.value)
             if len(ans) > 0:

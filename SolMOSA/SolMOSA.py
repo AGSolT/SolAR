@@ -160,12 +160,6 @@ def SolMOSA(config):
         tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size=population_size, _random=False, _tests=list(
             offspring), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
 
-        # REMOVE THIS
-        print(f"After initialising test suite each test case should start with a constructor with 4 input values:")
-        for tempTest in tSuite.tests:
-            assert len(tempTest.methodCalls[0].inputvars) == 4, f"This test does not have the right number of input values for its constructor:\
-            {tempTest.methodCalls[0]}"
-        # REMOVE THIS
         test_inputs = tSuite.generate_test_inputs()
         with open("tests.txt", "w") as f:
             f.write(test_inputs)
