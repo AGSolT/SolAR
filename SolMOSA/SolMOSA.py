@@ -1,65 +1,86 @@
-from CDG import *
-from SmartContract import *
-from Test_Suite import *
-from Preference_Sorting import *
-from Generate_Offspring import *
-import json
-import pickle
-import configparser
+"""
+The python implementation of SolMOSA that works on compiled Solidity \
+Smart Contracts.
+
+Prerequisites:
+    - An Ethereum blockchain simulator should be running.
+    - All the settings need to be specified in a config file
+"""
 import os
 import json
 import ast
 import subprocess
-import sys
 import datetime
-import time
 import logging
+# import pickles
+# import sys
+
+from CDG import CDG
+from SmartContract import SmartContract
+from Test_Suite import TestSuite
+from Preference_Sorting import preference_sorting, subvector_dist
+from Generate_Offspring import generate_offspring
 
 
 def SolMOSA(config):
     """
-    The python implementation of SolMOSA that works on compiled Solidity smart contratcts.
-    Prerequisites:
-        - An Ethereum blockchain simulator should be running.
-        - All the settings need to be specified in a config file
-    Inputs:
-        - config_file_location: The location of a config_file that specifies all the parameters necessary for the SolMOSA algorithm.
+    Apply genetic algorithm to iteratively generate an optimal test suite.
+
+    Arguments:
+        - config_file_location: The location of a config_file that specifies \
+        all the parameters necessary for the SolMOSA algorithm.
     Outputs:
-        - archives: A list containing the best test cases for each branch at each generation of the algorithm,
-        the final archive in the list contains the best test cases found by the algorithm.
+        - archives: A list containing the best test cases for each branch at \
+        each generation of the algorithm,
+        the final archive in the list contains the best test cases found by \
+        the algorithm.
         - tSuite: The TestSuite object that was used by the SolMOSA algorithm.
         - runtime: The time it took to generate the tests.
         - iterations: The number of times the genetic loop was executed.
     """
     # Register the time when the algorithm starts
     start_time = datetime.datetime.now()
-
-    # config = configparser.ConfigParser()
-    # config.read("Config.ini")
     dir_path = os.path.dirname(os.path.realpath(__file__))
+
+    # Read Configuration. Parameters for initiating the Blockchain.
     ETH_port = config['Blockchain']['ETH_port']
     max_accounts = int(config['Parameters']['max_accounts'])
-    accounts_file_location = dir_path + "/" + config['Files']['accounts_file_location']
+    accounts_file_location = dir_path + "/"\
+        + config['Files']['accounts_file_location']
+
+    # Parameters for creating a Control-Dependency-Graph
     contract_json_location = config['Files']['contract_json_location']
     predicates = eval(config['CFG']['Predicates'])
+    ignorefunctionNames = eval(config['CFG']['IgnoreFunctions'])
+
+    # Parameters for creating Test-Cases
     population_size = int(config['Parameters']['population_size'])
     max_method_calls = int(config['Parameters']['max_method_calls'])
     min_method_calls = int(config['Parameters']['min_method_calls'])
-    crossover_probability = float(config['Parameters']['crossover_probability'])
+    maxWei = int(config['Parameters']['maxWei'])
+    addresspool = eval(config['Parameters']['addresspool'])
+    ETHpool = eval(config['Parameters']['ETHpool'])
+    intpool = eval(config['Parameters']['intpool'])
+    stringpool = eval(config['Parameters']['stringpool'])
+
+    # Parameters for mutating test cases
+    crossover_probability\
+        = float(config['Parameters']['crossover_probability'])
     remove_probability = float(config['Parameters']['remove_probability'])
     change_probability = float(config['Parameters']['change_probability'])
     insert_probability = float(config['Parameters']['insert_probability'])
-    search_budget = int(config['Parameters']['search_budget'])
     tournament_size = int(config['Parameters']['tournament_size'])
+
+    # Parameters that specify the scope of the experiment
+    search_budget = int(config['Parameters']['search_budget'])
     passBlocks = config['Parameters']['passBlocks'] == "True"
     passTime = config['Parameters']['passTime'] == "True"
     passTimeTime = int(config['Parameters']['passTimeTime'])
     memory_efficient = config['Parameters']['memory_efficient'] == "True"
-    maxWei = int(config['Parameters']['maxWei'])
-    ignorefunctionNames = eval(config['CFG']['IgnoreFunctions'])
 
-    accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi = get_ETH_properties(
-        ETH_port, max_accounts, accounts_file_location, contract_json_location)
+    accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi\
+        = get_ETH_properties(ETH_port, max_accounts, accounts_file_location,
+                             contract_json_location)
 
     if eval(config['Parameters']['deploying_accounts']) == []:
         deploying_accounts = accounts
@@ -67,29 +88,37 @@ def SolMOSA(config):
         deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
     # Create the CDG
-    cdg = CDG(contract_name, deployed_bytecode, predicates, ignorefunctionNames)
+    cdg = CDG(contract_name, deployed_bytecode, predicates,
+              ignorefunctionNames)
     cdg.LT(predicates)
     logging.info("Contract CDG has been created and looks as follows:\n")
     cdg.Show_CDG(log=True)
 
     sc = SmartContract(contract_json, cdg, ignorefunctionNames)
 
-    tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size=population_size, _random=True, _tests=[], _max_method_calls=max_method_calls,
-                       _min_method_calls=min_method_calls, _passBlocks=passBlocks, _passTime=passTime, _passTimeTime=passTimeTime, _maxWei=maxWei)
+    tSuite = TestSuite(sc, accounts, deploying_accounts,
+                       _pop_size=population_size, _random=True, _tests=[],
+                       _max_method_calls=max_method_calls,
+                       _min_method_calls=min_method_calls,
+                       _passBlocks=passBlocks, _passTime=passTime,
+                       _passTimeTime=passTimeTime, _maxWei=maxWei)
 
-    logging.info("Smart Contract Under investigation: {}".format(contract_json_location))
+    logging.info("Smart Contract Under investigation: {}"
+                 .format(contract_json_location))
     relevant_targets = determine_relevant_targets(cdg.CompactEdges, log=True)
 
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
-        return [], tSuite, (datetime.datetime.now() - start_time).total_seconds(), 0, 0
+        return [], tSuite, (datetime.datetime.now()
+                            - start_time).total_seconds(), 0, 0
 
     test_inputs = tSuite.generate_test_inputs()
     with open("tests.txt", "w") as f:
         f.write(test_inputs)
 
     callstring = "node SC_interaction.js".split(
-    ) + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
+    ) + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"]\
+        + [ETH_port]
 
     blockchain_start_time = datetime.datetime.now()
 
@@ -127,38 +156,58 @@ def SolMOSA(config):
 
     poss_methods = tSuite.smartContract.methods[1:]
 
-    # Keep track of the number of iterations necessary to achieve branch coverage
+    # Keep track of number of iterations necessary to achieve branch coverage
     iterations = 0
 
     for i in range(search_budget):
         # Cancel if branch coverage has already been achieved
-        if None not in [test for test, relevant in zip(archive, relevant_targets) if relevant]:
+        if None not in [test for test, relevant in zip(archive,
+                                                       relevant_targets)
+                        if relevant]:
             if i == 0:
-                logging.info("Branch coverage was achieved after random initialisation")
+                logging.info("Branch coverage was achieved after random\
+                             initialisation")
             else:
-                logging.info("Branch coverage was achieved at iteration {}".format(i))
+                logging.info("Branch coverage was achieved at iteration {}"
+                             .format(i))
             break
         # Update the iteration counter
         iterations += 1
-        logging.info("\nEntering main loop iteration {}/{} at {}:{}".format(i + 1,
-                                                                            search_budget, datetime.datetime.now().date(),
-                                                                            datetime.datetime.now().time()))
+        logging.info("\nEntering main loop iteration {}/{} at {}:{}"
+                     .format(i + 1,
+                             search_budget, datetime.datetime.now().date(),
+                             datetime.datetime.now().time()))
 
-        logging.info("{} out of {} branches have been covered".format(len([test for test, relevant in zip(archive, relevant_targets) if (
-            test is not None) & (relevant)]), len([test for test, relevant in zip(archive, relevant_targets) if relevant])))
+        logging.info("{} out of {} branches have been covered"
+                     .format(len([test for test, relevant in
+                                  zip(archive, relevant_targets) if
+                                  (test is not None) & (relevant)]),
+                             len([test for test, relevant in
+                                  zip(archive, relevant_targets) if
+                                  relevant])))
         logging.info("The following test cases are currently in the Archive:")
-        for best_test in [best_test for best_test, relevant in zip(archive, relevant_targets) if relevant]:
+        for best_test in [best_test for best_test, relevant in
+                          zip(archive, relevant_targets) if relevant]:
             if best_test is not None:
                 best_test.show_test(log=True)
                 logging.info("")
 
         logging.info("\tGenerating Offspring...")
-        offspring = generate_offspring(parents, sc, accounts, deploying_accounts, poss_methods, population_size, min(
-            tournament_size, population_size), max_method_calls, crossover_probability, remove_probability,
-            change_probability, insert_probability, maxWei)
+        offspring = generate_offspring(parents, sc, accounts,
+                                       deploying_accounts, poss_methods,
+                                       population_size,
+                                       min(tournament_size,
+                                           population_size), max_method_calls,
+                                       crossover_probability,
+                                       remove_probability,
+                                       change_probability, insert_probability,
+                                       maxWei)
 
-        tSuite = TestSuite(sc, accounts, deploying_accounts, _pop_size=population_size, _random=False, _tests=list(
-            offspring), _max_method_calls=max_method_calls, _min_method_calls=min_method_calls)
+        tSuite = TestSuite(sc, accounts, deploying_accounts,
+                           _pop_size=population_size, _random=False,
+                           _tests=list(offspring),
+                           _max_method_calls=max_method_calls,
+                           _min_method_calls=min_method_calls)
 
         test_inputs = tSuite.generate_test_inputs()
         with open("tests.txt", "w") as f:
@@ -176,16 +225,21 @@ def SolMOSA(config):
                 # Clear old blockchain from the /tmp directory
                 callstring = "rm -r /tmp/tmp-*"
                 subprocess.call(callstring, shell=True)
-                #  Start new instance of Ganache with a ridiculus amount of ether for each account
-                callstring = 'screen -S ganache -X stuff "ganache-cli -d -e 100000000000000\r"'
+                #  Start new instance of Ganache with a ridiculus amount of
+                # ether for each account
+                callstring = 'screen -S ganache -X stuff \
+                "ganache-cli -d -e 100000000000000\r"'
                 os.system(callstring)
-                callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + [
-                    "{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
+                callstring = "node get_accounts --ETH_port".split()\
+                    + [ETH_port] + ["--max_accounts"]\
+                    + ["{}".format(max_accounts)]\
+                    + ["--accounts_file_location"] + [accounts_file_location]
                 with open("Ganache_Interaction.log", "a") as f:
                     subprocess.call(callstring, stdout=f)
 
-        callstring = "node SC_interaction.js".split(
-        ) + ["--abi"] + [abi] + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
+        callstring = "node SC_interaction.js".split() + ["--abi"] + [abi]\
+            + ["--bytecode"] + [bytecode] + ["--ETH_port"] + [ETH_port]
+
         with open("Ganache_Interaction.log", "a") as f:
             subprocess.call(callstring, stdout=f)
         blockchain_time += datetime.datetime.now() - blockchain_start_time
@@ -218,29 +272,39 @@ def SolMOSA(config):
         G = list(F)
         G.sort(key=lambda tCase: tCase.subvector_dist)
         parents = parents.union(set(G[:population_size - len(parents)]))
-        assert len(
-            parents) == population_size, "The set of new parents should be of a size equal to the population size."
+        assert len(parents) == population_size,\
+            "The set of new parents should be of a size equal to the \
+            population size."
         archives = archives + [archive]
         testSuites = testSuites + [tSuite]
 
     archive = update_archive(parents, archive, relevant_targets,
                              tSuite.smartContract.CDG.CompactEdges)
     runtime = datetime.datetime.now() - start_time
-    return archives, tSuite, runtime.total_seconds(), blockchain_time.total_seconds(), iterations
+    return archives, tSuite, runtime.total_seconds(),
+    blockchain_time.total_seconds(), iterations
 
 
-def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_json_location):
+def get_ETH_properties(ETH_port, max_accounts, accounts_file_location,
+                       contract_json_location):
     """
-    Fetches relevant information for the deployment of and interaction with the smart contract.
-    Inputs:
-        - ETH_port: The port at which the Ethereum blockchain simulator is listening.
-        - max_accounts: The number of accounts that can be used to interact with the blockchain.
-        - accounts_file_location: The location of the file the accounts will be written to by the get_accounts.js procedure.
+    Fetch relevant information for the deployment of and interaction with the\
+    smart contract.
+
+    Arguments:
+    ETH_port:       The port at which the Ethereum blockchain simulator is
+                    listening.
+    max_accounts:   The number of accounts that can be used to interact with
+                    the blockchain.
+    accounts_file_location: The location of the file the accounts will be
+                            written to by the get_accounts.js procedure.
     Outputs:
-        - accounts: The accounts on the blockchain that will be used for the deployment of and interaction with the smart contract.
+    accounts:   The accounts on the blockchain that will be used for the
+                deployment of and interaction with the smart contract.
     """
-    callstring = "node get_accounts --ETH_port".split() + [ETH_port] + ["--max_accounts"] + [
-        "{}".format(max_accounts)] + ["--accounts_file_location"] + [accounts_file_location]
+    callstring = "node get_accounts --ETH_port".split() + [ETH_port]\
+        + ["--max_accounts"] + ["{}".format(max_accounts)]\
+        + ["--accounts_file_location"] + [accounts_file_location]
     with open("Ganache_Interaction.log", "w") as f:
         subprocess.call(callstring, stdout=f)
     with open(accounts_file_location) as f:
@@ -257,18 +321,22 @@ def get_ETH_properties(ETH_port, max_accounts, accounts_file_location, contract_
     abi = str(contract_json['abi'])
     abi = abi.replace("True", "true")
     abi = abi.replace("False", "false")
-    return accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi
+    return accounts, contract_json, contract_name, \
+        deployed_bytecode, bytecode, abi
 
 
 def update_archive(tests, archive, relevant_targets, _edges):
     """
-    Given an archive and a set of tests, replaces the archived tests by better tests.
-    Inputs:
-        - tests: The current generation of tests.
-        - archive: The current list of best tests.
-        - relevant_targets: Indicators of which tests are important for branch coverage.
+    Replace the archived tests by better tests, given an archive and a set of \
+    potentially better tests.
+
+    Arguments:
+    tests:              The current generation of tests.
+    archive:            The current list of best tests.
+    relevant_targets:   Indicators of which tests are important for branch
+                        coverage.
     Outputs:
-        - archive: The new and updated archive
+    archive:    The new and updated archive
     """
     for i, (best_test, relevant) in enumerate(zip(archive, relevant_targets)):
         if relevant:
@@ -276,14 +344,16 @@ def update_archive(tests, archive, relevant_targets, _edges):
                 if test.distance_vector[i] == 0:
                     if best_test is None:
                         logging.info(
-                            f"There was no best test yet for relevant_target {i} with edge:\n")
+                            f"There was no best test yet for relevant_target \
+                            {i} with edge:\n")
                         _edges[i].show_CompactEdge(log=True)
                         logging.info(f"now entering the archive is test: \n")
                         test.show_test(log=True)
                         best_test = test
                     elif len(test.methodCalls) < len(best_test.methodCalls):
                         logging.info(
-                            f"A better test was found for relevant_target {i} with edge:\n")
+                            f"A better test was found for relevant_target {i} \
+                            with edge:\n")
                         _edges[i].show_CompactEdge(log=True)
                         logging.info(f"the old test was:\n")
                         best_test.show_test(log=True)
@@ -296,13 +366,18 @@ def update_archive(tests, archive, relevant_targets, _edges):
 
 def update_targets(tests, archive, relevant_targets):
     """
-    Identifies the targets that are reached but not satisfied by the current generation of tests.
+    Identify the targets that are reached but not satisfied by the current \
+    generation of tests.
+
     Inputs:
-        - tests: The current generation of tests.
-        - archive: The list of best test cases that satisfy specific targets.
-        - relevant_targets: The list of targets that should be taken into account for branch coverage.
+    tests:              The current generation of tests.
+    archive:            The list of best test cases that satisfy specific
+                        targets.
+    relevant_targets:   The list of targets that should be taken into account
+                        for branch coverage.
     Outputs:
-        - updated_targets: The list of targets that are reached but not satisfied by the current generation of tests.
+    updated_targets:    The list of targets that are reached but not satisfied
+                        by the current generation of tests.
     """
     updated_targets = [False] * len(archive)
     for i, (best_test, relevant) in enumerate(zip(archive, relevant_targets)):
@@ -311,7 +386,8 @@ def update_targets(tests, archive, relevant_targets):
                 pass
             else:
                 for test in tests:
-                    if (test.distance_vector[i] > 0) & (test.distance_vector[i] <= 1):
+                    if (test.distance_vector[i] > 0) & \
+                            (test.distance_vector[i] <= 1):
                         updated_targets[i] = True
                         break
     return updated_targets
@@ -319,16 +395,20 @@ def update_targets(tests, archive, relevant_targets):
 
 def determine_relevant_targets(_compactEdges, log=False):
     """
-    We don't really care for edges in the dispactcher or the fallback function if it has not been explicitly defined
+    We don't really care for edges in the dispactcher or the fallback \
+    function if it has not been explicitly defined.
+
     Inputs:
-        - _compactEdges: The edges of the CDG of the smart contract.
-        - log: Indication of whether the relevant targets should be logged.
+    _compactEdges: The edges of the CDG of the smart contract.
+    log:           Indication of whether the relevant targets should be logged.
     Outputs:
-        - relevant_targets: An ordered list of Booleans indicating whether each edge is relevant for branch coverage.
+    relevant_targets: An ordered list of Booleans indicating whether each edge
+                      is relevant for branch coverage.
     """
     relevant_targets = [True] * len(_compactEdges)
     for i, cEdge in enumerate(_compactEdges):
-        if (cEdge.endNode_id[0] == "_fallback") | (cEdge.endNode_id[0] == "_dispatcher"):
+        if (cEdge.endNode_id[0] == "_fallback") | \
+                (cEdge.endNode_id[0] == "_dispatcher"):
             relevant_targets[i] = False
     if log:
         logging.info("Relevant targets have been identified as follows: \n")
@@ -340,6 +420,7 @@ def determine_relevant_targets(_compactEdges, log=False):
 
 
 def show_relevant_targets(_compactEdges, _relevant_targets):
+    """Show the relevant targets and their order."""
     logging.debug("Showing Relevant Targets")
     for cEdge, rt in zip(_compactEdges, _relevant_targets):
         if rt:
@@ -347,7 +428,8 @@ def show_relevant_targets(_compactEdges, _relevant_targets):
 
 
 def log_du(path):
-    """disk usage in human readable format (e.g. '2,1GB')"""
+    """Log disk usage in human readable format (e.g. '2,1GB')."""
     for file in os.listdir(path):
         logging.debug(
-            "file" + subprocess.check_output(['du', '-hcs', path + file]).split()[0].decode('utf-8'))
+            "file" + subprocess.check_output(['du', '-hcs', path + file])
+            .split()[0].decode('utf-8'))
