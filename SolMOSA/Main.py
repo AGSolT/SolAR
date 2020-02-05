@@ -81,7 +81,6 @@ def main():
                 # Scrape the contract for hardcoded values.
                 knownAddresses = eval(
                     config['Parameters']['deploying_accounts'])
-                print(f"knownAddresses: {knownAddresses}")
                 addresspool, ETHpool, intpool, stringpool = \
                     create_contractpools(contractSol, knownAddresses)
                 config.set('Parameters', 'addresspool', repr(addresspool))

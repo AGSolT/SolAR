@@ -12,14 +12,17 @@ import ast
 import subprocess
 import datetime
 import logging
+import numpy as np
 # import pickles
-# import sys
+import sys
 
 from CDG import CDG
 from SmartContract import SmartContract
 from Test_Suite import TestSuite
 from Preference_Sorting import preference_sorting, subvector_dist
 from Generate_Offspring import generate_offspring
+
+np.set_printoptions(threshold=sys.maxsize)
 
 
 def SolMOSA(config):
@@ -62,7 +65,9 @@ def SolMOSA(config):
     ETHpool = eval(config['Parameters']['ETHpool'])
     intpool = eval(config['Parameters']['intpool'])
     stringpool = eval(config['Parameters']['stringpool'])
-
+    passBlocks = config['Parameters']['passBlocks'] == "True"
+    passTime = config['Parameters']['passTime'] == "True"
+    passTimeTime = int(config['Parameters']['passTimeTime'])
     # Parameters for mutating test cases
     crossover_probability\
         = float(config['Parameters']['crossover_probability'])
@@ -73,9 +78,6 @@ def SolMOSA(config):
 
     # Parameters that specify the scope of the experiment
     search_budget = int(config['Parameters']['search_budget'])
-    passBlocks = config['Parameters']['passBlocks'] == "True"
-    passTime = config['Parameters']['passTime'] == "True"
-    passTimeTime = int(config['Parameters']['passTimeTime'])
     memory_efficient = config['Parameters']['memory_efficient'] == "True"
 
     accounts, contract_json, contract_name, deployed_bytecode, bytecode, abi\
