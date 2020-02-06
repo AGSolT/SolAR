@@ -498,7 +498,7 @@ def scrape_strings(_contractSol):
         start = new_start
         errorMatch = re.search(regex, contractSol[start:], re.MULTILINE)
 
-    regex = r"([\"'])(?:(?=(\\?))\2.)*?\1"
+    regex = r"(?<!import )([\"'])(?:(?=(\\?))\2.)*?\1"
     matches = re.finditer(regex, contractSol, re.MULTILINE)
     for match in matches:
         stringpool.add(match.group())
