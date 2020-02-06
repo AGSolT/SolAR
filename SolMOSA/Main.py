@@ -439,7 +439,7 @@ def scrape_vals(_contractSol):
     regex = r"[0-9]*\.?[0-9]+\s*(wei|szabo|finney|ether)"
     valMatches = re.finditer(regex, contractSol, re.MULTILINE)
     for match in valMatches:
-        regex = r"[0-9] *\.?[0-9]+"
+        regex = r"[0-9]*\.?[0-9]+"
         val = float(re.search(regex, match.group()).group())
         if match.group()[-3:] == "wei":
             assert val % 1 == 0, "A non-integer wei value was found: {}"\
@@ -476,7 +476,7 @@ def scrape_ints(_contractSol):
         pragmaMatch = re.search(regex, contractSol, re.MULTILINE)
 
     # Ignore integers that follow an int or uint declaration.
-    regex = r"(?<!int\d{2})\d+"
+    regex = r"-?(?<![(int)\d])\d+"
     intMatches = re.finditer(regex, contractSol, re.MULTILINE)
     for match in intMatches:
         intpool.add(int(match.group()))

@@ -1,5 +1,6 @@
 // This script connects to the Ethereum simulator that is listening at the specified port and deploys the contract and calls it's methods following the --methods argument.
 const Web3 = require('web3')
+const BigNumber = require('bignumber.js')
 const fs = require('fs');
 const Debug = require('web3-eth-debug').Debug;
 const args = require('minimist')(process.argv.slice(2));
@@ -20,6 +21,15 @@ const bytecode = eval(args.bytecode);
 const contract = new web3.eth.Contract(contract_Abi);
 contract.transactionConfirmationBlocks = 1;
 
+var toBigNumber = function(val){
+  if( Number.isInteger(val)){
+    return BigNumber(val).toFixed();
+  }
+  else{
+    return val;
+  }
+}
+
 async function runTest(){
   var method;
   var input_args;
@@ -39,10 +49,10 @@ async function runTest(){
   for (var i = 0; i < methods.length; i++){
     last_block = await web3.eth.getBlock("latest");
     method = methods[i];
-    input_args = method.inputVars;
+    input_args = method.inputVars.map(toBigNumber);
     from = method.fromAcc;
     method_name = method.name;
-    value = method.value;
+    value = toBigNumber(method.value);
     console.log(`calling ${method_name}(${input_args}) from ${from} with value ${value}`)
     if(method_name == 'constructor'){
       if(i > 0){

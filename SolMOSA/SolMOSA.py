@@ -99,6 +99,10 @@ def SolMOSA(config):
     sc = SmartContract(contract_json, cdg, ignorefunctionNames)
 
     tSuite = TestSuite(sc, accounts, deploying_accounts,
+                       _addresspool=addresspool,
+                       _ETHpool=ETHpool,
+                       _intpool=intpool,
+                       _stringpool=stringpool,
                        _pop_size=population_size, _random=True, _tests=[],
                        _max_method_calls=max_method_calls,
                        _min_method_calls=min_method_calls,
@@ -195,17 +199,16 @@ def SolMOSA(config):
                 logging.info("")
 
         logging.info("\tGenerating Offspring...")
-        offspring = generate_offspring(parents, sc, accounts,
-                                       deploying_accounts, poss_methods,
-                                       population_size,
-                                       min(tournament_size,
-                                           population_size), max_method_calls,
-                                       crossover_probability,
-                                       remove_probability,
-                                       change_probability, insert_probability,
-                                       maxWei)
+        offspring = generate_offspring(
+            parents, sc, accounts, addresspool, ETHpool, intpool, stringpool,
+            deploying_accounts, poss_methods, population_size, min(
+                tournament_size, population_size), max_method_calls,
+            crossover_probability, remove_probability, change_probability,
+            insert_probability, passTimeTime, maxWei)
 
         tSuite = TestSuite(sc, accounts, deploying_accounts,
+                           _addresspool=addresspool, _ETHpool=ETHpool,
+                           _intpool=intpool, _stringpool=stringpool,
                            _pop_size=population_size, _random=False,
                            _tests=list(offspring),
                            _max_method_calls=max_method_calls,
@@ -283,8 +286,8 @@ def SolMOSA(config):
     archive = update_archive(parents, archive, relevant_targets,
                              tSuite.smartContract.CDG.CompactEdges)
     runtime = datetime.datetime.now() - start_time
-    return archives, tSuite, runtime.total_seconds(),
-    blockchain_time.total_seconds(), iterations
+    return archives, tSuite, runtime.total_seconds(), \
+        blockchain_time.total_seconds(), iterations
 
 
 def get_ETH_properties(ETH_port, max_accounts, accounts_file_location,

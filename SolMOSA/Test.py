@@ -46,9 +46,10 @@ class TestCase():
 
     def __init__(
             self, _methodCalls, _random=False, SmartContract=None,
-            accounts=None, deploying_accounts=None, max_method_calls=None,
-            min_method_calls=0, passBlocks=False, passTime=False,
-            passTimeTime=None, _maxWei=10000000000000000000):
+            accounts=None, deploying_accounts=None, _addresspool=None,
+            _ETHpool=None, _intpool=None, _stringpool=None,
+            max_method_calls=None, min_method_calls=0, passBlocks=False,
+            passTime=False, passTimeTime=None, _maxWei=10000000000000000000):
         """
         Initialise a test case, either by passing all of it's  properties \
         or initialise randomly by generating a random number of random \
@@ -67,8 +68,9 @@ class TestCase():
             self.subvector_dist = 0
         else:
             poss_methods = SmartContract.methods.copy()
-            assert poss_methods[0]['type'] == 'constructor', f"The first method in a SmartContract should always be it's constructor.\
-            Instead it is {poss_methods[0]}"
+            assert poss_methods[0]['type'] == 'constructor',\
+                f"The first method in a SmartContract should always be it's\
+                 constructor. Instead it is {poss_methods[0]}"
 
             if passTime:
                 assert passTimeTime is not None, \
@@ -91,7 +93,10 @@ class TestCase():
             methodCalls = [MethodCall(
                 _methodName=None, _inputvars=None, _fromAcc=None, _value=None,
                 _payable=None, methodDict=poss_methods[0], accounts=accounts,
-                deploying_accounts=deploying_accounts)]
+                deploying_accounts=deploying_accounts,
+                _addresspool=_addresspool, _ETHpool=_ETHpool,
+                _intpool=_intpool, _stringpool=_stringpool,
+                _passTimeTime=passTimeTime, _maxWei=_maxWei)]
 
             poss_methods.pop(0)
             assert len(poss_methods) > 0, \
@@ -106,7 +111,9 @@ class TestCase():
                     _methodName=None, _inputvars=None, _fromAcc=None,
                     _value=None, _payable=None, methodDict=randMethod,
                     accounts=accounts, deploying_accounts=deploying_accounts,
-                    _passTimeTime=passTimeTime)]
+                    _addresspool=_addresspool, _ETHpool=_ETHpool,
+                    _intpool=_intpool, _stringpool=_stringpool,
+                    _passTimeTime=passTimeTime, _maxWei=_maxWei)]
 
             self.methodCalls = methodCalls
             self.returnVals = []
@@ -364,7 +371,9 @@ class MethodCall():
 
     def __init__(self, _methodName, _inputvars, _fromAcc, _value, _payable,
                  methodDict=None, accounts=None, deploying_accounts=None,
-                 _passTimeTime=None, _maxWei=10000000000000000000):
+                 _addresspool=None, _ETHpool=None, _intpool=None,
+                 _stringpool=None, _passTimeTime=None,
+                 _maxWei=10000000000000000000):
         """Initialise a method call either by passing all of it's \
         properties or randomly by choosing the properties from within the \
         specified allowed values."""
@@ -378,13 +387,21 @@ class MethodCall():
             assert accounts is not None, \
                 "A random method call is trying to be created \
                 but no accounts were passed."
+            assert _addresspool is not None, \
+                "No addresspool was passed!"
             if methodDict['type'] == 'constructor':
                 self.methodName = "constructor"
-                self.fromAcc = random.choice(deploying_accounts)
+                if (len(_addresspool) > 0) & (random.uniform(0, 1) < 0.5):
+                    # Take an address from the pool.
+                    self.fromAcc = random.choice(tuple(_addresspool))
+                else:
+                    self.fromAcc = random.choice(deploying_accounts)
                 inputvars = []
                 for input in methodDict['inputs']:
                     inputvars = inputvars + \
-                        [self.Random_Inputvar(input['type'], accounts)]
+                        [self.Random_Inputvar(
+                            input['type'], accounts, _addresspool, _ETHpool,
+                            _intpool, _stringpool)]
                 self.inputvars = inputvars
             elif methodDict['type'] == 'passTime':
                 self.methodName = "passTime"
@@ -396,7 +413,9 @@ class MethodCall():
                 inputvars = []
                 for input in methodDict['inputs']:
                     inputvars = inputvars + \
-                        [self.Random_Inputvar(input['type'], accounts)]
+                        [self.Random_Inputvar(
+                            input['type'], accounts, _addresspool, _ETHpool,
+                            _intpool, _stringpool)]
                 self.inputvars = inputvars
             else:
                 self.methodName = methodDict['name']
@@ -404,16 +423,22 @@ class MethodCall():
                 inputvars = []
                 for input in methodDict['inputs']:
                     inputvars = inputvars + \
-                        [self.Random_Inputvar(input['type'], accounts)]
+                        [self.Random_Inputvar(
+                            input['type'], accounts, _addresspool, _ETHpool,
+                            _intpool, _stringpool)]
                 self.inputvars = inputvars
             if not methodDict['payable']:
                 self.value = 0
                 self.payable = False
             else:
-                self.value = random.randint(0, _maxWei)
+                if (len(_ETHpool) > 0) & (random.uniform(0, 1) < 0.5):
+                    self.value = random.choice(tuple(_ETHpool))
+                else:
+                    self.value = random.randint(0, _maxWei)
                 self.payable = True
 
-    def Random_Inputvar(self, varType, accounts):
+    def Random_Inputvar(self, varType, accounts, _addresspool, _ETHpool,
+                        _intpool, _stringpool):
         """Generate a random allowed input variable given the the variable's \
         type."""
         if varType == "bool":
@@ -425,7 +450,13 @@ class MethodCall():
                 intsize = 256
             assert intsize in [8 * i for i in range(1, 33)], \
                 "int was followed by something unusual: {}".format(varType)
-            return random.randint(-(2**intsize - 1), 2**intsize - 1)
+            if (len(_intpool) > 0) & (random.uniform(0, 1) < 0.5):
+                # Return a relevant integer from the pool.
+                relevantInts = [num for num in _intpool if num in
+                                range(-(2**intsize - 1), 2**intsize - 1)]
+                return random.choice(relevantInts)
+            else:
+                return random.randint(-(2**intsize - 1), 2**intsize - 1)
         elif varType[:4] == "uint":
             intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*',
                                                        varType)), None)
@@ -434,19 +465,30 @@ class MethodCall():
             assert intsize in [
                 8 * i for i in range(1, 33)], \
                 "int was followed by something unusual: {}".format(varType)
-            # TODO: Large integers return problems for now, maybe these should
-            # be passed as strings or bignumbers in javascript?
-            return random.randint(0, 2**8 - 1)
-            return random.randint(0, 2**intsize - 1)
+            if (len(_intpool) > 0) & (random.uniform(0, 1) < 0.5):
+                # Return a relevant integer from the pool.
+                relevantInts = [num for num in _intpool if num in
+                                range(0, 2**intsize - 1)]
+                return random.choice(relevantInts)
+            else:
+                return random.randint(0, 2**intsize - 1)
         elif varType == "address":
-            return random.choice(accounts)
+            if (len(_addresspool) > 0) & (random.uniform(0, 1) < 0.5):
+                # Return an address from the pool.
+                return random.choice(tuple(_addresspool))
+            else:
+                return random.choice(accounts)
         elif varType == "string":
-            string_length = random.randint(1, 255)
-            str = ''.join(random.choice(string.ascii_letters + """ """)
-                          for x in range(string_length))
-            ans = random.choices(["Standard String", str],
-                                 weights=[0.1, 0.9], k=1)[0]
-            return ans
+            if (len(_stringpool) > 0) & (random.uniform(0, 1) < 0.5):
+                # Retrun a string from the pool.
+                return random.choice(tuple(_stringpool))
+            else:
+                string_length = random.randint(1, 255)
+                str = ''.join(random.choice(string.ascii_letters + """ """)
+                              for x in range(string_length))
+                ans = random.choices(["Standard String", str],
+                                     weights=[0.1, 0.9], k=1)[0]
+                return ans
         else:
             assert False, \
                 "This method has an unsupported type: {}".format(varType)
