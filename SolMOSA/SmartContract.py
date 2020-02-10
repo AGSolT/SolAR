@@ -78,11 +78,20 @@ class SmartContract():
         # (i.e. the approach level from the start of the corresponding method.)
         app_lvls = np.zeros(shape=(len(cEdges), len(cEdges)))
         for i, cEdge1 in enumerate(cEdges):
-            queue = [(startNode, 1) for startNode in
-                     _cdg.CompactNodes if startNode.node_id ==
-                     (cEdge1.startNode_id[0], 1)]
+            if cEdge1.startNode_id[0] != "_dispatcher":
+                queue = [(startNode, 0) for startNode in
+                         _cdg.CompactNodes if (cEdge1.startNode_id[0], 1) in
+                         startNode.outg_node_ids]
+            else:
+                queue = [(startNode, 1) for startNode in
+                         _cdg.CompactNodes if startNode.node_id ==
+                         (cEdge1.startNode_id[0], 1)]
             assert len(queue) == 1, \
-                "There should be precisely one starting node"
+                "There should be precisely one starting node, instead "\
+                f"we found {len(queue)}."
+            assert queue[0][0].node_id[0] == "_dispatcher", \
+                "The startNode when looking for the maximum approach_level "\
+                "should allways be in the dispatcher."
             traversed = [cNode[0].node_id for cNode in queue]
             max_al = self.approach_level(queue, _cdg.CompactNodes,
                                          cEdge1, traversed)
@@ -126,14 +135,14 @@ class SmartContract():
         """
         if len(queue) == 0:
             assert max_al is not None, \
-                "End of the queue was reached but no maximum approach level \
-                was passed!"
+                "End of the queue was reached but no maximum approach level " \
+                "was passed!"
             return max_al
 
         curNode, depth = queue.pop(0)
         assert curNode.node_id in traversed, \
-            "A node is being investigated but it is not registered \
-            as traversed: node with id: {}".format(curNode.node_id)
+            "A node is being investigated but it is not registered " \
+            "as traversed: node with id: {}".format(curNode.node_id)
         if max_al is not None:
             if depth >= max_al:
                 # We don't need to go deeper than the maximum approach_level

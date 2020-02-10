@@ -38,6 +38,7 @@ class CompactNode():
     ancestor:       One of the ancestors of the vertex, used for the
                     Lengauer-Tarjan algorithm
     """
+
     node_id = ("", 0)
     start_pc = 0
     end_pc = 0
@@ -54,6 +55,7 @@ class CompactNode():
     def __init__(self, _node_id, _start_pc, _end_pc, _basic_blocks,
                  _inc_node_ids, _outg_node_ids, _predicate=None, _semi=0,
                  _bucket=set(), _dom=None):
+        """Initialise a CompactNode by passing some elements explicitly."""
         self.node_id = _node_id
         self.start_pc = _start_pc
         self.end_pc = _end_pc
@@ -81,7 +83,7 @@ class CompactNode():
 
 class CompactEdge():
     """
-    An edge in a control-dependency-graph
+    An edge in a control-dependency-graph.
 
     Properties:
     startNode_id:   The Node_id of the starting point of the edge.
@@ -89,6 +91,7 @@ class CompactEdge():
     predicate:      The predicate object that controls whether this edge is
                     traversed or not.
     """
+
     startNode_id = None
     endNode_id = None
     predicate = None
@@ -133,6 +136,7 @@ class Predicate():
     node_id:    The node_id of the CompactNode in which the predicate can be
                 found.
     """
+
     eval = ""
     pc = 0
     node_id = None
@@ -166,6 +170,7 @@ class CDG():
                         Lengauer-Tarjan algorithm.
         - n:            A global counter used for the Lengauer-Tarjan algorithm
     """
+
     name = ""
     CompactNodes = []
     CompactEdges = []
@@ -189,7 +194,6 @@ class CDG():
         N = []
         bbs = cfg.basic_blocks
         s = []
-        simple_E = []
         payableMethodNames = []
 
         ignoreFunctions = [function for function in cfg.functions if
@@ -200,12 +204,14 @@ class CDG():
         methods = [method for method in cfg.functions if
                    method not in ignoreFunctions]
 
+        start_pcs = set()
+        simple_E = {}
         for method in methods:
-            # N_old = N # REMOVE THIS?
             node_ctr = 0
-            N, method_sEdges = self.Compactify_method(method, node_ctr, bbs,
-                                                      [], N, [])
-            simple_E = simple_E + method_sEdges
+            N, method_sEdges, s_pcs = self.Compactify_method(
+                method, node_ctr, bbs, [], N, simple_E, start_pcs)
+            simple_E.update(method_sEdges)
+            start_pcs = s_pcs
 
             # Check if the method is payable
             if 'payable' in method.attributes:
@@ -321,6 +327,8 @@ class CDG():
 
     def getMergeNodes(self, _cNodes, _pNodes, _mergeNodes, _irrelNodes):
         """
+        Get Nodes that can be merged.
+
         The mergenodes are those nodes who have exactly two children: one \
         child is relevant and the other child will be part of a single branch \
         that leads to REVERT and is therefore irrelevant. This function looks \
@@ -380,7 +388,8 @@ class CDG():
             return self.getMergeNodes(_cNodes, pNodes, _mergeNodes, irrelNodes)
 
     def Compactify_method(
-            self, method, node_ctr, bbs, rbbs, compactNodes, simple_edges):
+            self, method, node_ctr, bbs, rbbs, compactNodes, simple_edges,
+            start_pcs):
         """
         Extract the compactified nodes and a first version of the edges \
         between them in a recursive manner for a given method.
@@ -395,33 +404,52 @@ class CDG():
                       removed from bbs because they have been added to a
                       CompactNode
         compactNodes: A list of the CompactNodes that have been created for
-                      this method.
-        simple_edges: A list of edges identified by a starting CompactNode_id
-                      and the start_pc's of the next basic_block
+                      this and previous methods.
+        simple_edges: A dictionary of edges with starting point denoted by the
+                      corresponding CompactNode_id and end points denoted by
+                      the start_pcs of the corresponding basic_blocks.
+        start_pcs:    The set of all start_pc's of compactNodes.
 
         Outputs:
         compactNodes: A list of all the CompactNodes in this method.
-        simple_edges: A list of edges with starting point denoted by the
-                      corresponding CompactNode_id and end point denoted by the
-                      start_pc of the corresponding basic_block.
+        simple_edges: A dictionary of edges with starting point denoted by the
+                      corresponding CompactNode_id and end points denoted by
+                      the start_pcs of the corresponding basic_blocks.
         """
         sb, bbs, rbbs, found = self.Find_Starting_Node(method, bbs, rbbs)
         node_ctr += 1
         if not found:
             assert(len(rbbs) == len(method.basic_blocks)), \
-                "No starting blocks were found but there are stil basic blocks \
-            that should be added to the control-dependency-graph!"
-            return compactNodes, simple_edges
+                "No starting blocks were found but there are stil basic "\
+                "blocks should be added to the control-dependency-graph!"
+            return compactNodes, simple_edges, start_pcs
         else:
             start_pc = sb.start.pc
             bbs, rbbs, end_pc, basic_blocks, outg_node_startpcs = \
                 self.Compactify_Basic_Blocks(method, sb, bbs, rbbs, [])
-            node_id = (method.name, node_ctr)
-            simple_edges = simple_edges + [(node_id, outg_node_startpcs)]
-            compactNodes = compactNodes + \
-                [CompactNode(node_id, start_pc, end_pc, basic_blocks, [], [])]
+            if start_pc in start_pcs:
+                cNode = next((compactNode for compactNode in compactNodes if
+                              compactNode.start_pc == start_pc), None)
+                assert cNode is not None, \
+                    f"There was a start_pc ({start_pc}) in start_pcs without "\
+                    "a corresponding compactNode in compactNodes."
+                assert cNode.end_pc == end_pc, "Two compactNodes were found "\
+                    f"with the same start_pc's ({start_pc}), but different "\
+                    f"end_pc's ({cNode.end_pc}) and (end_pc)."
+                for outg_node_startpc in outg_node_startpcs:
+                    if outg_node_startpc not in simple_edges[cNode.node_id]:
+                        simple_edges[cNode.node_id] = \
+                            simple_edges[cNode.node_id] + [outg_node_startpc]
+            else:
+                start_pcs.add(start_pc)
+                node_id = (method.name, node_ctr)
+                simple_edges[node_id] = outg_node_startpcs
+                compactNodes = compactNodes + \
+                    [CompactNode(
+                        node_id, start_pc, end_pc, basic_blocks, [], [])]
             return self.Compactify_method(
-                method, node_ctr, bbs, rbbs, compactNodes, simple_edges)
+                method, node_ctr, bbs, rbbs, compactNodes, simple_edges,
+                start_pcs)
 
     def Find_Starting_Node(self, method, bbs, rbbs):
         """
@@ -516,19 +544,20 @@ class CDG():
         Arguments:
         compactNodes: The list of all the CompactNodes in this \
                       control-dependency-graph
-        simple_edges: A list of edges identified by a starting \
-                      CompactNode_id and the start_pc's of the next \
-                      basic_block.
+        simple_edges: A dictionary of edges with starting point denoted by the\
+                      corresponding CompactNode_id and end points denoted by \
+                      the start_pcs of the corresponding basic_blocks.
         Outputs:
         compactNodes: The CompactNodes in this control-flow-graph with \
                       updated incoming- and outgoing_node_ids.
         """
-        for sEdges in simple_edges:
-            for sEdge in sEdges[1]:
+        for startNode_id in simple_edges:
+            for outg_node_startpc in simple_edges[startNode_id]:
                 startNode = next((cNode for cNode in compactNodes if
-                                  cNode.node_id == sEdges[0]), None)
+                                  cNode.node_id == startNode_id), None)
                 endNode = next((cNode for cNode in
-                                compactNodes if cNode.start_pc == sEdge), None)
+                                compactNodes if cNode.start_pc ==
+                                outg_node_startpc), None)
                 startNode.outg_node_ids.append(endNode.node_id)
                 endNode.inc_node_ids.append(startNode.node_id)
         return compactNodes
@@ -613,6 +642,8 @@ class CDG():
         a Control-Dependency-Graph, \
         see https://dl.acm.org/doi/10.1145/357062.357071 ."""
         # Create the spanning Tree using Depth-First-Search
+        assert len(self.StartNodes) == 1, "There cannot be more than one "\
+            "startNode!"
         self.DFS(next(sNode for sNode in self.StartNodes))
         self.n -= 1
 
@@ -713,6 +744,7 @@ class CDG():
             w = next((compactNode for compactNode in
                       self.CompactNodes if compactNode.node_id == w_id), None)
             if w is None:
+                print("This is the node I cannot find children for.")
                 v.show_CompactNode()
             assert w is not None, "No child node was found!"
             if w.semi == 0:
@@ -722,7 +754,7 @@ class CDG():
                     "Something went wrong with the Incoming Node ids!"
 
     def EVAL(self, _v,):
-        """EVAl function from Lengauer-Tarjan algorithm."""
+        """Implement the EVAl function from Lengauer-Tarjan algorithm."""
         if _v.ancestor is None:
             return _v
         else:

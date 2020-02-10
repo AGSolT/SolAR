@@ -85,9 +85,34 @@ async function runTest(){
         tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value})`);
       }
       catch(err){
+        if(err.toString().search("out of gas")==66){
+          // The standard amount of gas was not enough.
+          gas = last_block.gasLimit;
+          try{
+            // See if the transaction executes without returning an error
+            tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value, gas: gas})`);
+          }
+          catch(err){
+            if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
+              throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
+            }
+            else{
+              new_last_block = await web3.eth.getBlock("latest");
+              max_iterations = 10;
+              iteration=0;
+              while(new_last_block.number==last_block.number&&iteration<max_iterations){
+                console.log(`Waiting for block to be processed, trying ${max_iterations-iteration-1} more times.`)
+                new_last_block = await web3.eth.getBlock("latest");
+                iteration+=1;
+              }
+              last_block = new_last_block;
+              tx = new_last_block.transactions[new_last_block.transactions.length-1];
+            }
+          }
+        }
         // Revert errors are good and should still be processed!
-        if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
-          throw `encountered an error which is not revert: ${err}`
+        else if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
+          throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
         }
         else{
           new_last_block = await web3.eth.getBlock("latest");

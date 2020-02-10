@@ -1,6 +1,6 @@
 pragma solidity ^0.5.0;
 
-import "BokkyPooBahsDateTimeLibrary.sol";
+import "./BokkyPooBahsDateTimeLibrary.sol";
 
 // ----------------------------------------------------------------------------
 // Testing BokkyPooBah's DateTime Library

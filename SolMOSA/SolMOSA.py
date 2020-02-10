@@ -233,7 +233,7 @@ def SolMOSA(config):
                 #  Start new instance of Ganache with a ridiculus amount of
                 # ether for each account
                 callstring = 'screen -S ganache -X stuff \
-                "ganache-cli -d -e 100000000000000\r"'
+                "ganache-cli -d -e 100000000000000000000000000000\r"'
                 os.system(callstring)
                 callstring = "node get_accounts --ETH_port".split()\
                     + [ETH_port] + ["--max_accounts"]\

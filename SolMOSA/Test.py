@@ -208,7 +208,8 @@ class TestCase():
                 node_stack_items = []
                 while (curNode.basic_blocks[-1].end.name != "RETURN") & \
                     (curNode.basic_blocks[-1].end.name != "REVERT") & \
-                        (curNode.basic_blocks[-1].end.name != "STOP"):
+                        (curNode.basic_blocks[-1].end.name != "STOP") & \
+                        (curNode.basic_blocks[-1].end.name != "INVALID"):
                     start_pc = curNode.basic_blocks[-1].start.pc
                     end_pc = curNode.basic_blocks[-1].end.pc
                     while not ((cur_pc >= start_pc) & (cur_pc <= end_pc)):

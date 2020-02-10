@@ -138,7 +138,7 @@ def main():
                         log_du("/tmp/")
                     #  Start new instance of Ganache
                     callstring = 'screen -S ganache -X stuff "ganache-cli -d -e\
-                     100000000000000\r"'
+                     100000000000000000000000000000\r"'
                     os.system(callstring)
 
     # After finishing all rapports ask to show rapports.
@@ -165,23 +165,24 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
     negative = ["n", "N", "no", "No", "NO"]
     proper_response = False
 
-    welcome_string = """Welcome to SolMOSA, the world's first meta-heuristic\
-     test-case generator for Solidity-based Ethereuem smart contracts
-    based on SolMOSA!\nThis script will guide you through the necessary steps\
-     for the automated test-case generation.\n"""
-    Ganache_string = """Would you like to start a Ganache client for easy\
-     testing on GNU screen "ganache"? (y/n)"""
-    ETH_port_string = """Please make sure you have a local blockchain running,\
-     currently the settings expect the blockchain to be listening
-    on port {}\n\nIs this still correct? (y/n)""".format(
-        _ETH_port)
-    SmartContract_location_string = """\nCurrently the tool will look for\
-     smart contract json-files in "{}".\nIs this still correct? (y/n)"""\
-     .format(os.path.abspath(_SmartContract_folder))
-    Settings_string = """\nThe parameter settings can be changed by changing\
-     the "Config.ini"-file located at {}.
-    Would you like to display the parameter settings? (y/n)""".format(
-        os.path.dirname(os.path.realpath(__file__)))
+    welcome_string = """Welcome to SolMOSA, the world's first """\
+        """meta-heuristic test-case generator for Solidity-based Ethereuem """\
+        """smart contracts based on SolMOSA!\nThis script will guide you """\
+        """through the necessary steps for the automated test-case """\
+        """generation.\n"""
+    Ganache_string = """Would you like to start a Ganache client for easy """\
+        """testing on GNU screen "ganache"? (y/n)"""
+    ETH_port_string = """Please make sure you have a local blockchain """\
+        """running, currently the settings expect the blockchain to be """\
+        """listening on port {}\n\nIs this still correct? (y/n)""".format(
+            _ETH_port)
+    SmartContract_location_string = """\nCurrently the tool will look for """\
+        """smart contract json-files in "{}".\nIs this still correct? (y/n)"""\
+        .format(os.path.abspath(_SmartContract_folder))
+    Settings_string = """\nThe parameter settings can be changed by """\
+        """changing the "Config.ini"-file located at {}. Would you like to """\
+        """display the parameter settings? (y/n)""".format(
+            os.path.dirname(os.path.realpath(__file__)))
 
     print(figlet_format("SolMOSA"))
     print(welcome_string)
@@ -194,7 +195,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
             callstring = 'screen -dmS ganache'
             os.system(callstring)
             callstring = 'screen -S ganache -X stuff "ganache-cli -d -e\
-             100000000000000\r"'
+             100000000000000000000000000000\r"'
             os.system(callstring)
             proper_response = True
             blockchain_running = True
