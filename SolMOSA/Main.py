@@ -319,17 +319,16 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
             h = tSuite.smartContract.methods[0]['stateMutability']
         except:
             h = "Old version."
-        rapport = """Contract:\t\t\t{}\n\n
-        Number of Relevant Branches:\t{}\n
-        Number of Branches Covered:\t\t{}\n
-        Runtime: \t\t\t\t\t\t\t\t\t\t\t{}\n
-        Blockchain Time: \t\t\t\t\t\t\t{}\n
-        Iterations\t\t\t\t\t\t\t\t\t\t
-        {}\n\n--------------------------------------------------\n
-        METHODS:\n\n
-        Constructor:\n\tInputs :{}\n
-        \tPayable: {}"""\
-        .format(
+        rapport = """Contract:\t\t\t{}\n"""
+        """Number of Relevant Branches:\t{}\n"""
+        """Number of Branches Covered:\t\t{}\n"""
+        """Runtime: \t\t\t\t\t\t\t\t\t\t\t{}\n"""
+        """Blockchain Time: \t\t\t\t\t\t\t{}\n"""
+        """Iterations\t\t\t\t\t\t\t\t\t\t\n"""
+        """{}\n--------------------------------------------------\n"""
+        """METHODS:\n\n"""
+        """Constructor:\n\tInputs :{}\n"""
+        """\tPayable: {}""".format(
             contractName, sum(relevant_branches), len(
                 [best_test for best_test in best_tests
                  if best_test is not None]),
