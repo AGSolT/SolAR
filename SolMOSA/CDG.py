@@ -602,12 +602,20 @@ class CDG():
                     the Edge is traversed or not.
         pc:         The pc where the eval is present in the deployed bytecode.
         """
+        pc = None
         # First we look from front to back for a valid Predicate
         for i, inst in enumerate(bb.instructions):
             if inst.name in predicates:
-                eval = inst.name
-                pc = inst.pc
-                return eval, pc
+                if pc is None:
+                    eval = inst.name
+                    pc = inst.pc
+                else:
+                    logging.warning("There are multiple predicates inside a "
+                                    "single basic block. This could mean some "
+                                    "predicates are overlooked.")
+                    return eval, pc
+        if pc is not None:
+            return eval, pc
         # Then we look backwards for ISZERO
         for i, inst in reversed(list(enumerate(bb.instructions))):
             if inst.name == "ISZERO":
@@ -693,8 +701,11 @@ class CDG():
                 w.dom = w.dom.dom
             # The outgoing_node_ids will be set later on.
             w.outg_node_ids = []
+
             # Set the predicates of each node
             e, pc = self.Find_Predicate(w.basic_blocks[-1], predicates)
+            assert not ((e == "NONE") & (len(w.outg_node_ids) != 0)), \
+                "A node with outgoing_node_ids cannot have predicate NONE!"
             predicate = Predicate(e, pc, w.node_id)
             w.predicate = predicate
 
@@ -703,6 +714,7 @@ class CDG():
         self.vertex[0].outg_node_ids = []
         e, pc = self.Find_Predicate(
             self.vertex[0].basic_blocks[-1], predicates)
+        assert e != "NONE", "The root node cannot have predicate NONE!"
         predicate = Predicate(e, pc, self.vertex[0].node_id)
         self.vertex[0].predicate = predicate
 

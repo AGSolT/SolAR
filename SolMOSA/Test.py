@@ -277,9 +277,9 @@ class TestCase():
             return 0
         else:
             pred_eval = compactEdge.predicate.eval
-            assert pred_eval != \
-                "NONE", "If a predicate is NONE " \
-                "the branch distance should always be 0!"
+            if pred_eval == "NONE":
+                # The predicate was already evaluated in a previous node
+                return 1
             try:
                 stack = next((stackItem['stack'] for stackItem in
                               stack_items if
