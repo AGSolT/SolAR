@@ -53,6 +53,10 @@ async function runTest(){
     from = method.fromAcc;
     method_name = method.name;
     value = toBigNumber(method.value);
+
+    if(method.name == 'constructor'){
+      console.log('\n');
+    }
     console.log(`calling ${method_name}(${input_args}) from ${from} with value ${value}`)
     if(method_name == 'constructor'){
       if(i > 0){

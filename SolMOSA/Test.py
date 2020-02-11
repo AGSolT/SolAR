@@ -278,17 +278,18 @@ class TestCase():
         else:
             pred_eval = compactEdge.predicate.eval
             assert pred_eval != \
-                "NONE", "If a predicate is NONE \
-                the branch distance should always be 0!"
+                "NONE", "If a predicate is NONE " \
+                "the branch distance should always be 0!"
             try:
                 stack = next((stackItem['stack'] for stackItem in
                               stack_items if
                               stackItem['pc'] == compactEdge.predicate.pc),
                              None)
             except:
-                logging.info("Could not find stack item to match \
-                branch predicate with predicate_pc: {} and stack\n{}".format(
-                    compactEdge.predicate.pc, stack_items))
+                logging.info("Could not find stack item to match "
+                             "branch predicate with predicate_pc: {} "
+                             "and stack\n{}".format(
+                                 compactEdge.predicate.pc, stack_items))
             if stack is None:
                 try:
                     stack = next(

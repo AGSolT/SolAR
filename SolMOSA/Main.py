@@ -138,7 +138,7 @@ def main():
                         log_du("/tmp/")
                     #  Start new instance of Ganache
                     callstring = 'screen -S ganache -X stuff "ganache-cli -d -e\
-                     100000000000000000000000000000\r"'
+                     100000000000000000000\r"'
                     os.system(callstring)
 
     # After finishing all rapports ask to show rapports.
@@ -195,7 +195,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
             callstring = 'screen -dmS ganache'
             os.system(callstring)
             callstring = 'screen -S ganache -X stuff "ganache-cli -d -e\
-             100000000000000000000000000000\r"'
+             100000000000000000000\r"'
             os.system(callstring)
             proper_response = True
             blockchain_running = True
