@@ -469,9 +469,13 @@ class MethodCall():
                 "int was followed by something unusual: {}".format(varType)
             if (len(_intpool) > 0) & (random.uniform(0, 1) < 0.5):
                 # Return a relevant integer from the pool.
-                relevantInts = [num for num in _intpool if num in
-                                range(0, 2**intsize - 1)]
-                return random.choice(relevantInts)
+                try:
+                    relevantInts = [num for num in _intpool if num in
+                                    range(0, 2**intsize - 1)]
+                    return random.choice(relevantInts)
+                except:
+                    # The integers from the pool do not fit in the range
+                    return random.randint(0, 2**intsize - 1)
             else:
                 return random.randint(0, 2**intsize - 1)
         elif varType == "address":

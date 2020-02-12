@@ -68,8 +68,9 @@ def main():
                 contractSolPath = SmartContract_folder + folder\
                     + "/contracts/" + file[:-4] + "sol"
                 assert os.path.isfile(
-                    contractSolPath), f"The name for the contract .json file \
-                    '{file}' does not match it's .sol file: {contractSolPath}"
+                    contractSolPath), f"The name for the contract .json file" \
+                    f"'{file}' does not match it's .sol file: " \
+                    f"{contractSolPath}"
                 config.set('Files', 'contract_sol_location',
                            r'{}'.format(contractSolPath))
 
