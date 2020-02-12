@@ -92,6 +92,7 @@ async function runTest(){
         if(err.toString().search("out of gas")==66){
           // The standard amount of gas was not enough.
           gas = last_block.gasLimit;
+          console.log(`Function returned out of gas error, we try again with the gasLimit: ${gas}`)
           try{
             // See if the transaction executes without returning an error
             tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value, gas: gas})`);
@@ -101,6 +102,7 @@ async function runTest(){
               throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
             }
             else{
+              console.log("Failed after trying with more gas!")
               new_last_block = await web3.eth.getBlock("latest");
               max_iterations = 10;
               iteration=0;

@@ -23,6 +23,9 @@ class CompactNode():
     Properties:
     node_id:        An id of the node, consisting of the method name and a
                     number that increases the deeper in a method the node is.
+    all_node_ids:   If a node is shared by different methods, this set
+                    stores the id it would have in other methods than the
+                    node_id.
     start_pc:       The pc of first Opcode in the CompactNode.
     end_pc:         The pc of the last Opcode in the CompactNode.
     basic_blocks:   The list of basic_blocks that are in the CompactNode.
@@ -40,6 +43,7 @@ class CompactNode():
     """
 
     node_id = ("", 0)
+    all_node_ids = None
     start_pc = 0
     end_pc = 0
     basic_blocks = []
@@ -52,11 +56,12 @@ class CompactNode():
     ancestor = None
     label = None
 
-    def __init__(self, _node_id, _start_pc, _end_pc, _basic_blocks,
-                 _inc_node_ids, _outg_node_ids, _predicate=None, _semi=0,
-                 _bucket=set(), _dom=None):
+    def __init__(self, _node_id, _all_node_ids, _start_pc, _end_pc,
+                 _basic_blocks, _inc_node_ids, _outg_node_ids, _predicate=None,
+                 _semi=0, _bucket=set(), _dom=None):
         """Initialise a CompactNode by passing some elements explicitly."""
         self.node_id = _node_id
+        self.all_node_ids = _all_node_ids
         self.start_pc = _start_pc
         self.end_pc = _end_pc
         self.basic_blocks = _basic_blocks
@@ -75,6 +80,9 @@ class CompactNode():
             .format(self.start_pc) + "\n\tend_pc: {}".format(self.end_pc) \
             + "\n\tincoming node ids: {}".format(self.inc_node_ids) + \
             "\n\toutgoing node ids: {}".format(self.outg_node_ids)
+        if len(self.all_node_ids) > 1:
+            info = info + "\nall node ids: {}".format(list(self.all_node_ids))
+
         if log:
             logging.info(info)
         else:
@@ -192,7 +200,6 @@ class CDG():
         """
         cfg = CFG(_bytecode)
         N = []
-        bbs = cfg.basic_blocks
         s = []
         payableMethodNames = []
 
@@ -204,19 +211,20 @@ class CDG():
         methods = [method for method in cfg.functions if
                    method not in ignoreFunctions]
 
-        start_pcs = set()
+        double_nodes = {}
         simple_E = {}
         for method in methods:
+            bbs = cfg.basic_blocks.copy()
             node_ctr = 0
-            N, method_sEdges, s_pcs = self.Compactify_method(
-                method, node_ctr, bbs, [], N, simple_E, start_pcs)
+            N, method_sEdges, double_nodes = self.Compactify_method(
+                method, node_ctr, bbs, [], N, simple_E, double_nodes)
             simple_E.update(method_sEdges)
-            start_pcs = s_pcs
 
             # Check if the method is payable
             if 'payable' in method.attributes:
                 payableMethodNames.append(method.name)
 
+        N = self.Merge_Double_Nodes(double_nodes)
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
         E, s = self.Find_Compact_Edges_StartPoints(N)
 
@@ -249,9 +257,13 @@ class CDG():
         for cNode in cNodes:
             # Removes the extra reverts that result from nonpayable functions
             if (cNode.basic_blocks[-1].instructions[-1].name == "REVERT") & \
-                (cNode.node_id[0] != '_dispatcher') & \
-                (cNode.node_id[0] != '_fallback') & \
-                    (cNode.node_id[0] not in _payableMethodNames):
+                ('_dispatcher' not in [node_id[0] for
+                                       node_id in list(cNode.all_node_ids)]) &\
+                ('_fallback' not in [node_id[0] for
+                                     node_id in list(cNode.all_node_ids)]) & \
+                    (not bool(set(node_id[0] for node_id in
+                                  list(cNode.all_node_ids)).intersection(
+                        set(_payableMethodNames)))):
                 assert len(cNode.outg_node_ids) == 0, \
                     "Node {} ends with a REVERT OpCode but also has outgoing \
                     nodes?!".format(cNode.node_id)
@@ -259,7 +271,8 @@ class CDG():
                 isExtraNode = False
                 for incNode in [iNode for iNode in cNodes if iNode.node_id in
                                 cNode.inc_node_ids]:
-                    if incNode.node_id[1] == 1:
+                    if 1 in [node_id[1] for node_id in
+                             list(incNode.all_node_ids)]:
                         if len(cNode.inc_node_ids) > 1:
                             for inc_to_extra_Node in \
                                     [iNode for iNode in cNodes if
@@ -284,8 +297,7 @@ class CDG():
         relEdges = [cEdge for cEdge in cEdges if
                     (cEdge.endNode_id in relNode_ids) |
                     (cEdge.startNode_id in relNode_ids)]
-        # mergeNodeids = sorted([mNode.node_id for mNode in mergeNodes],
-        # key=itemgetter(0, 1), reverse=True)
+
         mergenodeList = sorted(list(mergeNodes), key=attrgetter('node_id'),
                                reverse=True)
 
@@ -310,7 +322,8 @@ class CDG():
 
             for relEdge in relEdges:
                 if (relEdge.startNode_id == nextNode.node_id) & \
-                        (relEdge.startNode_id[0] != '_dispatcher'):
+                        ('_dispatcher' not in [node_id[0] for node_id in
+                                               list(nextNode.all_node_ids)]):
                     relEdge.startNode_id = mergeNode.node_id
 
             relNodes = [relNode for relNode in relNodes if (
@@ -389,7 +402,7 @@ class CDG():
 
     def Compactify_method(
             self, method, node_ctr, bbs, rbbs, compactNodes, simple_edges,
-            start_pcs):
+            _double_nodes):
         """
         Extract the compactified nodes and a first version of the edges \
         between them in a recursive manner for a given method.
@@ -408,7 +421,9 @@ class CDG():
         simple_edges: A dictionary of edges with starting point denoted by the
                       corresponding CompactNode_id and end points denoted by
                       the start_pcs of the corresponding basic_blocks.
-        start_pcs:    The set of all start_pc's of compactNodes.
+        _double_nodes:    A dictionary with keys of all start_pc's of all
+                      compactNodes that have been found and values of all
+                      compactNodes that have been found.
 
         Outputs:
         compactNodes: A list of all the CompactNodes in this method.
@@ -416,18 +431,19 @@ class CDG():
                       corresponding CompactNode_id and end points denoted by
                       the start_pcs of the corresponding basic_blocks.
         """
+        double_nodes = _double_nodes
         sb, bbs, rbbs, found = self.Find_Starting_Node(method, bbs, rbbs)
         node_ctr += 1
         if not found:
             assert(len(rbbs) == len(method.basic_blocks)), \
                 "No starting blocks were found but there are stil basic "\
                 "blocks should be added to the control-dependency-graph!"
-            return compactNodes, simple_edges, start_pcs
+            return compactNodes, simple_edges, double_nodes
         else:
             start_pc = sb.start.pc
             bbs, rbbs, end_pc, basic_blocks, outg_node_startpcs = \
                 self.Compactify_Basic_Blocks(method, sb, bbs, rbbs, [])
-            if start_pc in start_pcs:
+            if start_pc in double_nodes.keys():
                 cNode = next((compactNode for compactNode in compactNodes if
                               compactNode.start_pc == start_pc), None)
                 assert cNode is not None, \
@@ -435,21 +451,27 @@ class CDG():
                     "a corresponding compactNode in compactNodes."
                 assert cNode.end_pc == end_pc, "Two compactNodes were found "\
                     f"with the same start_pc's ({start_pc}), but different "\
-                    f"end_pc's ({cNode.end_pc}) and (end_pc)."
-                for outg_node_startpc in outg_node_startpcs:
-                    if outg_node_startpc not in simple_edges[cNode.node_id]:
-                        simple_edges[cNode.node_id] = \
-                            simple_edges[cNode.node_id] + [outg_node_startpc]
+                    f"end_pc's ({cNode.end_pc}) and ({end_pc}). "\
+                    f"Original node: {cNode.node_id}, New is in {method.name}."
+                assert outg_node_startpcs == simple_edges[cNode.node_id], \
+                    "When creating double nodes, the simple_edges should "\
+                    "be the same!"
+
+            # Create and add a new CompactNode
+            node_id = (method.name, node_ctr)
+            new_cNode = CompactNode(
+                node_id, set(
+                    [node_id]), start_pc, end_pc, basic_blocks, [], [])
+            if start_pc not in double_nodes.keys():
+                double_nodes[start_pc] = [new_cNode]
             else:
-                start_pcs.add(start_pc)
-                node_id = (method.name, node_ctr)
-                simple_edges[node_id] = outg_node_startpcs
-                compactNodes = compactNodes + \
-                    [CompactNode(
-                        node_id, start_pc, end_pc, basic_blocks, [], [])]
+                double_nodes[start_pc] = double_nodes[start_pc] + [new_cNode]
+
+            simple_edges[node_id] = outg_node_startpcs
+            compactNodes = compactNodes + [new_cNode]
             return self.Compactify_method(
                 method, node_ctr, bbs, rbbs, compactNodes, simple_edges,
-                start_pcs)
+                double_nodes)
 
     def Find_Starting_Node(self, method, bbs, rbbs):
         """
@@ -514,19 +536,27 @@ class CDG():
         outg_bb_startpcs: The start_pc's of all the basic blocks that are \
                           connected by an edge to the end of the CompactNode.
         """
-        if len(cb.outgoing_basic_blocks(method.key)) != 1:
+        all_outgoing_bb = list(
+            set(item for sublist in cb.outgoing_basic_blocks_as_dict.values()
+                for item in sublist))
+        if (len(all_outgoing_bb) != 1) | \
+                (len(cb.outgoing_basic_blocks(method.key)) != 1):
             end_pc = cb.end.pc
             Cbbs = Cbbs + [cb]
             outg_bb_startpcs = \
-                [bb.start.pc for bb in cb.outgoing_basic_blocks(method.key)]
+                [bb.start.pc for bb in all_outgoing_bb]
             return bbs, rbbs, end_pc, Cbbs, outg_bb_startpcs
         else:
             nbb = cb.outgoing_basic_blocks(method.key)[0]
-            if len(nbb.incoming_basic_blocks(method.key)) > 1:
+            all_inc_bb = list(
+                set(item for sublist in
+                    nbb.incoming_basic_blocks_as_dict.values() for
+                    item in sublist))
+            if len(all_inc_bb) > 1:
                 end_pc = cb.end.pc
                 Cbbs = Cbbs + [cb]
                 outg_bb_startpcs = [bb.start.pc for bb in
-                                    cb.outgoing_basic_blocks(method.key)]
+                                    all_outgoing_bb]
                 return bbs, rbbs, end_pc, Cbbs, outg_bb_startpcs
             else:
                 new_bbs = bbs.copy()
@@ -535,6 +565,32 @@ class CDG():
                 Cbbs = Cbbs + [cb]
                 return self.Compactify_Basic_Blocks(
                     method, nbb, new_bbs, rbbs, Cbbs)
+
+    def Merge_Double_Nodes(self, _double_nodes):
+        """Merge Compact Nodes that are shared by multiple methods by setting\
+        all_node_ids and creating a new node_id whenever necessary."""
+        double_nodes = _double_nodes
+        ans = []
+        node_ctr = 1
+        for start_pc in double_nodes.keys():
+            if len(double_nodes[start_pc]) == 1:
+                # This node is not double
+                ans = ans + double_nodes[start_pc]
+            else:
+                # These nodes are shared
+                tempNode = double_nodes[start_pc][0]
+                sharedNode = CompactNode(_node_id=("Shared", node_ctr),
+                                         _all_node_ids=set(
+                                             cNode.node_id for cNode in
+                                             double_nodes[start_pc]),
+                                         _start_pc=tempNode.start_pc,
+                                         _end_pc=tempNode.end_pc,
+                                         _basic_blocks=tempNode.basic_blocks,
+                                         _inc_node_ids=tempNode.inc_node_ids,
+                                         _outg_node_ids=tempNode.outg_node_ids)
+                ans = ans + [sharedNode]
+                node_ctr += 1
+        return ans
 
     def Add_incoming_outgoing_node_ids(self, compactNodes, simple_edges):
         """
@@ -551,15 +607,23 @@ class CDG():
         compactNodes: The CompactNodes in this control-flow-graph with \
                       updated incoming- and outgoing_node_ids.
         """
-        for startNode_id in simple_edges:
+        for startNode_id in simple_edges.keys():
             for outg_node_startpc in simple_edges[startNode_id]:
                 startNode = next((cNode for cNode in compactNodes if
-                                  cNode.node_id == startNode_id), None)
+                                  startNode_id in cNode.all_node_ids), None)
+                assert startNode is not None, "No startNode was found for a "\
+                    f"simple edge from {startNode_id} to {outg_node_startpc}"
                 endNode = next((cNode for cNode in
                                 compactNodes if cNode.start_pc ==
                                 outg_node_startpc), None)
-                startNode.outg_node_ids.append(endNode.node_id)
-                endNode.inc_node_ids.append(startNode.node_id)
+
+                if endNode.node_id not in startNode.outg_node_ids:
+                    startNode.outg_node_ids.append(endNode.node_id)
+                    assert startNode.node_id not in endNode.inc_node_ids, \
+                        f"{startNode.node_id} doesn't says it's going to "
+                    f"{endNode.node_id} but {endNode.node_id} does say "
+                    f"{startNode.node_id} is leading into it."  # REMOVE THIS
+                    endNode.inc_node_ids.append(startNode.node_id)
         return compactNodes
 
     def Find_Compact_Edges_StartPoints(self, cNodes):

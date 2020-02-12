@@ -59,8 +59,8 @@ class SmartContract():
         if not found:
             # A smart contract without constructor,
             # we create an artificial constructor.
-            logging.info("No constructor was found, \
-            inserting an empty constructor")
+            logging.info("No constructor was found, "
+                         "inserting an empty constructor")
             methods.insert(0, {
                 "inputs": [],
                 "payable": False,
@@ -77,24 +77,26 @@ class SmartContract():
         # The trace contains the maximal approach level
         # (i.e. the approach level from the start of the corresponding method.)
         app_lvls = np.zeros(shape=(len(cEdges), len(cEdges)))
+        rootNode_id = next(sNode.node_id for sNode in _cdg.StartNodes)
         for i, cEdge1 in enumerate(cEdges):
-            if cEdge1.startNode_id[0] != "_dispatcher":
-                queue = [(startNode, 0) for startNode in
-                         _cdg.CompactNodes if (cEdge1.startNode_id[0], 1) in
-                         startNode.outg_node_ids]
-            else:
-                queue = [(startNode, 1) for startNode in
-                         _cdg.CompactNodes if startNode.node_id ==
-                         (cEdge1.startNode_id[0], 1)]
+            startNode = next(cNode for cNode in _cdg.CompactNodes if
+                             cNode.node_id == cEdge1.startNode_id)
+            queue = [(startNode, 0)]
+            # if cEdge1.startNode_id[0] != "_dispatcher":
+            #     queue = [(startNode, 0) for startNode in
+            #              _cdg.CompactNodes if (cEdge1.startNode_id[0], 1) in
+            #              startNode.outg_node_ids]
+            # else:
+            #     queue = [(startNode, 1) for startNode in
+            #              _cdg.CompactNodes if startNode.node_id ==
+            #              (cEdge1.startNode_id[0], 1)]
             assert len(queue) == 1, \
                 "There should be precisely one starting node, instead "\
                 f"we found {len(queue)}."
-            assert queue[0][0].node_id[0] == "_dispatcher", \
-                "The startNode when looking for the maximum approach_level "\
-                "should allways be in the dispatcher."
             traversed = [cNode[0].node_id for cNode in queue]
-            max_al = self.approach_level(queue, _cdg.CompactNodes,
-                                         cEdge1, traversed)
+
+            max_al = self.max_approach_level(
+                queue, _cdg.CompactNodes, traversed, rootNode_id)
 
             app_lvls[i][i] = max_al
             for j, cEdge2 in enumerate(cEdges):
@@ -111,6 +113,42 @@ class SmartContract():
                     app_lvls[j][i] = al
         self.approach_levels = app_lvls
 
+    def max_approach_level(self, queue, cNodes, traversed, _rootNode_id):
+        """
+        Find the maximum approach level of a single node (i.e, the number \
+        of nodes between it and the root node).
+
+        Arguments:
+            - queue:            A queue consisting of all the next nodes to
+                                visit.
+            - cNodes:           A list of all the CompactNodes in the
+                                control-dependency-graph.
+            - traversed:        A list of nodes that have already been
+                                traversed by the depth-first algorithm.
+        Outputs:
+            - max_al:           The maximum approach level of the first
+                                traversed node.
+        """
+        assert len(queue) != 0, "When finding the maximum approach level "\
+            "the queue can never be 0."
+        curNode, depth = queue.pop(0)
+        assert curNode.node_id in traversed, \
+            "A node is has been popped from the queue but it is not "
+        "registered as traversed: node with id: {}".format(curNode.node_id)
+
+        if curNode.node_id == _rootNode_id:
+            # Max approach level is depth.
+            return depth
+        else:
+            parentNodes = [cNode for cNode in cNodes if
+                           (cNode.node_id not in traversed) &
+                           (cNode.node_id in curNode.inc_node_ids)]
+            traversed = traversed + [cNode.node_id for cNode in parentNodes]
+            queue = queue + [(parentNode, depth + 1) for
+                             parentNode in parentNodes]
+            return self.max_approach_level(
+                queue, cNodes, traversed, _rootNode_id)
+
     def approach_level(self, queue, cNodes, goal, traversed, max_al=None):
         """
         Find either the maximum approach level of a single node (i.e. the \
@@ -122,11 +160,11 @@ class SmartContract():
                                 visit.
             - cNodes:           A list of all the CompactNodes in the
                                 control-dependency-graph.
-            - goal:             The node that we're calculating the approach
+            - goal:             The edge that we're calculating the approach
                                 level for.
             - traversed:        A list of nodes that have already been
                                 traversed by the depth-first algorithm.
-            -max_al:            The maximum approach level of the goal,
+            - max_al:           The maximum approach level of the goal,
                                 (i.e. the approach level from the start of a
                                 function or the approach level from one edge to
                                 another).
