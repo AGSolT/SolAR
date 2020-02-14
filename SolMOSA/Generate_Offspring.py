@@ -265,7 +265,7 @@ def mutate_string(s):
         prop = 0
         while(add_new) & (len(s_out) < 256):
             new_char = random.choice(string.ascii_letters + """ """)
-            loc = random.choice(range(0, len(s_out)))
+            loc = random.choice(range(0, max(len(s_out), 1)))
             s_out = s_out[:loc] + new_char + s_out[loc:]
             prop += 1
             add_new = random.uniform(0, 1) <= 0.5**prop
