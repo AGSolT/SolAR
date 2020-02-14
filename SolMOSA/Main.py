@@ -242,12 +242,13 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         elif response in negative:
             while not proper_response:
                 response = input(
-                    "\nPlease type the folder location, either as an absolute\
-                     or a relative path. ")
+                    "\nPlease type the folder location, either as an absolute "
+                    "or a relative path. ")
                 SmartContract_folder = response
-                response = input('I will test the smart contracts in folder\
-                 "{}" instead. Is this correct? (y/n) '.format(
-                    os.path.abspath(SmartContract_folder)))
+                response = input('I will test the smart contracts in folder '
+                                 '"{}" instead. Is this correct? (y/n) '
+                                 .format(
+                                     os.path.abspath(SmartContract_folder)))
                 if response in affirmative:
                     proper_response = True
                     _config.set('Files', 'SmartContract_folder', r'{}'.format(
