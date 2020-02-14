@@ -186,7 +186,7 @@ class CDG():
     vertex = []
     n = 0
 
-    def __init__(self, _name, _bytecode, _predicates, _ignorefunctionNames):
+    def __init__(self, _name, _bytecode, _predicates):
         """
         Create a control-dependency-graph by going through all the methods in \
         the smart contract and extracing their (start-)nodes and edges.
@@ -202,14 +202,7 @@ class CDG():
         N = []
         s = []
         payableMethodNames = []
-
-        ignoreFunctions = [function for function in cfg.functions if
-                           function.name in _ignorefunctionNames]
-        if len(ignoreFunctions) > 0:
-            cfg = self.Remove_ignoreFunctionBlocks(cfg, ignoreFunctions)
-
-        methods = [method for method in cfg.functions if
-                   method not in ignoreFunctions]
+        methods = [method for method in cfg.functions]
 
         double_nodes = {}
         simple_E = {}
@@ -690,24 +683,6 @@ class CDG():
         eval = "NONE"
         pc = bb.start.pc
         return eval, pc
-
-    def Remove_ignoreFunctionBlocks(self, _cfg, _ignoreFunctions):
-        """Remove blocks from the CFG that belong to redundant functions."""
-        dispatcher = next((function for function in _cfg.functions if
-                           function.name == "_dispatcher"), None)
-        assert dispatcher is not None, "No dispatcher was found!"
-
-        ignorebbs = []
-        for ignoreFunction in _ignoreFunctions:
-            ignorebbs = ignorebbs + ignoreFunction.basic_blocks
-
-        for bb in sorted(dispatcher.basic_blocks, key=lambda x: x.start.pc):
-            new_obb = bb._outgoing_basic_blocks[dispatcher.key].copy()
-            for i, obb in enumerate(bb._outgoing_basic_blocks[dispatcher.key]):
-                if obb in ignorebbs:
-                    del new_obb[i]
-            bb._outgoing_basic_blocks[dispatcher.key] = new_obb
-        return _cfg
 
     def LT(self, predicates):
         """Python implementation of the Lengauer-Tarjan algorithm for creating \

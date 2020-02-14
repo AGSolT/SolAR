@@ -54,7 +54,6 @@ def SolMOSA(config):
     # Parameters for creating a Control-Dependency-Graph
     contract_json_location = config['Files']['contract_json_location']
     predicates = eval(config['CFG']['Predicates'])
-    ignorefunctionNames = eval(config['CFG']['IgnoreFunctions'])
 
     # Parameters for creating Test-Cases
     population_size = int(config['Parameters']['population_size'])
@@ -68,6 +67,9 @@ def SolMOSA(config):
     passBlocks = config['Parameters']['passBlocks'] == "True"
     passTime = config['Parameters']['passTime'] == "True"
     passTimeTime = int(config['Parameters']['passTimeTime'])
+    ignorefunctionNames = eval(config['Parameters']['IgnoreFunctions'])
+    ignoreStateVariables = eval(config['Parameters']['ignoreStateVariables'])
+
     # Parameters for mutating test cases
     crossover_probability\
         = float(config['Parameters']['crossover_probability'])
@@ -89,9 +91,16 @@ def SolMOSA(config):
     else:
         deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
+    if ignoreStateVariables:
+        ignorefunctionNames = update_ignoreFunctionNames(
+            ignorefunctionNames, contract_json)
+    if len(ignorefunctionNames) > 0:
+        logging.info(f"Ignoring the following functions: ")
+        for ignoreFunctionName in ignorefunctionNames:
+            logging.info(f"{ignoreFunctionName}")
+
     # Create the CDG
-    cdg = CDG(contract_name, deployed_bytecode, predicates,
-              ignorefunctionNames)
+    cdg = CDG(contract_name, deployed_bytecode, predicates)
     cdg.LT(predicates)
     logging.info("Contract CDG has been created and looks as follows:\n")
     cdg.Show_CDG(log=True)
@@ -111,7 +120,8 @@ def SolMOSA(config):
 
     logging.info("Smart Contract Under investigation: {}"
                  .format(contract_json_location))
-    relevant_targets = determine_relevant_targets(cdg.CompactEdges, log=True)
+    relevant_targets = determine_relevant_targets(
+        cdg.CompactEdges, ignorefunctionNames, log=True)
 
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
@@ -166,19 +176,6 @@ def SolMOSA(config):
     iterations = 0
 
     for i in range(search_budget):
-        # Cancel if branch coverage has already been achieved
-        if None not in [test for test, relevant in zip(archive,
-                                                       relevant_targets)
-                        if relevant]:
-            if i == 0:
-                logging.info("Branch coverage was achieved after random\
-                             initialisation")
-            else:
-                logging.info("Branch coverage was achieved at iteration {}"
-                             .format(i))
-            break
-        # Update the iteration counter
-        iterations += 1
         logging.info("\nEntering main loop iteration {}/{} at {}:{}"
                      .format(i + 1,
                              search_budget, datetime.datetime.now().date(),
@@ -197,6 +194,27 @@ def SolMOSA(config):
             if best_test is not None:
                 best_test.show_test(log=True)
                 logging.info("")
+
+        # Cancel if branch coverage has already been achieved.
+        # Otherwise, log the branches that still need to be covered.
+        finished = True
+        for k, relTest in enumerate([test for test, relevant in zip(
+                archive, relevant_targets) if relevant]):
+            if relTest is None:
+                logging.info("Still need to cover:")
+                cdg.CompactEdges[k].show_CompactEdge(log=True)
+                finished = False
+        if finished:
+            if i == 0:
+                logging.info("Branch coverage was achieved after random\
+                             initialisation")
+            else:
+                logging.info("Branch coverage was achieved at iteration {}"
+                             .format(i))
+            break
+
+        # Update the iteration counter
+        iterations += 1
 
         logging.info("\tGenerating Offspring...")
         offspring = generate_offspring(
@@ -290,6 +308,25 @@ def SolMOSA(config):
         blockchain_time.total_seconds(), iterations
 
 
+def update_ignoreFunctionNames(_ignorefunctionNames, _contract_json):
+    """Add the stateVariables to the ignorefunctionNames."""
+    ignorefunctionNames = _ignorefunctionNames
+    stateVariables = []
+    for node in _contract_json['ast']['nodes'][1]['nodes']:
+        if "stateVariable" in node.keys():
+            name = node["name"]
+            if not node["stateVariable"]:
+                logging.warning(f"There was a node with stateVariable in the "
+                                "json but the value is not True!")
+            else:
+                if "keyType" in node["typeName"].keys():
+                    inputvar = node["typeName"]["keyType"]["name"]
+                else:
+                    inputvar = ""
+                stateVariables.append(name + "(" + inputvar + ")")
+    return list(set(ignorefunctionNames).union(set(stateVariables)))
+
+
 def get_ETH_properties(ETH_port, max_accounts, accounts_file_location,
                        contract_json_location):
     """
@@ -343,14 +380,15 @@ def update_archive(tests, archive, relevant_targets, _edges):
     Outputs:
     archive:    The new and updated archive
     """
+    j = 0
     for i, (best_test, relevant) in enumerate(zip(archive, relevant_targets)):
         if relevant:
             for test in tests:
                 if test.distance_vector[i] == 0:
                     if best_test is None:
                         logging.info(
-                            f"There was no best test yet for relevant_target \
-                            {i} with edge:\n")
+                            f"There was no best test yet for relevant_target"
+                            f"{j} with edge:\n")
                         _edges[i].show_CompactEdge(log=True)
                         logging.info(f"now entering the archive is test: \n")
                         test.show_test(log=True)
@@ -365,6 +403,7 @@ def update_archive(tests, archive, relevant_targets, _edges):
                         logging.info("\nThe new test is:\n")
                         test.show_test(log=True)
                         best_test = test
+            j += 1
         archive[i] = best_test
     return archive
 
@@ -398,7 +437,7 @@ def update_targets(tests, archive, relevant_targets):
     return updated_targets
 
 
-def determine_relevant_targets(_compactEdges, log=False):
+def determine_relevant_targets(_compactEdges, _ignorefunctionNames, log=False):
     """
     We don't really care for edges in the dispactcher or the fallback \
     function if it has not been explicitly defined.
@@ -413,14 +452,18 @@ def determine_relevant_targets(_compactEdges, log=False):
     relevant_targets = [True] * len(_compactEdges)
     for i, cEdge in enumerate(_compactEdges):
         if (cEdge.endNode_id[0] == "_fallback") | \
-                (cEdge.endNode_id[0] == "_dispatcher"):
+                (cEdge.endNode_id[0] == "_dispatcher") | \
+                (cEdge.startNode_id[0] in _ignorefunctionNames) | \
+                (cEdge.endNode_id[0] in _ignorefunctionNames):
             relevant_targets[i] = False
     if log:
         logging.info("Relevant targets have been identified as follows: \n")
+        j = 0
         for relevant, cEdge in zip(relevant_targets, _compactEdges):
             if relevant:
-                logging.info(f"Target {i}")
+                logging.info(f"Target {j}")
                 cEdge.show_CompactEdge(log=True)
+                j += 1
     return relevant_targets
 
 
