@@ -188,19 +188,21 @@ def SolMOSA(config):
                              len([test for test, relevant in
                                   zip(archive, relevant_targets) if
                                   relevant])))
-        logging.info("The following test cases are currently in the Archive:")
-        for best_test in [best_test for best_test, relevant in
-                          zip(archive, relevant_targets) if relevant]:
-            if best_test is not None:
-                best_test.show_test(log=True)
-                logging.info("")
+    #    logging.debug("The relevant Edges at this point should be:")
+    #    for tempEdge in [edge for edge, relevant in
+    #                     zip(cdg.CompactEdges, relevant_targets) if relevant]:
+    #        tempEdge.show_CompactEdge(True)
+    #    logging.info("The following test cases are currently in the Archive:")
+    #    for best_test in [best_test for best_test, relevant in
+    #                      zip(archive, relevant_targets) if relevant]:
+    #            best_test.show_test(log=True)
+    #            logging.info("")
 
         # Cancel if branch coverage has already been achieved.
         # Otherwise, log the branches that still need to be covered.
         finished = True
-        for k, relTest in enumerate([test for test, relevant in zip(
-                archive, relevant_targets) if relevant]):
-            if relTest is None:
+        for k, relTest in enumerate(archive):
+            if (relTest is None) & (relevant_targets[k]):
                 logging.info("Still need to cover:")
                 cdg.CompactEdges[k].show_CompactEdge(log=True)
                 finished = False
@@ -311,19 +313,27 @@ def SolMOSA(config):
 def update_ignoreFunctionNames(_ignorefunctionNames, _contract_json):
     """Add the stateVariables to the ignorefunctionNames."""
     ignorefunctionNames = _ignorefunctionNames
+    contract_json = _contract_json
     stateVariables = []
-    for node in _contract_json['ast']['nodes'][1]['nodes']:
+    for node in contract_json['ast']['nodes'][1]['nodes']:
         if "stateVariable" in node.keys():
             name = node["name"]
             if not node["stateVariable"]:
                 logging.warning(f"There was a node with stateVariable in the "
                                 "json but the value is not True!")
             else:
-                if "keyType" in node["typeName"].keys():
-                    inputvar = node["typeName"]["keyType"]["name"]
-                else:
-                    inputvar = ""
-                stateVariables.append(name + "(" + inputvar + ")")
+                recurNode = node["typeName"]
+                inputvars = ""
+                while recurNode['nodeType'] == "Mapping":
+                    if len(inputvars) > 1:
+                        inputvars = inputvars + ","
+                    assert "keyType" in recurNode.keys(), \
+                        "A mapping node was found without a 'typeName' field"
+                    assert "valueType" in recurNode.keys(), \
+                        "A mapping node was found without a 'valueType' field"
+                    inputvars = inputvars + recurNode["keyType"]["name"]
+                    recurNode = recurNode["valueType"]
+                stateVariables.append(name + "(" + inputvars + ")")
     return list(set(ignorefunctionNames).union(set(stateVariables)))
 
 
@@ -387,7 +397,7 @@ def update_archive(tests, archive, relevant_targets, _edges):
                 if test.distance_vector[i] == 0:
                     if best_test is None:
                         logging.info(
-                            f"There was no best test yet for relevant_target"
+                            f"There was no best test yet for relevant_target "
                             f"{j} with edge:\n")
                         _edges[i].show_CompactEdge(log=True)
                         logging.info(f"now entering the archive is test: \n")
@@ -395,8 +405,8 @@ def update_archive(tests, archive, relevant_targets, _edges):
                         best_test = test
                     elif len(test.methodCalls) < len(best_test.methodCalls):
                         logging.info(
-                            f"A better test was found for relevant_target {i} \
-                            with edge:\n")
+                            f"A better test was found for relevant_target {i} "
+                            "with edge:\n")
                         _edges[i].show_CompactEdge(log=True)
                         logging.info(f"the old test was:\n")
                         best_test.show_test(log=True)
