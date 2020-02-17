@@ -743,8 +743,6 @@ class CDG():
 
             # Set the predicates of each node
             e, pc = self.Find_Predicate(w.basic_blocks[-1], predicates)
-            assert not ((e == "NONE") & (len(w.outg_node_ids) != 0)), \
-                "A node with outgoing_node_ids cannot have predicate NONE!"
             predicate = Predicate(e, pc, w.node_id)
             w.predicate = predicate
 
@@ -776,14 +774,29 @@ class CDG():
             cNode.node_id for cNode in
             self.vertex if cNode.dom == self.vertex[0]]
 
-        # The Compactnodes are now equal to self.vertex
-        assert len(self.CompactNodes) == len(self.vertex), \
-            "There is a different number of nodes in self.CompactNodes ({}) \
-            than in vertex ({})".format(
-            len(self.compactNodes), len(self.vertex))
+        for Edge in Edges:
+            if Edge.predicate.eval == "NONE":
+                # Check if the lack of a predicate is a result of a &&- or ||-
+                # statement in the code
+                ppNode = next(cNode for cNode in self.vertex if
+                              Edge.startNode_id in cNode.outg_node_ids)
+
+                if len(ppNode.outg_node_ids) == 2:
+                    # There is another child that could have the predicate
+                    # we are looking for.
+                    other_child = next(cNode for cNode in self.vertex if
+                                       (cNode.node_id in ppNode.outg_node_ids)
+                                       & (cNode.node_id != Edge.startNode_id))
+
+                    if (len(other_child.outg_node_ids) == 0) & \
+                            (other_child.predicate.eval != "NONE"):
+                        # There is an unused predicate in the other child.
+                        Edge.predicate = other_child.predicate
+
+        # The CompactNodes are now equal to self.vertex
         self.CompactNodes = self.vertex
 
-        # The CompactNodes are equal to the edges from the forest
+        # The CompactEdges are equal to the edges from the forest
         self.CompactEdges = Edges
 
     def DFS(self, v):

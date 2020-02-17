@@ -194,6 +194,7 @@ class TestCase():
         for methodCall, methodResult in \
                 zip(self.methodCalls[1:], methodResults[1:]):
             if methodResult in ["passTime", "passBlocks"]:
+                # These are not real method calls.
                 pass
             else:
                 curNode = next((cNode for cNode in
@@ -206,6 +207,7 @@ class TestCase():
 
                 i = 0
                 node_stack_items = []
+                # Keep going until the last basic_block is reached.
                 while (curNode.basic_blocks[-1].end.name != "RETURN") & \
                     (curNode.basic_blocks[-1].end.name != "REVERT") & \
                         (curNode.basic_blocks[-1].end.name != "STOP") & \
@@ -213,16 +215,21 @@ class TestCase():
                     start_pc = curNode.basic_blocks[-1].start.pc
                     end_pc = curNode.basic_blocks[-1].end.pc
                     while not ((cur_pc >= start_pc) & (cur_pc <= end_pc)):
+                        # Skip ahead to the last basic_block of the
+                        # current Node
                         node_stack_items = node_stack_items + [methodResult[i]]
                         i += 1
                         cur_pc = methodResult[i]['pc']
 
                     while (cur_pc >= start_pc) & (cur_pc <= end_pc):
+                        # Go to the first basic_block outside of the
+                        # current Node
                         node_stack_items = node_stack_items + [methodResult[i]]
                         i += 1
                         cur_pc = methodResult[i]['pc']
 
                     for potential_nextNode in compactNodes:
+                        # Find the next Node.
                         if (cur_pc >= potential_nextNode.
                                 basic_blocks[0].start.pc) & \
                                 (cur_pc <=
@@ -231,8 +238,8 @@ class TestCase():
                             break
                     visited = visited.union({curNode})
                     assert curNode != nextNode, \
-                        f"The nextNode that was found: {nextNode} \
-                        was the same as the curNode: {curNode}."
+                        f"The nextNode that was found: {nextNode} "
+                    f"was the same as the curNode: {curNode}."
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):
@@ -278,7 +285,7 @@ class TestCase():
         else:
             pred_eval = compactEdge.predicate.eval
             if pred_eval == "NONE":
-                # The predicate was already evaluated in a previous node
+                # There is no predicate to evalueate
                 return 1
             try:
                 stack = next((stackItem['stack'] for stackItem in
@@ -286,26 +293,9 @@ class TestCase():
                               stackItem['pc'] == compactEdge.predicate.pc),
                              None)
             except:
-                logging.info("Could not find stack item to match "
-                             "branch predicate with predicate_pc: {} "
-                             "and stack\n{}".format(
-                                 compactEdge.predicate.pc, stack_items))
-            if stack is None:
-                try:
-                    stack = next(
-                        (stackItem['stack'] for stackItem in
-                         stack_items if
-                         stackItem['op'] == compactEdge.predicate.eval))
-                except:
-                    logging.info("Could not find stack item to match branch \
-                    predicate with predicate: {} and stack\n{}".format(
-                        compactEdge.predicate.eval, stack_items))
-                    logging.info("Something went wrong when testing test:")
-                    self.show_test(True)
-                    logging.info("Checking against Edge: ")
-                    compactEdge.show_CompactEdge(True)
-                    logging.info("When going to node: {}".format(nextNode_id))
-            assert stack is not None, "There was a missing stackitem!"
+                # The required predicate was not reached
+                return 1
+
             s_1 = int(stack[-1], 16)
             if pred_eval == 'ISZERO':
                 return self.normalise(np.abs(s_1))
