@@ -234,7 +234,7 @@ class CDG():
     def Payable_Check(self, cNodes, cEdges, _payableMethodNames):
         """
         During compilation of Solidity code, extra nodes are created that \
-        check whether arguments are valid and if data is stored properly, \
+        revert the transaction if some Ether is send to a nonpayable method, \
         these are not of interest to our control-dependency-graph and can be \
         safely removed.
 
@@ -257,6 +257,7 @@ class CDG():
                     (not bool(set(node_id[0] for node_id in
                                   list(cNode.all_node_ids)).intersection(
                         set(_payableMethodNames)))):
+
                 assert len(cNode.outg_node_ids) == 0, \
                     "Node {} ends with a REVERT OpCode but also has outgoing \
                     nodes?!".format(cNode.node_id)
@@ -775,23 +776,30 @@ class CDG():
             self.vertex if cNode.dom == self.vertex[0]]
 
         for Edge in Edges:
-            if Edge.predicate.eval == "NONE":
+            if (Edge.predicate.eval == "NONE") | \
+                    (Edge.predicate.eval == "ISZERO"):
                 # Check if the lack of a predicate is a result of a &&- or ||-
                 # statement in the code
-                ppNode = next(cNode for cNode in self.vertex if
-                              Edge.startNode_id in cNode.outg_node_ids)
+                pNode = next(cNode for cNode in self.vertex if
+                             Edge.startNode_id == cNode.node_id)
+                try:
+                    ppNode = next(cNode for cNode in self.vertex if
+                                  Edge.startNode_id in cNode.outg_node_ids)
+                    all_inc_bb = pNode.basic_blocks[0].\
+                        all_incoming_basic_blocks
+                    if len(all_inc_bb) == 2:
+                        # There is another basic block with the predicate
+                        predicateNode = next(cNode for cNode in self.vertex if
+                                             (cNode.node_id != ppNode.node_id)
+                                             & (cNode.basic_blocks[-1] in
+                                                all_inc_bb))
 
-                if len(ppNode.outg_node_ids) == 2:
-                    # There is another child that could have the predicate
-                    # we are looking for.
-                    other_child = next(cNode for cNode in self.vertex if
-                                       (cNode.node_id in ppNode.outg_node_ids)
-                                       & (cNode.node_id != Edge.startNode_id))
-
-                    if (len(other_child.outg_node_ids) == 0) & \
-                            (other_child.predicate.eval != "NONE"):
-                        # There is an unused predicate in the other child.
-                        Edge.predicate = other_child.predicate
+                        if (len(predicateNode.outg_node_ids) == 0) & \
+                                (predicateNode.predicate.eval != "NONE"):
+                            # This is an unused predicate
+                            Edge.predicate = predicateNode.predicate
+                except:
+                    pass
 
         # The CompactNodes are now equal to self.vertex
         self.CompactNodes = self.vertex

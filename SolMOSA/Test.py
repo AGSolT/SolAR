@@ -238,8 +238,8 @@ class TestCase():
                             break
                     visited = visited.union({curNode})
                     assert curNode != nextNode, \
-                        f"The nextNode that was found: {nextNode} "
-                    f"was the same as the curNode: {curNode}."
+                        f"The nextNode that was found: {nextNode.node_id} "\
+                        f"was the same as the curNode: {curNode.node_id}."
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):
@@ -287,12 +287,9 @@ class TestCase():
             if pred_eval == "NONE":
                 # There is no predicate to evalueate
                 return 1
-            try:
-                stack = next((stackItem['stack'] for stackItem in
-                              stack_items if
-                              stackItem['pc'] == compactEdge.predicate.pc),
-                             None)
-            except:
+            stack = next((stackItem['stack'] for stackItem in stack_items if
+                          stackItem['pc'] == compactEdge.predicate.pc), None)
+            if stack is None:
                 # The required predicate was not reached
                 return 1
 
