@@ -219,6 +219,7 @@ class CDG():
 
         N = self.Merge_Double_Nodes(double_nodes)
         N = self.Add_incoming_outgoing_node_ids(N, simple_E)
+        N = self.Remove_Invalid_Nodes(N)
         E, s = self.Find_Compact_Edges_StartPoints(N)
 
         if 'payable' not in method.attributes:
@@ -357,7 +358,9 @@ class CDG():
         if not bool(_pNodes):
             # If _pNodes is the emptyset
             return _cNodes, set(), _mergeNodes, _irrelNodes
-        pNode = _pNodes.pop()
+        else:
+            pNode = _pNodes.pop()
+
         if len(pNode.outg_node_ids) > 1:
             # The parent node has multiple children after removing the
             # irrelevant child.
@@ -619,6 +622,28 @@ class CDG():
                     f"{startNode.node_id} is leading into it."  # REMOVE THIS
                     endNode.inc_node_ids.append(startNode.node_id)
         return compactNodes
+
+    def Remove_Invalid_Nodes(self, _compactNodes):
+        """Remove nodes that are just "INVALID" as they will never be reached \
+        by generated tests will never hit nodes that are just "INVALID."""
+        irrelNodes = set()
+        irrelNodes_node_ids = set()
+        for cNode in _compactNodes:
+            if (len(cNode.basic_blocks) == 1) & \
+                ([ins.name for ins in cNode.basic_blocks[0].instructions] ==
+                 ['INVALID']):
+                irrelNodes.add(cNode)
+                irrelNodes_node_ids.add(cNode.node_id)
+
+        relNodes = list(set(_compactNodes) - irrelNodes)
+        for relNode in relNodes:
+            assert not bool(
+                set(relNode.inc_node_ids).intersection(irrelNodes_node_ids)), \
+                "Irrelevant Nodes should not be found among incoming nodes."
+            relNode.outg_node_ids = list(set(relNode.outg_node_ids).difference(
+                irrelNodes_node_ids))
+
+        return relNodes
 
     def Find_Compact_Edges_StartPoints(self, cNodes):
         """
