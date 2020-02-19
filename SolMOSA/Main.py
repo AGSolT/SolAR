@@ -310,7 +310,7 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
         with open("results.csv", "a") as f:
             f_writer = csv.writer(f, delimiter=',', quotechar="'",
                                   quoting=csv.QUOTE_MINIMAL)
-            f_writer.writerow([contractName, 1, _statementCount, 1, iterations,
+            f_writer.writerow([contractName, _statementCount, 1, 1, iterations,
                                blockchain_time,
                                run_time - blockchain_time, run_time])
         return "No branches found, any method call will work!"
@@ -369,7 +369,7 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
         with open("results.csv", "a") as f:
             f_writer = csv.writer(f, delimiter=',', quotechar="'",
                                   quoting=csv.QUOTE_MINIMAL)
-            f_writer.writerow([folder, sum(relevant_branches), _statementCount,
+            f_writer.writerow([folder, _statementCount, sum(relevant_branches),
                                len(
                 [best_test for best_test in best_tests
                  if best_test is not None]), iterations, blockchain_time,
