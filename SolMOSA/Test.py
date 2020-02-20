@@ -140,11 +140,11 @@ class TestCase():
         the SC_interaction.js script."""
         ans = """"""
         for methodCall in self.methodCalls:
-            input_dict_string = """{{name: '{}', inputVars: {}, \
-            fromAcc: '{}', value: {}}}""".format(
-                methodCall.methodName, self.InputVars_to_String(
-                    methodCall.inputvars), methodCall.fromAcc,
-                methodCall.value)
+            input_dict_string = """{{name: '{}', inputVars: {}, """\
+                """fromAcc: '{}', value: {}}}""".format(
+                    methodCall.methodName, self.InputVars_to_String(
+                        methodCall.inputvars), methodCall.fromAcc,
+                    methodCall.value)
             if len(ans) > 0:
                 ans = ans + """, """ + input_dict_string
             else:

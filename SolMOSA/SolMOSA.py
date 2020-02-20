@@ -137,7 +137,6 @@ def SolMOSA(config):
         + [ETH_port]
 
     blockchain_start_time = datetime.datetime.now()
-
     logging.info("Deploying and calling smart contracts for the first time...")
     with open("Ganache_Interaction.log", "a") as f:
         subprocess.call(callstring, stdout=f)
@@ -315,7 +314,9 @@ def update_ignoreFunctionNames(_ignorefunctionNames, _contract_json):
     ignorefunctionNames = _ignorefunctionNames
     contract_json = _contract_json
     stateVariables = []
-    for node in contract_json['ast']['nodes'][1]['nodes']:
+    infoNode = next((node for node in contract_json['ast']['nodes'] if
+                     node['nodeType'] == "ContractDefinition"), None)
+    for node in infoNode['nodes']:
         if "stateVariable" in node.keys():
             name = node["name"]
             if not node["stateVariable"]:

@@ -8,7 +8,6 @@ const assert = require('assert');
 const options = {
     transactionConfirmationBlocks: 1,
 }
-
 var data = fs.readFileSync('tests.txt', 'utf8');
 const methods = eval(data);
 const port = args.ETH_port;
@@ -31,6 +30,7 @@ var toBigNumber = function(val){
 }
 
 async function runTest(){
+  console.log("Entering runTest");
   var method;
   var input_args;
   var from;
@@ -47,6 +47,7 @@ async function runTest(){
   var last_TxTrace = 0;
 
   for (var i = 0; i < methods.length; i++){
+    console.log("Entering for-loop");
     last_block = await web3.eth.getBlock("latest");
     method = methods[i];
     input_args = method.inputVars.map(toBigNumber);

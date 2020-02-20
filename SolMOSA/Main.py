@@ -69,7 +69,7 @@ def main():
                     + "/contracts/" + file[:-4] + "sol"
                 assert os.path.isfile(
                     contractSolPath), f"The name for the contract .json file" \
-                    f"'{file}' does not match it's .sol file: " \
+                    f" '{file}' does not match it's .sol file: " \
                     f"{contractSolPath}"
                 config.set('Files', 'contract_sol_location',
                            r'{}'.format(contractSolPath))
@@ -88,6 +88,19 @@ def main():
                 config.set('Parameters', 'ETHpool', repr(ETHpool))
                 config.set('Parameters', 'intpool', repr(intpool))
                 config.set('Parameters', 'stringpool', repr(stringpool))
+                if bool(addresspool) | bool(ETHpool) | bool(intpool) | \
+                        bool(stringpool):
+                    logging.info("Scraped contract and found the following "
+                                 "hardcoded values")
+                    if bool(addresspool):
+                        logging.info(f"addresspool found: {addresspool}")
+                    if bool(ETHpool):
+                        logging.info(f"ETHpool: {ETHpool}")
+                    if bool(intpool):
+                        logging.info(f"intpool: {intpool}")
+                    if bool(stringpool):
+                        logging.info(f"stringpool: {stringpool}")
+                    logging.info("")
 
                 # run SolMOSA on it with these settings.
                 for i in range(Execution_Times):
@@ -503,7 +516,13 @@ def scrape_strings(_contractSol):
     regex = r"(?<!import )([\"'])(?:(?=(\\?))\2.)*?\1"
     matches = re.finditer(regex, contractSol, re.MULTILINE)
     for match in matches:
-        stringpool.add(match.group())
+        scrapedString = match.group()
+        if scrapedString[0] == "'":
+            assert scrapedString[-1] == "'", \
+                """If a scraped string starts with "'" it should also end """\
+                f"""with it, instead this ends with {scrapedString[-1]}."""
+            scrapedString = '"' + scrapedString[1:-1] + '"'
+        stringpool.add(scrapedString)
     return stringpool
 
 
