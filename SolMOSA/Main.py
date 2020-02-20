@@ -101,6 +101,8 @@ def main():
                     if bool(stringpool):
                         logging.info(f"stringpool: {stringpool}")
                     logging.info("")
+                ETHpool = ETHpool.add(0)
+                intpool = intpool.add(0)
 
                 # run SolMOSA on it with these settings.
                 for i in range(Execution_Times):
