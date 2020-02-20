@@ -47,7 +47,6 @@ async function runTest(){
   var last_TxTrace = 0;
 
   for (var i = 0; i < methods.length; i++){
-    console.log("Entering for-loop");
     last_block = await web3.eth.getBlock("latest");
     method = methods[i];
     input_args = method.inputVars.map(toBigNumber);

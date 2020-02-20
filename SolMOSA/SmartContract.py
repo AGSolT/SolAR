@@ -30,7 +30,13 @@ class SmartContract():
         methods = []
         for method in contract_json['abi']:
             if method['type'] == 'function':
-                if method['name'] not in _ignorefunctionNames:
+                fullName = method['name'] + "("
+                for i, inputvar in enumerate(method["inputs"]):
+                    if i > 0:
+                        fullName = fullName + ","
+                    fullName = fullName + inputvar["type"]
+                fullName = fullName + ")"
+                if fullName not in _ignorefunctionNames:
                     methods = methods + [method]
             elif method['type'] == 'constructor':
                 # The constructor is always the first method in the list.
