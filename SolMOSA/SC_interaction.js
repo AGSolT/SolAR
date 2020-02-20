@@ -35,6 +35,7 @@ async function runTest(){
   var input_args;
   var from;
   var value;
+  var balance;
   var deployed;
   var constHash;
   var tx;
@@ -53,6 +54,7 @@ async function runTest(){
     from = method.fromAcc;
     method_name = method.name;
     value = toBigNumber(method.value);
+    balance = await toBigNumber(web3.eth.getBalance(from));
 
     if(method.name == 'constructor'){
       console.log('\n');
@@ -116,8 +118,14 @@ async function runTest(){
             }
           }
         }
+        else if(err.toString().search("sender doesn't have enough funds to send tx")!=-1){
+          console.log(`Balance of account ${from} is smaller than the value of the methodcall: ${balance} < ${value}.`)
+          ans.push("Out of Ether")
+          returnvals.push("Out of Ether")
+        }
         // Revert errors are good and should still be processed!
         else if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
+          console.log(err.toString().search("sender doesn't have enough funds to send tx"))
           throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
         }
         else{

@@ -230,8 +230,8 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         elif response in negative:
             while not proper_response:
                 response = input(
-                    "\nPlease type the new port, you can either type 4 integers\
-                     (e.g. 8545) or a full address. ")
+                    "\nPlease type the new port, you can either type 4 "
+                    "integers (e.g. 8545) or a full address. ")
                 if (response.isdigit()) & (len(response) == 4):
                     ETH_port = "http://localhost:{}".format(response)
                 else:

@@ -196,6 +196,11 @@ class TestCase():
             if methodResult in ["passTime", "passBlocks"]:
                 # These are not real method calls.
                 pass
+            elif methodResult == "Out of Ether":
+                # This did not yield a result
+                logging.warning("An account ran out of Ether! Check out the "
+                                "blockchain log for more info.")
+                pass
             else:
                 curNode = next((cNode for cNode in
                                 compactNodes if
