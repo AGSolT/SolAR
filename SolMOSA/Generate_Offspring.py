@@ -13,7 +13,8 @@ def generate_offspring(test_cases, SmartContract, accounts, _addresspool,
                        poss_methods, pop_size, tournament_size,
                        max_method_calls, crossover_probability,
                        remove_probability, change_probability,
-                       insert_probability, _passTimeTime, _maxWei):
+                       insert_probability, _passTimeTime, _zeroAddress,
+                       _maxWei):
     """
     Generate offspring, given a set of parent test-cases by applying \
     selection, crossover and mutation.
@@ -50,10 +51,12 @@ def generate_offspring(test_cases, SmartContract, accounts, _addresspool,
 
         mutate(child1, accounts, _addresspool, _ETHpool, _intpool,
                _stringpool, poss_methods, max_method_calls, remove_probability,
-               change_probability, insert_probability, _passTimeTime, _maxWei)
+               change_probability, insert_probability, _passTimeTime,
+               _zeroAddress, _maxWei)
         mutate(child2, accounts, _addresspool, _ETHpool, _intpool,
                _stringpool, poss_methods, max_method_calls, remove_probability,
-               change_probability, insert_probability, _passTimeTime, _maxWei)
+               change_probability, insert_probability, _passTimeTime,
+               _zeroAddress, _maxWei)
 
         if child1 == parent1:
             assert child2 == parent2, \
@@ -124,7 +127,7 @@ def crossover(testCase1, testCase2, SmartContract, accounts,
 
 def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
            poss_methods, max_method_calls, remove_probability,
-           change_probability, insert_probability, _passTimeTime,
+           change_probability, insert_probability, _passTimeTime, _zeroAddress,
            _maxWei, val_dict={}):
     """
     Mutate a given test case by removing one or more method calls, \
@@ -184,8 +187,13 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
                                         new_inputvar = \
                                             min(255, old_inputvar + delta)
                                 elif isinstance(old_inputvar, str):
-                                    if old_inputvar in accounts:
-                                        new_inputvar = random.choice(accounts)
+                                    if old_inputvar in accounts + [
+                                        "0x00000000000000000000000000000000000"
+                                            "00000"]:
+                                        new_inputvar = random.choice(
+                                            accounts + [
+                                                "0x000000000000000000000000000"
+                                                "0000000000000"])
                                     else:
                                         new_inputvar = \
                                             mutate_string(old_inputvar)
@@ -207,7 +215,8 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
             methodName = methodCall.methodName
             new_methodCall = MethodCall(methodName, new_inputvars,
                                         new_fromAcc, new_value,
-                                        methodCall.payable)
+                                        methodCall.payable,
+                                        _zeroAddress=_zeroAddress)
             testCase.methodCalls[i] = new_methodCall
     if random.uniform(0, 1) <= insert_probability:
         # Insert mutation
@@ -219,7 +228,8 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
                 methodDict=random.choice(poss_methods), accounts=accounts,
                 _addresspool=_addresspool, _ETHpool=_ETHpool,
                 _intpool=_intpool, _stringpool=_stringpool,
-                _passTimeTime=_passTimeTime, _maxWei=_maxWei)
+                _passTimeTime=_passTimeTime, _zeroAddress=_zeroAddress,
+                _maxWei=_maxWei)
             if len(testCase.methodCalls) == 1:
                 loc = 1
             else:

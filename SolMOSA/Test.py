@@ -49,7 +49,8 @@ class TestCase():
             accounts=None, deploying_accounts=None, _addresspool=None,
             _ETHpool=None, _intpool=None, _stringpool=None,
             max_method_calls=None, min_method_calls=0, passBlocks=False,
-            passTime=False, passTimeTime=None, _maxWei=10000000000000000000):
+            passTime=False, passTimeTime=None, _zeroAddress=False,
+            _maxWei=10000000000000000000):
         """
         Initialise a test case, either by passing all of it's  properties \
         or initialise randomly by generating a random number of random \
@@ -96,7 +97,8 @@ class TestCase():
                 deploying_accounts=deploying_accounts,
                 _addresspool=_addresspool, _ETHpool=_ETHpool,
                 _intpool=_intpool, _stringpool=_stringpool,
-                _passTimeTime=passTimeTime, _maxWei=_maxWei)]
+                _passTimeTime=passTimeTime, _zeroAddress=_zeroAddress,
+                _maxWei=_maxWei)]
 
             poss_methods.pop(0)
             assert len(poss_methods) > 0, \
@@ -113,7 +115,8 @@ class TestCase():
                     accounts=accounts, deploying_accounts=deploying_accounts,
                     _addresspool=_addresspool, _ETHpool=_ETHpool,
                     _intpool=_intpool, _stringpool=_stringpool,
-                    _passTimeTime=passTimeTime, _maxWei=_maxWei)]
+                    _passTimeTime=passTimeTime, _zeroAddress=_zeroAddress,
+                    _maxWei=_maxWei)]
 
             self.methodCalls = methodCalls
             self.returnVals = []
@@ -366,7 +369,7 @@ class MethodCall():
     def __init__(self, _methodName, _inputvars, _fromAcc, _value, _payable,
                  methodDict=None, accounts=None, deploying_accounts=None,
                  _addresspool=None, _ETHpool=None, _intpool=None,
-                 _stringpool=None, _passTimeTime=None,
+                 _stringpool=None, _passTimeTime=None, _zeroAddress=False,
                  _maxWei=10000000000000000000):
         """Initialise a method call either by passing all of it's \
         properties or randomly by choosing the properties from within the \
@@ -395,7 +398,7 @@ class MethodCall():
                     inputvars = inputvars + \
                         [self.Random_Inputvar(
                             input['type'], accounts, _addresspool, _ETHpool,
-                            _intpool, _stringpool)]
+                            _intpool, _stringpool, _zeroAddress)]
                 self.inputvars = inputvars
             elif methodDict['type'] == 'passTime':
                 self.methodName = "passTime"
@@ -409,7 +412,7 @@ class MethodCall():
                     inputvars = inputvars + \
                         [self.Random_Inputvar(
                             input['type'], accounts, _addresspool, _ETHpool,
-                            _intpool, _stringpool)]
+                            _intpool, _stringpool, _zeroAddress)]
                 self.inputvars = inputvars
             else:
                 self.methodName = methodDict['name']
@@ -419,7 +422,7 @@ class MethodCall():
                     inputvars = inputvars + \
                         [self.Random_Inputvar(
                             input['type'], accounts, _addresspool, _ETHpool,
-                            _intpool, _stringpool)]
+                            _intpool, _stringpool, _zeroAddress)]
                 self.inputvars = inputvars
             if not methodDict['payable']:
                 self.value = 0
@@ -432,7 +435,7 @@ class MethodCall():
                 self.payable = True
 
     def Random_Inputvar(self, varType, accounts, _addresspool, _ETHpool,
-                        _intpool, _stringpool):
+                        _intpool, _stringpool, _zeroAddress):
         """Generate a random allowed input variable given the the variable's \
         type."""
         if varType == "bool":
@@ -474,6 +477,8 @@ class MethodCall():
             else:
                 return random.randint(0, 2**intsize - 1)
         elif varType == "address":
+            if (_zeroAddress) & (random.uniform(0, 1) < 0.05):
+                return "0x0000000000000000000000000000000000000000"
             if (len(_addresspool) > 0) & (random.uniform(0, 1) < 0.5):
                 # Return an address from the pool.
                 return random.choice(tuple(_addresspool))

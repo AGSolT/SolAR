@@ -1,0 +1,388 @@
+{
+  "contractName": "CheckBalance",
+  "abi": [
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "addr",
+          "type": "address"
+        }
+      ],
+      "name": "balance",
+      "outputs": [
+        {
+          "name": "bal",
+          "type": "uint256"
+        }
+      ],
+      "payable": true,
+      "stateMutability": "payable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.21+commit.dfe3193c\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":false,\"inputs\":[{\"name\":\"addr\",\"type\":\"address\"}],\"name\":\"balance\",\"outputs\":[{\"name\":\"bal\",\"type\":\"uint256\"}],\"payable\":true,\"stateMutability\":\"payable\",\"type\":\"function\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"/Users/stefan/Documents/PhD/SolMOSA/Smart Contracts/TestContracts/CheckBalance/contracts/CheckBalance.sol\":\"CheckBalance\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/stefan/Documents/PhD/SolMOSA/Smart Contracts/TestContracts/CheckBalance/contracts/CheckBalance.sol\":{\"keccak256\":\"0xba9cd4ed7369b6a77a0adf3173373420d5dea4b65357997175d0d554c71c08b1\",\"urls\":[\"bzzr://5bc196bc7f3f7a6fe3de630ab54d7a2a359e2ca79165b0d739f31de5859ef821\"]}},\"version\":1}",
+  "bytecode": "0x6060604052341561000f57600080fd5b60d18061001d6000396000f300606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063e3d670d7146044575b600080fd5b606e600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506084565b6040518082815260200191505060405180910390f35b60008173ffffffffffffffffffffffffffffffffffffffff163190509190505600a165627a7a723058200bfeac03da3ed219040a70c9a1115da160628d0c6385055fd63b1f7240c1fd090029",
+  "deployedBytecode": "0x606060405260043610603f576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff168063e3d670d7146044575b600080fd5b606e600480803573ffffffffffffffffffffffffffffffffffffffff169060200190919050506084565b6040518082815260200191505060405180910390f35b60008173ffffffffffffffffffffffffffffffffffffffff163190509190505600a165627a7a723058200bfeac03da3ed219040a70c9a1115da160628d0c6385055fd63b1f7240c1fd090029",
+  "sourceMap": "26:121:0:-;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "26:121:0:-;;;;;;;;;;;;;;;;;;;;;;;;52:93;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;106:8;128:4;:12;;;121:19;;52:93;;;:::o",
+  "source": "pragma solidity ^0.4.21;\n\ncontract CheckBalance{\n\n  function balance(address addr) payable public returns(uint bal){\n    return addr.balance;\n  }\n}\n",
+  "sourcePath": "/Users/stefan/Documents/PhD/SolMOSA/Smart Contracts/TestContracts/CheckBalance/contracts/CheckBalance.sol",
+  "ast": {
+    "absolutePath": "/Users/stefan/Documents/PhD/SolMOSA/Smart Contracts/TestContracts/CheckBalance/contracts/CheckBalance.sol",
+    "exportedSymbols": {
+      "CheckBalance": [
+        13
+      ]
+    },
+    "id": 14,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 13,
+        "linearizedBaseContracts": [
+          13
+        ],
+        "name": "CheckBalance",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11,
+              "nodeType": "Block",
+              "src": "115:30:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 8,
+                      "name": "addr",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "128:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 9,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "128:12:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7,
+                  "id": 10,
+                  "nodeType": "Return",
+                  "src": "121:19:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 12,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "balance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3,
+                  "name": "addr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12,
+                  "src": "69:12:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "69:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "68:14:0"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 7,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6,
+                  "name": "bal",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12,
+                  "src": "106:8:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "106:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "105:10:0"
+            },
+            "scope": 13,
+            "src": "52:93:0",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 14,
+        "src": "26:121:0"
+      }
+    ],
+    "src": "0:148:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/stefan/Documents/PhD/SolMOSA/Smart Contracts/TestContracts/CheckBalance/contracts/CheckBalance.sol",
+    "exportedSymbols": {
+      "CheckBalance": [
+        13
+      ]
+    },
+    "id": 14,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".21"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 13,
+        "linearizedBaseContracts": [
+          13
+        ],
+        "name": "CheckBalance",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 11,
+              "nodeType": "Block",
+              "src": "115:30:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "expression": {
+                      "argumentTypes": null,
+                      "id": 8,
+                      "name": "addr",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 3,
+                      "src": "128:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "id": 9,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "memberName": "balance",
+                    "nodeType": "MemberAccess",
+                    "referencedDeclaration": null,
+                    "src": "128:12:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "functionReturnParameters": 7,
+                  "id": 10,
+                  "nodeType": "Return",
+                  "src": "121:19:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 12,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "balance",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 4,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 3,
+                  "name": "addr",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12,
+                  "src": "69:12:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 2,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "69:7:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "68:14:0"
+            },
+            "payable": true,
+            "returnParameters": {
+              "id": 7,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 6,
+                  "name": "bal",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 12,
+                  "src": "106:8:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint256",
+                    "typeString": "uint256"
+                  },
+                  "typeName": {
+                    "id": 5,
+                    "name": "uint",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "106:4:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint256",
+                      "typeString": "uint256"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "105:10:0"
+            },
+            "scope": 13,
+            "src": "52:93:0",
+            "stateMutability": "payable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 14,
+        "src": "26:121:0"
+      }
+    ],
+    "src": "0:148:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.21+commit.dfe3193c.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {},
+      "links": {},
+      "address": "0x26Eb4024322791f0d99698d5615238e7B77fD4F8",
+      "transactionHash": "0xd71a264004d392fb5f8801bc55c50033097e1c8dd17d83dfc12d59fbbaf45d87"
+    },
+    "1582301626779": {
+      "events": {},
+      "links": {},
+      "address": "0x6A87b691ca4eE7af4d9456062A6AE6425732C933",
+      "transactionHash": "0x690b8a709cc57d6dab0cff39b5c505b7271e72c3e3c2be9662100d656ef75bfe"
+    }
+  },
+  "schemaVersion": "3.0.19",
+  "updatedAt": "2020-02-21T16:15:22.141Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}

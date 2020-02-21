@@ -33,7 +33,8 @@ class TestSuite():
                  _addresspool, _ETHpool, _intpool, _stringpool,
                  _pop_size=50, _random=True, _tests=[], _max_method_calls=10,
                  _min_method_calls=0, _passBlocks=False, _passTime=False,
-                 _passTimeTime=None, _maxWei=10000000000000000000):
+                 _passTimeTime=None, _zeroAddress=False,
+                 _maxWei=10000000000000000000):
         """Initialise a Test Suite either randomlhy, or by \
         passing all of it's properties explicitly."""
         if not _random:
@@ -66,7 +67,8 @@ class TestSuite():
                               max_method_calls=_max_method_calls,
                               min_method_calls=_min_method_calls,
                               passBlocks=_passBlocks, passTime=_passTime,
-                              passTimeTime=_passTimeTime, _maxWei=_maxWei)]
+                              passTimeTime=_passTimeTime,
+                              _zeroAddress=_zeroAddress, _maxWei=_maxWei)]
             self.tests = tests
 
     def show_tests(self, _top_n=None, log=False):

@@ -69,6 +69,7 @@ def SolMOSA(config):
     passTimeTime = int(config['Parameters']['passTimeTime'])
     ignorefunctionNames = eval(config['Parameters']['IgnoreFunctions'])
     ignoreStateVariables = eval(config['Parameters']['ignoreStateVariables'])
+    zeroAddress = config['Parameters']['zeroAddress'] == "True"
 
     # Parameters for mutating test cases
     crossover_probability\
@@ -116,7 +117,8 @@ def SolMOSA(config):
                        _max_method_calls=max_method_calls,
                        _min_method_calls=min_method_calls,
                        _passBlocks=passBlocks, _passTime=passTime,
-                       _passTimeTime=passTimeTime, _maxWei=maxWei)
+                       _passTimeTime=passTimeTime, _zeroAddress=zeroAddress,
+                       _maxWei=maxWei)
 
     logging.info("Smart Contract Under investigation: {}"
                  .format(contract_json_location))
@@ -138,6 +140,7 @@ def SolMOSA(config):
 
     blockchain_start_time = datetime.datetime.now()
     logging.info("Deploying and calling smart contracts for the first time...")
+
     with open("Ganache_Interaction.log", "a") as f:
         subprocess.call(callstring, stdout=f)
     blockchain_end_time = datetime.datetime.now()
@@ -187,15 +190,6 @@ def SolMOSA(config):
                              len([test for test, relevant in
                                   zip(archive, relevant_targets) if
                                   relevant])))
-    #    logging.debug("The relevant Edges at this point should be:")
-    #    for tempEdge in [edge for edge, relevant in
-    #                     zip(cdg.CompactEdges, relevant_targets) if relevant]:
-    #        tempEdge.show_CompactEdge(True)
-    #    logging.info("The following test cases are currently in the Archive:")
-    #    for best_test in [best_test for best_test, relevant in
-    #                      zip(archive, relevant_targets) if relevant]:
-    #            best_test.show_test(log=True)
-    #            logging.info("")
 
         # Cancel if branch coverage has already been achieved.
         # Otherwise, log the branches that still need to be covered.
@@ -223,7 +217,7 @@ def SolMOSA(config):
             deploying_accounts, poss_methods, population_size, min(
                 tournament_size, population_size), max_method_calls,
             crossover_probability, remove_probability, change_probability,
-            insert_probability, passTimeTime, maxWei)
+            insert_probability, passTimeTime, zeroAddress, maxWei)
 
         tSuite = TestSuite(sc, accounts, deploying_accounts,
                            _addresspool=addresspool, _ETHpool=ETHpool,
@@ -231,7 +225,8 @@ def SolMOSA(config):
                            _pop_size=population_size, _random=False,
                            _tests=list(offspring),
                            _max_method_calls=max_method_calls,
-                           _min_method_calls=min_method_calls)
+                           _min_method_calls=min_method_calls,
+                           _zeroAddress=zeroAddress)
 
         test_inputs = tSuite.generate_test_inputs()
         with open("tests.txt", "w") as f:
