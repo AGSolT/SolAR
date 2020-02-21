@@ -84,10 +84,6 @@ def main():
                     config['Parameters']['deploying_accounts'])
                 addresspool, ETHpool, intpool, stringpool = \
                     create_contractpools(contractSol, knownAddresses)
-                config.set('Parameters', 'addresspool', repr(addresspool))
-                config.set('Parameters', 'ETHpool', repr(ETHpool))
-                config.set('Parameters', 'intpool', repr(intpool))
-                config.set('Parameters', 'stringpool', repr(stringpool))
                 if bool(addresspool) | bool(ETHpool) | bool(intpool) | \
                         bool(stringpool):
                     logging.info("Scraped contract and found the following "
@@ -101,8 +97,14 @@ def main():
                     if bool(stringpool):
                         logging.info(f"stringpool: {stringpool}")
                     logging.info("")
-                ETHpool = ETHpool.add(0)
-                intpool = intpool.add(0)
+                # Add 0 to the ETHpool and _intpool
+                ETHpool.add(0)
+                intpool.add(0)
+
+                config.set('Parameters', 'addresspool', repr(addresspool))
+                config.set('Parameters', 'ETHpool', repr(ETHpool))
+                config.set('Parameters', 'intpool', repr(intpool))
+                config.set('Parameters', 'stringpool', repr(stringpool))
 
                 # run SolMOSA on it with these settings.
                 for i in range(Execution_Times):
