@@ -338,28 +338,25 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
             h = tSuite.smartContract.methods[0]['stateMutability']
         except:
             h = "Old version."
-        rapport = """Contract:\t\t\t{}\n"""
-        """Number of Relevant Branches:\t{}\n"""
-        """Number of Branches Covered:\t\t{}\n"""
-        """Runtime: \t\t\t\t\t\t\t\t\t\t\t{}\n"""
-        """Blockchain Time: \t\t\t\t\t\t\t{}\n"""
-        """Iterations\t\t\t\t\t\t\t\t\t\t\n"""
-        """{}\n--------------------------------------------------\n"""
+        rapport = f"""Contract:\t\t\t{contractName}\n"""
+        nrBranchesCovered = len(
+            [best_test for best_test in best_tests if best_test is not None])
+        f"""Number of Relevant Branches:\t{sum(relevant_branches)}\n"""
+        f"""Number of Branches Covered:\t\t{nrBranchesCovered}\n"""
+        f"""Runtime: \t\t\t\t\t\t\t\t\t\t\t{run_time}\n"""
+        f"""Blockchain Time: \t\t\t\t\t\t\t{blockchain_time}\n"""
+        f"""Iterations\t\t\t\t\t\t\t\t\t\t\n{iterations}"""
+        """\n--------------------------------------------------\n"""
         """METHODS:\n\n"""
-        """Constructor:\n\tInputs :{}\n"""
-        """\tPayable: {}""".format(
-            contractName, sum(relevant_branches), len(
-                [best_test for best_test in best_tests
-                 if best_test is not None]),
-            run_time, blockchain_time, iterations,
-            tSuite.smartContract.methods[0]['inputs'], h)
+        """Constructor:\n\tInputs :"""
+        f"""{tSuite.smartContract.methods[0]['inputs']}\n"""
+        f"""\tPayable: {h}"""
+
         for method in tSuite.smartContract.methods[1:]:
-            methodstring = """\n{}:\n
-            \tInputs: {}\n
-            \tOutputs: {}\n
-            \tPayable: {}""".format(
-                method['name'], method['inputs'], method['outputs'],
-                method['payable'])
+            methodstring = f"""\n{method['name']}:\n"""
+            f"""\tInputs: {method['inputs']}\n"""
+            f"""\tOutputs: {method['outputs']}\n"""
+            f"""\tPayable: {method['payable']}"""
             rapport = rapport + methodstring
 
         shown_tests = []
