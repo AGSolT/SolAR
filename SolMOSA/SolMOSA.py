@@ -101,13 +101,16 @@ def SolMOSA(config):
             logging.info(f"{ignoreFunctionName}")
 
     # Create the CDG
+    logging.info("Creating CDG...")
     cdg = CDG(contract_name, deployed_bytecode, predicates)
     cdg.LT(predicates)
     logging.info("Contract CDG has been created and looks as follows:\n")
     cdg.Show_CDG(log=True)
 
+    logging.info("Creating Smart Contract Instance...")
     sc = SmartContract(contract_json, cdg, ignorefunctionNames)
 
+    logging.info("Initialising Random Test Suite...")
     tSuite = TestSuite(sc, accounts, deploying_accounts,
                        _addresspool=addresspool,
                        _ETHpool=ETHpool,
