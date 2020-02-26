@@ -176,6 +176,11 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
                     else:
                         for j, old_inputvar in enumerate(old_inputvars):
                             if random.uniform(0, len(old_inputvars)) <= 1:
+                                pos = -1
+                                if isinstance(old_inputvar, list):
+                                    pos = random.randint(0, len(old_inputvar))
+                                    old_inputvarlist = old_inputvar
+                                    old_inputvar = old_inputvar[pos]
                                 if isinstance(old_inputvar, bool):
                                     new_inputvar = not old_inputvar
                                 elif isinstance(old_inputvar, int):
@@ -201,6 +206,9 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
                                     assert False, \
                                         "Unknown input variable type: {}".\
                                         format(old_inputvar)
+                                if pos > -1:
+                                    old_inputvarlist[pos] = new_inputvar
+                                    new_inputvar = old_inputvarlist
                                 new_inputvars[j] = new_inputvar
                 if random.uniform(0, 1) <= 0.05:  # mutate fromAcc
                     new_fromAcc = random.choice(accounts)

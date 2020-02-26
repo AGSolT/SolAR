@@ -59,6 +59,8 @@ def SolMOSA(config):
     population_size = int(config['Parameters']['population_size'])
     max_method_calls = int(config['Parameters']['max_method_calls'])
     min_method_calls = int(config['Parameters']['min_method_calls'])
+    # maxArrayLength = int(config['Parameters']['maxArrayLength'])
+    # minArrayLength = int(config['Parameters']['minArrayLength'])
     maxWei = int(config['Parameters']['maxWei'])
     addresspool = eval(config['Parameters']['addresspool'])
     ETHpool = eval(config['Parameters']['ETHpool'])

@@ -438,7 +438,20 @@ class MethodCall():
                         _intpool, _stringpool, _zeroAddress):
         """Generate a random allowed input variable given the the variable's \
         type."""
-        if varType == "bool":
+        maxArrayLength = 10  # TODO: Make this a parameter.
+        minArrayLength = 1  # TODO: Make this a parameter.
+        if varType[-1] == "]":
+            # This is an array
+            ArrayLength = random.randint(minArrayLength, maxArrayLength)
+            ans = []
+            for i in range(ArrayLength):
+                ans = ans + [self.Random_Inputvar(varType[:-2],
+                                                  accounts, _addresspool,
+                                                  _ETHpool, _intpool,
+                                                  _stringpool, _zeroAddress)]
+            return ans
+
+        elif varType == "bool":
             return random.choice([True, False])
         elif varType[:3] == "int":
             intsize = next((int(s) for s in re.findall(r'-?\d+\.?\d*',

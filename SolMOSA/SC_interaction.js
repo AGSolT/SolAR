@@ -24,6 +24,9 @@ var toBigNumber = function(val){
   if( Number.isInteger(val)){
     return BigNumber(val).toFixed();
   }
+  else if(Array.isArray(val)){
+    return val.map(toBigNumber);
+  }
   else{
     return val;
   }
