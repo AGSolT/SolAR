@@ -87,7 +87,7 @@ class SmartContract():
         for i, cEdge1 in enumerate(cEdges):
             startNode = next(cNode for cNode in _cdg.CompactNodes if
                              cNode.node_id == cEdge1.startNode_id)
-            queue = [(startNode, 0)]
+            queue = [(startNode, 1)]
             # if cEdge1.startNode_id[0] != "_dispatcher":
             #     queue = [(startNode, 0) for startNode in
             #              _cdg.CompactNodes if (cEdge1.startNode_id[0], 1) in
@@ -142,7 +142,7 @@ class SmartContract():
             "A node is has been popped from the queue but it is not "
         "registered as traversed: node with id: {}".format(curNode.node_id)
 
-        if curNode.node_id == _rootNode_id:
+        if 1 in [node_id[1] for node_id in curNode.all_node_ids]:
             # Max approach level is depth.
             return depth
         else:
