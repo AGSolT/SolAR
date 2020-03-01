@@ -111,6 +111,7 @@ def SolMOSA(config):
 
     logging.info("Creating Smart Contract Instance...")
     sc = SmartContract(contract_json, cdg, ignorefunctionNames)
+    print(sc.methods)
 
     logging.info("Initialising Random Test Suite...")
     tSuite = TestSuite(sc, accounts, deploying_accounts,
