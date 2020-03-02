@@ -8,13 +8,13 @@ import string
 from Test import TestCase, MethodCall
 
 
-def generate_offspring(test_cases, SmartContract, accounts, _addresspool,
-                       _ETHpool, _intpool, _stringpool, deploying_accounts,
-                       poss_methods, pop_size, tournament_size,
-                       max_method_calls, crossover_probability,
-                       remove_probability, change_probability,
-                       insert_probability, _passTimeTime, _zeroAddress,
-                       _maxWei):
+def generate_offspring(test_cases, SmartContract, accounts, _maxArrayLength,
+                       _addresspool, _ETHpool, _intpool, _stringpool,
+                       deploying_accounts, poss_methods, pop_size,
+                       tournament_size, max_method_calls,
+                       crossover_probability, remove_probability,
+                       change_probability, insert_probability, _passTimeTime,
+                       _zeroAddress, _maxWei, _minArrayLength=1):
     """
     Generate offspring, given a set of parent test-cases by applying \
     selection, crossover and mutation.
@@ -44,19 +44,20 @@ def generate_offspring(test_cases, SmartContract, accounts, _addresspool,
         if random.uniform(0, 1) <= crossover_probability:
             child1, child2 = crossover(parent1, parent2, SmartContract,
                                        accounts, deploying_accounts,
-                                       max_method_calls)
+                                       max_method_calls, _maxArrayLength,
+                                       _minArrayLength)
         else:
             child1 = copy.deepcopy(parent1)
             child2 = copy.deepcopy(parent2)
 
-        mutate(child1, accounts, _addresspool, _ETHpool, _intpool,
-               _stringpool, poss_methods, max_method_calls, remove_probability,
-               change_probability, insert_probability, _passTimeTime,
-               _zeroAddress, _maxWei)
-        mutate(child2, accounts, _addresspool, _ETHpool, _intpool,
-               _stringpool, poss_methods, max_method_calls, remove_probability,
-               change_probability, insert_probability, _passTimeTime,
-               _zeroAddress, _maxWei)
+        mutate(child1, accounts, _maxArrayLength, _addresspool, _ETHpool,
+               _intpool, _stringpool, poss_methods, max_method_calls,
+               remove_probability, change_probability, insert_probability,
+               _passTimeTime, _zeroAddress, _maxWei, _minArrayLength)
+        mutate(child2, accounts, _maxArrayLength, _addresspool, _ETHpool,
+               _intpool, _stringpool, poss_methods, max_method_calls,
+               remove_probability, change_probability, insert_probability,
+               _passTimeTime, _zeroAddress, _maxWei, _minArrayLength)
 
         if child1 == parent1:
             assert child2 == parent2, \
@@ -94,7 +95,8 @@ def tournament_selection(testCases, tournament_size):
 
 
 def crossover(testCase1, testCase2, SmartContract, accounts,
-              deploying_accounts, max_method_calls):
+              deploying_accounts, max_method_calls, _maxArrayLength,
+              _minArrayLength):
     """
     Given two test-cases, produces two chilren by applying single-point \
     crossover.
@@ -113,22 +115,25 @@ def crossover(testCase1, testCase2, SmartContract, accounts,
         testCase1.methodCalls[alpha_int:]
 
     ans1 = TestCase(
-        ans1_methodcalls, _random=False, SmartContract=SmartContract,
-        accounts=accounts, deploying_accounts=deploying_accounts,
+        ans1_methodcalls, _maxArrayLength=_maxArrayLength, _random=False,
+        SmartContract=SmartContract, accounts=accounts,
+        deploying_accounts=deploying_accounts, _minArrayLength=_minArrayLength,
         max_method_calls=max_method_calls)
     ans2 = TestCase(
-        ans2_methodcalls, _random=False, SmartContract=SmartContract,
-        accounts=accounts, deploying_accounts=deploying_accounts,
+        ans2_methodcalls, _maxArrayLength=_maxArrayLength, _random=False,
+        SmartContract=SmartContract, accounts=accounts,
+        deploying_accounts=deploying_accounts, _minArrayLength=_minArrayLength,
         max_method_calls=max_method_calls)
     return ans1, ans2
 
 # Each mutation type is applied with probability 1/3
 
 
-def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
-           poss_methods, max_method_calls, remove_probability,
-           change_probability, insert_probability, _passTimeTime, _zeroAddress,
-           _maxWei, val_dict={}):
+def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
+           _intpool, _stringpool, poss_methods, max_method_calls,
+           remove_probability, change_probability, insert_probability,
+           _passTimeTime, _zeroAddress, _maxWei, val_dict={},
+           _minArrayLength=1):
     """
     Mutate a given test case by removing one or more method calls, \
     changing the method calls input value or inserting new method calls.
@@ -223,8 +228,9 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
             methodName = methodCall.methodName
             new_methodCall = MethodCall(methodName, new_inputvars,
                                         new_fromAcc, new_value,
-                                        methodCall.payable,
-                                        _zeroAddress=_zeroAddress)
+                                        methodCall.payable, _maxArrayLength,
+                                        _zeroAddress=_zeroAddress,
+                                        _minArrayLength=_minArrayLength)
             testCase.methodCalls[i] = new_methodCall
     if random.uniform(0, 1) <= insert_probability:
         # Insert mutation
@@ -233,9 +239,10 @@ def mutate(testCase, accounts, _addresspool, _ETHpool, _intpool, _stringpool,
         while(add_new) & (len(testCase.methodCalls) < max_method_calls):
             new_methodCall = MethodCall(
                 None, None, None, None, _payable=None,
+                _maxArrayLength=_maxArrayLength,
                 methodDict=random.choice(poss_methods), accounts=accounts,
-                _addresspool=_addresspool, _ETHpool=_ETHpool,
-                _intpool=_intpool, _stringpool=_stringpool,
+                _minArrayLength=_minArrayLength, _addresspool=_addresspool,
+                _ETHpool=_ETHpool, _intpool=_intpool, _stringpool=_stringpool,
                 _passTimeTime=_passTimeTime, _zeroAddress=_zeroAddress,
                 _maxWei=_maxWei)
             if len(testCase.methodCalls) == 1:

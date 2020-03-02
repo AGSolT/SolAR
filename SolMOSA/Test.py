@@ -45,12 +45,12 @@ class TestCase():
     subvector_dist = 0
 
     def __init__(
-            self, _methodCalls, _random=False, SmartContract=None,
-            accounts=None, deploying_accounts=None, _addresspool=None,
-            _ETHpool=None, _intpool=None, _stringpool=None,
-            max_method_calls=None, min_method_calls=0, passBlocks=False,
-            passTime=False, passTimeTime=None, _zeroAddress=False,
-            _maxWei=10000000000000000000):
+            self, _methodCalls, _maxArrayLength, _random=False,
+            SmartContract=None, accounts=None, deploying_accounts=None,
+            _minArrayLength=1, _addresspool=None, _ETHpool=None, _intpool=None,
+            _stringpool=None, max_method_calls=None, min_method_calls=0,
+            passBlocks=False, passTime=False, passTimeTime=None,
+            _zeroAddress=False, _maxWei=10000000000000000000):
         """
         Initialise a test case, either by passing all of it's  properties \
         or initialise randomly by generating a random number of random \
@@ -93,10 +93,11 @@ class TestCase():
 
             methodCalls = [MethodCall(
                 _methodName=None, _inputvars=None, _fromAcc=None, _value=None,
-                _payable=None, methodDict=poss_methods[0], accounts=accounts,
+                _payable=None, _maxArrayLength=_maxArrayLength,
+                methodDict=poss_methods[0], accounts=accounts,
                 deploying_accounts=deploying_accounts,
-                _addresspool=_addresspool, _ETHpool=_ETHpool,
-                _intpool=_intpool, _stringpool=_stringpool,
+                _minArrayLength=_minArrayLength, _addresspool=_addresspool,
+                _ETHpool=_ETHpool, _intpool=_intpool, _stringpool=_stringpool,
                 _passTimeTime=passTimeTime, _zeroAddress=_zeroAddress,
                 _maxWei=_maxWei)]
 
@@ -111,12 +112,13 @@ class TestCase():
                 randMethod = random.choice(poss_methods)
                 methodCalls = methodCalls + [MethodCall(
                     _methodName=None, _inputvars=None, _fromAcc=None,
-                    _value=None, _payable=None, methodDict=randMethod,
+                    _value=None, _payable=None,
+                    _maxArrayLength=_maxArrayLength, methodDict=randMethod,
                     accounts=accounts, deploying_accounts=deploying_accounts,
-                    _addresspool=_addresspool, _ETHpool=_ETHpool,
-                    _intpool=_intpool, _stringpool=_stringpool,
-                    _passTimeTime=passTimeTime, _zeroAddress=_zeroAddress,
-                    _maxWei=_maxWei)]
+                    _minArrayLength=_minArrayLength, _addresspool=_addresspool,
+                    _ETHpool=_ETHpool, _intpool=_intpool,
+                    _stringpool=_stringpool, _passTimeTime=passTimeTime,
+                    _zeroAddress=_zeroAddress, _maxWei=_maxWei)]
 
             self.methodCalls = methodCalls
             self.returnVals = []
@@ -367,10 +369,11 @@ class MethodCall():
     payable = False
 
     def __init__(self, _methodName, _inputvars, _fromAcc, _value, _payable,
+                 _maxArrayLength,
                  methodDict=None, accounts=None, deploying_accounts=None,
-                 _addresspool=None, _ETHpool=None, _intpool=None,
-                 _stringpool=None, _passTimeTime=None, _zeroAddress=False,
-                 _maxWei=10000000000000000000):
+                 _minArrayLength=10, _addresspool=None, _ETHpool=None,
+                 _intpool=None, _stringpool=None, _passTimeTime=None,
+                 _zeroAddress=False, _maxWei=10000000000000000000):
         """Initialise a method call either by passing all of it's \
         properties or randomly by choosing the properties from within the \
         specified allowed values."""
@@ -397,8 +400,9 @@ class MethodCall():
                 for input in methodDict['inputs']:
                     inputvars = inputvars + \
                         [self.Random_Inputvar(
-                            input['type'], accounts, _addresspool, _ETHpool,
-                            _intpool, _stringpool, _zeroAddress)]
+                            input['type'], accounts, _maxArrayLength,
+                            _addresspool, _ETHpool, _intpool, _stringpool,
+                            _zeroAddress, _minArrayLength)]
                 self.inputvars = inputvars
             elif methodDict['type'] == 'passTime':
                 self.methodName = "passTime"
@@ -411,8 +415,9 @@ class MethodCall():
                 for input in methodDict['inputs']:
                     inputvars = inputvars + \
                         [self.Random_Inputvar(
-                            input['type'], accounts, _addresspool, _ETHpool,
-                            _intpool, _stringpool, _zeroAddress)]
+                            input['type'], accounts, _maxArrayLength,
+                            _addresspool, _ETHpool, _intpool, _stringpool,
+                            _zeroAddress, _minArrayLength)]
                 self.inputvars = inputvars
             else:
                 self.methodName = methodDict['name']
@@ -421,8 +426,9 @@ class MethodCall():
                 for input in methodDict['inputs']:
                     inputvars = inputvars + \
                         [self.Random_Inputvar(
-                            input['type'], accounts, _addresspool, _ETHpool,
-                            _intpool, _stringpool, _zeroAddress)]
+                            input['type'], accounts, _maxArrayLength,
+                            _addresspool, _ETHpool, _intpool, _stringpool,
+                            _zeroAddress, _minArrayLength)]
                 self.inputvars = inputvars
             if not methodDict['payable']:
                 self.value = 0
@@ -434,21 +440,22 @@ class MethodCall():
                     self.value = random.randint(0, _maxWei)
                 self.payable = True
 
-    def Random_Inputvar(self, varType, accounts, _addresspool, _ETHpool,
-                        _intpool, _stringpool, _zeroAddress):
+    def Random_Inputvar(self, varType, accounts, _maxArrayLength, _addresspool,
+                        _ETHpool, _intpool, _stringpool, _zeroAddress,
+                        _minArrayLength=1):
         """Generate a random allowed input variable given the the variable's \
         type."""
-        maxArrayLength = 10  # TODO: Make this a parameter.
-        minArrayLength = 1  # TODO: Make this a parameter.
+        maxArrayLength = _maxArrayLength  # TODO: Make this a parameter.
+        minArrayLength = _minArrayLength  # TODO: Make this a parameter.
         if varType[-1] == "]":
             # This is an array
             ArrayLength = random.randint(minArrayLength, maxArrayLength)
             ans = []
             for i in range(ArrayLength):
-                ans = ans + [self.Random_Inputvar(varType[:-2],
-                                                  accounts, _addresspool,
-                                                  _ETHpool, _intpool,
-                                                  _stringpool, _zeroAddress)]
+                ans = ans + [self.Random_Inputvar(
+                    varType[:-2], accounts, maxArrayLength, _addresspool,
+                    _ETHpool, _intpool, _stringpool, minArrayLength,
+                    _zeroAddress)]
             return ans
 
         elif varType == "bool":

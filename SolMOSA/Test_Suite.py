@@ -29,12 +29,12 @@ class TestSuite():
     intpool = None
     stringpool = None
 
-    def __init__(self, _SmartContract, _accounts, _deploying_accounts,
-                 _addresspool, _ETHpool, _intpool, _stringpool,
-                 _pop_size=50, _random=True, _tests=[], _max_method_calls=10,
-                 _min_method_calls=0, _passBlocks=False, _passTime=False,
-                 _passTimeTime=None, _zeroAddress=False,
-                 _maxWei=10000000000000000000):
+    def __init__(self, _SmartContract, _accounts, _maxArrayLength,
+                 _deploying_accounts, _addresspool, _ETHpool, _intpool,
+                 _stringpool, _pop_size=50, _random=True, _tests=[],
+                 _max_method_calls=10, _min_method_calls=0, _passBlocks=False,
+                 _passTime=False, _passTimeTime=None, _zeroAddress=False,
+                 _maxWei=10000000000000000000, _minArrayLength=1):
         """Initialise a Test Suite either randomlhy, or by \
         passing all of it's properties explicitly."""
         if not _random:
@@ -59,9 +59,11 @@ class TestSuite():
             tests = []
             for i in range(_pop_size):
                 tests = tests + \
-                    [TestCase(_methodCalls=None, _random=True,
+                    [TestCase(_methodCalls=None,
+                              _maxArrayLength=_maxArrayLength, _random=True,
                               SmartContract=_SmartContract, accounts=_accounts,
                               deploying_accounts=_deploying_accounts,
+                              _minArrayLength=_minArrayLength,
                               _addresspool=_addresspool, _ETHpool=_ETHpool,
                               _intpool=_intpool, _stringpool=_stringpool,
                               max_method_calls=_max_method_calls,
