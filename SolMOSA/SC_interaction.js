@@ -51,9 +51,15 @@ async function runTest(){
   for (var i = 0; i < methods.length; i++){
     last_block = await web3.eth.getBlock("latest");
     method = methods[i];
-    input_args = method.inputVars.map(toBigNumber);
     from = method.fromAcc;
     method_name = method.name;
+    if(method_name != 'passTime'){
+      input_args = method.inputVars.map(toBigNumber);
+    }
+    else{
+      // evm_increaseTime cannot handle BigNumbers.
+      input_args = method.inputVars;
+    }
     value = toBigNumber(method.value);
 
     if(method.name == 'constructor'){
@@ -75,6 +81,8 @@ async function runTest(){
     }
     else if (method_name.substring(0,8) == 'passTime') {
       web3.currentProvider.send({method: "evm_increaseTime", params: input_args},function(err, result){});
+      var tempBlock = await web3.eth.getBlock("latest");
+      console.log(tempBlock);
       ans.push(method_name);
       returnvals.push(method_name);
       continue;
