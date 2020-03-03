@@ -265,23 +265,24 @@ def mutate_string(s):
     Outputs:
      - s_out: the string after mutation.
     """
-    # remove
-    if random.uniform(0, 1) <= 1 / 3:
-        s_out = ""
-        del_prob = 1 / len(s)
-        for i in range(len(s)):
-            if random.uniform(0, 1) > del_prob:
-                s_out = s_out + s[i]
-    else:
-        s_out = s
+    if len(s) > 0:
+        # remove
+        if random.uniform(0, 1) <= 1 / 3:
+            s_out = ""
+            del_prob = 1 / len(s)
+            for i in range(len(s)):
+                if random.uniform(0, 1) > del_prob:
+                    s_out = s_out + s[i]
+        else:
+            s_out = s
 
-    # change
-    if random.uniform(0, 1) <= 1 / 3:
-        change_prob = 0.95
-        for i in range(len(s_out)):
-            if random.uniform(0, 1) <= change_prob:
-                s_out = s_out[:i] + random.choice(
-                    string.ascii_letters + """ """) + s_out[i + 1:]
+        # change
+        if random.uniform(0, 1) <= 1 / 3:
+            change_prob = 0.95
+            for i in range(len(s_out)):
+                if random.uniform(0, 1) <= change_prob:
+                    s_out = s_out[:i] + random.choice(
+                        string.ascii_letters + """ """) + s_out[i + 1:]
 
     # insert
     if random.uniform(0, 1) <= 1 / 3:
