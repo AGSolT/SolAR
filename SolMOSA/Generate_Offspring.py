@@ -286,6 +286,7 @@ def mutate_string(s):
 
     # insert
     if random.uniform(0, 1) <= 1 / 3:
+        s_out = s
         # Insert mutation
         add_new = True
         prop = 0
