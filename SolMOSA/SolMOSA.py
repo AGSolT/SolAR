@@ -227,7 +227,7 @@ def SolMOSA(config):
             maxWei, minArrayLength)
 
         tSuite = TestSuite(sc, accounts, _maxArrayLength=maxArrayLength,
-                           deploying_accounts=deploying_accounts,
+                           _deploying_accounts=deploying_accounts,
                            _addresspool=addresspool, _ETHpool=ETHpool,
                            _intpool=intpool, _stringpool=stringpool,
                            _pop_size=population_size, _random=False,
