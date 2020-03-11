@@ -144,13 +144,13 @@ def main():
                         # Clear old blockchain from the /tmp directory
                         callstring = "rm -r /tmp/tmp-*"
                         subprocess.call(callstring, shell=True)
-                        logging.debug("Folder Sizes in / after resetting\
-                         Ganache")
+                        logging.debug("Folder Sizes in / after resetting"
+                                      "Ganache")
                         log_du("/")
                         logging.debug("Sizes in /tmp/")
                         log_du("/tmp/")
-                        logging.debug("Folder Sizes in / after resetting\
-                         Ganache")
+                        logging.debug("Folder Sizes in / after resetting"
+                                      "Ganache")
                         log_du("/")
                         logging.debug("Sizes in /tmp/")
                         log_du("/tmp/")
