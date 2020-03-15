@@ -249,7 +249,8 @@ class TestCase():
                     visited = visited.union({curNode})
                     assert curNode != nextNode, \
                         f"The nextNode that was found: {nextNode.node_id} "\
-                        f"was the same as the curNode: {curNode.node_id}."
+                        f"was the same as the curNode: {curNode.node_id} "\
+                        f"when calling {methodCall}."
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):

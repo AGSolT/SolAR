@@ -1,17 +1,21 @@
-from CDG import *
-from Test_Suite import *
-from Test import *
-import ast, random, copy
+"""Implements the DynaMOSA preference sorting algorithm(s)."""
+
 
 def preference_sorting(test_cases, updated_targets, pop_size):
     """
-    Identifies non-dominated Pareto fronts from the current generation of test-cases. The 0-th non-dominated Pareto front is found using the preference criterion.
+    Identify non-dominated Pareto fronts from the current generation of \
+    test-cases. The 0-th non-dominated Pareto front is found using the \
+    preference criterion.
+
     Inputs:
         - test_cases: The current generation of test cases.
         - updated_targets: The currently relevant targets.
-        - pop_size: The population size, the function can stop if enough non-dominated Pareto fronts have been identified to form the next generation.
+        - pop_size: The population size, the function can stop if enough \
+          non-dominated Pareto fronts have been identified to form the next \
+          generation.
     Outputs:
-        - Fs: An ordered list containing sets F, each F is a non-dominated Pareto front.
+        - Fs: An ordered list containing sets F, each F is a non-dominated \
+              Pareto front.
     """
     P = set(test_cases)
     F = set()
@@ -23,39 +27,49 @@ def preference_sorting(test_cases, updated_targets, pop_size):
             F.add(t_best)
     P = P - F
     Fs = Fs + [F]
-    if len(F)>pop_size:
+    if len(F) > pop_size:
         F = P
         Fs = Fs + [F]
     else:
         Fs = Fs + fast_non_dominated_sort(P, updated_targets)
     return Fs
 
+
 def prefered(test_cases, i):
     """
-    Identifies the "best test-case" for a given target in accordance with the preference criterion.
+    Identify the "best test-case" for a given target in accordance with the \
+    preference criterion.
+
     Inputs:
         - test_cases: The current generation of test cases.
         - i: The index of the target to cover.
     Outputs:
-        - best_test: the best test-case for the given target in accordance with the preference criterion.
+        - best_test: the best test-case for the given target in accordance \
+          with the preference criterion.
     """
     test_cases = list(test_cases)
     best_test = test_cases[0]
     for tCase in test_cases[1:]:
         if tCase.distance_vector[i] < best_test.distance_vector[i]:
             best_test = tCase
-        elif (tCase.distance_vector[i] == best_test.distance_vector[i]) & (len(tCase.methodCalls) < len(best_test.methodCalls)):
+        elif (tCase.distance_vector[i] == best_test.distance_vector[i]) & \
+                (len(tCase.methodCalls) < len(best_test.methodCalls)):
             best_test = tCase
     return best_test
 
+
 def fast_non_dominated_sort(test_cases, updated_targets):
     """
-    Identifies non-dominated Pareto fronts.
+    Identify non-dominated Pareto fronts.
+
     Inputs:
-        - test_cases: the current generation of test-cases that are not in the 0-th non-dominated Pareto front.
-        - updated_targets: The targets that are reached but not have not yet been covered.
+        - test_cases: the current generation of test-cases that are not in \
+                      the 0-th non-dominated Pareto front.
+        - updated_targets: The targets that are reached but not have not yet \
+                           been covered.
     Outputs:
-        - Fs: An ordered list containing sets F, each F is a non-dominated Pareto front.
+        - Fs: An ordered list containing sets F, each F is a non-dominated \
+              Pareto front.
     """
     Fs = []
     F = set()
@@ -91,12 +105,17 @@ def fast_non_dominated_sort(test_cases, updated_targets):
         Fs.append(F)
     return Fs
 
+
 def dominance_comparator(p, q, updated_targets):
     """
-    Given two test cases with their respected distance_vectors and the list of targets that are reached but have not yet been covered determines whether one test-case dominates the other or not.
+    Determine whether one test-case dominates the other or no, given two test \
+    cases with their respected distance_vectors and the list of targets that \
+    are reached but have not yet been covered .
+
     Inputs:
         - p, q: Two test cases to compare
-        - updated_targets: The targets on which p and q should be compared for domination.
+        - updated_targets: The targets on which p and q should be compared \
+        for domination.
     Outputs:
         - 2 if p dominates q
         - 1 if q dominates p
@@ -120,12 +139,15 @@ def dominance_comparator(p, q, updated_targets):
     else:
         return 0
 
+
 def subvector_dist(F, updated_targets):
     """
-    Calculates the subvector distance for a given non-dominated front.
+    Calculate and set the subvector distance for a given non-dominated front.
+
     Inputs:
         - F: A non-dominated set of test-cases.
-        - updated_targets: The list of targets on which to compare the test-cases.
+        - updated_targets: The list of targets on which to compare the \
+                           test-cases.
     """
     for p in F:
         dist = 0
