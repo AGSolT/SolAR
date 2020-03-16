@@ -133,8 +133,13 @@ async function runTest(){
           continue;
         }
         // Revert errors are good and should still be processed!
+        else if(err.toString().search("Error: invalid address")!=-1){
+          console.log(`Tried to interact with an invalid address which returned error: ${err}`);
+          ans.push("Invalid Address");
+          returnvals.push("Invalid Address");
+          continue;
+        }
         else if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
-          console.log(err.toString().search("sender doesn't have enough funds to send tx"))
           throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
         }
         else{

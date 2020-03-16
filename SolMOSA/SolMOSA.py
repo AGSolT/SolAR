@@ -72,6 +72,7 @@ def SolMOSA(config):
     ignorefunctionNames = eval(config['Parameters']['IgnoreFunctions'])
     ignoreStateVariables = eval(config['Parameters']['ignoreStateVariables'])
     zeroAddress = config['Parameters']['zeroAddress'] == "True"
+    nonExistantAccount = config['Parameters']['nonExistantAccount']
 
     # Parameters for mutating test cases
     crossover_probability\
@@ -124,6 +125,7 @@ def SolMOSA(config):
                        _min_method_calls=min_method_calls,
                        _passBlocks=passBlocks, _passTime=passTime,
                        _passTimeTime=passTimeTime, _zeroAddress=zeroAddress,
+                       _nonExistantAccount=nonExistantAccount,
                        _maxWei=maxWei, _minArrayLength=minArrayLength)
 
     logging.info("Smart Contract Under investigation: {}"
@@ -224,7 +226,7 @@ def SolMOSA(config):
             population_size, min(tournament_size, population_size),
             max_method_calls, crossover_probability, remove_probability,
             change_probability, insert_probability, passTimeTime, zeroAddress,
-            maxWei, minArrayLength)
+            nonExistantAccount, maxWei, minArrayLength)
 
         tSuite = TestSuite(sc, accounts, _maxArrayLength=maxArrayLength,
                            _deploying_accounts=deploying_accounts,
@@ -235,6 +237,7 @@ def SolMOSA(config):
                            _max_method_calls=max_method_calls,
                            _min_method_calls=min_method_calls,
                            _zeroAddress=zeroAddress,
+                           _nonExistantAccount=nonExistantAccount,
                            _minArrayLength=minArrayLength)
 
         test_inputs = tSuite.generate_test_inputs()

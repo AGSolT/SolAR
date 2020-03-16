@@ -11,6 +11,7 @@ import string
 import math
 import logging
 import re
+import sys
 import numpy as np
 
 
@@ -50,7 +51,8 @@ class TestCase():
             _minArrayLength=1, _addresspool=None, _ETHpool=None, _intpool=None,
             _stringpool=None, max_method_calls=None, min_method_calls=0,
             passBlocks=False, passTime=False, passTimeTime=None,
-            _zeroAddress=False, _maxWei=10000000000000000000):
+            _zeroAddress=False, _nonExistantAccount=None,
+            _maxWei=10000000000000000000):
         """
         Initialise a test case, either by passing all of it's  properties \
         or initialise randomly by generating a random number of random \
@@ -59,6 +61,8 @@ class TestCase():
         When a testcase is created, it never has distances
         assigned to it or any information about domination.
         """
+        if _nonExistantAccount is None:
+            sys.exit("_nonExistantAccount is None for TestCase")
         if not _random:
             self.methodCalls = _methodCalls
             self.returnVals = []
@@ -99,7 +103,7 @@ class TestCase():
                 _minArrayLength=_minArrayLength, _addresspool=_addresspool,
                 _ETHpool=_ETHpool, _intpool=_intpool, _stringpool=_stringpool,
                 _passTimeTime=passTimeTime, _zeroAddress=_zeroAddress,
-                _maxWei=_maxWei)]
+                _nonExistantAccount=_nonExistantAccount, _maxWei=_maxWei)]
 
             poss_methods.pop(0)
             assert len(poss_methods) > 0, \
@@ -118,7 +122,8 @@ class TestCase():
                     _minArrayLength=_minArrayLength, _addresspool=_addresspool,
                     _ETHpool=_ETHpool, _intpool=_intpool,
                     _stringpool=_stringpool, _passTimeTime=passTimeTime,
-                    _zeroAddress=_zeroAddress, _maxWei=_maxWei)]
+                    _zeroAddress=_zeroAddress,
+                    _nonExistantAccount=_nonExistantAccount, _maxWei=_maxWei)]
 
             self.methodCalls = methodCalls
             self.returnVals = []
@@ -205,6 +210,12 @@ class TestCase():
                 # This did not yield a result
                 logging.warning("An account ran out of Ether! Check out the "
                                 "blockchain log for more info.")
+                pass
+            elif methodResult == "Invalid Address":
+                # This did not yield a result
+                logging.warning(f"Passing an invalid address to "
+                                f"{methodCall.methodName}"
+                                f"resulted in an invalid address error.")
                 pass
             else:
                 curNode = next((cNode for cNode in
@@ -372,12 +383,16 @@ class MethodCall():
     def __init__(self, _methodName, _inputvars, _fromAcc, _value, _payable,
                  _maxArrayLength,
                  methodDict=None, accounts=None, deploying_accounts=None,
-                 _minArrayLength=10, _addresspool=None, _ETHpool=None,
+                 _minArrayLength=1, _addresspool=None, _ETHpool=None,
                  _intpool=None, _stringpool=None, _passTimeTime=None,
-                 _zeroAddress=False, _maxWei=10000000000000000000):
+                 _zeroAddress=False, _nonExistantAccount=None,
+                 _maxWei=10000000000000000000):
         """Initialise a method call either by passing all of it's \
         properties or randomly by choosing the properties from within the \
         specified allowed values."""
+        if _nonExistantAccount is None:
+            sys.exit(f"_nonExistantAccount is None in MethodCall!")
+
         if methodDict is None:
             self.methodName = _methodName
             self.inputvars = _inputvars
@@ -403,7 +418,8 @@ class MethodCall():
                         [self.Random_Inputvar(
                             input['type'], accounts, _maxArrayLength,
                             _addresspool, _ETHpool, _intpool, _stringpool,
-                            _zeroAddress, _minArrayLength)]
+                            _nonExistantAccount, _zeroAddress,
+                            _minArrayLength)]
                 self.inputvars = inputvars
             elif methodDict['type'] == 'passTime':
                 self.methodName = "passTime"
@@ -418,7 +434,8 @@ class MethodCall():
                         [self.Random_Inputvar(
                             input['type'], accounts, _maxArrayLength,
                             _addresspool, _ETHpool, _intpool, _stringpool,
-                            _zeroAddress, _minArrayLength)]
+                            _nonExistantAccount, _zeroAddress,
+                            _minArrayLength)]
                 self.inputvars = inputvars
             else:
                 self.methodName = methodDict['name']
@@ -429,7 +446,8 @@ class MethodCall():
                         [self.Random_Inputvar(
                             input['type'], accounts, _maxArrayLength,
                             _addresspool, _ETHpool, _intpool, _stringpool,
-                            _zeroAddress, _minArrayLength)]
+                            _zeroAddress, _nonExistantAccount,
+                            _minArrayLength)]
                 self.inputvars = inputvars
             if not methodDict['payable']:
                 self.value = 0
@@ -439,11 +457,13 @@ class MethodCall():
                     self.value = random.choice(tuple(_ETHpool))
                 else:
                     self.value = random.randint(0, _maxWei)
+                assert isinstance(self.value, int), "A transaction value of " \
+                    f"{self.value} is trying to be set!"
                 self.payable = True
 
     def Random_Inputvar(self, varType, accounts, _maxArrayLength, _addresspool,
                         _ETHpool, _intpool, _stringpool, _zeroAddress,
-                        _minArrayLength=1):
+                        _nonExistantAccount, _minArrayLength=1):
         """Generate a random allowed input variable given the the variable's \
         type."""
         maxArrayLength = _maxArrayLength  # TODO: Make this a parameter.
@@ -456,7 +476,7 @@ class MethodCall():
                 ans = ans + [self.Random_Inputvar(
                     varType[:-2], accounts, maxArrayLength, _addresspool,
                     _ETHpool, _intpool, _stringpool, minArrayLength,
-                    _zeroAddress)]
+                    _nonExistantAccount, _zeroAddress)]
             return ans
 
         elif varType == "bool":
@@ -503,6 +523,8 @@ class MethodCall():
             if (len(_addresspool) > 0) & (random.uniform(0, 1) < 0.5):
                 # Return an address from the pool.
                 return random.choice(tuple(_addresspool))
+            elif _nonExistantAccount is not None:
+                return random.choice(accounts + [_nonExistantAccount])
             else:
                 return random.choice(accounts)
         elif varType == "string":

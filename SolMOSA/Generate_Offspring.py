@@ -14,7 +14,8 @@ def generate_offspring(test_cases, SmartContract, accounts, _maxArrayLength,
                        tournament_size, max_method_calls,
                        crossover_probability, remove_probability,
                        change_probability, insert_probability, _passTimeTime,
-                       _zeroAddress, _maxWei, _minArrayLength=1):
+                       _zeroAddress, _nonExistantAccount, _maxWei,
+                       _minArrayLength=1):
     """
     Generate offspring, given a set of parent test-cases by applying \
     selection, crossover and mutation.
@@ -45,7 +46,7 @@ def generate_offspring(test_cases, SmartContract, accounts, _maxArrayLength,
             child1, child2 = crossover(parent1, parent2, SmartContract,
                                        accounts, deploying_accounts,
                                        max_method_calls, _maxArrayLength,
-                                       _minArrayLength)
+                                       _minArrayLength, _nonExistantAccount)
         else:
             child1 = copy.deepcopy(parent1)
             child2 = copy.deepcopy(parent2)
@@ -53,11 +54,13 @@ def generate_offspring(test_cases, SmartContract, accounts, _maxArrayLength,
         mutate(child1, accounts, _maxArrayLength, _addresspool, _ETHpool,
                _intpool, _stringpool, poss_methods, max_method_calls,
                remove_probability, change_probability, insert_probability,
-               _passTimeTime, _zeroAddress, _maxWei, _minArrayLength)
+               _passTimeTime, _zeroAddress, _nonExistantAccount,
+               _maxWei, _minArrayLength)
         mutate(child2, accounts, _maxArrayLength, _addresspool, _ETHpool,
                _intpool, _stringpool, poss_methods, max_method_calls,
                remove_probability, change_probability, insert_probability,
-               _passTimeTime, _zeroAddress, _maxWei, _minArrayLength)
+               _passTimeTime, _zeroAddress, _nonExistantAccount,
+               _maxWei, _minArrayLength)
 
         if child1 == parent1:
             assert child2 == parent2, \
@@ -96,7 +99,7 @@ def tournament_selection(testCases, tournament_size):
 
 def crossover(testCase1, testCase2, SmartContract, accounts,
               deploying_accounts, max_method_calls, _maxArrayLength,
-              _minArrayLength):
+              _minArrayLength, _nonExistantAccount):
     """
     Given two test-cases, produces two chilren by applying single-point \
     crossover.
@@ -118,12 +121,14 @@ def crossover(testCase1, testCase2, SmartContract, accounts,
         ans1_methodcalls, _maxArrayLength=_maxArrayLength, _random=False,
         SmartContract=SmartContract, accounts=accounts,
         deploying_accounts=deploying_accounts, _minArrayLength=_minArrayLength,
-        max_method_calls=max_method_calls)
+        max_method_calls=max_method_calls,
+        _nonExistantAccount=_nonExistantAccount)
     ans2 = TestCase(
         ans2_methodcalls, _maxArrayLength=_maxArrayLength, _random=False,
         SmartContract=SmartContract, accounts=accounts,
         deploying_accounts=deploying_accounts, _minArrayLength=_minArrayLength,
-        max_method_calls=max_method_calls)
+        max_method_calls=max_method_calls,
+        _nonExistantAccount=_nonExistantAccount)
     return ans1, ans2
 
 # Each mutation type is applied with probability 1/3
@@ -132,8 +137,8 @@ def crossover(testCase1, testCase2, SmartContract, accounts,
 def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
            _intpool, _stringpool, poss_methods, max_method_calls,
            remove_probability, change_probability, insert_probability,
-           _passTimeTime, _zeroAddress, _maxWei, val_dict={},
-           _minArrayLength=1):
+           _passTimeTime, _zeroAddress, _nonExistantAccount,
+           _maxWei, val_dict={}, _minArrayLength=1):
     """
     Mutate a given test case by removing one or more method calls, \
     changing the method calls input value or inserting new method calls.
@@ -192,18 +197,19 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                                     delta = random.choice(range(1, 11))
                                     if random.uniform(0, 1) <= 0.5:
                                         new_inputvar = \
-                                            max(0, old_inputvar - delta)
+                                            int(max(0, old_inputvar - delta))
                                     else:
                                         new_inputvar = \
-                                            min(255, old_inputvar + delta)
+                                            int(min(255, old_inputvar + delta))
                                 elif isinstance(old_inputvar, str):
                                     if old_inputvar in accounts + [
                                         "0x00000000000000000000000000000000000"
-                                            "00000"]:
+                                            "00000"] + [_nonExistantAccount]:
                                         new_inputvar = random.choice(
                                             accounts + [
                                                 "0x000000000000000000000000000"
-                                                "0000000000000"])
+                                                "0000000000000"] +
+                                            [_nonExistantAccount])
                                     else:
                                         new_inputvar = \
                                             mutate_string(old_inputvar)
@@ -221,16 +227,18 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                     if random.uniform(0, 1) <= 0.05:  # mutate value
                         delta = random.uniform(0, _maxWei) * 0.1
                         if random.uniform(0, 1) <= 0.5:
-                            new_value = max(0, old_value - delta)
+                            new_value = int(max(0, old_value - delta))
                         else:
-                            new_value = min(_maxWei, old_value + delta)
+                            new_value = int(min(_maxWei, old_value + delta))
 
             methodName = methodCall.methodName
             new_methodCall = MethodCall(methodName, new_inputvars,
                                         new_fromAcc, new_value,
                                         methodCall.payable, _maxArrayLength,
+                                        _minArrayLength=_minArrayLength,
                                         _zeroAddress=_zeroAddress,
-                                        _minArrayLength=_minArrayLength)
+                                        _nonExistantAccount=_nonExistantAccount
+                                        )
             testCase.methodCalls[i] = new_methodCall
     if random.uniform(0, 1) <= insert_probability:
         # Insert mutation
@@ -244,6 +252,7 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                 _minArrayLength=_minArrayLength, _addresspool=_addresspool,
                 _ETHpool=_ETHpool, _intpool=_intpool, _stringpool=_stringpool,
                 _passTimeTime=_passTimeTime, _zeroAddress=_zeroAddress,
+                _nonExistantAccount=_nonExistantAccount,
                 _maxWei=_maxWei)
             if len(testCase.methodCalls) == 1:
                 loc = 1

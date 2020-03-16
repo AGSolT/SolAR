@@ -6,6 +6,7 @@ cases."""
 import pickle
 # import ast
 import logging
+import sys
 from Test import TestCase
 
 
@@ -34,9 +35,12 @@ class TestSuite():
                  _stringpool, _pop_size=50, _random=True, _tests=[],
                  _max_method_calls=10, _min_method_calls=0, _passBlocks=False,
                  _passTime=False, _passTimeTime=None, _zeroAddress=False,
-                 _maxWei=10000000000000000000, _minArrayLength=1):
+                 _nonExistantAccount=None, _maxWei=10000000000000000000,
+                 _minArrayLength=1):
         """Initialise a Test Suite either randomlhy, or by \
         passing all of it's properties explicitly."""
+        if _nonExistantAccount is None:
+            sys.exit("_nonExistantAccount is None in TestSuite.")
         if not _random:
             self.smartContract = _SmartContract
             self.tests = _tests
@@ -70,7 +74,9 @@ class TestSuite():
                               min_method_calls=_min_method_calls,
                               passBlocks=_passBlocks, passTime=_passTime,
                               passTimeTime=_passTimeTime,
-                              _zeroAddress=_zeroAddress, _maxWei=_maxWei)]
+                              _zeroAddress=_zeroAddress,
+                              _nonExistantAccount=_nonExistantAccount,
+                              _maxWei=_maxWei)]
             self.tests = tests
 
     def show_tests(self, _top_n=None, log=False):
