@@ -11,7 +11,7 @@ import string
 import math
 import logging
 import re
-import sys
+# import sys
 import numpy as np
 
 
@@ -61,8 +61,6 @@ class TestCase():
         When a testcase is created, it never has distances
         assigned to it or any information about domination.
         """
-        if _nonExistantAccount is None:
-            sys.exit("_nonExistantAccount is None for TestCase")
         if not _random:
             self.methodCalls = _methodCalls
             self.returnVals = []
@@ -194,8 +192,8 @@ class TestCase():
             - approach_levels:  The approach levels between all the branches in
                                 the smart contract.
         """
-        assert(len(self.methodCalls) == len(methodResults)
-               ), "There should be equally many methodCalls and methodResults!"
+        assert len(self.methodCalls) == len(methodResults), \
+            "There should be equally many methodCalls and methodResults!"
         edgeset = set()
         test_scores = np.empty(len(compactEdges))
         test_scores.fill(math.inf)
@@ -390,9 +388,6 @@ class MethodCall():
         """Initialise a method call either by passing all of it's \
         properties or randomly by choosing the properties from within the \
         specified allowed values."""
-        if _nonExistantAccount is None:
-            sys.exit(f"_nonExistantAccount is None in MethodCall!")
-
         if methodDict is None:
             self.methodName = _methodName
             self.inputvars = _inputvars
@@ -457,8 +452,6 @@ class MethodCall():
                     self.value = random.choice(tuple(_ETHpool))
                 else:
                     self.value = random.randint(0, _maxWei)
-                assert isinstance(self.value, int), "A transaction value of " \
-                    f"{self.value} is trying to be set!"
                 self.payable = True
 
     def Random_Inputvar(self, varType, accounts, _maxArrayLength, _addresspool,

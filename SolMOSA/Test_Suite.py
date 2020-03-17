@@ -39,8 +39,6 @@ class TestSuite():
                  _minArrayLength=1):
         """Initialise a Test Suite either randomlhy, or by \
         passing all of it's properties explicitly."""
-        if _nonExistantAccount is None:
-            sys.exit("_nonExistantAccount is None in TestSuite.")
         if not _random:
             self.smartContract = _SmartContract
             self.tests = _tests

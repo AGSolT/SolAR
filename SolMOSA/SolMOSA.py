@@ -73,6 +73,8 @@ def SolMOSA(config):
     ignoreStateVariables = eval(config['Parameters']['ignoreStateVariables'])
     zeroAddress = config['Parameters']['zeroAddress'] == "True"
     nonExistantAccount = config['Parameters']['nonExistantAccount']
+    if nonExistantAccount == 'None':
+        nonExistantAccount = None
 
     # Parameters for mutating test cases
     crossover_probability\

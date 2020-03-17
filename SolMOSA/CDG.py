@@ -841,7 +841,7 @@ class CDG():
             w = next((compactNode for compactNode in
                       self.CompactNodes if compactNode.node_id == w_id), None)
             if w is None:
-                print("This is the node I cannot find children for.")
+                logging.error("This is the node I cannot find children for.")
                 v.show_CompactNode()
             assert w is not None, "No child node was found!"
             if w.semi == 0:
