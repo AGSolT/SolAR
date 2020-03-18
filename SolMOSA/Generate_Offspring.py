@@ -215,43 +215,43 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                                             new_inputvar = random.choice(
                                                 accounts + [
                                                     "0x0000000000000000000"
-                                                    "000000000000000000000"]
+                                                    "000000000000000000000"])
                                     else:
-                                        new_inputvar=mutate_string(
-                                        old_inputvar)
+                                        new_inputvar = mutate_string(
+                                            old_inputvar)
                                 else:
-                                    assert False,
-                                        "Unknown input variable type: {}".
-                                        format(old_inputvar)
+                                    assert False, \
+                                        "Unknown input variable type: {}"
+                                    format(old_inputvar)
                                 if pos > -1:
-                                    old_inputvarlist[pos]=new_inputvar
-                                    new_inputvar=old_inputvarlist
-                                new_inputvars[j]=new_inputvar
+                                    old_inputvarlist[pos] = new_inputvar
+                                    new_inputvar = old_inputvarlist
+                                new_inputvars[j] = new_inputvar
                 if random.uniform(0, 1) <= 0.05:  # mutate fromAcc
-                    new_fromAcc=random.choice(accounts)
+                    new_fromAcc = random.choice(accounts)
                 if methodCall.payable:
                     if random.uniform(0, 1) <= 0.05:  # mutate value
-                        delta=random.uniform(0, _maxWei) * 0.1
+                        delta = random.uniform(0, _maxWei) * 0.1
                         if random.uniform(0, 1) <= 0.5:
-                            new_value=int(max(0, old_value - delta))
+                            new_value = int(max(0, old_value - delta))
                         else:
-                            new_value=int(min(_maxWei, old_value + delta))
+                            new_value = int(min(_maxWei, old_value + delta))
 
-            methodName=methodCall.methodName
-            new_methodCall=MethodCall(methodName, new_inputvars,
+            methodName = methodCall.methodName
+            new_methodCall = MethodCall(methodName, new_inputvars,
                                         new_fromAcc, new_value,
                                         methodCall.payable, _maxArrayLength,
                                         _minArrayLength=_minArrayLength,
                                         _zeroAddress=_zeroAddress,
                                         _nonExistantAccount=_nonExistantAccount
                                         )
-            testCase.methodCalls[i]=new_methodCall
+            testCase.methodCalls[i] = new_methodCall
     if random.uniform(0, 1) <= insert_probability:
         # Insert mutation
-        add_new=True
-        prop=0
+        add_new = True
+        prop = 0
         while(add_new) & (len(testCase.methodCalls) < max_method_calls):
-            new_methodCall=MethodCall(
+            new_methodCall = MethodCall(
                 None, None, None, None, _payable=None,
                 _maxArrayLength=_maxArrayLength,
                 methodDict=random.choice(poss_methods), accounts=accounts,
@@ -261,12 +261,12 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                 _nonExistantAccount=_nonExistantAccount,
                 _maxWei=_maxWei)
             if len(testCase.methodCalls) == 1:
-                loc=1
+                loc = 1
             else:
-                loc=random.choice(range(1, len(testCase.methodCalls)))
+                loc = random.choice(range(1, len(testCase.methodCalls)))
             testCase.methodCalls.insert(loc, new_methodCall)
             prop += 1
-            add_new=random.uniform(0, 1) <= 0.5**prop
+            add_new = random.uniform(0, 1) <= 0.5**prop
     return
 
 
@@ -280,36 +280,36 @@ def mutate_string(s):
     Outputs:
      - s_out: the string after mutation.
     """
-    s_out=s
+    s_out = s
     if len(s) > 0:
         # remove
         if random.uniform(0, 1) <= 1 / 3:
-            s_out=""
-            del_prob=1 / len(s)
+            s_out = ""
+            del_prob = 1 / len(s)
             for i in range(len(s)):
                 if random.uniform(0, 1) > del_prob:
-                    s_out=s_out + s[i]
+                    s_out = s_out + s[i]
         else:
-            s_out=s
+            s_out = s
 
         # change
         if random.uniform(0, 1) <= 1 / 3:
-            change_prob=0.95
+            change_prob = 0.95
             for i in range(len(s_out)):
                 if random.uniform(0, 1) <= change_prob:
-                    s_out=s_out[:i] + random.choice(
+                    s_out = s_out[:i] + random.choice(
                         string.ascii_letters + """ """) + s_out[i + 1:]
 
     # insert
     if random.uniform(0, 1) <= 1 / 3:
         # Insert mutation
-        add_new=True
-        prop=0
+        add_new = True
+        prop = 0
         while(add_new) & (len(s_out) < 256):
-            new_char=random.choice(string.ascii_letters + """ """)
-            loc=random.choice(range(0, max(len(s_out), 1)))
-            s_out=s_out[:loc] + new_char + s_out[loc:]
+            new_char = random.choice(string.ascii_letters + """ """)
+            loc = random.choice(range(0, max(len(s_out), 1)))
+            s_out = s_out[:loc] + new_char + s_out[loc:]
             prop += 1
-            add_new=random.uniform(0, 1) <= 0.5**prop
+            add_new = random.uniform(0, 1) <= 0.5**prop
 
     return s_out

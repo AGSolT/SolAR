@@ -205,8 +205,8 @@ def SolMOSA(config):
         # Otherwise, log the branches that still need to be covered.
         finished = True
         for k, relTest in enumerate(archive):
+            logging.info("Still need to cover:")
             if (relTest is None) & (relevant_targets[k]):
-                logging.info("Still need to cover:")
                 cdg.CompactEdges[k].show_CompactEdge(log=True)
                 finished = False
         if finished:
