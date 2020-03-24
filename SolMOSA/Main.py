@@ -341,16 +341,17 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
         rapport = f"""Contract:\t\t\t{contractName}\n"""
         nrBranchesCovered = len(
             [best_test for best_test in best_tests if best_test is not None])
-        f"""Number of Relevant Branches:\t{sum(relevant_branches)}\n"""
-        f"""Number of Branches Covered:\t\t{nrBranchesCovered}\n"""
-        f"""Runtime: \t\t\t\t\t\t\t\t\t\t\t{run_time}\n"""
-        f"""Blockchain Time: \t\t\t\t\t\t\t{blockchain_time}\n"""
-        f"""Iterations\t\t\t\t\t\t\t\t\t\t\n{iterations}"""
-        """\n--------------------------------------------------\n"""
-        """METHODS:\n\n"""
-        """Constructor:\n\tInputs :"""
-        f"""{tSuite.smartContract.methods[0]['inputs']}\n"""
-        f"""\tPayable: {h}"""
+        rapport = rapport + f"""Number of Relevant Branches:\t"""\
+            f"""{sum(relevant_branches)}\n"""\
+            f"""Number of Branches Covered:\t\t{nrBranchesCovered}\n"""\
+            f"""Runtime: \t\t\t\t\t\t\t\t\t\t\t{run_time}\n"""\
+            f"""Blockchain Time: \t\t\t\t\t\t\t{blockchain_time}\n"""\
+            f"""Iterations\t\t\t\t\t\t\t\t\t\t\n{iterations}"""\
+            """\n--------------------------------------------------\n"""\
+            """METHODS:\n\n"""\
+            """Constructor:\n\tInputs :"""\
+            f"""{tSuite.smartContract.methods[0]['inputs']}\n"""\
+            f"""\tPayable: {h}"""\
 
         for method in tSuite.smartContract.methods[1:]:
             methodstring = f"""\n{method['name']}:\n"""
@@ -365,7 +366,6 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
             TESTS:"""
         archive = archives[-1]
         for testCase in archive:
-            # ADD THIS:  & (testCase not in shown_tests)
             if (testCase is not None):
                 shown_tests = shown_tests + [testCase]
                 teststring = """\n"""

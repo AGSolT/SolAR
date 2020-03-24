@@ -10,6 +10,8 @@ CDG:            A Control-Dependency-Graph.
 """
 
 import logging
+import configparser
+import re
 # import sys
 # import numpy as np
 from evm_cfg_builder.cfg import CFG
@@ -626,16 +628,32 @@ class CDG():
     def Remove_Invalid_Nodes(self, _compactNodes):
         """Remove nodes that are just "INVALID" as they will never be reached \
         by generated tests will never hit nodes that are just "INVALID."""
+        config = configparser.ConfigParser()
+        config.read("./IrrelNodePatterns.ini")
+        irrelNodePatterns = eval(config['Patterns']['irrelNodePatterns'])
+        typeCheckPatterns = eval(config['Patterns']['typeCheckPatterns'])
+
         irrelNodes = set()
         irrelNodes_node_ids = set()
         for cNode in _compactNodes:
             if (len(cNode.basic_blocks) == 1) & \
-                ([ins.name for ins in cNode.basic_blocks[0].instructions] ==
-                 ['INVALID']):
+                ([ins.name for ins in cNode.basic_blocks[0].instructions] in
+                 irrelNodePatterns):
                 irrelNodes.add(cNode)
                 irrelNodes_node_ids.add(cNode.node_id)
-
+            elif [re.sub("[0-9]", "", ins.name) for ins in
+                  cNode.basic_blocks[-1].instructions] in typeCheckPatterns:
+                children = [childNode for childNode in _compactNodes if
+                            childNode.node_id in cNode.outg_node_ids]
+                for child in children:
+                    if [ins.name for ins in
+                            child.basic_blocks[0].instructions] == \
+                            ["PUSH1", "DUP1", "REVERT"]:
+                        irrelNodes.add(child)
+                        irrelNodes_node_ids.add(child.node_id)
         relNodes = list(set(_compactNodes) - irrelNodes)
+        for irrelNode in irrelNodes:
+            irrelNode.show_CompactNode(True)
         for relNode in relNodes:
             assert not bool(
                 set(relNode.inc_node_ids).intersection(irrelNodes_node_ids)), \

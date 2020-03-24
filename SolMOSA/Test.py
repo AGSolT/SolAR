@@ -528,8 +528,8 @@ class MethodCall():
                 string_length = random.randint(1, 255)
                 str = ''.join(random.choice(string.ascii_letters + """ """)
                               for x in range(string_length))
-                ans = random.choices(["Standard String", str],
-                                     weights=[0.1, 0.9], k=1)[0]
+                ans = random.choices(["Standard String", "", str],
+                                     weights=[0.05, 0.05, 0.9], k=1)[0]
                 return ans
         else:
             assert False, \
