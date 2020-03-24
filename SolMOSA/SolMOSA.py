@@ -69,7 +69,7 @@ def SolMOSA(config):
     passBlocks = config['Parameters']['passBlocks'] == "True"
     passTime = config['Parameters']['passTime'] == "True"
     passTimeTime = int(config['Parameters']['passTimeTime'])
-    ignorefunctionNames = eval(config['Parameters']['IgnoreFunctions'])
+    ignoreFunctionNames = eval(config['Parameters']['IgnoreFunctions'])
     ignoreStateVariables = eval(config['Parameters']['ignoreStateVariables'])
     zeroAddress = config['Parameters']['zeroAddress'] == "True"
     nonExistantAccount = config['Parameters']['nonExistantAccount']
@@ -98,12 +98,15 @@ def SolMOSA(config):
         deploying_accounts = eval(config['Parameters']['deploying_accounts'])
 
     if ignoreStateVariables:
-        ignorefunctionNames = update_ignoreFunctionNames(
-            ignorefunctionNames, contract_json)
-    if len(ignorefunctionNames) > 0:
+        ignoreFunctionNames, functionNames = update_ignoreFunctionNames(
+            ignoreFunctionNames, contract_json)
+    if len(ignoreFunctionNames) > 0:
         logging.info(f"Ignoring the following functions: ")
-        for ignoreFunctionName in ignorefunctionNames:
+        for ignoreFunctionName in ignoreFunctionNames:
             logging.info(f"{ignoreFunctionName}")
+    logging.info(f"Looking only at the following functions: ")
+    for functionName in functionNames:
+        logging.info(f"{functionName}")
 
     # Create the CDG
     logging.info("Creating CDG...")
@@ -113,7 +116,7 @@ def SolMOSA(config):
     cdg.Show_CDG(log=True)
 
     logging.info("Creating Smart Contract Instance...")
-    sc = SmartContract(contract_json, cdg, ignorefunctionNames)
+    sc = SmartContract(contract_json, cdg, ignoreFunctionNames, functionNames)
 
     logging.info("Initialising Random Test Suite...")
     tSuite = TestSuite(sc, accounts, _maxArrayLength=maxArrayLength,
@@ -133,12 +136,13 @@ def SolMOSA(config):
     logging.info("Smart Contract Under investigation: {}"
                  .format(contract_json_location))
     relevant_targets = determine_relevant_targets(
-        cdg.CompactEdges, ignorefunctionNames, log=True)
+        cdg.CompactEdges, cdg.CompactNodes, ignoreFunctionNames,
+        functionNames, log=True)
 
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
         return [], tSuite, (datetime.datetime.now()
-                            - start_time).total_seconds(), 0, 0
+                            - start_time).total_seconds(), 0, 0, []
 
     test_inputs = tSuite.generate_test_inputs()
     with open("tests.txt", "w") as f:
@@ -315,12 +319,13 @@ def SolMOSA(config):
                              tSuite.smartContract.CDG.CompactEdges)
     runtime = datetime.datetime.now() - start_time
     return archives, tSuite, runtime.total_seconds(), \
-        blockchain_time.total_seconds(), iterations
+        blockchain_time.total_seconds(), iterations, relevant_targets
 
 
-def update_ignoreFunctionNames(_ignorefunctionNames, _contract_json):
-    """Add the stateVariables to the ignorefunctionNames."""
-    ignorefunctionNames = _ignorefunctionNames
+def update_ignoreFunctionNames(_ignoreFunctionNames, _contract_json):
+    """Add the stateVariables to the ignoreFunctionNames."""
+    ignoreFunctionNames = _ignoreFunctionNames
+    functionNames = []
     contract_json = _contract_json
     stateVariables = []
     infoNode = next((node for node in contract_json['ast']['nodes'] if
@@ -344,7 +349,13 @@ def update_ignoreFunctionNames(_ignorefunctionNames, _contract_json):
                     inputvars = inputvars + recurNode["keyType"]["name"]
                     recurNode = recurNode["valueType"]
                 stateVariables.append(name + "(" + inputvars + ")")
-    return list(set(ignorefunctionNames).union(set(stateVariables)))
+        elif node["nodeType"] == "FunctionDefinition":
+            if not node["isConstructor"]:
+                name = node["name"]
+                if len(name) > 0:
+                    functionNames.append(name)
+    return list(set(ignoreFunctionNames).union(set(stateVariables))), \
+        functionNames
 
 
 def get_ETH_properties(ETH_port, max_accounts, accounts_file_location,
@@ -457,24 +468,42 @@ def update_targets(tests, archive, relevant_targets):
     return updated_targets
 
 
-def determine_relevant_targets(_compactEdges, _ignorefunctionNames, log=False):
+def determine_relevant_targets(_compactEdges, _compactNodes,
+                               _ignoreFunctionNames, _functionNames,
+                               log=False):
     """
-    We don't really care for edges in the dispactcher or the fallback \
-    function if it has not been explicitly defined.
+    Ignore the edges in the dispactcher or the fallback function if it has \
+    not been explicitly defined, as well as the edges in functions that can be\
+    ifnored.
 
     Inputs:
     _compactEdges: The edges of the CDG of the smart contract.
+    _ignoreFunctionNames: The names of the functions that can be ignored.
+    _FunctionNames: The list of names of the functions that all the relevant
+                    Functions are in.
     log:           Indication of whether the relevant targets should be logged.
     Outputs:
     relevant_targets: An ordered list of Booleans indicating whether each edge
                       is relevant for branch coverage.
     """
     relevant_targets = [True] * len(_compactEdges)
+
     for i, cEdge in enumerate(_compactEdges):
-        if (cEdge.endNode_id[0] == "_fallback") | \
-                (cEdge.endNode_id[0] == "_dispatcher") | \
-                (cEdge.startNode_id[0] in _ignorefunctionNames) | \
-                (cEdge.endNode_id[0] in _ignorefunctionNames):
+        startNode = next((cNode for cNode in _compactNodes if
+                          cNode.node_id == cEdge.startNode_id), None)
+        endNode = next((cNode for cNode in _compactNodes if
+                        cNode.node_id == cEdge.endNode_id), None)
+        assert (startNode is not None) & (endNode is not None), \
+            "Failed to find a startNode or endNode in "\
+            "determine_relevant_targets!"
+        if (cEdge.endNode_id[0] == "_fallback") |\
+                (cEdge.endNode_id[0] == "_dispatcher") |\
+                (cEdge.startNode_id[0] in _ignoreFunctionNames) |\
+                (cEdge.endNode_id[0] in _ignoreFunctionNames) |\
+                (not any([id[0].startswith(tuple(_functionNames)) for id in
+                          endNode.all_node_ids]))\
+                | (not any([id[0].startswith(tuple(_functionNames)) for id in
+                            endNode.all_node_ids])):
             relevant_targets[i] = False
     if log:
         logging.info("Relevant targets have been identified as follows: \n")

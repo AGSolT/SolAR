@@ -24,19 +24,23 @@ class SmartContract():
     CDG = None
     approach_levels = None
 
-    def __init__(self, contract_json, _cdg, _ignorefunctionNames):
+    def __init__(self, contract_json, _cdg, _ignorefunctionNames,
+                 _functionNames):
         """Initialise a smart contract."""
         self.contractName = contract_json['contractName']
         methods = []
+
         for method in contract_json['abi']:
             if method['type'] == 'function':
-                fullName = method['name'] + "("
+                name = method['name']
+                fullName = name + "("
                 for i, inputvar in enumerate(method["inputs"]):
                     if i > 0:
                         fullName = fullName + ","
                     fullName = fullName + inputvar["type"]
                 fullName = fullName + ")"
-                if fullName not in _ignorefunctionNames:
+                if (fullName not in _ignorefunctionNames) & \
+                        (name in _functionNames):
                     methods = methods + [method]
             elif method['type'] == 'constructor':
                 # The constructor is always the first method in the list.

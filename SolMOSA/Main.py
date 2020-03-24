@@ -24,8 +24,7 @@ import re
 # import sys
 
 from pyfiglet import figlet_format
-
-from SolMOSA import SolMOSA, determine_relevant_targets
+from SolMOSA import SolMOSA
 
 logging.basicConfig(filename='SolMOSA.log', filemode='w', level=logging.DEBUG)
 
@@ -108,11 +107,12 @@ def main():
 
                 # run SolMOSA on it with these settings.
                 for i in range(Execution_Times):
-                    archives, tSuite, run_time, blockchain_time, iterations\
-                        = SolMOSA(config)
+                    archives, tSuite, run_time, blockchain_time, iterations,\
+                        relevant_targets = SolMOSA(config)
                     rapport = create_rapport(archives, tSuite, run_time,
                                              blockchain_time, iterations,
-                                             folder, statementCount)
+                                             folder, statementCount,
+                                             relevant_targets)
                     rapports = rapports + [rapport]
                     logging.info("Writing Rapport to {}".format(
                         Rapports_folder + "/" + folder + "_{}".format(i + 1)
@@ -300,7 +300,7 @@ def show_settings(config):
 
 
 def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
-                   folder, _statementCount):
+                   folder, _statementCount, _relevant_targets):
     """
     Take the result of a test run and write a rapport.
 
@@ -313,16 +313,17 @@ def create_rapport(archives, tSuite, run_time, blockchain_time, iterations,
         - blockchain_time: The time spent on blockchain interaction during the
          total run time.
         - iterations: The number of iterations it took to reach branch coverage
-         if branch coverage was achieved.
-        The maximum number of generations otherwise
+                      if branch coverage was achieved.
+                      The maximum number of generations otherwise.
+        - _statementCount:   The number of statements in the smart contract.
+        - _relevant_targets: A list of ordered Booleans indicating which edges
+                             are relevant.
     Output:
         - A human-readable rapport file is created
         - The main results are added to a csv file for easy processing.
     """
     contractName = tSuite.smartContract.contractName
-    relevant_branches = determine_relevant_targets(
-        tSuite.smartContract.CDG.CompactEdges,
-        tSuite.smartContract.CDG.CompactNodes)
+    relevant_branches = _relevant_targets
     if sum(relevant_branches) == 0:
         with open("results.csv", "a") as f:
             f_writer = csv.writer(f, delimiter=',', quotechar="'",
