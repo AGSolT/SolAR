@@ -215,8 +215,8 @@ def SolMOSA(config):
                 finished = False
         if finished:
             if i == 0:
-                logging.info("Branch coverage was achieved after random\
-                             initialisation")
+                logging.info("Branch coverage was achieved after random"
+                             "initialisation")
             else:
                 logging.info("Branch coverage was achieved at iteration {}"
                              .format(i))
