@@ -212,7 +212,7 @@ class TestCase():
             elif methodResult == "Invalid Address":
                 # This did not yield a result
                 logging.warning(f"Passing an invalid address to "
-                                f"{methodCall.methodName}"
+                                f"{methodCall.methodName} "
                                 f"resulted in an invalid address error.")
                 pass
             else:
