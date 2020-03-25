@@ -176,31 +176,12 @@ async function runTest(){
 
 console.log("Starting a new round of tests.");
 runTest().then(function(arr){
-  fs.writeFile("debugs.txt", JSON.stringify(arr[0]), function(err) {
-      if(err) {
-        // If the array is too large, we stringify it in two steps.
-        stringifiedOne = JSON.stringify(arr[0].slice(0, arr[0].length/2));
-        stringifiedTwo = JSON.stringify(arr[0].slice(arr[0].length/2, arr[0].length));
-        stringified = stringifiedOne.concat(stringifiedTwo);
-        fs.writeFile("debugs.txt", stringified, function(err) {
-          if(err){
-            return console.log(err);
-          }
-        });
-      }
-  });
-  fs.writeFile("returnvals.txt", JSON.stringify(arr[1]), function(err) {
-      if(err) {
-        // If the array is too large, we stringify it in two steps.
-        stringifiedOne = JSON.stringify(arr[1].slice(0, arr[0].length/2));
-        stringifiedTwo = JSON.stringify(arr[1].slice(arr[1].length/2, arr[1].length));
-        stringified = stringifiedOne.concat(stringifiedTwo);
-        fs.writeFile("returnvals.txt", stringified, function(err) {
-          if(err){
-            return console.log(err);
-          }
-        });
-      }
-  });
+  fs.writeFileSync("debugs.txt", '['
+      + arr[0].map(JSON.stringify).join(',')
+    + ']');
+
+    fs.writeFileSync("returnvals.txt", '['
+        + arr[1].map(JSON.stringify).join(',')
+      + ']');
   return arr;
 });
