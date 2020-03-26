@@ -281,6 +281,7 @@ def SolMOSA(config):
             subprocess.call(callstring, stdout=f)
         blockchain_time += datetime.datetime.now() - blockchain_start_time
 
+        logging.info("\tReading Results...")
         with open('debugs.txt', 'r') as f:
             callResults = f.read()
 

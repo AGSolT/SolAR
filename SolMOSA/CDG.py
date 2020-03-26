@@ -626,8 +626,7 @@ class CDG():
         return compactNodes
 
     def Remove_Invalid_Nodes(self, _compactNodes):
-        """Remove nodes that are just "INVALID" as they will never be reached \
-        by generated tests will never hit nodes that are just "INVALID."""
+        """Remove nodes that are just typechecks or will never be reached."""
         config = configparser.ConfigParser()
         config.read("./IrrelNodePatterns.ini")
         irrelNodePatterns = eval(config['Patterns']['irrelNodePatterns'])

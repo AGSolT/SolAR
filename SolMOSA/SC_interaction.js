@@ -108,7 +108,8 @@ async function runTest(){
             tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value, gas: gas})`);
           }
           catch(err){
-            if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
+            if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1&&err.toString().search('invalid opcode')==-1){
+              // For some reason ganache randomly throws invalid opcode sometimes.
               throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
             }
             else{
@@ -139,7 +140,8 @@ async function runTest(){
           returnvals.push("Invalid Address");
           continue;
         }
-        else if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1){
+        else if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1&&err.toString().search('invalid opcode')==-1){
+          // For some reason ganache randomly throws invalid opcode sometimes.
           throw `encountered an error which is not revert or invalid JSON RPC response: ${err}`
         }
         else{

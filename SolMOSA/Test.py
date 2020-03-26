@@ -256,10 +256,12 @@ class TestCase():
                             nextNode = potential_nextNode
                             break
                     visited = visited.union({curNode})
-                    assert curNode != nextNode, \
-                        f"The nextNode that was found: {nextNode.node_id} "\
-                        f"was the same as the curNode: {curNode.node_id} "\
-                        f"when calling {methodCall}."
+                    if curNode == nextNode:
+                        logging.warning(f"The nextNode that was found: "
+                                        f"{nextNode.node_id} was the same "
+                                        f"as the curNode: {curNode.node_id} "
+                                        f"when calling {methodCall}.")
+                        break
 
                     for j, cEdge in enumerate(compactEdges):
                         if (cEdge.startNode_id == curNode.node_id):
