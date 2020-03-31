@@ -54,6 +54,7 @@ def SolMOSA(config):
     # Parameters for creating a Control-Dependency-Graph
     contract_json_location = config['Files']['contract_json_location']
     predicates = eval(config['CFG']['Predicates'])
+    ignoreFallback = config['CFG']['ignoreFallback'] == "True"
 
     # Parameters for creating Test-Cases
     population_size = int(config['Parameters']['population_size'])
@@ -99,7 +100,7 @@ def SolMOSA(config):
 
     if ignoreStateVariables:
         ignoreFunctionNames, functionNames = update_ignoreFunctionNames(
-            ignoreFunctionNames, contract_json)
+            ignoreFunctionNames, contract_json, ignoreFallback)
     if len(ignoreFunctionNames) > 0:
         logging.info(f"Ignoring the following functions: ")
         for ignoreFunctionName in ignoreFunctionNames:
@@ -137,7 +138,7 @@ def SolMOSA(config):
                  .format(contract_json_location))
     relevant_targets = determine_relevant_targets(
         cdg.CompactEdges, cdg.CompactNodes, ignoreFunctionNames,
-        functionNames, log=True)
+        functionNames, log=True, _ignoreFallback=ignoreFallback)
 
     if sum(relevant_targets) == 0:
         logging.info("No branching paths were detected!")
@@ -242,6 +243,8 @@ def SolMOSA(config):
                            _tests=list(offspring),
                            _max_method_calls=max_method_calls,
                            _min_method_calls=min_method_calls,
+                           _passBlocks=passBlocks, _passTime=passTime,
+                           _passTimeTime=passTimeTime,
                            _zeroAddress=zeroAddress,
                            _nonExistantAccount=nonExistantAccount,
                            _minArrayLength=minArrayLength)
@@ -323,7 +326,8 @@ def SolMOSA(config):
         blockchain_time.total_seconds(), iterations, relevant_targets
 
 
-def update_ignoreFunctionNames(_ignoreFunctionNames, _contract_json):
+def update_ignoreFunctionNames(_ignoreFunctionNames, _contract_json,
+                               _ignoreFallback=False):
     """Add the stateVariables to the ignoreFunctionNames."""
     ignoreFunctionNames = _ignoreFunctionNames
     functionNames = []
@@ -351,10 +355,18 @@ def update_ignoreFunctionNames(_ignoreFunctionNames, _contract_json):
                     recurNode = recurNode["valueType"]
                 stateVariables.append(name + "(" + inputvars + ")")
         elif node["nodeType"] == "FunctionDefinition":
-            if not node["isConstructor"]:
+            if "isConstructor" in node.keys():
+                if not node["isConstructor"]:
+                    name = node["name"]
+                    if len(name) > 0:
+                        functionNames.append(name)
+                    elif not _ignoreFallback:
+                        functionNames.append("_fallback")
+            else:
                 name = node["name"]
-                if len(name) > 0:
+                if (len(name) > 0) & (name.lower() != "constructor"):
                     functionNames.append(name)
+
     return list(set(ignoreFunctionNames).union(set(stateVariables))), \
         functionNames
 
@@ -471,7 +483,7 @@ def update_targets(tests, archive, relevant_targets):
 
 def determine_relevant_targets(_compactEdges, _compactNodes,
                                _ignoreFunctionNames, _functionNames,
-                               log=False):
+                               log=False, _ignoreFallback=True):
     """
     Ignore the edges in the dispactcher or the fallback function if it has \
     not been explicitly defined, as well as the edges in functions that can be\
@@ -497,14 +509,15 @@ def determine_relevant_targets(_compactEdges, _compactNodes,
         assert (startNode is not None) & (endNode is not None), \
             "Failed to find a startNode or endNode in "\
             "determine_relevant_targets!"
-        if (cEdge.endNode_id[0] == "_fallback") |\
-                (cEdge.endNode_id[0] == "_dispatcher") |\
+        if (cEdge.endNode_id[0] == "_dispatcher") |\
                 (cEdge.startNode_id[0] in _ignoreFunctionNames) |\
                 (cEdge.endNode_id[0] in _ignoreFunctionNames) |\
                 (not any([id[0].startswith(tuple(_functionNames)) for id in
                           endNode.all_node_ids]))\
                 | (not any([id[0].startswith(tuple(_functionNames)) for id in
                             endNode.all_node_ids])):
+            relevant_targets[i] = False
+        elif (cEdge.endNode_id[0] == "_fallback") & (_ignoreFallback):
             relevant_targets[i] = False
     if log:
         logging.info("Relevant targets have been identified as follows: \n")

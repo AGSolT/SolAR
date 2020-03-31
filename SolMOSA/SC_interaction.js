@@ -94,18 +94,28 @@ async function runTest(){
       continue;
     }
     else{
+      // See if the transaction executes without returning an error
       try{
-        // See if the transaction executes without returning an error
-        tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value})`);
+        if (method_name == "_fallback"){
+          tx = await eval(`web3.eth.sendTransaction({from: from, to: deployed.options.address, value: value})`);
+        }
+        else{
+          tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value})`);
+        }
       }
       catch(err){
         if(err.toString().search("out of gas")==66){
           // The standard amount of gas was not enough.
           gas = last_block.gasLimit;
           console.log(`Function returned out of gas error, we try again with the gasLimit: ${gas}`)
+          // See if the transaction executes without returning an error
           try{
-            // See if the transaction executes without returning an error
-            tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value, gas: gas})`);
+            if (method_name == "_fallback"){
+              tx = await eval(`web3.eth.sendTransaction({from: from, to: deployed.options.address, value: value, gas: gas})`);
+            }
+            else{
+              tx = await eval(`deployed.methods.${method_name}.apply(this, input_args).send({from: from, value: value, gas: gas})`);
+            }
           }
           catch(err){
             if(err.toString().search("revert")==-1&&err.toString().search('Invalid JSON RPC response: ""')==-1&&err.toString().search('invalid opcode')==-1){

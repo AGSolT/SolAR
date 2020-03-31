@@ -60,7 +60,7 @@ def main():
         print("Smart Contract: {}".format(folder))
         for file in os.listdir(SmartContract_folder
                                + folder + "/build/contracts"):
-            if file not in config['CFG']['Ignorefiles']:
+            if file not in eval(config['CFG']['Ignorefiles']):
                 config.set('Files', 'contract_json_location', r'{}'.format(
                     os.path.abspath(SmartContract_folder + folder
                                     + "/build/contracts/" + file)))

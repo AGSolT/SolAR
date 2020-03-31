@@ -3,6 +3,7 @@ smart contract."""
 
 import numpy as np
 import logging
+# import sys
 
 
 class SmartContract():
@@ -25,7 +26,7 @@ class SmartContract():
     approach_levels = None
 
     def __init__(self, contract_json, _cdg, _ignorefunctionNames,
-                 _functionNames):
+                 _functionNames, _ignoreFallback=False):
         """Initialise a smart contract."""
         self.contractName = contract_json['contractName']
         methods = []
@@ -45,6 +46,14 @@ class SmartContract():
             elif method['type'] == 'constructor':
                 # The constructor is always the first method in the list.
                 methods = [method] + methods
+            elif method['type'] == 'fallback':
+                if not _ignoreFallback:
+                    fallback = method
+                    fallback['contstant'] = False
+                    fallback['inputs'] = []
+                    fallback['name'] = "_fallback"
+                    fallback['outputs'] = []
+                    methods = methods + [fallback]
 
         # Check if there is a constructor now
         found = False

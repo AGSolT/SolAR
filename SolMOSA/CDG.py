@@ -255,8 +255,6 @@ class CDG():
             if (cNode.basic_blocks[-1].instructions[-1].name == "REVERT") & \
                 ('_dispatcher' not in [node_id[0] for
                                        node_id in list(cNode.all_node_ids)]) &\
-                ('_fallback' not in [node_id[0] for
-                                     node_id in list(cNode.all_node_ids)]) & \
                     (not bool(set(node_id[0] for node_id in
                                   list(cNode.all_node_ids)).intersection(
                         set(_payableMethodNames)))):

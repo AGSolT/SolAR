@@ -6,7 +6,7 @@ cases."""
 import pickle
 # import ast
 import logging
-import sys
+# import sys
 from Test import TestCase
 
 
