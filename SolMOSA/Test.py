@@ -201,7 +201,7 @@ class TestCase():
 
         for methodCall, methodResult in \
                 zip(self.methodCalls[1:], methodResults[1:]):
-            if methodResult in ["passTime", "passBlocks"]:
+            if methodResult in ["passTime", "passBlocks", "ConstructorFail"]:
                 # These are not real method calls.
                 pass
             elif methodResult == "Out of Ether":

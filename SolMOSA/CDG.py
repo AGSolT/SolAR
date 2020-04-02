@@ -730,8 +730,9 @@ class CDG():
         a Control-Dependency-Graph, \
         see https://dl.acm.org/doi/10.1145/357062.357071 ."""
         # Create the spanning Tree using Depth-First-Search
-        assert len(self.StartNodes) == 1, "There cannot be more than one "\
-            "startNode!"
+
+        assert len(self.StartNodes) == 1, "Expected exactly 1 startnode "\
+            f"found {len(self.StartNodes)} instead!"
         self.DFS(next(sNode for sNode in self.StartNodes))
         self.n -= 1
 
