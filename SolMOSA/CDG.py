@@ -297,39 +297,54 @@ class CDG():
                                reverse=True)
 
         for mergeNode in mergenodeList:
-            assert len(mergeNode.outg_node_ids) == 1, \
-                "After removing a REVERT-ing node, it's parent node has {} \
-                outgoing nodes".format(len(mergeNode.outg_node_ids))
-            nextNode = [nNode for nNode in cNodes if nNode.node_id in
-                        mergeNode.outg_node_ids][0]
-            assert len(nextNode.inc_node_ids) == 1, \
-                "After removing a REVERT-ing node the other child of it's \
-                parent still had {} incoming nodes"\
-                .format(len(nextNode.inc_node_ids))
+            if len(mergeNode.outg_node_ids) != 1:
+                logging.warning("After removing a REVERT-ing node, it's "
+                                "parent node has {} outgoing nodes. Parent "
+                                "starts at {} and ends at {}. This could be "
+                                "due to an empty fallback which is not "
+                                "ignored.".format(
+                                    len(mergeNode.outg_node_ids),
+                                    mergeNode.start_pc, mergeNode.end_pc))
+                relEdges = [relEdge for relEdge in relEdges if
+                            relEdge.startNode_id != mergeNode.node_id]
+                for relNode in relNodes:
+                    if mergeNode.node_id in relNode.outg_node_ids:
+                        if len(relNode.outg_node_ids) == 1:
+                            relNode.outg_node_ids = []
+                        else:
+                            relNode.outg_node_ids.remove(mergeNode.node_id)
+            else:
+                nextNode = [nNode for nNode in cNodes if nNode.node_id in
+                            mergeNode.outg_node_ids][0]
+                assert len(nextNode.inc_node_ids) == 1, \
+                    "After removing a REVERT-ing node the other child of it's \
+                    parent still had {} incoming nodes"\
+                    .format(len(nextNode.inc_node_ids))
 
-            mergeNode.end_pc = nextNode.end_pc
-            mergeNode.basic_blocks = mergeNode.basic_blocks \
-                + nextNode.basic_blocks
-            mergeNode.outg_node_ids = nextNode.outg_node_ids
+                mergeNode.end_pc = nextNode.end_pc
+                mergeNode.basic_blocks = mergeNode.basic_blocks \
+                    + nextNode.basic_blocks
+                mergeNode.outg_node_ids = nextNode.outg_node_ids
 
-            relEdges = [relEdge for relEdge in relEdges if
-                        relEdge.startNode_id != mergeNode.node_id]
+                relEdges = [relEdge for relEdge in relEdges if
+                            relEdge.startNode_id != mergeNode.node_id]
 
-            for relEdge in relEdges:
-                if (relEdge.startNode_id == nextNode.node_id) & \
-                        ('_dispatcher' not in [node_id[0] for node_id in
-                                               list(nextNode.all_node_ids)]):
-                    relEdge.startNode_id = mergeNode.node_id
+                for relEdge in relEdges:
+                    if (relEdge.startNode_id == nextNode.node_id) & \
+                            ('_dispatcher' not in
+                             [node_id[0] for node_id in
+                              list(nextNode.all_node_ids)]):
+                        relEdge.startNode_id = mergeNode.node_id
 
-            relNodes = [relNode for relNode in relNodes if (
-                relNode.node_id != mergeNode.node_id) &
-                (relNode.node_id != nextNode.node_id)]
-            for relNode in relNodes:
-                if nextNode.node_id in relNode.inc_node_ids:
-                    relNode.inc_node_ids.remove(nextNode.node_id)
-                    relNode.inc_node_ids = relNode.inc_node_ids \
-                        + [mergeNode.node_id]
-            relNodes = relNodes + [mergeNode]
+                relNodes = [relNode for relNode in relNodes if (
+                    relNode.node_id != mergeNode.node_id) &
+                    (relNode.node_id != nextNode.node_id)]
+                for relNode in relNodes:
+                    if nextNode.node_id in relNode.inc_node_ids:
+                        relNode.inc_node_ids.remove(nextNode.node_id)
+                        relNode.inc_node_ids = relNode.inc_node_ids \
+                            + [mergeNode.node_id]
+                relNodes = relNodes + [mergeNode]
 
         return relNodes, relEdges
 
@@ -858,7 +873,7 @@ class CDG():
                       self.CompactNodes if compactNode.node_id == w_id), None)
             if w is None:
                 logging.error("This is the node I cannot find children for.")
-                v.show_CompactNode()
+                v.show_CompactNode(True)
             assert w is not None, "No child node was found!"
             if w.semi == 0:
                 w.parent = v
