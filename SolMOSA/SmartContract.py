@@ -3,6 +3,7 @@ smart contract."""
 
 import numpy as np
 import logging
+from web3 import Web3
 # import sys
 
 
@@ -30,6 +31,8 @@ class SmartContract():
         """Initialise a smart contract."""
         self.contractName = contract_json['contractName']
         methods = []
+        _ignoreFunctionNameSigs = [Web3.sha3(text=iName)[0:4].hex() for
+                                   iName in _ignorefunctionNames]
 
         for method in contract_json['abi']:
             if method['type'] == 'function':
@@ -40,9 +43,17 @@ class SmartContract():
                         fullName = fullName + ","
                     fullName = fullName + inputvar["type"]
                 fullName = fullName + ")"
-                if (fullName not in _ignorefunctionNames) & \
-                        (name in _functionNames):
+                sig = Web3.sha3(text=fullName)[0:4].hex()
+                logging.debug(f"fullName: {fullName}, sig: {sig}")
+                if ((fullName not in _ignorefunctionNames) &
+                        (name in _functionNames)):
                     methods = methods + [method]
+                elif (sig not in _ignoreFunctionNameSigs) &\
+                        (name in _functionNames):
+                    logging.info(f"{fullName} is identified by its \
+                    signature: {sig}")
+                    methods = methods + [method]
+
             elif method['type'] == 'constructor':
                 # The constructor is always the first method in the list.
                 methods = [method] + methods

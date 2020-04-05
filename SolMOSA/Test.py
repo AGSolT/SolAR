@@ -540,12 +540,13 @@ class MethodCall():
             else:
                 bytesize = next((int(s) for s in re.findall(r'-?\d+\.?\d*',
                                                             varType)), None)
-            str = self.Random_Inputvar("string", accounts, _maxArrayLength,
-                                       _addresspool, _ETHpool, _intpool,
-                                       _stringpool, _zeroAddress,
-                                       _nonExistantAccount,
-                                       _minArrayLength)[:bytesize]
-            return "0x" + "".join("{:02x}".format(ord(c)) for c in str)
+            str = ''.join(random.choice(string.ascii_letters + """ """)
+                          for x in range(bytesize))
+            bytes = random.choices(["0x" + "00" * bytesize,
+                                    "0x" + "".join("{:02x}".format(ord(c))
+                                                   for c in str)],
+                                   weights=[0.1, 0.9], k=1)[0]
+            return bytes
             # TODO implement bytes
             # Vind uit hoe groot de bytes array is.
             # Generate een string

@@ -4,7 +4,7 @@ existing generation of test cases."""
 import random
 import copy
 import string
-import logging
+# import logging
 
 from Test import TestCase, MethodCall
 
@@ -220,6 +220,7 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                                     # if a string starts with 0x we treat it as
                                     # a byte.
                                     elif old_inputvar[:2] == "0x":
+                                        testCase.show_test(True)
                                         new_inputvar = mutate_bytes(
                                             old_inputvar)
                                     else:
@@ -330,16 +331,15 @@ def mutate_bytes(b):
     Output:
         -b_out: the mutated byte.
     """
-    tail = b[:2]
-    change_prob = 0.95
+    tail = b[2:]
+    change_prob = 0.05
     assert len(tail) > 0, \
         f"A byte should have info after '0x' instead we have {b}"
 
-    for i in range(len(tail)):
+    for i in range(0, len(tail), 2):
         if random.uniform(0, 1) <= change_prob:
-            char = random.choice(string.ascii_letters + """ """ + """\n""")
-            tail = tail[:i] + "{:02x}".format(ord(char)) + tail[i + 1:]
+            char = random.choice(string.ascii_letters + """ """)
+            tail = tail[:i] + "{:02x}".format(ord(char)) + tail[i + 2:]
 
-    logging.debug(f"before bytes mutation: {b}\n after bytes mutation{b_out}")
     b_out = b[:2] + tail
     return b_out
