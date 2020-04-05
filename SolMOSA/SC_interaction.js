@@ -97,7 +97,7 @@ async function runTest(){
         deploySuccess = true;
       }
       catch(err){
-        console.log(`Tried and failed to deploy the contract with arguments: ${input_args} and value ${value}`);
+        console.log(`Tried and failed to deploy the contract with arguments: ${input_args} and value ${value}. Error: ${err}`);
         constpos = i;
         deploySuccess = false;
       }
@@ -226,5 +226,6 @@ runTest().then(function(arr){
     fs.writeFileSync("returnvals.txt", '['
         + arr[1].map(JSON.stringify).join(',')
       + ']');
+  console.log("Finished")
   return arr;
 });

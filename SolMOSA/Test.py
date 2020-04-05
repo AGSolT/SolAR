@@ -247,6 +247,7 @@ class TestCase():
                         i += 1
                         cur_pc = methodResult[i]['pc']
 
+                    nextNode = curNode
                     for potential_nextNode in compactNodes:
                         # Find the next Node.
                         if (cur_pc >= potential_nextNode.
@@ -533,6 +534,22 @@ class MethodCall():
                 ans = random.choices(["Standard String", "", str],
                                      weights=[0.05, 0.05, 0.9], k=1)[0]
                 return ans
+        elif varType[:4] == "byte":
+            if varType == "byte":
+                bytesize = 1
+            else:
+                bytesize = next((int(s) for s in re.findall(r'-?\d+\.?\d*',
+                                                            varType)), None)
+            str = self.Random_Inputvar("string", accounts, _maxArrayLength,
+                                       _addresspool, _ETHpool, _intpool,
+                                       _stringpool, _zeroAddress,
+                                       _nonExistantAccount,
+                                       _minArrayLength)[:bytesize]
+            return "0x" + "".join("{:02x}".format(ord(c)) for c in str)
+            # TODO implement bytes
+            # Vind uit hoe groot de bytes array is.
+            # Generate een string
+            # encode de string en return dat.
         else:
             assert False, \
                 "This method has an unsupported type: {}".format(varType)
