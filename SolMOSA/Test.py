@@ -537,6 +537,11 @@ class MethodCall():
         elif varType[:4] == "byte":
             if varType == "byte":
                 bytesize = 1
+            elif len(varType) == 5:
+                return self.Random_Inputvar(
+                    "byte[]", accounts, maxArrayLength, _addresspool,
+                    _ETHpool, _intpool, _stringpool, minArrayLength,
+                    _nonExistantAccount, _zeroAddress)
             else:
                 bytesize = next((int(s) for s in re.findall(r'-?\d+\.?\d*',
                                                             varType)), None)

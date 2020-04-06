@@ -524,7 +524,7 @@ def scrape_strings(_contractSol):
                 """If a scraped string starts with "'" it should also end """\
                 f"""with it, instead this ends with {scrapedString[-1]}."""
             scrapedString = '"' + scrapedString[1:-1] + '"'
-        stringpool.add(scrapedString)
+        stringpool.add(scrapedString.replace("%", ""))
     return stringpool
 
 
