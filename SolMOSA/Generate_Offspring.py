@@ -189,10 +189,13 @@ def mutate(testCase, accounts, _maxArrayLength, _addresspool, _ETHpool,
                             if random.uniform(0, len(old_inputvars)) <= 1:
                                 pos = -1
                                 if isinstance(old_inputvar, list):
-                                    pos = random.randint(
-                                        0, len(old_inputvar) - 1)
-                                    old_inputvarlist = old_inputvar
-                                    old_inputvar = old_inputvar[pos]
+                                    if len(old_inputvar) == 0:
+                                        continue
+                                    else:
+                                        pos = random.randint(
+                                            0, len(old_inputvar) - 1)
+                                        old_inputvarlist = old_inputvar
+                                        old_inputvar = old_inputvar[pos]
                                 if isinstance(old_inputvar, bool):
                                     new_inputvar = not old_inputvar
                                 elif isinstance(old_inputvar, int):

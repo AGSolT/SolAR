@@ -416,7 +416,7 @@ class MethodCall():
                         [self.Random_Inputvar(
                             input['type'], accounts, _maxArrayLength,
                             _addresspool, _ETHpool, _intpool, _stringpool,
-                            _nonExistantAccount, _zeroAddress,
+                            _zeroAddress, _nonExistantAccount,
                             _minArrayLength)]
                 self.inputvars = inputvars
             elif methodDict['type'] == 'passTime':
@@ -432,7 +432,7 @@ class MethodCall():
                         [self.Random_Inputvar(
                             input['type'], accounts, _maxArrayLength,
                             _addresspool, _ETHpool, _intpool, _stringpool,
-                            _nonExistantAccount, _zeroAddress,
+                            _zeroAddress, _nonExistantAccount,
                             _minArrayLength)]
                 self.inputvars = inputvars
             else:
