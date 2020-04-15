@@ -462,8 +462,8 @@ class MethodCall():
                         _nonExistantAccount, _minArrayLength=1):
         """Generate a random allowed input variable given the the variable's \
         type."""
-        maxArrayLength = _maxArrayLength  # TODO: Make this a parameter.
-        minArrayLength = _minArrayLength  # TODO: Make this a parameter.
+        maxArrayLength = _maxArrayLength
+        minArrayLength = _minArrayLength
         if varType[-1] == "]":
             # This is an array
             ArrayLength = random.randint(minArrayLength, maxArrayLength)
@@ -552,10 +552,6 @@ class MethodCall():
                                                    for c in str)],
                                    weights=[0.1, 0.9], k=1)[0]
             return bytes
-            # TODO implement bytes
-            # Vind uit hoe groot de bytes array is.
-            # Generate een string
-            # encode de string en return dat.
         else:
             assert False, \
                 "This method has an unsupported type: {}".format(varType)
