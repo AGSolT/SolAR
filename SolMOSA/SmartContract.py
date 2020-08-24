@@ -137,9 +137,9 @@ class SmartContract():
                     al = self.approach_level(queue, _cdg.CompactNodes,
                                              cEdge1, traversed, max_al)
                     if al == 0:
-                        print("We're giving an approach level of 0 to this\
+                        logging.warning("We're giving an approach level of 0 to this\
                          edge")
-                        cEdge1.show_CompactEdge()
+                        cEdge1.show_CompactEdge(log=True)
                     app_lvls[j][i] = al
         self.approach_levels = app_lvls
 
