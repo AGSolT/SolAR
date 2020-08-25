@@ -261,7 +261,12 @@ class TestCase():
                         logging.warning(f"The nextNode that was found: "
                                         f"{nextNode.node_id} was the same "
                                         f"as the curNode: {curNode.node_id} "
-                                        f"when calling {methodCall}.")
+                                        f"when calling {methodCall} last "
+                                        f"statement was "
+                                        f"{methodResult[i]['name']}."
+                                        f"this usually occurs in older "
+                                        f"versions of Solidity where "
+                                        f"INVALID nodes can be reached.")
                         break
 
                     for j, cEdge in enumerate(compactEdges):
@@ -357,7 +362,11 @@ class TestCase():
         if app_lvl == 0:
             print(f"app_lvl: {app_lvl}\nj:{j}\ncEdge: {cEdge}\n\n\
             app_lvls: {app_lvls}")
-        assert app_lvl != 0, "An approach level of 0 should never be used."
+        if app_lvl == 0:
+            logging.warning("An approach level of 0 should only be used if \
+            an INVALID node was reached.")
+            # TODO: create an assert statement here to check if the above
+            # statement is correct
         return app_lvl
 
 
