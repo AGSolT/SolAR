@@ -201,6 +201,8 @@ class TestCase():
 
         for methodCall, methodResult in \
                 zip(self.methodCalls[1:], methodResults[1:]):
+            print(methodResult)
+            exit()
             if methodResult in ["passTime", "passBlocks", "ConstructorFail"]:
                 # These are not real method calls.
                 pass
@@ -263,7 +265,7 @@ class TestCase():
                                         f"as the curNode: {curNode.node_id} "
                                         f"when calling {methodCall} last "
                                         f"statement was "
-                                        f"{methodResult[i]['name']}."
+                                        f"{methodResult[i]['op']}."
                                         f"this usually occurs in older "
                                         f"versions of Solidity where "
                                         f"INVALID nodes can be reached.")
