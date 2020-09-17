@@ -201,8 +201,6 @@ class TestCase():
 
         for methodCall, methodResult in \
                 zip(self.methodCalls[1:], methodResults[1:]):
-            print(methodResult)
-            exit()
             if methodResult in ["passTime", "passBlocks", "ConstructorFail"]:
                 # These are not real method calls.
                 pass
