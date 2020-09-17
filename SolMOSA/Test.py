@@ -360,11 +360,10 @@ class TestCase():
         for j in edgeset:
             app_lvl = min(app_lvl, app_lvls[j][cEdge])
         if app_lvl == 0:
-            print(f"app_lvl: {app_lvl}\nj:{j}\ncEdge: {cEdge}\n\n\
-            app_lvls: {app_lvls}")
-        if app_lvl == 0:
             logging.warning("An approach level of 0 should only be used if \
             an INVALID node was reached.")
+            logging.warning(f"app_lvl: {app_lvl}\nj:{j}\ncEdge: {cEdge}\n\n\
+            app_lvls: {app_lvls}")
             # TODO: create an assert statement here to check if the above
             # statement is correct
         return app_lvl
