@@ -1,0 +1,3741 @@
+{
+  "contractName": "Greeter",
+  "abi": [
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "lang",
+          "type": "uint8"
+        }
+      ],
+      "name": "sayHello",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "lang",
+          "type": "uint8"
+        },
+        {
+          "name": "_hello",
+          "type": "string"
+        }
+      ],
+      "name": "changeHello",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "constant": true,
+      "inputs": [
+        {
+          "name": "lang",
+          "type": "uint8"
+        }
+      ],
+      "name": "sayGoodbye",
+      "outputs": [
+        {
+          "name": "",
+          "type": "string"
+        }
+      ],
+      "payable": false,
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "constant": false,
+      "inputs": [
+        {
+          "name": "lang",
+          "type": "uint8"
+        },
+        {
+          "name": "_goodbye",
+          "type": "string"
+        }
+      ],
+      "name": "changeGoodbye",
+      "outputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.4.24+commit.e67f0147\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"constant\":true,\"inputs\":[{\"name\":\"lang\",\"type\":\"uint8\"}],\"name\":\"sayHello\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":true,\"inputs\":[{\"name\":\"lang\",\"type\":\"uint8\"}],\"name\":\"sayGoodbye\",\"outputs\":[{\"name\":\"\",\"type\":\"string\"}],\"payable\":false,\"stateMutability\":\"view\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"lang\",\"type\":\"uint8\"},{\"name\":\"_goodbye\",\"type\":\"string\"}],\"name\":\"changeGoodbye\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"constant\":false,\"inputs\":[{\"name\":\"lang\",\"type\":\"uint8\"},{\"name\":\"_hello\",\"type\":\"string\"}],\"name\":\"changeHello\",\"outputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Seongil Lee\",\"methods\":{\"changeGoodbye(uint8,string)\":{\"params\":{\"_goodbye\":\"\\ubcc0\\uacbd \\ud558\\uace0\\uc790 \\ud558\\ub294 \\ud5e4\\uc5b4\\uc9c8 \\ub54c \\uc778\\uc0ac\\ub9d0\",\"lang\":\"\\uc5b8\\uc5b4\\ub97c \\uc120\\ud0dd\\ud558\\uae30 \\uc704\\ud55c enum value (Korean : 0, English: 1)\"}},\"changeHello(uint8,string)\":{\"params\":{\"_hello\":\"\\ubcc0\\uacbd \\ud558\\uace0\\uc790 \\ud558\\ub294 \\ub9cc\\ub0a0 \\ub54c \\uc778\\uc0ac\\ub9d0\",\"lang\":\"\\uc5b8\\uc5b4\\ub97c \\uc120\\ud0dd\\ud558\\uae30 \\uc704\\ud55c enum value (Korean : 0, English: 1)\"}},\"sayGoodbye(uint8)\":{\"details\":\"enum \\ud0c0\\uc785 \\uc0ac\\uc6a9 \\uc2dc lang\\uc774 uint8\\uc774\\ubbc0\\ub85c \\uba85\\uc2dc\\uc801 \\ud615 \\ubcc0\\ud658 \\ud544\\uc218!\",\"params\":{\"lang\":\"\\uc5b8\\uc5b4\\ub97c \\uc120\\ud0dd\\ud558\\uae30 \\uc704\\ud55c enum value (Korean : 0, English: 1)\"},\"return\":\"lang\\uc5d0 \\ub9de\\ub294 \\ud5e4\\uc5b4\\uc9c8 \\ub54c \\uc778\\uc0ac\\ub9d0\"},\"sayHello(uint8)\":{\"details\":\"enum \\ud0c0\\uc785 \\uc0ac\\uc6a9 \\uc2dc lang\\uc774 uint8\\uc774\\ubbc0\\ub85c \\uba85\\uc2dc\\uc801 \\ud615 \\ubcc0\\ud658 \\ud544\\uc218!\",\"params\":{\"lang\":\"\\uc5b8\\uc5b4\\ub97c \\uc120\\ud0dd\\ud558\\uae30 \\uc704\\ud55c enum value (Korean : 0, English: 1)\"},\"return\":\"lang\\uc5d0 \\ub9de\\ub294 \\ub9cc\\ub0a0 \\ub54c \\uc778\\uc0ac\\ub9d0\"}},\"title\":\"Ch.4.2 Greeter \\uc2a4\\ub9c8\\ud2b8 \\ucee8\\ud2b8\\ub799\\ud2b8 - 04-02 enum \\ubcc0\\uc218\\ub97c \\uc774\\uc6a9\\ud574\\uc11c \\ub2e4\\uad6d\\uc5b4 \\uc9c0\\uc6d0\"},\"userdoc\":{\"methods\":{\"changeGoodbye(uint8,string)\":{\"notice\":\"\\uc120\\ud0dd\\ud55c \\uc5b8\\uc5b4\\uc758 \\ud5e4\\uc5b4\\uc9c8 \\ub54c \\uc778\\uc0ac\\ub9d0\\uc744 \\ubcc0\\uacbd\\ud569\\ub2c8\\ub2e4.\"},\"changeHello(uint8,string)\":{\"notice\":\"\\uc120\\ud0dd\\ud55c \\uc5b8\\uc5b4\\uc758 \\ub9cc\\ub0a0 \\ub54c \\uc778\\uc0ac\\ub9d0\\uc744 \\ubcc0\\uacbd\\ud569\\ub2c8\\ub2e4.\"},\"sayGoodbye(uint8)\":{\"notice\":\"\\uc120\\ud0dd\\ud55c \\uc5b8\\uc5b4\\uc758 \\ud5e4\\uc5b4\\uc9c8 \\ub54c \\uc778\\uc0ac\\ub9d0\\uc744 \\uac00\\uc838\\uc635\\ub2c8\\ub2e4.\"},\"sayHello(uint8)\":{\"notice\":\"\\uc120\\ud0dd\\ud55c \\uc5b8\\uc5b4\\uc758 \\ub9cc\\ub0a0 \\ub54c \\uc778\\uc0ac\\ub9d0\\uc744 \\uac00\\uc838\\uc635\\ub2c8\\ub2e4.\"}}}},\"settings\":{\"compilationTarget\":{\"/Users/stefan/Documents/PhD/SolMOSA/RWContracts/CoreEthereumProgrammer/Greeter/contracts/Greeter.sol\":\"Greeter\"},\"evmVersion\":\"byzantium\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/stefan/Documents/PhD/SolMOSA/RWContracts/CoreEthereumProgrammer/Greeter/contracts/Greeter.sol\":{\"keccak256\":\"0xb863220a864b972e4c4d7f8b67fff8ca3bf5e262946edee0f003615457dc0fec\",\"urls\":[\"bzzr://dec45db034caa1bf1b4cf3b5c9e50173e81a684095ebef896ef6c12646af112b\"]}},\"version\":1}",
+  "bytecode": "0x60806040526040805190810160405280600781526020017fec9588eb85953f000000000000000000000000000000000000000000000000008152506000908051906020019061004f929190610146565b506040805190810160405280600781526020017fec9e98eab08021000000000000000000000000000000000000000000000000008152506001908051906020019061009b929190610146565b506040805190810160405280600581526020017f48656c6c6f000000000000000000000000000000000000000000000000000000815250600290805190602001906100e7929190610146565b506040805190810160405280600881526020017f476f6f646279652100000000000000000000000000000000000000000000000081525060039080519060200190610133929190610146565b5034801561014057600080fd5b506101eb565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f1061018757805160ff19168380011785556101b5565b828001600101855582156101b5579182015b828111156101b4578251825591602001919060010190610199565b5b5090506101c291906101c6565b5090565b6101e891905b808211156101e45760008160009055506001016101cc565b5090565b90565b610772806101fa6000396000f300608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806313ee648c146100675780632feae5c81461011057806366cad460146101b9578063f8f7a5141461022f575b600080fd5b34801561007357600080fd5b50610095600480360381019080803560ff1690602001909291905050506102a5565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100d55780820151818401526020810190506100ba565b50505050905090810190601f1680156101025780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34801561011c57600080fd5b5061013e600480360381019080803560ff169060200190929190505050610437565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561017e578082015181840152602081019050610163565b50505050905090810190601f1680156101ab5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156101c557600080fd5b5061022d600480360381019080803560ff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506105c9565b005b34801561023b57600080fd5b506102a3600480360381019080803560ff169060200190929190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290505050610635565b005b6060600060018111156102b457fe5b60ff168260ff1614156103635760008054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103575780601f1061032c57610100808354040283529160200191610357565b820191906000526020600020905b81548152906001019060200180831161033a57829003601f168201915b50505050509050610432565b60018081111561036f57fe5b60ff168260ff16141561041e5760028054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104125780601f106103e757610100808354040283529160200191610412565b820191906000526020600020905b8154815290600101906020018083116103f557829003601f168201915b50505050509050610432565b602060405190810160405280600081525090505b919050565b60606000600181111561044657fe5b60ff168260ff1614156104f55760018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104e95780601f106104be576101008083540402835291602001916104e9565b820191906000526020600020905b8154815290600101906020018083116104cc57829003601f168201915b505050505090506105c4565b60018081111561050157fe5b60ff168260ff1614156105b05760038054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105a45780601f10610579576101008083540402835291602001916105a4565b820191906000526020600020905b81548152906001019060200180831161058757829003601f168201915b505050505090506105c4565b602060405190810160405280600081525090505b919050565b600060018111156105d657fe5b60ff168260ff1614156105ff5780600190805190602001906105f99291906106a1565b50610631565b60018081111561060b57fe5b60ff168260ff16141561063057806003908051906020019061062e9291906106a1565b505b5b5050565b6000600181111561064257fe5b60ff168260ff16141561066b5780600090805190602001906106659291906106a1565b5061069d565b60018081111561067757fe5b60ff168260ff16141561069c57806002908051906020019061069a9291906106a1565b505b5b5050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106106e257805160ff1916838001178555610710565b82800160010185558215610710579182015b8281111561070f5782518255916020019190600101906106f4565b5b50905061071d9190610721565b5090565b61074391905b8082111561073f576000816000905550600101610727565b5090565b905600a165627a7a72305820ac8784a3d143139ae9e2133dcc1e70ccce3062b89749456000bfb1717a1a3a660029",
+  "deployedBytecode": "0x608060405260043610610062576000357c0100000000000000000000000000000000000000000000000000000000900463ffffffff16806313ee648c146100675780632feae5c81461011057806366cad460146101b9578063f8f7a5141461022f575b600080fd5b34801561007357600080fd5b50610095600480360381019080803560ff1690602001909291905050506102a5565b6040518080602001828103825283818151815260200191508051906020019080838360005b838110156100d55780820151818401526020810190506100ba565b50505050905090810190601f1680156101025780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b34801561011c57600080fd5b5061013e600480360381019080803560ff169060200190929190505050610437565b6040518080602001828103825283818151815260200191508051906020019080838360005b8381101561017e578082015181840152602081019050610163565b50505050905090810190601f1680156101ab5780820380516001836020036101000a031916815260200191505b509250505060405180910390f35b3480156101c557600080fd5b5061022d600480360381019080803560ff169060200190929190803590602001908201803590602001908080601f01602080910402602001604051908101604052809392919081815260200183838082843782019150505050505091929192905050506105c9565b005b34801561023b57600080fd5b506102a3600480360381019080803560ff169060200190929190803590602001908201803590602001908080601f0160208091040260200160405190810160405280939291908181526020018383808284378201915050505050509192919290505050610635565b005b6060600060018111156102b457fe5b60ff168260ff1614156103635760008054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156103575780601f1061032c57610100808354040283529160200191610357565b820191906000526020600020905b81548152906001019060200180831161033a57829003601f168201915b50505050509050610432565b60018081111561036f57fe5b60ff168260ff16141561041e5760028054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104125780601f106103e757610100808354040283529160200191610412565b820191906000526020600020905b8154815290600101906020018083116103f557829003601f168201915b50505050509050610432565b602060405190810160405280600081525090505b919050565b60606000600181111561044657fe5b60ff168260ff1614156104f55760018054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156104e95780601f106104be576101008083540402835291602001916104e9565b820191906000526020600020905b8154815290600101906020018083116104cc57829003601f168201915b505050505090506105c4565b60018081111561050157fe5b60ff168260ff1614156105b05760038054600181600116156101000203166002900480601f0160208091040260200160405190810160405280929190818152602001828054600181600116156101000203166002900480156105a45780601f10610579576101008083540402835291602001916105a4565b820191906000526020600020905b81548152906001019060200180831161058757829003601f168201915b505050505090506105c4565b602060405190810160405280600081525090505b919050565b600060018111156105d657fe5b60ff168260ff1614156105ff5780600190805190602001906105f99291906106a1565b50610631565b60018081111561060b57fe5b60ff168260ff16141561063057806003908051906020019061062e9291906106a1565b505b5b5050565b6000600181111561064257fe5b60ff168260ff16141561066b5780600090805190602001906106659291906106a1565b5061069d565b60018081111561067757fe5b60ff168260ff16141561069c57806002908051906020019061069a9291906106a1565b505b5b5050565b828054600181600116156101000203166002900490600052602060002090601f016020900481019282601f106106e257805160ff1916838001178555610710565b82800160010185558215610710579182015b8281111561070f5782518255916020019190600101906106f4565b5b50905061071d9190610721565b5090565b61074391905b8082111561073f576000816000905550600101610727565b5090565b905600a165627a7a72305820ac8784a3d143139ae9e2133dcc1e70ccce3062b89749456000bfb1717a1a3a660029",
+  "sourceMap": "384:2338:0:-;;;407:30;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;443:32;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;481:29;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;516:34;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;384:2338;8:9:-1;5:2;;;30:1;27;20:12;5:2;384:2338:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o;:::-;;;;;;;",
+  "deployedSourceMap": "384:2338:0:-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;895:273;;8:9:-1;5:2;;;30:1;27;20:12;5:2;895:273:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;895:273:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1952:279;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1952:279:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;23:1:-1;8:100;33:3;30:1;27:10;8:100;;;99:1;94:3;90:11;84:18;80:1;75:3;71:11;64:39;52:2;49:1;45:10;40:15;;8:100;;;12:14;1952:279:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2475:245;;8:9:-1;5:2;;;30:1;27;20:12;5:2;2475:245:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1404:233;;8:9:-1;5:2;;;30:1;27;20:12;5:2;1404:233:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;895:273;946:6;982:11;976:18;;;;;;;;968:26;;:4;:26;;;964:198;;;1017:11;1010:18;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;964:198;1063:12;1057:19;;;;;;;;1049:27;;:4;:27;;;1045:117;;;1099:12;1092:19;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1045:117;1142:9;;;;;;;;;;;;;;;895:273;;;;:::o;1952:279::-;2005:6;2041:11;2035:18;;;;;;;;2027:26;;:4;:26;;;2023:202;;;2076:13;2069:20;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2023:202;2124:12;2118:19;;;;;;;;2110:27;;:4;:27;;;2106:119;;;2160:14;2153:21;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;2106:119;2205:9;;;;;;;;;;;;;;;1952:279;;;;:::o;2475:245::-;2562:11;2556:18;;;;;;;;2548:26;;:4;:26;;;2544:170;;;2606:8;2590:13;:24;;;;;;;;;;;;:::i;:::-;;2544:170;;;2649:12;2643:19;;;;;;;;2635:27;;:4;:27;;;2631:83;;;2695:8;2678:14;:25;;;;;;;;;;;;:::i;:::-;;2631:83;2544:170;2475:245;;:::o;1404:233::-;1487:11;1481:18;;;;;;;;1473:26;;:4;:26;;;1469:162;;;1529:6;1515:11;:20;;;;;;;;;;;;:::i;:::-;;1469:162;;;1570:12;1564:19;;;;;;;;1556:27;;:4;:27;;;1552:79;;;1614:6;1599:12;:21;;;;;;;;;;;;:::i;:::-;;1552:79;1469:162;1404:233;;:::o;384:2338::-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;:::i;:::-;;;:::o;:::-;;;;;;;;;;;;;;;;;;;;;;;;;;;:::o",
+  "source": "pragma solidity ^0.4.24;\n\n/// @title Ch.4.2 Greeter 스마트 컨트랙트 - 04-02 enum 변수를 이용해서 다국어 지원\n/// @author Seongil Lee\n/// @notice 코어 이더리움 프로그램 책에 나와 있는 예제입니다.\n/// @dev 개인 공부용으로 작성했습니다.\n/// @dev 숫자로 선택하던 언어를 enum 타입을 정의해서 가독성을 높입니다.\ncontract Greeter {\n    string helloKorean = \"안녕?\";\n    string goodbyeKorean = \"잘가!\";\n    string helloEnglish = \"Hello\";\n    string goodbyeEnglish = \"Goodbye!\";\n\n    enum Lang { Korean, English }\n\n    /// @notice 선택한 언어의 만날 때 인사말을 가져옵니다.\n    /// @dev enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!\n    /// @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n    /// @return lang에 맞는 만날 때 인사말\n    function sayHello(uint8 lang) public view returns (string) {\n        if (lang == uint8(Lang.Korean)) {\n            return helloKorean;\n        } else if (lang == uint8(Lang.English)) {\n            return helloEnglish;\n        } else {\n            return \"\";\n        }\n    }\n\n    /// @notice 선택한 언어의 만날 때 인사말을 변경합니다.\n    /// @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n    /// @param _hello 변경 하고자 하는 만날 때 인사말\n    function changeHello(uint8 lang, string _hello) public {\n        if (lang == uint8(Lang.Korean)) {\n            helloKorean = _hello;\n        } else if (lang == uint8(Lang.English)) {\n            helloEnglish = _hello;\n        }\n    }\n\n    /// @notice 선택한 언어의 헤어질 때 인사말을 가져옵니다.\n    /// @dev enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!\n    /// @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n    /// @return lang에 맞는 헤어질 때 인사말\n    function sayGoodbye(uint8 lang) public view returns (string) {\n        if (lang == uint8(Lang.Korean)) {\n            return goodbyeKorean;\n        } else if (lang == uint8(Lang.English)) {\n            return goodbyeEnglish;\n        } else {\n            return \"\";\n        }\n    }\n\n    /// @notice 선택한 언어의 헤어질 때 인사말을 변경합니다.\n    /// @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n    /// @param _goodbye 변경 하고자 하는 헤어질 때 인사말\n    function changeGoodbye(uint8 lang, string _goodbye) public {\n        if (lang == uint8(Lang.Korean)) {\n            goodbyeKorean = _goodbye;\n        } else if (lang == uint8(Lang.English)) {\n            goodbyeEnglish = _goodbye;\n        }\n    }\n}\n",
+  "sourcePath": "/Users/stefan/Documents/PhD/SolMOSA/RWContracts/CoreEthereumProgrammer/Greeter/contracts/Greeter.sol",
+  "ast": {
+    "absolutePath": "/Users/stefan/Documents/PhD/SolMOSA/RWContracts/CoreEthereumProgrammer/Greeter/contracts/Greeter.sol",
+    "exportedSymbols": {
+      "Greeter": [
+        143
+      ]
+    },
+    "id": 144,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Ch.4.2 Greeter 스마트 컨트랙트 - 04-02 enum 변수를 이용해서 다국어 지원\n @author Seongil Lee\n @notice 코어 이더리움 프로그램 책에 나와 있는 예제입니다.\n @dev 개인 공부용으로 작성했습니다.\n @dev 숫자로 선택하던 언어를 enum 타입을 정의해서 가독성을 높입니다.",
+        "fullyImplemented": true,
+        "id": 143,
+        "linearizedBaseContracts": [
+          143
+        ],
+        "name": "Greeter",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 4,
+            "name": "helloKorean",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "407:30:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "407:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "ec9588eb85953f",
+              "id": 3,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "428:9:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_653ea00b88241ea1a65d85c452ba20d384bd5f25d8b623855155899887e5eb07",
+                "typeString": "literal_string \"안녕?\""
+              },
+              "value": "안녕?"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7,
+            "name": "goodbyeKorean",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "443:32:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 5,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "443:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "ec9e98eab08021",
+              "id": 6,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "466:9:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_85ea7f22626ae1b5fe584754b6b4029d257ddbf681adabd3af56b51821783b5a",
+                "typeString": "literal_string \"잘가!\""
+              },
+              "value": "잘가!"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 10,
+            "name": "helloEnglish",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "481:29:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 8,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "481:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "48656c6c6f",
+              "id": 9,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "503:7:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_06b3dfaec148fb1bb2b066f10ec285e7c9bf402ab32aa78a5d38e34566810cd2",
+                "typeString": "literal_string \"Hello\""
+              },
+              "value": "Hello"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 13,
+            "name": "goodbyeEnglish",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "516:34:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 11,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "516:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "476f6f6462796521",
+              "id": 12,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "540:10:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_ecb1d34c319112dcbe06d2413ddfed16ced8161e03ca09178d58570677a5049f",
+                "typeString": "literal_string \"Goodbye!\""
+              },
+              "value": "Goodbye!"
+            },
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "Greeter.Lang",
+            "id": 16,
+            "members": [
+              {
+                "id": 14,
+                "name": "Korean",
+                "nodeType": "EnumValue",
+                "src": "569:6:0"
+              },
+              {
+                "id": 15,
+                "name": "English",
+                "nodeType": "EnumValue",
+                "src": "577:7:0"
+              }
+            ],
+            "name": "Lang",
+            "nodeType": "EnumDefinition",
+            "src": "557:29:0"
+          },
+          {
+            "body": {
+              "id": 46,
+              "nodeType": "Block",
+              "src": "954:214:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 28,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 23,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 18,
+                      "src": "968:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 25,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "982:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 26,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "982:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 24,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "976:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 27,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "976:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "968:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 37,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 32,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18,
+                        "src": "1049:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 34,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "1063:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 35,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "1063:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 33,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1057:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 36,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1057:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "1049:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": {
+                      "id": 43,
+                      "nodeType": "Block",
+                      "src": "1128:34:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "hexValue": "",
+                            "id": 41,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1149:2:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                              "typeString": "literal_string \"\""
+                            },
+                            "value": ""
+                          },
+                          "functionReturnParameters": 22,
+                          "id": 42,
+                          "nodeType": "Return",
+                          "src": "1142:9:0"
+                        }
+                      ]
+                    },
+                    "id": 44,
+                    "nodeType": "IfStatement",
+                    "src": "1045:117:0",
+                    "trueBody": {
+                      "id": 40,
+                      "nodeType": "Block",
+                      "src": "1078:44:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 38,
+                            "name": "helloEnglish",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 10,
+                            "src": "1099:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "functionReturnParameters": 22,
+                          "id": 39,
+                          "nodeType": "Return",
+                          "src": "1092:19:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 45,
+                  "nodeType": "IfStatement",
+                  "src": "964:198:0",
+                  "trueBody": {
+                    "id": 31,
+                    "nodeType": "Block",
+                    "src": "996:43:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 29,
+                          "name": "helloKorean",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4,
+                          "src": "1017:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "functionReturnParameters": 22,
+                        "id": 30,
+                        "nodeType": "Return",
+                        "src": "1010:18:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 만날 때 인사말을 가져옵니다.\n @dev enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @return lang에 맞는 만날 때 인사말",
+            "id": 47,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "sayHello",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47,
+                  "src": "913:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 17,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "913:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "912:12:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 22,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47,
+                  "src": "946:6:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 20,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "946:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "945:8:0"
+            },
+            "scope": 143,
+            "src": "895:273:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 78,
+              "nodeType": "Block",
+              "src": "1459:178:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 59,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 54,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 49,
+                      "src": "1473:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 56,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "1487:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 57,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1487:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 55,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "1481:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 58,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1481:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "1473:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 70,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 65,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 49,
+                        "src": "1556:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 67,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "1570:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 68,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "1570:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 66,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1564:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 69,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1564:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "1556:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": null,
+                    "id": 76,
+                    "nodeType": "IfStatement",
+                    "src": "1552:79:0",
+                    "trueBody": {
+                      "id": 75,
+                      "nodeType": "Block",
+                      "src": "1585:46:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 73,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 71,
+                              "name": "helloEnglish",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 10,
+                              "src": "1599:12:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "id": 72,
+                              "name": "_hello",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 51,
+                              "src": "1614:6:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            },
+                            "src": "1599:21:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "id": 74,
+                          "nodeType": "ExpressionStatement",
+                          "src": "1599:21:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 77,
+                  "nodeType": "IfStatement",
+                  "src": "1469:162:0",
+                  "trueBody": {
+                    "id": 64,
+                    "nodeType": "Block",
+                    "src": "1501:45:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 62,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 60,
+                            "name": "helloKorean",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4,
+                            "src": "1515:11:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 61,
+                            "name": "_hello",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 51,
+                            "src": "1529:6:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "src": "1515:20:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "id": 63,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1515:20:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 만날 때 인사말을 변경합니다.\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @param _hello 변경 하고자 하는 만날 때 인사말",
+            "id": 79,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "changeHello",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 52,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 49,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 79,
+                  "src": "1425:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 48,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1425:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 51,
+                  "name": "_hello",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 79,
+                  "src": "1437:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 50,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1437:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1424:27:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 53,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1459:0:0"
+            },
+            "scope": 143,
+            "src": "1404:233:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 109,
+              "nodeType": "Block",
+              "src": "2013:218:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 91,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 86,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 81,
+                      "src": "2027:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 88,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "2041:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 89,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2041:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 87,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "2035:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 90,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2035:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "2027:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 100,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 95,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 81,
+                        "src": "2110:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 97,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "2124:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 98,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "2124:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 96,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2118:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 99,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2118:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "2110:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": {
+                      "id": 106,
+                      "nodeType": "Block",
+                      "src": "2191:34:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "hexValue": "",
+                            "id": 104,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2212:2:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                              "typeString": "literal_string \"\""
+                            },
+                            "value": ""
+                          },
+                          "functionReturnParameters": 85,
+                          "id": 105,
+                          "nodeType": "Return",
+                          "src": "2205:9:0"
+                        }
+                      ]
+                    },
+                    "id": 107,
+                    "nodeType": "IfStatement",
+                    "src": "2106:119:0",
+                    "trueBody": {
+                      "id": 103,
+                      "nodeType": "Block",
+                      "src": "2139:46:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 101,
+                            "name": "goodbyeEnglish",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 13,
+                            "src": "2160:14:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "functionReturnParameters": 85,
+                          "id": 102,
+                          "nodeType": "Return",
+                          "src": "2153:21:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 108,
+                  "nodeType": "IfStatement",
+                  "src": "2023:202:0",
+                  "trueBody": {
+                    "id": 94,
+                    "nodeType": "Block",
+                    "src": "2055:45:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 92,
+                          "name": "goodbyeKorean",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7,
+                          "src": "2076:13:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "functionReturnParameters": 85,
+                        "id": 93,
+                        "nodeType": "Return",
+                        "src": "2069:20:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 헤어질 때 인사말을 가져옵니다.\n @dev enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @return lang에 맞는 헤어질 때 인사말",
+            "id": 110,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "sayGoodbye",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 82,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 81,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 110,
+                  "src": "1972:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 80,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1972:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1971:12:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 85,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 110,
+                  "src": "2005:6:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2005:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2004:8:0"
+            },
+            "scope": 143,
+            "src": "1952:279:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 141,
+              "nodeType": "Block",
+              "src": "2534:186:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 122,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 117,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 112,
+                      "src": "2548:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 119,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "2562:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 120,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2562:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 118,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "2556:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 121,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2556:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "2548:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 133,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 128,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 112,
+                        "src": "2635:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 130,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "2649:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 131,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "2649:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 129,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2643:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 132,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2643:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "2635:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": null,
+                    "id": 139,
+                    "nodeType": "IfStatement",
+                    "src": "2631:83:0",
+                    "trueBody": {
+                      "id": 138,
+                      "nodeType": "Block",
+                      "src": "2664:50:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 136,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 134,
+                              "name": "goodbyeEnglish",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 13,
+                              "src": "2678:14:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "id": 135,
+                              "name": "_goodbye",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 114,
+                              "src": "2695:8:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            },
+                            "src": "2678:25:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "id": 137,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2678:25:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 140,
+                  "nodeType": "IfStatement",
+                  "src": "2544:170:0",
+                  "trueBody": {
+                    "id": 127,
+                    "nodeType": "Block",
+                    "src": "2576:49:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 125,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 123,
+                            "name": "goodbyeKorean",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7,
+                            "src": "2590:13:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 124,
+                            "name": "_goodbye",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 114,
+                            "src": "2606:8:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "src": "2590:24:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "id": 126,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2590:24:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 헤어질 때 인사말을 변경합니다.\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @param _goodbye 변경 하고자 하는 헤어질 때 인사말",
+            "id": 142,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "changeGoodbye",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 115,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 112,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 142,
+                  "src": "2498:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 111,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2498:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 114,
+                  "name": "_goodbye",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 142,
+                  "src": "2510:15:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 113,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2510:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2497:29:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 116,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2534:0:0"
+            },
+            "scope": 143,
+            "src": "2475:245:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 144,
+        "src": "384:2338:0"
+      }
+    ],
+    "src": "0:2723:0"
+  },
+  "legacyAST": {
+    "absolutePath": "/Users/stefan/Documents/PhD/SolMOSA/RWContracts/CoreEthereumProgrammer/Greeter/contracts/Greeter.sol",
+    "exportedSymbols": {
+      "Greeter": [
+        143
+      ]
+    },
+    "id": 144,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "^",
+          "0.4",
+          ".24"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "0:24:0"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": "@title Ch.4.2 Greeter 스마트 컨트랙트 - 04-02 enum 변수를 이용해서 다국어 지원\n @author Seongil Lee\n @notice 코어 이더리움 프로그램 책에 나와 있는 예제입니다.\n @dev 개인 공부용으로 작성했습니다.\n @dev 숫자로 선택하던 언어를 enum 타입을 정의해서 가독성을 높입니다.",
+        "fullyImplemented": true,
+        "id": 143,
+        "linearizedBaseContracts": [
+          143
+        ],
+        "name": "Greeter",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "constant": false,
+            "id": 4,
+            "name": "helloKorean",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "407:30:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 2,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "407:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "ec9588eb85953f",
+              "id": 3,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "428:9:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_653ea00b88241ea1a65d85c452ba20d384bd5f25d8b623855155899887e5eb07",
+                "typeString": "literal_string \"안녕?\""
+              },
+              "value": "안녕?"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 7,
+            "name": "goodbyeKorean",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "443:32:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 5,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "443:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "ec9e98eab08021",
+              "id": 6,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "466:9:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_85ea7f22626ae1b5fe584754b6b4029d257ddbf681adabd3af56b51821783b5a",
+                "typeString": "literal_string \"잘가!\""
+              },
+              "value": "잘가!"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 10,
+            "name": "helloEnglish",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "481:29:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 8,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "481:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "48656c6c6f",
+              "id": 9,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "503:7:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_06b3dfaec148fb1bb2b066f10ec285e7c9bf402ab32aa78a5d38e34566810cd2",
+                "typeString": "literal_string \"Hello\""
+              },
+              "value": "Hello"
+            },
+            "visibility": "internal"
+          },
+          {
+            "constant": false,
+            "id": 13,
+            "name": "goodbyeEnglish",
+            "nodeType": "VariableDeclaration",
+            "scope": 143,
+            "src": "516:34:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_string_storage",
+              "typeString": "string"
+            },
+            "typeName": {
+              "id": 11,
+              "name": "string",
+              "nodeType": "ElementaryTypeName",
+              "src": "516:6:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_string_storage_ptr",
+                "typeString": "string"
+              }
+            },
+            "value": {
+              "argumentTypes": null,
+              "hexValue": "476f6f6462796521",
+              "id": 12,
+              "isConstant": false,
+              "isLValue": false,
+              "isPure": true,
+              "kind": "string",
+              "lValueRequested": false,
+              "nodeType": "Literal",
+              "src": "540:10:0",
+              "subdenomination": null,
+              "typeDescriptions": {
+                "typeIdentifier": "t_stringliteral_ecb1d34c319112dcbe06d2413ddfed16ced8161e03ca09178d58570677a5049f",
+                "typeString": "literal_string \"Goodbye!\""
+              },
+              "value": "Goodbye!"
+            },
+            "visibility": "internal"
+          },
+          {
+            "canonicalName": "Greeter.Lang",
+            "id": 16,
+            "members": [
+              {
+                "id": 14,
+                "name": "Korean",
+                "nodeType": "EnumValue",
+                "src": "569:6:0"
+              },
+              {
+                "id": 15,
+                "name": "English",
+                "nodeType": "EnumValue",
+                "src": "577:7:0"
+              }
+            ],
+            "name": "Lang",
+            "nodeType": "EnumDefinition",
+            "src": "557:29:0"
+          },
+          {
+            "body": {
+              "id": 46,
+              "nodeType": "Block",
+              "src": "954:214:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 28,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 23,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 18,
+                      "src": "968:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 25,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "982:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 26,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "982:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 24,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "976:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 27,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "976:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "968:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 37,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 32,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 18,
+                        "src": "1049:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 34,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "1063:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 35,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "1063:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 33,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1057:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 36,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1057:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "1049:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": {
+                      "id": 43,
+                      "nodeType": "Block",
+                      "src": "1128:34:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "hexValue": "",
+                            "id": 41,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "1149:2:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                              "typeString": "literal_string \"\""
+                            },
+                            "value": ""
+                          },
+                          "functionReturnParameters": 22,
+                          "id": 42,
+                          "nodeType": "Return",
+                          "src": "1142:9:0"
+                        }
+                      ]
+                    },
+                    "id": 44,
+                    "nodeType": "IfStatement",
+                    "src": "1045:117:0",
+                    "trueBody": {
+                      "id": 40,
+                      "nodeType": "Block",
+                      "src": "1078:44:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 38,
+                            "name": "helloEnglish",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 10,
+                            "src": "1099:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "functionReturnParameters": 22,
+                          "id": 39,
+                          "nodeType": "Return",
+                          "src": "1092:19:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 45,
+                  "nodeType": "IfStatement",
+                  "src": "964:198:0",
+                  "trueBody": {
+                    "id": 31,
+                    "nodeType": "Block",
+                    "src": "996:43:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 29,
+                          "name": "helloKorean",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 4,
+                          "src": "1017:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "functionReturnParameters": 22,
+                        "id": 30,
+                        "nodeType": "Return",
+                        "src": "1010:18:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 만날 때 인사말을 가져옵니다.\n @dev enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @return lang에 맞는 만날 때 인사말",
+            "id": 47,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "sayHello",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 19,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 18,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47,
+                  "src": "913:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 17,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "913:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "912:12:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 22,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 21,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 47,
+                  "src": "946:6:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 20,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "946:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "945:8:0"
+            },
+            "scope": 143,
+            "src": "895:273:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 78,
+              "nodeType": "Block",
+              "src": "1459:178:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 59,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 54,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 49,
+                      "src": "1473:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 56,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "1487:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 57,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "1487:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 55,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "1481:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 58,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "1481:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "1473:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 70,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 65,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 49,
+                        "src": "1556:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 67,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "1570:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 68,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "1570:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 66,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "1564:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 69,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "1564:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "1556:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": null,
+                    "id": 76,
+                    "nodeType": "IfStatement",
+                    "src": "1552:79:0",
+                    "trueBody": {
+                      "id": 75,
+                      "nodeType": "Block",
+                      "src": "1585:46:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 73,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 71,
+                              "name": "helloEnglish",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 10,
+                              "src": "1599:12:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "id": 72,
+                              "name": "_hello",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 51,
+                              "src": "1614:6:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            },
+                            "src": "1599:21:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "id": 74,
+                          "nodeType": "ExpressionStatement",
+                          "src": "1599:21:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 77,
+                  "nodeType": "IfStatement",
+                  "src": "1469:162:0",
+                  "trueBody": {
+                    "id": 64,
+                    "nodeType": "Block",
+                    "src": "1501:45:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 62,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 60,
+                            "name": "helloKorean",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 4,
+                            "src": "1515:11:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 61,
+                            "name": "_hello",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 51,
+                            "src": "1529:6:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "src": "1515:20:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "id": 63,
+                        "nodeType": "ExpressionStatement",
+                        "src": "1515:20:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 만날 때 인사말을 변경합니다.\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @param _hello 변경 하고자 하는 만날 때 인사말",
+            "id": 79,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "changeHello",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 52,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 49,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 79,
+                  "src": "1425:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 48,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1425:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 51,
+                  "name": "_hello",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 79,
+                  "src": "1437:13:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 50,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1437:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1424:27:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 53,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "1459:0:0"
+            },
+            "scope": 143,
+            "src": "1404:233:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 109,
+              "nodeType": "Block",
+              "src": "2013:218:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 91,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 86,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 81,
+                      "src": "2027:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 88,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "2041:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 89,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2041:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 87,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "2035:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 90,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2035:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "2027:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 100,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 95,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 81,
+                        "src": "2110:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 97,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "2124:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 98,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "2124:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 96,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2118:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 99,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2118:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "2110:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": {
+                      "id": 106,
+                      "nodeType": "Block",
+                      "src": "2191:34:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "hexValue": "",
+                            "id": 104,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "2212:2:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_c5d2460186f7233c927e7db2dcc703c0e500b653ca82273b7bfad8045d85a470",
+                              "typeString": "literal_string \"\""
+                            },
+                            "value": ""
+                          },
+                          "functionReturnParameters": 85,
+                          "id": 105,
+                          "nodeType": "Return",
+                          "src": "2205:9:0"
+                        }
+                      ]
+                    },
+                    "id": 107,
+                    "nodeType": "IfStatement",
+                    "src": "2106:119:0",
+                    "trueBody": {
+                      "id": 103,
+                      "nodeType": "Block",
+                      "src": "2139:46:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 101,
+                            "name": "goodbyeEnglish",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 13,
+                            "src": "2160:14:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "functionReturnParameters": 85,
+                          "id": 102,
+                          "nodeType": "Return",
+                          "src": "2153:21:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 108,
+                  "nodeType": "IfStatement",
+                  "src": "2023:202:0",
+                  "trueBody": {
+                    "id": 94,
+                    "nodeType": "Block",
+                    "src": "2055:45:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 92,
+                          "name": "goodbyeKorean",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 7,
+                          "src": "2076:13:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "functionReturnParameters": 85,
+                        "id": 93,
+                        "nodeType": "Return",
+                        "src": "2069:20:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 헤어질 때 인사말을 가져옵니다.\n @dev enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @return lang에 맞는 헤어질 때 인사말",
+            "id": 110,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": true,
+            "modifiers": [],
+            "name": "sayGoodbye",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 82,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 81,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 110,
+                  "src": "1972:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 80,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "1972:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "1971:12:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 85,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 84,
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 110,
+                  "src": "2005:6:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 83,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2005:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2004:8:0"
+            },
+            "scope": 143,
+            "src": "1952:279:0",
+            "stateMutability": "view",
+            "superFunction": null,
+            "visibility": "public"
+          },
+          {
+            "body": {
+              "id": 141,
+              "nodeType": "Block",
+              "src": "2534:186:0",
+              "statements": [
+                {
+                  "condition": {
+                    "argumentTypes": null,
+                    "commonType": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    },
+                    "id": 122,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "leftExpression": {
+                      "argumentTypes": null,
+                      "id": 117,
+                      "name": "lang",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 112,
+                      "src": "2548:4:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "nodeType": "BinaryOperation",
+                    "operator": "==",
+                    "rightExpression": {
+                      "argumentTypes": null,
+                      "arguments": [
+                        {
+                          "argumentTypes": null,
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 119,
+                            "name": "Lang",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 16,
+                            "src": "2562:4:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                              "typeString": "type(enum Greeter.Lang)"
+                            }
+                          },
+                          "id": 120,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "memberName": "Korean",
+                          "nodeType": "MemberAccess",
+                          "referencedDeclaration": null,
+                          "src": "2562:11:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": [
+                          {
+                            "typeIdentifier": "t_enum$_Lang_$16",
+                            "typeString": "enum Greeter.Lang"
+                          }
+                        ],
+                        "id": 118,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "lValueRequested": false,
+                        "nodeType": "ElementaryTypeNameExpression",
+                        "src": "2556:5:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_type$_t_uint8_$",
+                          "typeString": "type(uint8)"
+                        },
+                        "typeName": "uint8"
+                      },
+                      "id": 121,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": true,
+                      "kind": "typeConversion",
+                      "lValueRequested": false,
+                      "names": [],
+                      "nodeType": "FunctionCall",
+                      "src": "2556:18:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      }
+                    },
+                    "src": "2548:26:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_bool",
+                      "typeString": "bool"
+                    }
+                  },
+                  "falseBody": {
+                    "condition": {
+                      "argumentTypes": null,
+                      "commonType": {
+                        "typeIdentifier": "t_uint8",
+                        "typeString": "uint8"
+                      },
+                      "id": 133,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "leftExpression": {
+                        "argumentTypes": null,
+                        "id": 128,
+                        "name": "lang",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 112,
+                        "src": "2635:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "nodeType": "BinaryOperation",
+                      "operator": "==",
+                      "rightExpression": {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "expression": {
+                              "argumentTypes": null,
+                              "id": 130,
+                              "name": "Lang",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 16,
+                              "src": "2649:4:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_type$_t_enum$_Lang_$16_$",
+                                "typeString": "type(enum Greeter.Lang)"
+                              }
+                            },
+                            "id": 131,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "lValueRequested": false,
+                            "memberName": "English",
+                            "nodeType": "MemberAccess",
+                            "referencedDeclaration": null,
+                            "src": "2649:12:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_enum$_Lang_$16",
+                              "typeString": "enum Greeter.Lang"
+                            }
+                          ],
+                          "id": 129,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "lValueRequested": false,
+                          "nodeType": "ElementaryTypeNameExpression",
+                          "src": "2643:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_uint8_$",
+                            "typeString": "type(uint8)"
+                          },
+                          "typeName": "uint8"
+                        },
+                        "id": 132,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "typeConversion",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "2643:19:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_uint8",
+                          "typeString": "uint8"
+                        }
+                      },
+                      "src": "2635:27:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_bool",
+                        "typeString": "bool"
+                      }
+                    },
+                    "falseBody": null,
+                    "id": 139,
+                    "nodeType": "IfStatement",
+                    "src": "2631:83:0",
+                    "trueBody": {
+                      "id": 138,
+                      "nodeType": "Block",
+                      "src": "2664:50:0",
+                      "statements": [
+                        {
+                          "expression": {
+                            "argumentTypes": null,
+                            "id": 136,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": false,
+                            "lValueRequested": false,
+                            "leftHandSide": {
+                              "argumentTypes": null,
+                              "id": 134,
+                              "name": "goodbyeEnglish",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 13,
+                              "src": "2678:14:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_storage",
+                                "typeString": "string storage ref"
+                              }
+                            },
+                            "nodeType": "Assignment",
+                            "operator": "=",
+                            "rightHandSide": {
+                              "argumentTypes": null,
+                              "id": 135,
+                              "name": "_goodbye",
+                              "nodeType": "Identifier",
+                              "overloadedDeclarations": [],
+                              "referencedDeclaration": 114,
+                              "src": "2695:8:0",
+                              "typeDescriptions": {
+                                "typeIdentifier": "t_string_memory_ptr",
+                                "typeString": "string memory"
+                              }
+                            },
+                            "src": "2678:25:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "id": 137,
+                          "nodeType": "ExpressionStatement",
+                          "src": "2678:25:0"
+                        }
+                      ]
+                    }
+                  },
+                  "id": 140,
+                  "nodeType": "IfStatement",
+                  "src": "2544:170:0",
+                  "trueBody": {
+                    "id": 127,
+                    "nodeType": "Block",
+                    "src": "2576:49:0",
+                    "statements": [
+                      {
+                        "expression": {
+                          "argumentTypes": null,
+                          "id": 125,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "leftHandSide": {
+                            "argumentTypes": null,
+                            "id": 123,
+                            "name": "goodbyeKorean",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 7,
+                            "src": "2590:13:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_storage",
+                              "typeString": "string storage ref"
+                            }
+                          },
+                          "nodeType": "Assignment",
+                          "operator": "=",
+                          "rightHandSide": {
+                            "argumentTypes": null,
+                            "id": 124,
+                            "name": "_goodbye",
+                            "nodeType": "Identifier",
+                            "overloadedDeclarations": [],
+                            "referencedDeclaration": 114,
+                            "src": "2606:8:0",
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_string_memory_ptr",
+                              "typeString": "string memory"
+                            }
+                          },
+                          "src": "2590:24:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_string_storage",
+                            "typeString": "string storage ref"
+                          }
+                        },
+                        "id": 126,
+                        "nodeType": "ExpressionStatement",
+                        "src": "2590:24:0"
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "documentation": "@notice 선택한 언어의 헤어질 때 인사말을 변경합니다.\n @param lang 언어를 선택하기 위한 enum value (Korean : 0, English: 1)\n @param _goodbye 변경 하고자 하는 헤어질 때 인사말",
+            "id": 142,
+            "implemented": true,
+            "isConstructor": false,
+            "isDeclaredConst": false,
+            "modifiers": [],
+            "name": "changeGoodbye",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 115,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 112,
+                  "name": "lang",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 142,
+                  "src": "2498:10:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  },
+                  "typeName": {
+                    "id": 111,
+                    "name": "uint8",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2498:5:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_uint8",
+                      "typeString": "uint8"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                },
+                {
+                  "constant": false,
+                  "id": 114,
+                  "name": "_goodbye",
+                  "nodeType": "VariableDeclaration",
+                  "scope": 142,
+                  "src": "2510:15:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_memory_ptr",
+                    "typeString": "string"
+                  },
+                  "typeName": {
+                    "id": 113,
+                    "name": "string",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "2510:6:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_string_storage_ptr",
+                      "typeString": "string"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "2497:29:0"
+            },
+            "payable": false,
+            "returnParameters": {
+              "id": 116,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "2534:0:0"
+            },
+            "scope": 143,
+            "src": "2475:245:0",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 144,
+        "src": "384:2338:0"
+      }
+    ],
+    "src": "0:2723:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.4.24+commit.e67f0147.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.0.19",
+  "updatedAt": "2020-02-07T08:58:33.971Z",
+  "devdoc": {
+    "author": "Seongil Lee",
+    "methods": {
+      "changeGoodbye(uint8,string)": {
+        "params": {
+          "_goodbye": "변경 하고자 하는 헤어질 때 인사말",
+          "lang": "언어를 선택하기 위한 enum value (Korean : 0, English: 1)"
+        }
+      },
+      "changeHello(uint8,string)": {
+        "params": {
+          "_hello": "변경 하고자 하는 만날 때 인사말",
+          "lang": "언어를 선택하기 위한 enum value (Korean : 0, English: 1)"
+        }
+      },
+      "sayGoodbye(uint8)": {
+        "details": "enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!",
+        "params": {
+          "lang": "언어를 선택하기 위한 enum value (Korean : 0, English: 1)"
+        },
+        "return": "lang에 맞는 헤어질 때 인사말"
+      },
+      "sayHello(uint8)": {
+        "details": "enum 타입 사용 시 lang이 uint8이므로 명시적 형 변환 필수!",
+        "params": {
+          "lang": "언어를 선택하기 위한 enum value (Korean : 0, English: 1)"
+        },
+        "return": "lang에 맞는 만날 때 인사말"
+      }
+    },
+    "title": "Ch.4.2 Greeter 스마트 컨트랙트 - 04-02 enum 변수를 이용해서 다국어 지원"
+  },
+  "userdoc": {
+    "methods": {
+      "changeGoodbye(uint8,string)": {
+        "notice": "선택한 언어의 헤어질 때 인사말을 변경합니다."
+      },
+      "changeHello(uint8,string)": {
+        "notice": "선택한 언어의 만날 때 인사말을 변경합니다."
+      },
+      "sayGoodbye(uint8)": {
+        "notice": "선택한 언어의 헤어질 때 인사말을 가져옵니다."
+      },
+      "sayHello(uint8)": {
+        "notice": "선택한 언어의 만날 때 인사말을 가져옵니다."
+      }
+    }
+  }
+}

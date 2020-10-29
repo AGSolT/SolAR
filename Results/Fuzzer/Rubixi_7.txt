@@ -1,0 +1,604 @@
+Contract:			Rubixi
+Number of Relevant Branches:	102
+Number of Branches Covered:		69
+Runtime: 											11953.466006
+Blockchain Time: 							8503.225752
+Iterations										
+101
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+_fallback:
+
+DynamicPyramid:
+
+collectAllFees:
+
+collectFeesInEther:
+
+collectPercentOfFees:
+
+changeOwner:
+
+changeMultiplier:
+
+changeFeePercentage:
+
+currentMultiplier:
+
+currentFeePercentage:
+
+currentPyramidBalanceApproximately:
+
+nextPayoutWhenPyramidBalanceTotalsApproximately:
+
+feesSeperateFromBalanceApproximately:
+
+totalParticipants:
+
+numberOfParticipantsWaitingForPayout:
+
+participantDetails:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) feesSeperateFromBalanceApproximately([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) feesSeperateFromBalanceApproximately([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) totalParticipants([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeOwner(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(3) changeMultiplier([100], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(4) currentFeePercentage([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(5) DynamicPyramid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(6) changeOwner(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) changeOwner(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) changeOwner(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) collectPercentOfFees([76727517542960474524212289153237422211457808400180998065201846931687508014869], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) currentMultiplier([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) DynamicPyramid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(6) numberOfParticipantsWaitingForPayout([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) participantDetails([150], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(8) collectFeesInEther([114849918251636087237009619985542864298259250253214931779574050658273940236182], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) collectPercentOfFees([76727517542960474524212289153237422211457808400180998065201846931687508014869], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) currentMultiplier([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) DynamicPyramid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(6) numberOfParticipantsWaitingForPayout([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) participantDetails([150], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(8) collectFeesInEther([114849918251636087237009619985542864298259250253214931779574050658273940236182], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) collectFeesInEther([98191009253257568306574895893140020417967494786364998415209370676614051712936], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) changeMultiplier([96485506695517361283982369310321500050499791848550748061300231426199468438481], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(4) collectPercentOfFees([33134887127469489073007721563913850610632823368529094198252421457783564579551], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(5) totalParticipants([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) _fallback([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) numberOfParticipantsWaitingForPayout([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) changeOwner(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(6) DynamicPyramid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(7) participantDetails([21937436788780624026650867307374267837154470340948183277918415019447030619804], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) changeMultiplier([200], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(9) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) changeMultiplier([96485506695517361283982369310321500050499791848550748061300231426199468438481], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(4) collectPercentOfFees([33134887127469489073007721563913850610632823368529094198252421457783564579551], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(5) totalParticipants([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) _fallback([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) numberOfParticipantsWaitingForPayout([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) changeOwner(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(6) DynamicPyramid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(7) participantDetails([21937436788780624026650867307374267837154470340948183277918415019447030619804], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) changeMultiplier([200], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(9) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) changeMultiplier([96485506695517361283982369310321500050499791848550748061300231426199468438481], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(4) collectPercentOfFees([33134887127469489073007721563913850610632823368529094198252421457783564579551], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(5) totalParticipants([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeMultiplier([250], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeMultiplier([250], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) collectFeesInEther([120], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(3) DynamicPyramid([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(4) collectAllFees([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(5) collectFeesInEther([150], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(6) changeFeePercentage([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) currentPyramidBalanceApproximately([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(4) collectFeesInEther([47861975444776134745320605641701498999247780138063484242082444083143659001652], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) changeFeePercentage([250], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(6) feesSeperateFromBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) totalParticipants([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(8) changeMultiplier([64759164324462860943655634994309451067132473084544462141453095186444197212118], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) collectFeesInEther([120], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(3) DynamicPyramid([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(4) collectAllFees([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(5) collectFeesInEther([150], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(6) changeFeePercentage([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) changeFeePercentage([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) changeFeePercentage([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) numberOfParticipantsWaitingForPayout([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) changeOwner(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) feesSeperateFromBalanceApproximately([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(4) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(5) participantDetails([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(6) currentPyramidBalanceApproximately([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) collectPercentOfFees([5], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) changeOwner(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) feesSeperateFromBalanceApproximately([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(4) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(5) participantDetails([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(6) currentPyramidBalanceApproximately([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) collectPercentOfFees([5], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) participantDetails([82374237356313459961622000305416447968307170282070295547864877958120001992155], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) participantDetails([82374237356313459961622000305416447968307170282070295547864877958120001992155], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(3) collectAllFees([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(4) collectPercentOfFees([9527313550504216804788042034189602914838637643133378293586285494242570047120], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(5) currentMultiplier([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(6) DynamicPyramid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(7) changeMultiplier([250], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(3) collectAllFees([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(4) collectPercentOfFees([9527313550504216804788042034189602914838637643133378293586285494242570047120], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(5) currentMultiplier([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(6) DynamicPyramid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(7) changeMultiplier([250], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) collectAllFees([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) collectPercentOfFees([87873619863087807332976991927494518369549877582311377991236572431817402671950], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) collectFeesInEther([85888456118200978895317844992813049701864025554848494867765637180915406777967], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) feesSeperateFromBalanceApproximately([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(5) DynamicPyramid([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) collectFeesInEther([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(7) collectPercentOfFees([37902225260166000358479872061742318302318976681003247285215869657307998256143], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(8) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(9) changeOwner(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) currentFeePercentage([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(11) feesSeperateFromBalanceApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(12) DynamicPyramid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) collectFeesInEther([98191009253257568306574895893140020417967494786364998415209370676614051712936], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) collectPercentOfFees([87873619863087807332976991927494518369549877582311377991236572431817402671950], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) collectFeesInEther([85888456118200978895317844992813049701864025554848494867765637180915406777967], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) feesSeperateFromBalanceApproximately([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(5) DynamicPyramid([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) collectFeesInEther([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(7) collectPercentOfFees([37902225260166000358479872061742318302318976681003247285215869657307998256143], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(8) nextPayoutWhenPyramidBalanceTotalsApproximately([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(9) changeOwner(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) currentFeePercentage([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(11) feesSeperateFromBalanceApproximately([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(12) DynamicPyramid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) collectAllFees([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) collectAllFees([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) collectAllFees([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) changeOwner(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) collectPercentOfFees([200], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(5) collectFeesInEther([250], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) changeOwner(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) collectPercentOfFees([200], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(5) collectFeesInEther([250], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) DynamicPyramid([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) changeOwner(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) collectPercentOfFees([200], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(5) collectFeesInEther([250], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) collectPercentOfFees([50], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) collectPercentOfFees([50], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) currentFeePercentage([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) currentMultiplier([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) currentPyramidBalanceApproximately([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) _fallback([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) _fallback([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) _fallback([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true

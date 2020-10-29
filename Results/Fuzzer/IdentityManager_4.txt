@@ -1,0 +1,414 @@
+Contract:			IdentityManager
+Number of Relevant Branches:	90
+Number of Branches Covered:		55
+Runtime: 											11131.385191
+Blockchain Time: 							8443.337068
+Iterations										
+101
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+addressKnown:
+
+addValidator:
+
+convertAddress:
+
+equals:
+
+getIdentity:
+
+identityExists:
+
+isSender:
+
+recover:
+
+removeValidator:
+
+stopValidatingFor:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) getIdentity(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: ]
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) recover([66134065222823075470135728167603098238367347311223525214517332036848015750841, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) identityExists([53257949824615793788878885805156983418295341600058991978554170833748571284297], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) stopValidatingFor([57980679819395027556911668045174717568022189555081828723910170540685478178479], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) addressKnown(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) removeValidator([12227998862916515996502285059486988790504371069092027646784653511410267849712], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) isSender([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) convertAddress(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) identityExists([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(4) getIdentity(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) isSender([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) equals([3866867156020764352580998837306581466185099987244139104434134514194615484213, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(7) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(8) recover([0, '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) removeValidator([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) stopValidatingFor([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(11) getIdentity(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(12) removeValidator([107038838072139295389349579766740461203363003045775366001648464517641067430883], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) isSender([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) convertAddress(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) identityExists([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(4) getIdentity(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) isSender([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) equals([3866867156020764352580998837306581466185099987244139104434134514194615484213, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(7) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(8) recover([0, '0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) removeValidator([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) stopValidatingFor([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(11) getIdentity(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(12) removeValidator([107038838072139295389349579766740461203363003045775366001648464517641067430883], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) isSender([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) convertAddress(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) removeValidator([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) stopValidatingFor([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) convertAddress(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) removeValidator([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) stopValidatingFor([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) convertAddress(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) removeValidator([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) stopValidatingFor([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) convertAddress(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) removeValidator([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) stopValidatingFor([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) convertAddress(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) removeValidator([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) stopValidatingFor([0], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) removeValidator([12227998862916515996502285059486988790504371069092027646784653511410267849712], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) stopValidatingFor([57980679819395027556911668045174717568022189555081828723910170540685478178479], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) stopValidatingFor([57980679819395027556911668045174717568022189555081828723910170540685478178479], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) identityExists([53257949824615793788878885805156983418295341600058991978554170833748571284297], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) convertAddress(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) addressKnown(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(4) equals([0, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) addValidator(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) recover([66134065222823075470135728167603098238367347311223525214517332036848015750841, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) recover([66134065222823075470135728167603098238367347311223525214517332036848015750841, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) recover([66134065222823075470135728167603098238367347311223525214517332036848015750841, '0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) convertAddress(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) addValidator(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) getIdentity(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: ]
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) convertAddress(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) addValidator(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) getIdentity(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) convertAddress(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) getIdentity(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) convertAddress(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) stopValidatingFor([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(6) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) convertAddress(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) getIdentity(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) convertAddress(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) stopValidatingFor([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(6) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) convertAddress(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) getIdentity(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) convertAddress(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) stopValidatingFor([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(6) addValidator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) equals([0, '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) convertAddress(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true

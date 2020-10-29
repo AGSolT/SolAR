@@ -1,0 +1,1319 @@
+Contract:			PermissionGroups
+Number of Relevant Branches:	86
+Number of Branches Covered:		84
+Runtime: 											16047.85509
+Blockchain Time: 							12593.778832
+Iterations										
+101
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+getOperators:
+
+getAlerters:
+
+transferAdmin:
+
+transferAdminQuickly:
+
+claimAdmin:
+
+addAlerter:
+
+removeAlerter:
+
+addOperator:
+
+removeOperator:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) claimAdmin([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(4) addOperator(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(5) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(6) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(7) getAlerters([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(8) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(9) transferAdminQuickly(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(10) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) transferAdminQuickly(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(13) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(14) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(15) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(16) addAlerter(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(17) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(18) removeOperator(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(20) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(21) addAlerter(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(22) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(24) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(25) removeAlerter(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(26) removeAlerter(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(27) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(28) addOperator(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(29) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(30) addAlerter(['0x0000000000000000000000000000000000000000'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(31) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) addAlerter(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(3) removeAlerter(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) addAlerter(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(3) removeAlerter(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) removeAlerter(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) removeAlerter(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) transferAdmin(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) transferAdmin(['0x0000000000000000000000000000000000000000'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(4) claimAdmin([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) transferAdmin(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) transferAdmin(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) transferAdmin(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) removeAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(3) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(4) transferAdmin(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(5) getAlerters([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(6) claimAdmin([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) transferAdminQuickly(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) getAlerters([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(4) getOperators([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) removeAlerter(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(6) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(7) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) claimAdmin([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(9) removeAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(10) transferAdmin(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(11) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) addOperator(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(13) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(14) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(15) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(16) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(17) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(18) removeAlerter(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(19) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(20) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(21) addOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(22) claimAdmin([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(23) removeAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(24) removeAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(25) transferAdmin(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(26) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(27) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(28) addOperator(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(29) claimAdmin([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(30) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(31) transferAdmin(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(32) removeAlerter(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(33) getAlerters([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(34) addOperator(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(35) addOperator(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(36) addOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(37) claimAdmin([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(38) transferAdminQuickly(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(39) transferAdmin(['0x0000000000000000000000000000000000000000'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(40) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(41) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) removeOperator(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) removeOperator(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) removeOperator(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) removeOperator(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) transferAdminQuickly(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) removeAlerter(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(3) removeAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(4) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(5) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) getAlerters([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) transferAdminQuickly(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) addAlerter(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) addOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(6) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(8) addAlerter(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) addAlerter(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) removeOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(11) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(12) transferAdminQuickly(['0x0000000000000000000000000000000000000000'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(13) transferAdminQuickly(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(14) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(15) claimAdmin([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(16) addOperator(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(17) getOperators([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(18) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(19) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(20) addAlerter(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) claimAdmin([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(22) getOperators([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(23) removeOperator(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) transferAdminQuickly(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(3) removeOperator(['0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(4) getAlerters([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) getAlerters([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) addAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) removeAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(8) transferAdmin(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(9) getOperators([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(10) removeOperator(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) claimAdmin([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(12) claimAdmin([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(13) removeAlerter(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) addAlerter(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) addAlerter(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) getAlerters([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) addOperator(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(4) getOperators([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) removeAlerter(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(3) addAlerter(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(4) transferAdminQuickly(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(5) getAlerters([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(6) transferAdmin(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(7) addAlerter(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(8) getAlerters([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) getAlerters([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) getOperators([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true

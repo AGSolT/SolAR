@@ -1,0 +1,57 @@
+Contract:			SecureAuction
+Number of Relevant Branches:	6
+Number of Branches Covered:		6
+Runtime: 											82.285058
+Blockchain Time: 							66.920195
+Iterations										
+1
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+bid:
+
+withdraw:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) withdraw([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) bid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 197130207625597616)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) bid([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 128084284386748750)	Returns: true
+	(3) bid([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(4) withdraw([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(5) bid([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 162434734753891826)	Returns: true
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) bid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 197130207625597616)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) bid([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) bid([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 197130207625597616)	Returns: true

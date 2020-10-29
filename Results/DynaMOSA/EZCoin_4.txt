@@ -1,0 +1,130 @@
+Contract:			EzToken
+Number of Relevant Branches:	11
+Number of Branches Covered:		11
+Runtime: 											131.922139
+Blockchain Time: 							95.863761
+Iterations										
+0
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[{'name': '_initialAmount', 'type': 'uint256'}, {'name': '_tokenName', 'type': 'string'}, {'name': '_decimalUnits', 'type': 'uint8'}, {'name': '_tokenSymbol', 'type': 'string'}]
+	Payable: nonpayable
+transfer:
+
+transferFrom:
+
+balanceOf:
+
+approve:
+
+allowance:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([98883534589326694883135517451370921862130437422927070843389966775560344235781, 'Standard String', 157, 'fXC YQfxzZHqenSGznqYZC'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) approve(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b', 0], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([2019, 'ROhGxdHCEiuyHCWZES ZBseyAqPivfffBbVqJIqDscMQGwdchHzOCsPCNRJNgDkaSjjZlIodAlcHyQOKycLfIkGzAKmeeiVWeMSAvSxbMNEsNUwOeyCqNS dBunIguPofsqQFOLNwNBfmCDtsmJOpqkUAzrnxgWsmHpTSPUagJUYBnNJZKYoeIhbdUAEJdNwAVKqZaqQlVsYBRAiZfgVRqkTaxUMkQeOEJxMaZwZbtPCTUq', 0, 'BSYrwJAR'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) transferFrom(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', '0x28a8746e75304c0780E011BEd21C72cD78cd535E', 15403106327218953491907478408219494067423244246644034742481580292151580352092], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(4) balanceOf(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(5) approve(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0', 2680881364390414770650807381679730240612014976537967855738035981088686367833], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) transferFrom(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0', '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d', 0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([2019, 'MJnXZZvlMNOnZqGmzTnfdPJTzYqjolhIvMNiEgrGkZYttbtWllLqTrVINUwXzSjVrboQOTZygCbkTBuVhPkiwxBOwcdaOTcfZGlRsAlRjkfjpGEgyftkfSqieiYEwttWubAa YGxJGquTcGHNwEsVNacGxaBSSDXexkHwdXqbnLceq ghIKRfaxzsW', 137, 'fkYqoAHlnzkZLdLiYFNkvwfXKBNYXeRPig pjofFbacLTwPPjWDlseZzK sDWJQwOkjHyeRoTIV kUxQHOFz'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) transferFrom(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC', '0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 2019], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) approve(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) balanceOf(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([2019, 'ROhGxdHCEiuyHCWZES ZBseyAqPivfffBbVqJIqDscMQGwdchHzOCsPCNRJNgDkaSjjZlIodAlcHyQOKycLfIkGzAKmeeiVWeMSAvSxbMNEsNUwOeyCqNS dBunIguPofsqQFOLNwNBfmCDtsmJOpqkUAzrnxgWsmHpTSPUagJUYBnNJZKYoeIhbdUAEJdNwAVKqZaqQlVsYBRAiZfgVRqkTaxUMkQeOEJxMaZwZbtPCTUq', 0, 'BSYrwJAR'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) transferFrom(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', '0x28a8746e75304c0780E011BEd21C72cD78cd535E', 15403106327218953491907478408219494067423244246644034742481580292151580352092], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(4) balanceOf(['0x28a8746e75304c0780E011BEd21C72cD78cd535E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(5) approve(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0', 2680881364390414770650807381679730240612014976537967855738035981088686367833], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) transferFrom(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0', '0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d', 0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([2019, 'MJnXZZvlMNOnZqGmzTnfdPJTzYqjolhIvMNiEgrGkZYttbtWllLqTrVINUwXzSjVrboQOTZygCbkTBuVhPkiwxBOwcdaOTcfZGlRsAlRjkfjpGEgyftkfSqieiYEwttWubAa YGxJGquTcGHNwEsVNacGxaBSSDXexkHwdXqbnLceq ghIKRfaxzsW', 137, 'fkYqoAHlnzkZLdLiYFNkvwfXKBNYXeRPig pjofFbacLTwPPjWDlseZzK sDWJQwOkjHyeRoTIV kUxQHOFz'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) transferFrom(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC', '0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 2019], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) approve(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) balanceOf(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([2019, 'MJnXZZvlMNOnZqGmzTnfdPJTzYqjolhIvMNiEgrGkZYttbtWllLqTrVINUwXzSjVrboQOTZygCbkTBuVhPkiwxBOwcdaOTcfZGlRsAlRjkfjpGEgyftkfSqieiYEwttWubAa YGxJGquTcGHNwEsVNacGxaBSSDXexkHwdXqbnLceq ghIKRfaxzsW', 137, 'fkYqoAHlnzkZLdLiYFNkvwfXKBNYXeRPig pjofFbacLTwPPjWDlseZzK sDWJQwOkjHyeRoTIV kUxQHOFz'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) transferFrom(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC', '0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 2019], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) approve(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) balanceOf(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([2019, 'MJnXZZvlMNOnZqGmzTnfdPJTzYqjolhIvMNiEgrGkZYttbtWllLqTrVINUwXzSjVrboQOTZygCbkTBuVhPkiwxBOwcdaOTcfZGlRsAlRjkfjpGEgyftkfSqieiYEwttWubAa YGxJGquTcGHNwEsVNacGxaBSSDXexkHwdXqbnLceq ghIKRfaxzsW', 137, 'fkYqoAHlnzkZLdLiYFNkvwfXKBNYXeRPig pjofFbacLTwPPjWDlseZzK sDWJQwOkjHyeRoTIV kUxQHOFz'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(3) transferFrom(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC', '0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 2019], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) approve(['0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(5) balanceOf(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([0, 'xeXWsWFEoBVUiGZYAoEtSFnpxZluqSUYJZPluD xvodwlFcCWYVSNsErPgqiDQYJlKwGYOZYgKrgkDWNwnYZtDPXJNMDPqkxIRS', 0, 'CbLddqpgDSLiEWKwcMcvdCJyu mGXEylJsUCmhXdiHSyukmoVZgYzFUBRYTVLobcKBVmkJriTldRXkpROwisXtHMjozXItWqefA ZtmifOwdizHgoZLW JJmhPvXeiKUHMerPWjoKhlIrHhgtmBKrOaWIpjdBruAUf aVMyRGwNXIdrpQejzFVXKKZkWEVGrlzarJhQBjNiKEU'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) transfer(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) approve(['0xd03ea8624C8C5987235048901fB614fDcA89b117', 26152170737220004371586746331535968044904338809696074831186848394557358700534], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) transfer(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b', 108992864724565198137973066201441212148908913469409838955468195556464947818525], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(5) balanceOf(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([0, 'XMznlkTIcyaoktoUFlohcHjurQZiSAZTQPySwiQlwlAlhWlxeDlsOPVaHEilXWPgkDtSAhxMsnJdvgdoMenYJTMPWVLhBQkptNZqv jzkcRAsFVFfWAXSGEgHcF AqNNrZUwfynrO vkmPRSPsD NKAppwbhRTeWBHpBMTOHVIpMeoH gzIQkWLJka', 0, 'tnsElv sdgufteTWfbNFGTdniGRSFxImMglBDBGJTVA lBZacdfRkCCeYZugLh gZKyNggVuaoLBYGuPRmHpMIvsDGprvfHKrRDbWnidkDpiCGMRrFyyRspoOfMOLDyAJL oNTxROfpao KYAJJXVtTdpo jebrvMywmAKpCFzoHyghJ aiVnikRSbrGeeijmLgZNEglQyhPCJKnKZMpEKObmoZRkNwdKyYIqEvOUVLzDT'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) transfer(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b', 115114527819687230481998210659216194115523000404394760334289674825361841722594], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([0, 'XMznlkTIcyaoktoUFlohcHjurQZiSAZTQPySwiQlwlAlhWlxeDlsOPVaHEilXWPgkDtSAhxMsnJdvgdoMenYJTMPWVLhBQkptNZqv jzkcRAsFVFfWAXSGEgHcF AqNNrZUwfynrO vkmPRSPsD NKAppwbhRTeWBHpBMTOHVIpMeoH gzIQkWLJka', 0, 'tnsElv sdgufteTWfbNFGTdniGRSFxImMglBDBGJTVA lBZacdfRkCCeYZugLh gZKyNggVuaoLBYGuPRmHpMIvsDGprvfHKrRDbWnidkDpiCGMRrFyyRspoOfMOLDyAJL oNTxROfpao KYAJJXVtTdpo jebrvMywmAKpCFzoHyghJ aiVnikRSbrGeeijmLgZNEglQyhPCJKnKZMpEKObmoZRkNwdKyYIqEvOUVLzDT'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) transfer(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b', 115114527819687230481998210659216194115523000404394760334289674825361841722594], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([0, 'mfGdoVeHQ uUCTMGLmQDEUJGlqzVdFqMorKLNXdqzMoYBLjvlAjMkevKqLWVJ SCebRuPagLUPxxFVw', 247, 'PoKNFNytYqzSPvyyXypAOVbyoVPYvNfgOiptVj'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) transfer(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', 2019], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(3) allowance(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true

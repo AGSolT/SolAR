@@ -1,0 +1,95 @@
+Contract:			BasicToken
+Number of Relevant Branches:	8
+Number of Branches Covered:		8
+Runtime: 											93.921957
+Blockchain Time: 							70.928295
+Iterations										
+1
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[{'name': '_initialSupply', 'type': 'uint256'}]
+	Payable: nonpayable
+transfer:
+
+balanceOf:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([19736564526968482932153495444303281540624247536630589229801860801878753605625], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) transfer(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0', 65077495894720894423603518781191734722492837085525005355018725882356549841406], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([79159102168965906922398501608844569349216446781773625936886483851064248198649], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) transfer(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"', 72513469432943818510999967870757836653255746080418525013817199503661207128663], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "Invalid Address"
+	(3) transfer(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d', 0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(4) transfer(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([79159102168965906922398501608844569349216446781773625936886483851064248198649], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) transfer(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"', 72513469432943818510999967870757836653255746080418525013817199503661207128663], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "Invalid Address"
+	(3) transfer(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d', 0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(4) transfer(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([79159102168965906922398501608844569349216446781773625936886483851064248198649], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) transfer(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"', 72513469432943818510999967870757836653255746080418525013817199503661207128663], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "Invalid Address"
+	(3) transfer(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d', 0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(4) transfer(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([0], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) balanceOf(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) transfer(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "Invalid Address"
+	(4) balanceOf(['0xd03ea8624C8C5987235048901fB614fDcA89b117'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(5) transfer(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b', 0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(6) transfer(['0xd03ea8624C8C5987235048901fB614fDcA89b117', 0], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: 
+	(7) transfer(['0xd03ea8624C8C5987235048901fB614fDcA89b117', 0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+	(8) balanceOf(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: "Invalid Address"
+	(9) balanceOf(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) balanceOf(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([79159102168965906922398501608844569349216446781773625936886483851064248198649], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) transfer(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"', 72513469432943818510999967870757836653255746080418525013817199503661207128663], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "Invalid Address"
+	(3) transfer(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d', 0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(4) transfer(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([19736564526968482932153495444303281540624247536630589229801860801878753605625], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) transfer(['0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0', 65077495894720894423603518781191734722492837085525005355018725882356549841406], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([36382064329962885080327696771703106752502488107354293483554304905605132728725], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)
+	(2) balanceOf(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(3) transfer(['"0xda71b0a9f4284248902e42b9e431b75420118c9d"', 37870963461776189094798496282861163361693806076203129102625915894076371258877], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: "Invalid Address"

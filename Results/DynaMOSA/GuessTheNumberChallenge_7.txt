@@ -1,0 +1,313 @@
+Contract:			GuessTheNumberChallenge
+Number of Relevant Branches:	8
+Number of Branches Covered:		8
+Runtime: 											27.232286
+Blockchain Time: 							19.834491
+Iterations										
+0
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: payable
+isComplete:
+
+guess:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 1e+18)
+	(2) guess([16], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 2e+18)	Returns: 
+	(3) guess([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 2e+18)	Returns: 
+	(4) guess([42], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 2e+18)	Returns: 
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 1e+18)
+	(2) guess([143], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 2e+18)	Returns: 
+	(3) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(4) guess([1], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 52169813452738335)	Returns: 
+	(5) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(7) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(9) guess([149], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 164997518365642427)	Returns: 
+	(10) guess([15], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 52876645856196674)	Returns: 
+	(11) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(12) guess([220], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(13) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(14) guess([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 104294092592586148)	Returns: 
+	(15) guess([59], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 5442116092762532)	Returns: 
+	(16) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(17) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(18) guess([250], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 134553369011723029)	Returns: 
+	(19) guess([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 149146046978327971)	Returns: 
+	(20) isComplete([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) guess([147], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 25913474777980487)	Returns: 
+	(22) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(23) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) guess([186], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 178481886535343684)	Returns: 
+	(25) isComplete([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(26) guess([175], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(27) isComplete([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(28) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(29) guess([42], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)	Returns: true
+	(30) guess([136], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+18)	Returns: true
+	(31) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(32) guess([39], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 44708514814071857)	Returns: 
+	(33) guess([1], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 1e+18)	Returns: true
+	(34) guess([1], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 9944408399502946)	Returns: 
+	(35) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(36) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(37) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 1e+18)
+	(2) guess([143], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 2e+18)	Returns: 
+	(3) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(4) guess([1], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 52169813452738335)	Returns: 
+	(5) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(7) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(9) guess([149], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 164997518365642427)	Returns: 
+	(10) guess([15], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 52876645856196674)	Returns: 
+	(11) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(12) guess([220], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(13) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(14) guess([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 104294092592586148)	Returns: 
+	(15) guess([59], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 5442116092762532)	Returns: 
+	(16) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(17) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(18) guess([250], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 134553369011723029)	Returns: 
+	(19) guess([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 149146046978327971)	Returns: 
+	(20) isComplete([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) guess([147], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 25913474777980487)	Returns: 
+	(22) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(23) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) guess([186], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 178481886535343684)	Returns: 
+	(25) isComplete([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(26) guess([175], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(27) isComplete([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(28) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(29) guess([42], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)	Returns: true
+	(30) guess([136], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+18)	Returns: true
+	(31) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(32) guess([39], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 44708514814071857)	Returns: 
+	(33) guess([1], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 1e+18)	Returns: true
+	(34) guess([1], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 9944408399502946)	Returns: 
+	(35) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(36) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(37) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 1e+18)
+	(2) guess([143], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 2e+18)	Returns: 
+	(3) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(4) guess([1], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 52169813452738335)	Returns: 
+	(5) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(7) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(9) guess([149], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 164997518365642427)	Returns: 
+	(10) guess([15], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 52876645856196674)	Returns: 
+	(11) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(12) guess([220], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(13) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(14) guess([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 104294092592586148)	Returns: 
+	(15) guess([59], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 5442116092762532)	Returns: 
+	(16) isComplete([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(17) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(18) guess([250], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 134553369011723029)	Returns: 
+	(19) guess([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 149146046978327971)	Returns: 
+	(20) isComplete([], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(21) guess([147], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 25913474777980487)	Returns: 
+	(22) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(23) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) guess([186], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 178481886535343684)	Returns: 
+	(25) isComplete([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(26) guess([175], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(27) isComplete([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(28) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(29) guess([42], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)	Returns: true
+	(30) guess([136], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+18)	Returns: true
+	(31) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(32) guess([39], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 44708514814071857)	Returns: 
+	(33) guess([1], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 1e+18)	Returns: true
+	(34) guess([1], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 9944408399502946)	Returns: 
+	(35) isComplete([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(36) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(37) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)
+	(2) guess([2], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 169315905756191432)	Returns: 
+	(3) guess([1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(4) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) guess([157], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 954897005250526)	Returns: 
+	(6) guess([81], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(7) guess([110], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 1e+18)	Returns: true
+	(8) guess([159], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 2e+18)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)
+	(2) guess([2], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 169315905756191432)	Returns: 
+	(3) guess([1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(4) isComplete([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) guess([157], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 954897005250526)	Returns: 
+	(6) guess([81], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(7) guess([110], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 1e+18)	Returns: true
+	(8) guess([159], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 2e+18)	Returns: 
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 1e+18)
+	(2) guess([16], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 2e+18)	Returns: 
+	(3) guess([0], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 2e+18)	Returns: 
+	(4) guess([42], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 2e+18)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 1e+18)
+	(2) guess([146], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(3) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) guess([33], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(5) isComplete([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(6) isComplete([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(7) isComplete([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true

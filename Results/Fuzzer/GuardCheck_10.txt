@@ -1,0 +1,193 @@
+Contract:			GuardCheck
+Number of Relevant Branches:	14
+Number of Branches Covered:		14
+Runtime: 											83.506569
+Blockchain Time: 							69.156222
+Iterations										
+1
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+donate:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 0)	Returns: "Out of Ether"
+	(3) donate(['0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b'], from: 0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b,
+                    value: 0)	Returns: 
+	(4) donate(['0x969C21730a9Cee141d18727411936292514ed635'], from: 0x174545A1a707709A6F1B7FBcFaC1be90C335D39f,
+                    value: 198007237607984346)	Returns: true
+	(5) donate(['0x40aFC83e2887153730C9D615D626c8eAd72d31D6'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 72503212187374709)	Returns: "Out of Ether"
+	(6) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 0)	Returns: 
+	(7) donate(['0x40aFC83e2887153730C9D615D626c8eAd72d31D6'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+	(8) donate(['0x0000000000000000000000000000000000000000'], from: 0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b,
+                    value: 0)	Returns: 
+	(9) donate(['0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195'], from: 0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF,
+                    value: 111564303750926649)	Returns: 
+	(10) donate(['0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 162053611295072751)	Returns: 
+	(11) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 102427380499290416)	Returns: "Out of Ether"
+
+	(1) constructor([], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 0)
+	(2) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 0)	Returns: "Out of Ether"
+	(3) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 142834617859220516)	Returns: "Out of Ether"
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 24765334897499569)	Returns: "Out of Ether"
+	(5) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x40aFC83e2887153730C9D615D626c8eAd72d31D6,
+                    value: 0)	Returns: 
+	(6) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 0)	Returns: "Out of Ether"
+	(7) donate(['0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 0)	Returns: "Out of Ether"
+	(8) donate(['0x969C21730a9Cee141d18727411936292514ed635'], from: 0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b,
+                    value: 0)	Returns: "Out of Ether"
+	(9) donate(['0x969C21730a9Cee141d18727411936292514ed635'], from: 0x40aFC83e2887153730C9D615D626c8eAd72d31D6,
+                    value: 173879457765475918)	Returns: true
+	(10) donate(['0x969C21730a9Cee141d18727411936292514ed635'], from: 0x969C21730a9Cee141d18727411936292514ed635,
+                    value: 0)	Returns: 
+	(11) donate(['0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 199681471388993139)	Returns: true
+	(12) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 29181699104795106)	Returns: 
+	(13) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 123244516876499666)	Returns: "Out of Ether"
+	(14) donate(['0x969C21730a9Cee141d18727411936292514ed635'], from: 0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b,
+                    value: 3035593398182980)	Returns: true
+	(15) donate(['0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 189378855239788793)	Returns: true
+	(16) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 0)	Returns: "Out of Ether"
+	(17) donate(['0x969C21730a9Cee141d18727411936292514ed635'], from: 0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF,
+                    value: 37784044115404624)	Returns: true
+	(18) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 0)	Returns: "Out of Ether"
+	(19) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 0)	Returns: "Out of Ether"
+	(20) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 0)	Returns: "Out of Ether"
+	(21) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0x969C21730a9Cee141d18727411936292514ed635,
+                    value: 0)	Returns: 
+	(22) donate(['0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b'], from: 0x4bc4D44D3784a5C85BB37113Ede31d3ef18c988b,
+                    value: 169192755422399324)	Returns: 
+	(23) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF,
+                    value: 0)	Returns: 
+	(24) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 0)	Returns: "Out of Ether"
+	(25) donate(['0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF'], from: 0x174545A1a707709A6F1B7FBcFaC1be90C335D39f,
+                    value: 0)	Returns: 
+	(26) donate(['0x9d2bfa0f292D72C2D00F758d2b7E32AfB6243bbF'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 61242491823768621)	Returns: 
+	(27) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 88400899802483940)	Returns: 
+	(3) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 31732963178232807)	Returns: true
+	(3) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 137524370226471740)	Returns: 
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 33977838535290316)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 31732963178232807)	Returns: true
+	(3) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 137524370226471740)	Returns: 
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 33977838535290316)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 31732963178232807)	Returns: true
+	(3) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 137524370226471740)	Returns: 
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 33977838535290316)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 31732963178232807)	Returns: true
+	(3) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 137524370226471740)	Returns: 
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 33977838535290316)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 31732963178232807)	Returns: true
+	(3) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 137524370226471740)	Returns: 
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 33977838535290316)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x174545A1a707709A6F1B7FBcFaC1be90C335D39f'], from: 0xfa3453Ba0e6A9F218cCf1377f086c842F5b05195,
+                    value: 31732963178232807)	Returns: true
+	(3) donate(['0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a'], from: 0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086,
+                    value: 137524370226471740)	Returns: 
+	(4) donate(['0x6DCa2e6cc400672268B716933cdF408C1a816f33'], from: 0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC,
+                    value: 33977838535290316)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 88400899802483940)	Returns: 
+	(3) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 88400899802483940)	Returns: 
+	(3) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 88400899802483940)	Returns: 
+	(3) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 88400899802483940)	Returns: 
+	(3) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)
+	(2) donate(['0x5E943ce2d860BDE065E87Dbf1aC472D87c2b8bdC'], from: 0x6DCa2e6cc400672268B716933cdF408C1a816f33,
+                    value: 88400899802483940)	Returns: 
+	(3) donate(['0x9478F9aaB7F4fa7003B34E833901db45d5Dcf086'], from: 0x4e6D8A7657fD15FCB6B2174cC1d5168C435F332a,
+                    value: 0)	Returns: 

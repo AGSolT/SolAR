@@ -1,0 +1,527 @@
+Contract:			Casino
+Number of Relevant Branches:	29
+Number of Branches Covered:		24
+Runtime: 											13330.2515
+Blockchain Time: 							10909.670695
+Iterations										
+101
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+unsafeEntry:
+
+generateHash:
+
+buyTicket:
+
+verifyTicket:
+
+checkWinner:
+
+claim:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) generateHash([0, 256], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) claim([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) claim([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) claim([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) unsafeEntry([18585244919499336402338249216385279617696182324614124858988031647164139183733, 100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 169862147445160596)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(3) passTime([100], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "passTime"
+	(4) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(5) passTime([100], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: "passTime"
+	(6) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(7) passTime([100], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: "passTime"
+	(8) buyTicket([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 159215101624650903)	Returns: 
+	(9) claim([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) claim([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) checkWinner([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(12) buyTicket([100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(13) verifyTicket([100, 1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(14) buyTicket([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(15) unsafeEntry([1000, 256], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 57523833487952285)	Returns: 
+	(16) verifyTicket([72951312643929243714184444554838146237050029225112767428819265083171989600645, 65244977551659063346274107904574197505389562974110927288661965132664747382309], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(17) passTime([100], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: "passTime"
+	(18) unsafeEntry([36918328959994229689379019195331677547793662494931335968555122411363311339585, 35225335564308031716787351940384302521476549302483419867665936026572328615510], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+19)	Returns: 
+	(19) generateHash([1000, 92408037965056570282701362339641082526388028170944755854606463326338342715248], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(20) buyTicket([100], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(21) verifyTicket([100, 256], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(22) generateHash([76762762485267503812404661685720133813121826783374552071351127736401110597798, 80467073729504356923065774916892589997674680245898259966895065586830135224898], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(23) buyTicket([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 62952744972174550)	Returns: 
+	(24) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(25) verifyTicket([70409800099654173264141248470442138128092831269304465784686894870879929440574, 256], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(26) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(27) verifyTicket([30604848712021818234192544533656493302225653291430880344744884081498162355363, 101340480044020481459004663240958549892744300435670872859542862476583040251815], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(28) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(29) claim([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(30) claim([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(31) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(32) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(33) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(34) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(35) checkWinner([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(36) passTime([100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: "passTime"
+	(37) verifyTicket([256, 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(38) generateHash([85846363228206205784213024695719788174139479154059098959484063588898674441232, 1], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(39) checkWinner([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(40) buyTicket([18195054375574642273650787149171895417510628837313027325705904170978293045580], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 194509647279693606)	Returns: 
+	(41) unsafeEntry([1000, 100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 172741461988642477)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(3) passTime([100], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "passTime"
+	(4) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(5) passTime([100], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: "passTime"
+	(6) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(7) passTime([100], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: "passTime"
+	(8) buyTicket([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 159215101624650903)	Returns: 
+	(9) claim([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) claim([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) checkWinner([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(12) buyTicket([100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(13) verifyTicket([100, 1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(14) buyTicket([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(15) unsafeEntry([1000, 256], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 57523833487952285)	Returns: 
+	(16) verifyTicket([72951312643929243714184444554838146237050029225112767428819265083171989600645, 65244977551659063346274107904574197505389562974110927288661965132664747382309], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(17) passTime([100], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: "passTime"
+	(18) unsafeEntry([36918328959994229689379019195331677547793662494931335968555122411363311339585, 35225335564308031716787351940384302521476549302483419867665936026572328615510], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+19)	Returns: 
+	(19) generateHash([1000, 92408037965056570282701362339641082526388028170944755854606463326338342715248], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(20) buyTicket([100], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(21) verifyTicket([100, 256], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(22) generateHash([76762762485267503812404661685720133813121826783374552071351127736401110597798, 80467073729504356923065774916892589997674680245898259966895065586830135224898], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(23) buyTicket([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 62952744972174550)	Returns: 
+	(24) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(25) verifyTicket([70409800099654173264141248470442138128092831269304465784686894870879929440574, 256], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(26) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(27) verifyTicket([30604848712021818234192544533656493302225653291430880344744884081498162355363, 101340480044020481459004663240958549892744300435670872859542862476583040251815], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(28) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(29) claim([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(30) claim([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(31) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(32) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(33) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(34) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(35) checkWinner([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(36) passTime([100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: "passTime"
+	(37) verifyTicket([256, 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(38) generateHash([85846363228206205784213024695719788174139479154059098959484063588898674441232, 1], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(39) checkWinner([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(40) buyTicket([18195054375574642273650787149171895417510628837313027325705904170978293045580], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 194509647279693606)	Returns: 
+	(41) unsafeEntry([1000, 100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 172741461988642477)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(3) passTime([100], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "passTime"
+	(4) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(5) passTime([100], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: "passTime"
+	(6) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(7) passTime([100], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: "passTime"
+	(8) buyTicket([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 159215101624650903)	Returns: 
+	(9) claim([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) claim([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) checkWinner([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(12) buyTicket([100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(13) verifyTicket([100, 1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(14) buyTicket([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(15) unsafeEntry([1000, 256], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 57523833487952285)	Returns: 
+	(16) verifyTicket([72951312643929243714184444554838146237050029225112767428819265083171989600645, 65244977551659063346274107904574197505389562974110927288661965132664747382309], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(17) passTime([100], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: "passTime"
+	(18) unsafeEntry([36918328959994229689379019195331677547793662494931335968555122411363311339585, 35225335564308031716787351940384302521476549302483419867665936026572328615510], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+19)	Returns: 
+	(19) generateHash([1000, 92408037965056570282701362339641082526388028170944755854606463326338342715248], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(20) buyTicket([100], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(21) verifyTicket([100, 256], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(22) generateHash([76762762485267503812404661685720133813121826783374552071351127736401110597798, 80467073729504356923065774916892589997674680245898259966895065586830135224898], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(23) buyTicket([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 62952744972174550)	Returns: 
+	(24) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(25) verifyTicket([70409800099654173264141248470442138128092831269304465784686894870879929440574, 256], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(26) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(27) verifyTicket([30604848712021818234192544533656493302225653291430880344744884081498162355363, 101340480044020481459004663240958549892744300435670872859542862476583040251815], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(28) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(29) claim([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(30) claim([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(31) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(32) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(33) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(34) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(35) checkWinner([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(36) passTime([100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: "passTime"
+	(37) verifyTicket([256, 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(38) generateHash([85846363228206205784213024695719788174139479154059098959484063588898674441232, 1], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(39) checkWinner([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(40) buyTicket([18195054375574642273650787149171895417510628837313027325705904170978293045580], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 194509647279693606)	Returns: 
+	(41) unsafeEntry([1000, 100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 172741461988642477)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(3) passTime([100], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "passTime"
+	(4) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(5) passTime([100], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: "passTime"
+	(6) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(7) passTime([100], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: "passTime"
+	(8) buyTicket([0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 159215101624650903)	Returns: 
+	(9) claim([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(10) claim([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(11) checkWinner([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(12) buyTicket([100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(13) verifyTicket([100, 1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(14) buyTicket([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(15) unsafeEntry([1000, 256], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 57523833487952285)	Returns: 
+	(16) verifyTicket([72951312643929243714184444554838146237050029225112767428819265083171989600645, 65244977551659063346274107904574197505389562974110927288661965132664747382309], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(17) passTime([100], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: "passTime"
+	(18) unsafeEntry([36918328959994229689379019195331677547793662494931335968555122411363311339585, 35225335564308031716787351940384302521476549302483419867665936026572328615510], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+19)	Returns: 
+	(19) generateHash([1000, 92408037965056570282701362339641082526388028170944755854606463326338342715248], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(20) buyTicket([100], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(21) verifyTicket([100, 256], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(22) generateHash([76762762485267503812404661685720133813121826783374552071351127736401110597798, 80467073729504356923065774916892589997674680245898259966895065586830135224898], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(23) buyTicket([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 62952744972174550)	Returns: 
+	(24) passTime([100], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: "passTime"
+	(25) verifyTicket([70409800099654173264141248470442138128092831269304465784686894870879929440574, 256], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(26) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(27) verifyTicket([30604848712021818234192544533656493302225653291430880344744884081498162355363, 101340480044020481459004663240958549892744300435670872859542862476583040251815], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(28) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(29) claim([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(30) claim([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(31) claim([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(32) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(33) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(34) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(35) checkWinner([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(36) passTime([100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: "passTime"
+	(37) verifyTicket([256, 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+	(38) generateHash([85846363228206205784213024695719788174139479154059098959484063588898674441232, 1], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(39) checkWinner([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(40) buyTicket([18195054375574642273650787149171895417510628837313027325705904170978293045580], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 194509647279693606)	Returns: 
+	(41) unsafeEntry([1000, 100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 172741461988642477)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) checkWinner([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) checkWinner([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) buyTicket([1000], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: ]
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) generateHash([0, 256], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) unsafeEntry([18585244919499336402338249216385279617696182324614124858988031647164139183733, 100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 169862147445160596)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) unsafeEntry([77040884606021961216763980040340223935331200961728451212555740130169461274758, 41550778147489567806710151282293314961256643775363426611291218689769129809159], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+18)	Returns: true
+	(3) unsafeEntry([115165610300003824980432557183922451202937243182044365104353818582572939003895, 1000], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 23565975655942189)	Returns: 
+	(4) generateHash([1000, 23836245781967642229358486903836848111435343808926539520462908099025541079322], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(5) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(6) unsafeEntry([1000, 256], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 1e+18)	Returns: 
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) buyTicket([56537142224271088704738748122763399478375478256474021025669129598179041819297], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 1e+18)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) unsafeEntry([11751394011697884260130203641351013647689159839158142812098549004320861492224, 94085722886006793654712249495927947625006251551604852444508796979940093491766], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) buyTicket([56537142224271088704738748122763399478375478256474021025669129598179041819297], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 1e+18)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) buyTicket([56537142224271088704738748122763399478375478256474021025669129598179041819297], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 1e+18)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) unsafeEntry([18585244919499336402338249216385279617696182324614124858988031647164139183733, 100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 169862147445160596)	Returns: 
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) unsafeEntry([1, 17925277730211217344306682159826489049155606797738824751953015644346434010228], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 157936268222808021)	Returns: 
+	(3) verifyTicket([100, 18933955868924601341444110898772461497365282167618682244983913026210475215593], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) unsafeEntry([84083106566851570711414794403945481547747245162789457604163820134052587809003, 53382357972737844784293260252534648992606030580861915843879212498156198787856], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 40813192852132537)	Returns: 
+	(5) checkWinner([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(6) generateHash([1000, 42794887181004530926369562623755537440889335735584904674524549840865014811717], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(8) passTime([100], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: "passTime"
+	(9) generateHash([256, 256], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(10) claim([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+	(11) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(12) unsafeEntry([12821576064830508121489272650353386149117013976863430989625434218374217405185, 34432213931480016065728859975031030648175095067462734291392535430699505694082], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 121717541532173348)	Returns: 
+	(13) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(14) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(15) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(16) passTime([100], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: "passTime"
+	(17) passTime([100], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: "passTime"
+	(18) unsafeEntry([43306136466996517647081324311654819972465007571395438836601943077206218858925, 44235700486064052714729265622617433336867559611514319710945236450447855705113], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 1e+19)	Returns: 
+	(19) unsafeEntry([0, 100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 1e+19)	Returns: 
+	(20) passTime([100], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: "passTime"
+	(21) claim([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(22) verifyTicket([256, 77885851581837321466918346795356903168234155434792218263067624522999418002240], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(23) checkWinner([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(24) passTime([100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: "passTime"
+	(25) claim([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(26) verifyTicket([88919049528321881450419994927161832761611586387638988090379390231419095923026, 0], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(27) unsafeEntry([45885262673516522973692319101759304015079189604724763436257304193008415331689, 1], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 1e+18)	Returns: 
+	(28) claim([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(29) passTime([100], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: "passTime"
+	(30) claim([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: 
+	(31) unsafeEntry([57786629924215378927759205971836466420377358540736680775085578093213047661131, 0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 32147388517453779)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) unsafeEntry([18585244919499336402338249216385279617696182324614124858988031647164139183733, 100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 169862147445160596)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) unsafeEntry([18585244919499336402338249216385279617696182324614124858988031647164139183733, 100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 169862147445160596)	Returns: 
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) unsafeEntry([18585244919499336402338249216385279617696182324614124858988031647164139183733, 100], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 169862147445160596)	Returns: 

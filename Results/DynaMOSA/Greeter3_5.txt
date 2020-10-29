@@ -1,0 +1,1232 @@
+Contract:			Greeter3
+Number of Relevant Branches:	73
+Number of Branches Covered:		73
+Runtime: 											138.608376
+Blockchain Time: 							96.808308
+Iterations										
+0
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+sayHello:
+
+changeHello:
+
+sayGoodbye:
+
+changeGoodbye:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeHello([2, '"안녕?"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) changeHello([77, 'SJLUCNfyXdTOopiSsJttIZCXysZmpJvbnpxBoJhgbZKie fiLEjpPkbtXxnwCtXKICSHMxCTpNmOceDZZfDUeFtwoKthsgxQyUbOCXdHfDJENBcgQUCGUjDbzZPDHZSWIxxtpkmKXVyFVZEEyBeUPyUIFKThJEzLFsmrmUIItlKh r'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([60], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(6) changeHello([1, 'wnpDGgzUXhdbbYRIeKVIEyeebCTSdztVUwQhLdcUVrhiVODSHQjFz oXatpqgsOVrMmZnFwnsQAVWUgaEelDihBTlXcmUGBDmKQvHVZoVmuxb rTdAUlUWIqwHXWJZJaVzhcCGnnBChxfGVxToNdBcNrEYaXpity woCwVtR'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) sayHello([143], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(8) changeGoodbye([29, 'Standard String'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([1, 'HnJYjHmYURQTAgdlfRWYgGxETotopRwisINyvOasLPU  jsCKelEexTOBrsQXQojCDWHqhpflCVKUMPPFXABNItKZmfdOwnouuryUumI  fqPfUJJPjztoLUQAo'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(10) changeGoodbye([0, 'NFcHGpfwxOOzdPCbBMeekgyHtnYyHNvNZlEkwRkdRfKeSiCkHRUZZaAtDnpOOZjXffQxsPbsXLEkXBidnzEKIeMCfFWAWMbjsLlLphdsGHixLbGkScLEvmzWrkXxMyaRqByOWSrc'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(11) sayHello([4], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(12) changeGoodbye([111, 'ZRKuxXHoBdXodnqliPWUPBclwjQbwfGnzCiute WKBNlfTBGboBUNxyDYSJbTGwMPRvISIsJAjbnRhQrUhwUbxelZaUcmEgzORIneUwkQkhVgHxJnYJkX msLg'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(13) sayGoodbye([15], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(14) changeHello([2, ''], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(15) sayGoodbye([1], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(16) changeGoodbye([104, '"Goodbye!"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(17) changeGoodbye([3, '""'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(18) sayHello([229], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(19) changeGoodbye([144, '"잘가!"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(20) changeGoodbye([1, 'lMZYKhoQPBUxrOltwfjrNlZmatFFoWwewPaBvHHUkBFbZMzgjOBfWizmBRDsuIZpOlZTfAiZjttS OZYgWJOS kItQIUVqvaUNEhFCeWawkEIochSApnf XIuImokaTDWVcYvUkpCxyAaRZqTZPRqczAbRzaALEYwNyFAwKWqJvPFSnTmvJeiEhpYXCKwwEDOUKlgNQoVRlEvNwXRqEXlaZNfHYiJAZAmgndpXyKlhoKzSKGVrhXzmjKCmrpO'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(21) changeHello([0, 'aDGKoWtxQozsuzacav'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(22) sayGoodbye([1], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(23) changeGoodbye([63, '""'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) changeGoodbye([159, '"Hello"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(25) sayHello([115], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(26) sayGoodbye([0], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(27) sayGoodbye([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(28) sayHello([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(29) changeGoodbye([4, '"안녕?"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(30) sayGoodbye([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(31) sayHello([237], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeHello([2, '"안녕?"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) changeHello([77, 'SJLUCNfyXdTOopiSsJttIZCXysZmpJvbnpxBoJhgbZKie fiLEjpPkbtXxnwCtXKICSHMxCTpNmOceDZZfDUeFtwoKthsgxQyUbOCXdHfDJENBcgQUCGUjDbzZPDHZSWIxxtpkmKXVyFVZEEyBeUPyUIFKThJEzLFsmrmUIItlKh r'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([60], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(6) changeHello([1, 'wnpDGgzUXhdbbYRIeKVIEyeebCTSdztVUwQhLdcUVrhiVODSHQjFz oXatpqgsOVrMmZnFwnsQAVWUgaEelDihBTlXcmUGBDmKQvHVZoVmuxb rTdAUlUWIqwHXWJZJaVzhcCGnnBChxfGVxToNdBcNrEYaXpity woCwVtR'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) sayHello([143], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(8) changeGoodbye([29, 'Standard String'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([1, 'HnJYjHmYURQTAgdlfRWYgGxETotopRwisINyvOasLPU  jsCKelEexTOBrsQXQojCDWHqhpflCVKUMPPFXABNItKZmfdOwnouuryUumI  fqPfUJJPjztoLUQAo'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(10) changeGoodbye([0, 'NFcHGpfwxOOzdPCbBMeekgyHtnYyHNvNZlEkwRkdRfKeSiCkHRUZZaAtDnpOOZjXffQxsPbsXLEkXBidnzEKIeMCfFWAWMbjsLlLphdsGHixLbGkScLEvmzWrkXxMyaRqByOWSrc'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(11) sayHello([4], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(12) changeGoodbye([111, 'ZRKuxXHoBdXodnqliPWUPBclwjQbwfGnzCiute WKBNlfTBGboBUNxyDYSJbTGwMPRvISIsJAjbnRhQrUhwUbxelZaUcmEgzORIneUwkQkhVgHxJnYJkX msLg'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(13) sayGoodbye([15], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(14) changeHello([2, ''], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(15) sayGoodbye([1], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(16) changeGoodbye([104, '"Goodbye!"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(17) changeGoodbye([3, '""'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(18) sayHello([229], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(19) changeGoodbye([144, '"잘가!"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(20) changeGoodbye([1, 'lMZYKhoQPBUxrOltwfjrNlZmatFFoWwewPaBvHHUkBFbZMzgjOBfWizmBRDsuIZpOlZTfAiZjttS OZYgWJOS kItQIUVqvaUNEhFCeWawkEIochSApnf XIuImokaTDWVcYvUkpCxyAaRZqTZPRqczAbRzaALEYwNyFAwKWqJvPFSnTmvJeiEhpYXCKwwEDOUKlgNQoVRlEvNwXRqEXlaZNfHYiJAZAmgndpXyKlhoKzSKGVrhXzmjKCmrpO'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(21) changeHello([0, 'aDGKoWtxQozsuzacav'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(22) sayGoodbye([1], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(23) changeGoodbye([63, '""'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) changeGoodbye([159, '"Hello"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(25) sayHello([115], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(26) sayGoodbye([0], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(27) sayGoodbye([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(28) sayHello([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(29) changeGoodbye([4, '"안녕?"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(30) sayGoodbye([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(31) sayHello([237], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeHello([2, '"안녕?"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(3) changeHello([77, 'SJLUCNfyXdTOopiSsJttIZCXysZmpJvbnpxBoJhgbZKie fiLEjpPkbtXxnwCtXKICSHMxCTpNmOceDZZfDUeFtwoKthsgxQyUbOCXdHfDJENBcgQUCGUjDbzZPDHZSWIxxtpkmKXVyFVZEEyBeUPyUIFKThJEzLFsmrmUIItlKh r'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([60], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(6) changeHello([1, 'wnpDGgzUXhdbbYRIeKVIEyeebCTSdztVUwQhLdcUVrhiVODSHQjFz oXatpqgsOVrMmZnFwnsQAVWUgaEelDihBTlXcmUGBDmKQvHVZoVmuxb rTdAUlUWIqwHXWJZJaVzhcCGnnBChxfGVxToNdBcNrEYaXpity woCwVtR'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) sayHello([143], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(8) changeGoodbye([29, 'Standard String'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([1, 'HnJYjHmYURQTAgdlfRWYgGxETotopRwisINyvOasLPU  jsCKelEexTOBrsQXQojCDWHqhpflCVKUMPPFXABNItKZmfdOwnouuryUumI  fqPfUJJPjztoLUQAo'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(10) changeGoodbye([0, 'NFcHGpfwxOOzdPCbBMeekgyHtnYyHNvNZlEkwRkdRfKeSiCkHRUZZaAtDnpOOZjXffQxsPbsXLEkXBidnzEKIeMCfFWAWMbjsLlLphdsGHixLbGkScLEvmzWrkXxMyaRqByOWSrc'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(11) sayHello([4], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(12) changeGoodbye([111, 'ZRKuxXHoBdXodnqliPWUPBclwjQbwfGnzCiute WKBNlfTBGboBUNxyDYSJbTGwMPRvISIsJAjbnRhQrUhwUbxelZaUcmEgzORIneUwkQkhVgHxJnYJkX msLg'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(13) sayGoodbye([15], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(14) changeHello([2, ''], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(15) sayGoodbye([1], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(16) changeGoodbye([104, '"Goodbye!"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(17) changeGoodbye([3, '""'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(18) sayHello([229], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(19) changeGoodbye([144, '"잘가!"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(20) changeGoodbye([1, 'lMZYKhoQPBUxrOltwfjrNlZmatFFoWwewPaBvHHUkBFbZMzgjOBfWizmBRDsuIZpOlZTfAiZjttS OZYgWJOS kItQIUVqvaUNEhFCeWawkEIochSApnf XIuImokaTDWVcYvUkpCxyAaRZqTZPRqczAbRzaALEYwNyFAwKWqJvPFSnTmvJeiEhpYXCKwwEDOUKlgNQoVRlEvNwXRqEXlaZNfHYiJAZAmgndpXyKlhoKzSKGVrhXzmjKCmrpO'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(21) changeHello([0, 'aDGKoWtxQozsuzacav'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(22) sayGoodbye([1], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(23) changeGoodbye([63, '""'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) changeGoodbye([159, '"Hello"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(25) sayHello([115], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(26) sayGoodbye([0], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(27) sayGoodbye([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(28) sayHello([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(29) changeGoodbye([4, '"안녕?"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(30) sayGoodbye([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(31) sayHello([237], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([3, 'eKCsYWgkCJYtTsvyo tmmojLmdoyfAnFHFrJwbsQsSHICLIHHff'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([35], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([59, '"잘가!"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) sayHello([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(6) changeHello([3, 'EqjvMmkKimwDPNkcmimhkBljZDGHFBdkvSNThbaEHDEQMUZWqaB mulVcjcazsXeCnnGHRCZrsuXtG QkBGIlnkZEOWBuvkLrBRpCFrwTLYTqYlgDiX'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) sayGoodbye([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) changeHello([1, '"안녕?"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([0, '"잘가!"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) sayHello([223], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([3, 'eKCsYWgkCJYtTsvyo tmmojLmdoyfAnFHFrJwbsQsSHICLIHHff'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([35], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([59, '"잘가!"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) sayHello([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(6) changeHello([3, 'EqjvMmkKimwDPNkcmimhkBljZDGHFBdkvSNThbaEHDEQMUZWqaB mulVcjcazsXeCnnGHRCZrsuXtG QkBGIlnkZEOWBuvkLrBRpCFrwTLYTqYlgDiX'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) sayGoodbye([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) changeHello([1, '"안녕?"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([0, '"잘가!"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) sayHello([223], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([3, 'eKCsYWgkCJYtTsvyo tmmojLmdoyfAnFHFrJwbsQsSHICLIHHff'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([35], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([59, '"잘가!"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) sayHello([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(6) changeHello([3, 'EqjvMmkKimwDPNkcmimhkBljZDGHFBdkvSNThbaEHDEQMUZWqaB mulVcjcazsXeCnnGHRCZrsuXtG QkBGIlnkZEOWBuvkLrBRpCFrwTLYTqYlgDiX'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) sayGoodbye([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) changeHello([1, '"안녕?"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([0, '"잘가!"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) sayHello([223], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([3, 'eKCsYWgkCJYtTsvyo tmmojLmdoyfAnFHFrJwbsQsSHICLIHHff'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([35], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([59, '"잘가!"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) sayHello([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(6) changeHello([3, 'EqjvMmkKimwDPNkcmimhkBljZDGHFBdkvSNThbaEHDEQMUZWqaB mulVcjcazsXeCnnGHRCZrsuXtG QkBGIlnkZEOWBuvkLrBRpCFrwTLYTqYlgDiX'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) sayGoodbye([0], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) changeHello([1, '"안녕?"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([0, '"잘가!"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) sayHello([223], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeGoodbye([1, '"안녕?"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([4], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([1, 'dofULkhvAvTmOnFPltlddQVKipTfhmwqTpinMPJnlbVsWrNyQkDYCpIbbeludmGJMJkrwTq KEBWEYjkDPKCHggSkWJw'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([1], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(6) sayHello([84], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(7) sayHello([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([232, 'galgkCSaDydGufQtNlBtvoiNFAOPNsNfDOrLvyrQvOHd'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) changeHello([1, '"안녕?"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) sayGoodbye([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(12) sayGoodbye([243], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(13) changeGoodbye([1, 'JRsmoYfuZsRuWiklXw ibDsY YlKQnzMDrHaaGjdTLwVEhxrkAeLwGoNEUxXHbGyqgj JEegLgMHlpganBDVLSYfXezuTSdACWgsxEsQctbdKW'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(14) sayGoodbye([205], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(15) sayHello([12], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(16) sayGoodbye([167], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(17) changeHello([3, 'zi  lYScbHDPGCAbjbCdinK qhhoMKzXuhpldTIroEjStWwecrCbkfbKSpaGGWXz qtOUwJlRAPyoEIlsTTcdeDMRRWs OGyGKOWDfcKzMSypesDMPHVebYtAITifJPR zJaIbnFHAFNVgbFyLbXPYhdwGbrFdnAupn txBHWfWwgFaemWgOwRHgCIMVng pxqeStdkPRKTTEmWF'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(18) changeHello([180, '""'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(19) changeHello([133, 'XKVAiyarnJJasZOHKFUSvAkAExDBMUkOHbRlEKATSdWifNMVExIrrVT jXxagvHEaVDnrCXgTIRKQhilQbvQjOxTQMVljI liNdLwvPufGvXwMIeLleuQmDuEPRUBq DjwLKHTuizKHQelQSqqsHYPIEXJGLJMgBdQsKBXrvxhXbHsXzIdyEWozqSiDcwFeWM TgFo vHseJweMYhkKOJcOfomxLYhfVSV'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(20) changeHello([4, 'fvfxxLvJBxgyk LzzZUcxsoMDDtlVpBI LATDvAPkVYpqKsUPqwBbPhsHVl VjkmSEz trybdudGvZrDwWkssKbsRPWFqMrMJddLdtwJuiPVrsuLSCTZtHYXMTBfpgLcSsGZUnFwooGMbT'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(21) changeGoodbye([26, 'zTvkFANBTaPSsWnZKONOscKSzVzA'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(22) sayGoodbye([4], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(23) sayGoodbye([3], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) sayHello([98], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(25) changeGoodbye([0, 'iVBHoHLUkjedzIu gDmQNSscOkxDJdqgMzssLgBF'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(26) sayHello([228], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(27) changeGoodbye([3, ''], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(28) changeGoodbye([233, '"안녕?"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeGoodbye([1, '"안녕?"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([4], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([1, 'dofULkhvAvTmOnFPltlddQVKipTfhmwqTpinMPJnlbVsWrNyQkDYCpIbbeludmGJMJkrwTq KEBWEYjkDPKCHggSkWJw'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([1], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(6) sayHello([84], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(7) sayHello([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([232, 'galgkCSaDydGufQtNlBtvoiNFAOPNsNfDOrLvyrQvOHd'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) changeHello([1, '"안녕?"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) sayGoodbye([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(12) sayGoodbye([243], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(13) changeGoodbye([1, 'JRsmoYfuZsRuWiklXw ibDsY YlKQnzMDrHaaGjdTLwVEhxrkAeLwGoNEUxXHbGyqgj JEegLgMHlpganBDVLSYfXezuTSdACWgsxEsQctbdKW'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(14) sayGoodbye([205], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(15) sayHello([12], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(16) sayGoodbye([167], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(17) changeHello([3, 'zi  lYScbHDPGCAbjbCdinK qhhoMKzXuhpldTIroEjStWwecrCbkfbKSpaGGWXz qtOUwJlRAPyoEIlsTTcdeDMRRWs OGyGKOWDfcKzMSypesDMPHVebYtAITifJPR zJaIbnFHAFNVgbFyLbXPYhdwGbrFdnAupn txBHWfWwgFaemWgOwRHgCIMVng pxqeStdkPRKTTEmWF'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(18) changeHello([180, '""'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(19) changeHello([133, 'XKVAiyarnJJasZOHKFUSvAkAExDBMUkOHbRlEKATSdWifNMVExIrrVT jXxagvHEaVDnrCXgTIRKQhilQbvQjOxTQMVljI liNdLwvPufGvXwMIeLleuQmDuEPRUBq DjwLKHTuizKHQelQSqqsHYPIEXJGLJMgBdQsKBXrvxhXbHsXzIdyEWozqSiDcwFeWM TgFo vHseJweMYhkKOJcOfomxLYhfVSV'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(20) changeHello([4, 'fvfxxLvJBxgyk LzzZUcxsoMDDtlVpBI LATDvAPkVYpqKsUPqwBbPhsHVl VjkmSEz trybdudGvZrDwWkssKbsRPWFqMrMJddLdtwJuiPVrsuLSCTZtHYXMTBfpgLcSsGZUnFwooGMbT'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(21) changeGoodbye([26, 'zTvkFANBTaPSsWnZKONOscKSzVzA'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(22) sayGoodbye([4], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(23) sayGoodbye([3], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) sayHello([98], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(25) changeGoodbye([0, 'iVBHoHLUkjedzIu gDmQNSscOkxDJdqgMzssLgBF'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(26) sayHello([228], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(27) changeGoodbye([3, ''], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(28) changeGoodbye([233, '"안녕?"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) changeGoodbye([1, '"안녕?"'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([4], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([1, 'dofULkhvAvTmOnFPltlddQVKipTfhmwqTpinMPJnlbVsWrNyQkDYCpIbbeludmGJMJkrwTq KEBWEYjkDPKCHggSkWJw'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([1], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(6) sayHello([84], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(7) sayHello([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([232, 'galgkCSaDydGufQtNlBtvoiNFAOPNsNfDOrLvyrQvOHd'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) changeHello([1, '"안녕?"'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) sayGoodbye([2], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(12) sayGoodbye([243], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(13) changeGoodbye([1, 'JRsmoYfuZsRuWiklXw ibDsY YlKQnzMDrHaaGjdTLwVEhxrkAeLwGoNEUxXHbGyqgj JEegLgMHlpganBDVLSYfXezuTSdACWgsxEsQctbdKW'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(14) sayGoodbye([205], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(15) sayHello([12], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(16) sayGoodbye([167], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(17) changeHello([3, 'zi  lYScbHDPGCAbjbCdinK qhhoMKzXuhpldTIroEjStWwecrCbkfbKSpaGGWXz qtOUwJlRAPyoEIlsTTcdeDMRRWs OGyGKOWDfcKzMSypesDMPHVebYtAITifJPR zJaIbnFHAFNVgbFyLbXPYhdwGbrFdnAupn txBHWfWwgFaemWgOwRHgCIMVng pxqeStdkPRKTTEmWF'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(18) changeHello([180, '""'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(19) changeHello([133, 'XKVAiyarnJJasZOHKFUSvAkAExDBMUkOHbRlEKATSdWifNMVExIrrVT jXxagvHEaVDnrCXgTIRKQhilQbvQjOxTQMVljI liNdLwvPufGvXwMIeLleuQmDuEPRUBq DjwLKHTuizKHQelQSqqsHYPIEXJGLJMgBdQsKBXrvxhXbHsXzIdyEWozqSiDcwFeWM TgFo vHseJweMYhkKOJcOfomxLYhfVSV'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(20) changeHello([4, 'fvfxxLvJBxgyk LzzZUcxsoMDDtlVpBI LATDvAPkVYpqKsUPqwBbPhsHVl VjkmSEz trybdudGvZrDwWkssKbsRPWFqMrMJddLdtwJuiPVrsuLSCTZtHYXMTBfpgLcSsGZUnFwooGMbT'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(21) changeGoodbye([26, 'zTvkFANBTaPSsWnZKONOscKSzVzA'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(22) sayGoodbye([4], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(23) sayGoodbye([3], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(24) sayHello([98], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(25) changeGoodbye([0, 'iVBHoHLUkjedzIu gDmQNSscOkxDJdqgMzssLgBF'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(26) sayHello([228], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(27) changeGoodbye([3, ''], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(28) changeGoodbye([233, '"안녕?"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) sayGoodbye([139], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([1], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(4) sayGoodbye([180], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) sayGoodbye([71], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) changeHello([0, '"Hello"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([2, '"안녕?"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) changeHello([2, '""'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) sayHello([88], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) changeGoodbye([0, '"안녕?"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([3, '""'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([2], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) changeGoodbye([153, 'GdBvhrKzXRxRJZohCTavfzXCxmbdxSvdKmLJiLKtxyIlmouIZYuCkIfqmqyRxcNTcKPSuowGQBRNOOCJSsevugXSQSwbHsATbSbQgCWltlcvBGCuBFFXCAlgJLxauDqBpHthdVaQIZPxfsUygBfmIfQ'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeGoodbye([2, '"안녕?"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeHello([0, 'ZmPIYmvXGOpsMDbpluvie'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) changeGoodbye([1, 'uCsOEWBZXjTpIDYdEKPdgmOjJsVsiHpVVdKUVBwIRZHBDBhNPpkDtuhsFikQxSPiRsWESqpxFaZCaStTbMQrLbhvTznuxu XhdPOyYXhqafDdGMYyJpnltCOIyJBPTgFWEuJeTAQFLthCJmQjMTSUToQJRgtNwCGliGXYkrLSFvEdIOk fSJOMPagyrKFCYEGLlEsrfe'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) changeHello([142, 'GcmwWNjWqq SwtYpHGcugDhyMtQMQzSDHkLRXZlfc JOCnCGqZYBXTBlCsHLJrRiaj WLiBZwmaalcsOl P HlJSpSqlCUI ZccWyhvocGJPvLWYhxwT PXJyalnERJyaIqXMLebRhmwMHulbmLlrpKNdtqf U yJndvQVvLidIgNKkfhGKZzcsaeuKBqHhCshfr CV  VGraWUTlxiaOOaDxDe'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) changeGoodbye([230, ''], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) sayHello([141], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(9) sayGoodbye([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) sayHello([129], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'yWqurOSqgTKODhGREbLteciabvQVKptHinIWpMLC gKWmVuNMovwnTkzpwwicWtkTZTQkreotUVQEEkX PSSsnvrIbbHPwyW WaNcjYWrtFZgPlNwOaQVOQcNCTfugqyYJzafasCtIkInaHmJbWOQQopBWFXlfaOQWeymAQblCAlYCQshhNDUcIuRGYgDUsiqxjPseRHgpdwRfnrrEKeByuJVBBOJzGAwztMhsEx'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(12) changeGoodbye([36, ''], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true]
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) sayGoodbye([71], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) changeHello([0, '"Hello"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([2, '"안녕?"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(5) changeHello([2, '""'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) changeGoodbye([153, 'GdBvhrKzXRxRJZohCTavfzXCxmbdxSvdKmLJiLKtxyIlmouIZYuCkIfqmqyRxcNTcKPSuowGQBRNOOCJSsevugXSQSwbHsATbSbQgCWltlcvBGCuBFFXCAlgJLxauDqBpHthdVaQIZPxfsUygBfmIfQ'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) sayHello([88], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(3) changeGoodbye([0, '"안녕?"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([3, '""'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([2], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)
+	(2) sayHello([3], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) changeHello([86, '"Goodbye!"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([1, '"Goodbye!"'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeGoodbye([2, '"안녕?"'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeHello([0, 'ZmPIYmvXGOpsMDbpluvie'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(5) changeGoodbye([1, 'uCsOEWBZXjTpIDYdEKPdgmOjJsVsiHpVVdKUVBwIRZHBDBhNPpkDtuhsFikQxSPiRsWESqpxFaZCaStTbMQrLbhvTznuxu XhdPOyYXhqafDdGMYyJpnltCOIyJBPTgFWEuJeTAQFLthCJmQjMTSUToQJRgtNwCGliGXYkrLSFvEdIOk fSJOMPagyrKFCYEGLlEsrfe'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(6) changeHello([142, 'GcmwWNjWqq SwtYpHGcugDhyMtQMQzSDHkLRXZlfc JOCnCGqZYBXTBlCsHLJrRiaj WLiBZwmaalcsOl P HlJSpSqlCUI ZccWyhvocGJPvLWYhxwT PXJyalnERJyaIqXMLebRhmwMHulbmLlrpKNdtqf U yJndvQVvLidIgNKkfhGKZzcsaeuKBqHhCshfr CV  VGraWUTlxiaOOaDxDe'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(7) changeGoodbye([230, ''], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(8) sayHello([141], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(9) sayGoodbye([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) sayHello([129], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'yWqurOSqgTKODhGREbLteciabvQVKptHinIWpMLC gKWmVuNMovwnTkzpwwicWtkTZTQkreotUVQEEkX PSSsnvrIbbHPwyW WaNcjYWrtFZgPlNwOaQVOQcNCTfugqyYJzafasCtIkInaHmJbWOQQopBWFXlfaOQWeymAQblCAlYCQshhNDUcIuRGYgDUsiqxjPseRHgpdwRfnrrEKeByuJVBBOJzGAwztMhsEx'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(12) changeGoodbye([36, ''], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true]
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) changeGoodbye([153, 'GdBvhrKzXRxRJZohCTavfzXCxmbdxSvdKmLJiLKtxyIlmouIZYuCkIfqmqyRxcNTcKPSuowGQBRNOOCJSsevugXSQSwbHsATbSbQgCWltlcvBGCuBFFXCAlgJLxauDqBpHthdVaQIZPxfsUygBfmIfQ'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)
+	(2) changeGoodbye([153, 'GdBvhrKzXRxRJZohCTavfzXCxmbdxSvdKmLJiLKtxyIlmouIZYuCkIfqmqyRxcNTcKPSuowGQBRNOOCJSsevugXSQSwbHsATbSbQgCWltlcvBGCuBFFXCAlgJLxauDqBpHthdVaQIZPxfsUygBfmIfQ'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeHello([172, '""'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) changeHello([23, '"Goodbye!"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayHello([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([82], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([188, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) sayGoodbye([2], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(4) changeHello([1, 'PWJaYDz bBmOCdVUmehiHTjDe cGGlxxmCUVdNzIzotV sTsgnvZYGlllR Q DXBDDiBaJiiWQTKCwweCHYZkLGToMNYhPCKcjopMZXIHlhGearyLEzckCuimR tvdfxofEQyGLrNPpbUZvJKeUQgQIFHgBEfcdwUHlSPiZXyWuVbqo PrXbExxOv'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayHello([1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([17, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) sayHello([80], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) changeGoodbye([114, 'xlzzlnpZgmSjcyjpCyAmffTG blksfkjBPvynVRxelATOjrpKtSFRcFP PnhNqVF UOuggAFgfgpByTlxXvnapOoWoCSvJqSicWnsZSqTgiBMjPGfDPBxNLFd'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([246, '"Hello"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) sayHello([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(11) changeHello([4, '"잘가!"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(12) sayHello([0], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(13) sayGoodbye([2], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) sayGoodbye([2], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(4) changeHello([1, 'PWJaYDz bBmOCdVUmehiHTjDe cGGlxxmCUVdNzIzotV sTsgnvZYGlllR Q DXBDDiBaJiiWQTKCwweCHYZkLGToMNYhPCKcjopMZXIHlhGearyLEzckCuimR tvdfxofEQyGLrNPpbUZvJKeUQgQIFHgBEfcdwUHlSPiZXyWuVbqo PrXbExxOv'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayHello([1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([17, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) sayHello([80], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) changeGoodbye([114, 'xlzzlnpZgmSjcyjpCyAmffTG blksfkjBPvynVRxelATOjrpKtSFRcFP PnhNqVF UOuggAFgfgpByTlxXvnapOoWoCSvJqSicWnsZSqTgiBMjPGfDPBxNLFd'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([246, '"Hello"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) sayHello([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(11) changeHello([4, '"잘가!"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(12) sayHello([0], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(13) sayGoodbye([2], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)
+	(2) sayGoodbye([2], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(4) changeHello([1, 'PWJaYDz bBmOCdVUmehiHTjDe cGGlxxmCUVdNzIzotV sTsgnvZYGlllR Q DXBDDiBaJiiWQTKCwweCHYZkLGToMNYhPCKcjopMZXIHlhGearyLEzckCuimR tvdfxofEQyGLrNPpbUZvJKeUQgQIFHgBEfcdwUHlSPiZXyWuVbqo PrXbExxOv'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayHello([1], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([17, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(7) sayHello([80], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) changeGoodbye([114, 'xlzzlnpZgmSjcyjpCyAmffTG blksfkjBPvynVRxelATOjrpKtSFRcFP PnhNqVF UOuggAFgfgpByTlxXvnapOoWoCSvJqSicWnsZSqTgiBMjPGfDPBxNLFd'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(9) changeGoodbye([246, '"Hello"'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(10) sayHello([0], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(11) changeHello([4, '"잘가!"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(12) sayHello([0], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(13) sayGoodbye([2], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeHello([172, '""'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) changeHello([23, '"Goodbye!"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayHello([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([82], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([188, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeHello([172, '""'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) changeHello([23, '"Goodbye!"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayHello([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([82], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([188, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeHello([172, '""'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) changeHello([23, '"Goodbye!"'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 0)	Returns: true
+	(4) sayHello([1], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([82], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([188, '""'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeGoodbye([3, '"안녕?"'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([168], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([186, 'ZcWLHgMfbpCMKInSFDVoMopCTeKwAIZclCgnFOaWpBgyEjjjlkqSUpTxZtIWpkrmUTjFBNIJINWyDCkbfIyB FaCFvJRzj jn TlmstqGtslVEEhECGJY'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) changeHello([0, 'qyUofvzveZFFmkObhmToKAmFOFM zjEQjeEbwlpUHRNAfFXGDVVJYhmmDUSdCyXl MdFUeNCfw kBNdbFsWezxIpdymSjgYTIZevPvimMxztVNmILcDQJMIVQRmDJvgtjvYnXSojWfQvLuIFTovrIRX qUMnRyMBlFDexGVTZYiAlQlqoTifjUgZDxwXJfnxXlQWlVKNObiGZXNXX v'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(4) changeHello([113, 'RYd ehIkefhRLBDzQtQHYTjFrTMbaSefdEPmFaDxhcyOGYFFpkQitADehwnKcTDakneuwLzbAaHMavpLNtRIcwdOOJLmkUcwZoOLGYzFhKyUxzlUrgINTImHJWDQhsWhyxUJKZxeolJcpcxcHCUBpIcoYBCdKFad HFcauCAxUWPXGsSmEsGwpTwWZRKYzBOjhvGpepigMRxEGVqY mADl '], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(5) sayGoodbye([4], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(6) changeGoodbye([215, '"Goodbye!"'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(7) changeHello([1, '"안녕?"'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(8) sayGoodbye([4], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(9) changeHello([163, '"Hello"'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(10) sayGoodbye([135], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(11) changeHello([3, 'HssUdHmNJaGpjJplqolPMRReLF tgJwBOukdlIpFaJ wbYsWMpSGEPQZrjyKqSVQabIIKgupmHUX RYHa ZPM'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeGoodbye([3, '"안녕?"'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([168], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([186, 'ZcWLHgMfbpCMKInSFDVoMopCTeKwAIZclCgnFOaWpBgyEjjjlkqSUpTxZtIWpkrmUTjFBNIJINWyDCkbfIyB FaCFvJRzj jn TlmstqGtslVEEhECGJY'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeGoodbye([3, '"안녕?"'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([168], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([186, 'ZcWLHgMfbpCMKInSFDVoMopCTeKwAIZclCgnFOaWpBgyEjjjlkqSUpTxZtIWpkrmUTjFBNIJINWyDCkbfIyB FaCFvJRzj jn TlmstqGtslVEEhECGJY'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) changeGoodbye([3, '"안녕?"'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) sayGoodbye([168], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(4) changeGoodbye([186, 'ZcWLHgMfbpCMKInSFDVoMopCTeKwAIZclCgnFOaWpBgyEjjjlkqSUpTxZtIWpkrmUTjFBNIJINWyDCkbfIyB FaCFvJRzj jn TlmstqGtslVEEhECGJY'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(5) sayHello([0], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) changeGoodbye([122, 'O TTDjQkkBBfFsgpyNnVyvQqUdNVFuqOwlRNEejRXbpTZvPozilVUiMVKpDmsVHHTUepqAftbumeCVHiOPNBjAfQlKJYZeSWhglnLneKNDywBfZfSQhKFrtRuznvilXkhXsayLcOvibAHtgwYf NCCiTwjn ubRFcIhVbA'], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(3) sayHello([75], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true

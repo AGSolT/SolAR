@@ -1,0 +1,196 @@
+Contract:			Prover
+Number of Relevant Branches:	17
+Number of Branches Covered:		17
+Runtime: 											176.838498
+Blockchain Time: 							125.301795
+Iterations										
+0
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+_fallback:
+
+registeredUsers:
+
+userEntries:
+
+entryInformation:
+
+addEntry:
+
+deleteEntry:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) _fallback([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(3) entryInformation(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E', '0x5220612043744343444276726263665a7873724f594e66624471615958414775'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) addEntry(['0x6954557a4a4455705156416762676b6c534653684c4952682070684752584363'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(3) _fallback([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: 
+	(4) deleteEntry(['0x55526d535a436949417959755970555672494250767a49554579766a516b6e57'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(5) registeredUsers([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+	(6) addEntry(['0x616c6a6772715a554e6b5a555361586c51504c6d504d616f5774766e72207175'], from: 0xd03ea8624C8C5987235048901fB614fDcA89b117,
+                    value: 105195124406486806)	Returns: true
+	(7) entryInformation(['0x28a8746e75304c0780E011BEd21C72cD78cd535E', '0x4463726f776f47515342647656455a75436650444e6b6f5a634d56656a206177'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(8) registeredUsers([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(9) deleteEntry(['0x6470506778656866704f484672715563786375436c735a634a4c635365796652'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: 
+	(10) entryInformation(['0xd03ea8624C8C5987235048901fB614fDcA89b117', '0x49445a624974616667614e50486d6b6954594641426d637941644f7877657644'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(11) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(12) entryInformation(['0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC', '0x6a787644466b597969447a73674876666454674257776574754c4c794f635969'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(13) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(14) _fallback([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(15) registeredUsers([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(16) registeredUsers([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) registeredUsers([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(3) deleteEntry(['0x0000000000000000000000000000000000000000000000000000000000000000'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) addEntry(['0x575777746c7a58454a5767745046546a4b754471684d4c74425a45636a497746'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(3) entryInformation(['0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1', '0x6651495049684c206820206e4e6c49425370675965735873435049734a434f4c'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(4) deleteEntry(['0x4566554b46456756475a486f7649534e4257776573684779527a5162506d744d'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: 
+	(5) _fallback([], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: 
+	(6) registeredUsers([], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 0)	Returns: true
+	(7) userEntries(['0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true
+	(8) addEntry(['0x7262745a784f786e71515353485872564466786a715054427752614451685679'], from: 0x1dF62f291b2E969fB0849d99D9Ce41e2F137006e,
+                    value: 81909403615657748)	Returns: true
+	(9) entryInformation(['0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b', '0x644774205746766a5259665a5a4443456769416c4d4769476544524768645153'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+	(10) entryInformation(['0xd03ea8624C8C5987235048901fB614fDcA89b117', '0x0000000000000000000000000000000000000000000000000000000000000000'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+	(11) addEntry(['0x455555616665615479504141695a6f4242716163724f626a684b78546f5a5772'], from: 0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E,
+                    value: 0)	Returns: true
+	(12) _fallback([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: 
+	(13) entryInformation(['0xd03ea8624C8C5987235048901fB614fDcA89b117', '0x66766b516b7461436c526755455169525254685270672064476b6c20644d4447'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)	Returns: true
+	(14) deleteEntry(['0x6a715957686c66636f57705a686b76454f6f56556265664e4c6753627353596e'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: 
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+	(3) registeredUsers([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 0)
+	(2) userEntries(['0xACa94ef8bD5ffEE41947b4585a84BdA5a3d3DA6E'], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)	Returns: true
+	(3) addEntry(['0x0000000000000000000000000000000000000000000000000000000000000000'], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 0)	Returns: true

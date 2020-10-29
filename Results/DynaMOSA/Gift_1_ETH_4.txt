@@ -1,0 +1,97 @@
+Contract:			Gift_1_ETH
+Number of Relevant Branches:	18
+Number of Branches Covered:		14
+Runtime: 											6470.258224
+Blockchain Time: 							5345.08336
+Iterations										
+100
+--------------------------------------------------
+METHODS:
+
+Constructor:
+	Inputs :[]
+	Payable: nonpayable
+_fallback:
+
+GetHash:
+
+SetPass:
+
+GetGift:
+
+PassHasBeenSet:
+
+
+--------------------------------------------------
+
+            TESTS:
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) PassHasBeenSet(['0x0000000000000000000000000000000000000000000000000000000000000000'], from: 0xFFcf8FDEE72ac11b5c542428B35EEF5769C409f0,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) PassHasBeenSet(['0x73526d50635761667945674c52436b6a4e484b67546b46492041774853464d67'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)
+	(2) PassHasBeenSet(['0x73526d50635761667945674c52436b6a4e484b67546b46492041774853464d67'], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) _fallback([], from: 0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC,
+                    value: 126708139640438982)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) GetHash([['0x55', '0x5a', '0x77', '0x76', '0x6b', '0x4f', '0x72', '0x54', '0x45', '0x63']], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) GetHash([['0x55', '0x5a', '0x77', '0x76', '0x6b', '0x4f', '0x72', '0x54', '0x45', '0x63']], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b,
+                    value: 0)
+	(2) GetHash([['0x55', '0x5a', '0x77', '0x76', '0x6b', '0x4f', '0x72', '0x54', '0x45', '0x63']], from: 0x28a8746e75304c0780E011BEd21C72cD78cd535E,
+                    value: 0)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) GetGift([['0x47', '0x58', '0x63', '0x78', '0x6a']], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 193188024087706544)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) GetGift([['0x47', '0x58', '0x63', '0x78', '0x6a']], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 193188024087706544)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) SetPass(['0x4a50756c696a20796f454a696e514165485752706363645977744b7677497357'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 163398254669236116)	Returns: true
+
+	(1) constructor([], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 0)
+	(2) SetPass(['0x7176454465204278535250746c6244766151594e51424f616f7a42556e5a7278'], from: 0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1,
+                    value: 1e+18)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) SetPass(['0x4a50756c696a20796f454a696e514165485752706363645977744b7677497357'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 163398254669236116)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) SetPass(['0x4a50756c696a20796f454a696e514165485752706363645977744b7677497357'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 163398254669236116)	Returns: true
+
+	(1) constructor([], from: 0x3E5e9111Ae8eB78Fe1CC3bb8915d5D461F3Ef9A9,
+                    value: 0)
+	(2) SetPass(['0x4a50756c696a20796f454a696e514165485752706363645977744b7677497357'], from: 0xE11BA2b4D45Eaed5996Cd0823791E0C93114882d,
+                    value: 163398254669236116)	Returns: true
