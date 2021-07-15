@@ -15,10 +15,10 @@ docker run -it fuzzer:1.1.8
 docker run -it dynamosa:1.1.8
 ```
 
-The file structure in the docker image is the same as the <a href="https://github.com/AGSolT/AGSolT2021Submission/tree/main/DynaMOSA">DynaMOSA</a> and <a href="https://github.com/AGSolT/AGSolT2021Submission/tree/main/Fuzzer">Fuzzer</a> folders in this git repository. To generate tests for a smart contract, simply copy the relevant smart contract folder from the SmartContracts/RWContracts folder to the SmartContracts/BatchContracts folder and run:
+The file structure in the docker image is the same as the <a href="https://github.com/AGSolT/AGSolT2021Submission/tree/master/DynaMOSA">DynaMOSA</a> and <a href="https://github.com/AGSolT/AGSolT2021Submission/tree/master/Fuzzer">Fuzzer</a> folders in this git repository. To generate tests for a smart contract, simply copy the relevant smart contract folder from the SmartContracts/RWContracts folder to the SmartContracts/BatchContracts folder and run:
 
 ```
 ./Generate_Tests.sh
 ```
 
-The configuration options for AGSolT can be changed in the <a href="https://github.com/AGSolT/AGSolT2021Submission/blob/main/DynaMOSA/SolMOSA/Config.ini"> Config.ini</a> file. And the relevant options to be changed can be found either in table 3 of the paper, or by quickly looking at the <a href="https://github.com/AGSolT/AGSolT2021Submission/blob/main/Tracklist">Tracklist</a>.
+The configuration options for AGSolT can be changed in the <a href="https://github.com/AGSolT/AGSolT2021Submission/blob/master/DynaMOSA/SolMOSA/Config.ini"> Config.ini</a> file. And the relevant options to be changed can be found either in table 3 of the paper, or by quickly looking at the <a href="https://github.com/AGSolT/AGSolT2021Submission/blob/master/Tracklist">Tracklist</a>.
