@@ -1,5 +1,5 @@
 # AGSolT2021Submission
-Online appendix for the AGSolT paper submitted to the IEEE Transactions on Services Computing, the paper is currenlty available on <a href="https://arxiv.org/abs/2102.08864">arXiv</a>.
+Online appendix for the AGSolT paper submitted to the joural of Software Testing, Verification & Reliability, the paper is currenlty available on <a href="https://arxiv.org/abs/2102.08864">arXiv</a>.
 
 The test suites that were generated as part of the experiment for the paper can be found in the Results function and the code for the DynaMOSA and Fuzzer approach can be found in the corresponding folders.
 
