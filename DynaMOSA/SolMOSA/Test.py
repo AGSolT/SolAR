@@ -149,7 +149,7 @@ class TestCase():
         ans = """"""
         for methodCall in self.methodCalls:
             input_dict_string = """{{name: '{}', inputVars: {}, """\
-                """fromAcc: '{}', value: {}}}""".format(
+                """fromAcc: '{}', value: BigNumber({}).toFixed()}}""".format(
                     methodCall.methodName, self.InputVars_to_String(
                         methodCall.inputvars), methodCall.fromAcc,
                     methodCall.value)
@@ -160,7 +160,8 @@ class TestCase():
         return ans
 
     def InputVars_to_String(self, _inputvars):
-        """Translate Booleans from python to javascript."""
+        """Translate Booleans from python to javascript. \
+        Also write integers to BigInts."""
         ans = """["""
         for i, iv in enumerate(_inputvars):
             if i > 0 & i < len(_inputvars) - 1:
@@ -172,6 +173,10 @@ class TestCase():
                     ans = ans + """false"""
             elif type(iv) == str:
                 ans = ans + """'{}'""".format(iv)
+            elif type(iv) == int:
+                ans = ans + """BigNumber(`{}`).toFixed()""".format(iv)
+            elif type(iv) == list:
+                ans = ans + """[{}]""".format(self.InputVars_to_String(iv))
             else:
                 ans = ans + """{}""".format(iv)
         ans = ans + """]"""
