@@ -183,9 +183,9 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
     negative = ["n", "N", "no", "No", "NO"]
     proper_response = False
 
-    welcome_string = """Welcome to AGSolT, the world's first """\
+    welcome_string = """Welcome to SolAR, the world's first """\
         """meta-heuristic test-case generator for Solidity-based Ethereuem """\
-        """smart contracts based on AGSolT!\nThis script will guide you """\
+        """smart contracts!\nThis script will guide you """\
         """through the necessary steps for the automated test-case """\
         """generation.\n"""
     Ganache_string = """Would you like to start a Ganache client for easy """\
@@ -202,7 +202,7 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         """display the parameter settings? (y/n)""".format(
             os.path.dirname(os.path.realpath(__file__)))
 
-    print(figlet_format("AGSolT"))
+    print(figlet_format("SolAR"))
     print(welcome_string)
 
     # Give the user a chance to launch a ganache blockchain

@@ -1,5 +1,5 @@
 # Control Flow Graph Construcion Example
-This document explains conceptually how a Control-Flow Graph (CFG) is extracted from the bytecode of a deployed contract. AGSolT relies on the <a href="https://github.com/crytic/evm_cfg_builder">evm_cfg_builder</a> library for creating a first CFG, before taking additional steps to create a Control-Dependendy Graph (CDG) and removing some superfluous notes, as explained in the accompanying <a href="https://arxiv.org/abs/2102.08864">paper</a>.
+This document explains conceptually how a Control-Flow Graph (CFG) is extracted from the bytecode of a deployed contract. SolAR relies on the <a href="https://github.com/crytic/evm_cfg_builder">evm_cfg_builder</a> library for creating a first CFG, before taking additional steps to create a Control-Dependendy Graph (CDG) and removing some superfluous notes, as explained in the accompanying <a href="https://arxiv.org/abs/2102.08864">paper</a>.
 
 ## The contract and compilation.
 We follow here, the same example smart contract that was also given in the paper: a simple auction contract, which can be found in [Auction.sol](./Auction.sol):
@@ -103,4 +103,4 @@ REVERT
 The first node, is the parent node, the second node contains the opcodes that are stored location ```0x66```, which the EVM is instructed to jump to if the boolean on the stack is true, the third node is where the EVM will continue if the boolean on the stack was false and there was no jump needed.
 
 ## Disclaimer
-Please note that AGSolT uses a Control <emph>Dependency</emph> Graph and not a Control <emph>Flow</emph> Graph. Additionally, a number of nodes are merged, to minimise the number of irrelevant branches and increase the effectiveness of guided search approaches.
+Please note that SolAR uses a Control <emph>Dependency</emph> Graph and not a Control <emph>Flow</emph> Graph. Additionally, a number of nodes are merged, to minimise the number of irrelevant branches and increase the effectiveness of guided search approaches.
