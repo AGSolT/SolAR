@@ -11,8 +11,8 @@ These can be used in conjunction with docker using the commands:
 docker load < fuzzerdocker.tar
 docker load < dynamosadocker.tar
 
-docker run -it fuzzer:1.1.8
-docker run -it dynamosa:1.1.8
+docker run -it fuzzer:1.2.0
+docker run -it dynamosa:1.2.0
 ```
 
 The file structure in the docker image is the same as the <a href="https://github.com/AGSolT/SolAR/tree/master/DynaMOSA">DynaMOSA</a> and <a href="https://github.com/AGSolT/SolAR/tree/master/Fuzzer">Fuzzer</a> folders in this git repository. To generate tests for a smart contract, simply copy the relevant smart contract folder from the SmartContracts/RWContracts folder to the SmartContracts/BatchContracts folder and run:
