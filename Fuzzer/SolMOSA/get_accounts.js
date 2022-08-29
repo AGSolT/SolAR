@@ -18,7 +18,7 @@ function get_Accounts(attempts, waitTime){
       else{
         var nr_of_acounts = max_accounts;
       }
-      fs.writeFile(accounts_file_location, accounts.slice(0, nr_of_accounts), function(err){
+      fs.writeFile(accounts_file_location, `${accounts.slice(0, nr_of_accounts)}`, function(err){
         if(err){
           return console.log(err)
         }

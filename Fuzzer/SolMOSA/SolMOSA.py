@@ -162,9 +162,11 @@ def SolMOSA(config):
     blockchain_end_time = datetime.datetime.now()
     blockchain_time = blockchain_end_time - blockchain_start_time
 
-    logging.info("Reading results...")
+    logging.info("Reading Debugs...")
     with open('debugs.txt', 'r') as f:
         callResults = f.read()
+
+    logging.info("Reading Returnvals...")
 
     with open('returnvals.txt', 'r') as f:
         returnvals = f.read().split(",")
@@ -179,7 +181,7 @@ def SolMOSA(config):
     offspring = parents
 
     archive = update_archive(parents, init_archive, relevant_targets,
-                             tSuite.smartContract.CDG.CompactEdges)
+                             tSuite.smartContract.CDG.CompactEdges) 
     archives = [archive]
     testSuites = [tSuite]
     # updated_targets = update_targets(parents, archive, relevant_targets)
