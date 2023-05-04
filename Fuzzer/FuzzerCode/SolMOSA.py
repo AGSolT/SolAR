@@ -13,14 +13,11 @@ import subprocess
 import datetime
 import logging
 import numpy as np
-# import pickles
 import sys
 
 from CDG import CDG
 from SmartContract import SmartContract
 from Test_Suite import TestSuite
-# from Preference_Sorting import preference_sorting, subvector_dist
-# from Generate_Offspring import generate_offspring
 
 np.set_printoptions(threshold=sys.maxsize)
 

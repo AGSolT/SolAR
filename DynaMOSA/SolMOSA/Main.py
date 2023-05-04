@@ -21,13 +21,12 @@ import subprocess
 import logging
 import csv
 import re
-# import sys
+import sys
 
 from pyfiglet import figlet_format
 from SolMOSA import SolMOSA
 
-logging.basicConfig(filename='SolMOSA.log', filemode='w', level=logging.DEBUG)
-
+logging.basicConfig(filename='DynMOSA.log', filemode='w', level=logging.INFO)
 
 def main():
     """Run the experiment based on user-input and configuration."""
@@ -44,6 +43,9 @@ def main():
     Rapports_folder = dir_path + "/" + config['Files']['rapports_folder']
     Execution_Times = int(config['Parameters']['execution_times'])
     memory_efficient = config['Parameters']['memory_efficient'] == "True"
+    logToTerminal = config['Parameters']['logToTerminal'] == "True"
+    if logToTerminal:
+        logging.getLogger().addHandler(logging.StreamHandler(sys.stdout))
 
     # Run SolMOSA and Create Rapports
     # Initialise the csv file for easy computer analysis
@@ -185,11 +187,6 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
     negative = ["n", "N", "no", "No", "NO"]
     proper_response = False
 
-    welcome_string = """Welcome to SolAR, the world's first """\
-        """meta-heuristic test-case generator for Solidity-based Ethereuem """\
-        """smart contracts\nThis script will guide you """\
-        """through the necessary steps for the automated test-case """\
-        """generation.\n"""
     Ganache_string = """Would you like to start a Ganache client for easy """\
         """testing on GNU screen "ganache"? (y/n)"""
     ETH_port_string = """Please make sure you have a local blockchain """\
@@ -203,9 +200,6 @@ def set_settings(_config, _ETH_port, _SmartContract_folder):
         """changing the "Config.ini"-file located at {}. Would you like to """\
         """display the parameter settings? (y/n)""".format(
             os.path.dirname(os.path.realpath(__file__)))
-
-    print(figlet_format("SolAR"))
-    print(welcome_string)
 
     # Give the user a chance to launch a ganache blockchain
     while not proper_response:

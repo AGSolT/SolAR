@@ -4,8 +4,6 @@ smart contract."""
 import numpy as np
 import logging
 from web3 import Web3
-# import sys
-
 
 class SmartContract():
     """
