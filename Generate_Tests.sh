@@ -12,8 +12,6 @@ elif [ $choice = '2' ]; then
 else
     echo "invalid choice!"
 fi
-# Start the SolMOSA algorithm
-# cd SolMOSA && python Main.py
 
 # Close the ganache screen
 screen -X -S ganache quit
