@@ -32,11 +32,3 @@ If you want to download the tool and play with the code locally, simply:
 2. Set up and activate an [environment](https://docs.python.org/3/tutorial/venv.html) with python 3.7 (e.g., following [these](https://stackoverflow.com/questions/70422866/how-to-create-a-venv-with-a-different-python-version) instructions). Newer versions of python will be tested in the future.
 3. Navigate to the folder you downloaded in step 1 and install the required python packages by running `pip install -r requirements.txt`.
 4. You're ready to go! Follow the instructions below to start testing.
-
-## Running Locally
-If you want to download the tool and play with the code locally, simply:
-
-1. Download the code in this repository.
-2. Set up and activate an [environment](https://docs.python.org/3/tutorial/venv.html) with python 3.7 (e.g., following [these](https://stackoverflow.com/questions/70422866/how-to-create-a-venv-with-a-different-python-version) instructions). Newer versions of python will be tested in the future.
-3. Navigate to the folder you downloaded in step 1 and install the required python packages by running `pip install -r requirements.txt`.
-4. You're ready to go! Follow the instructions below to start testing.
