@@ -44,3 +44,51 @@ Once you've added your smart contracts in the right location, navigate to the ma
 and execute [Generate_Tests.sh]() (don't forget to make this, the [dynamosa script]() and the [fuzzer script]() [executable]()). The script will provide you with prompts to run you through the execution of the tool.
 
 Once SolAR is finished generating test suites, you can find the resulting test suites, as well as some stasticis, in the [Rapports Folder]().
+
+## Options and hyperparameters.
+Hyperparameters are currently stored separately for the two algorithms in a Config.ini file which can be found [here]() for DynaMOSA, and [here]() for the fuzzer. They come in four categories, and are explained below.
+
+#### CFG
+These parameters are used by the [CDG.py]() component to generate control-flow and control dependency graphs.
+
+- **Ignorefiles**: A list of ABI's that should be ignored when generating control flow graphs. Useful when your contract has dependencies such as libraries that are needed when constructing a new instance of the contract.
+- **Predicates**: The predicates that can dominate a branch, these should generally not be changed.
+- **ignoreFallback**: Tells the CDG component to exclude the fallback function from the control-dependency graph.
+
+#### Blockchain
+Parameters that are related to the local blockchain environment that SolAR interacts with. If you want to make other changes to your blockchain (e.g., increase or decrease the amount of Solidity per account, or deploy contracts that your contract can call) you should do those when launching the Ethereum client.
+- **ETH_port**: the port where the local blockchain client is exposed.
+
+#### Parameters
+These are the main paremeters that can configure the DynaMOSA and Fuzzer algorithms. For more information on the DynaMOSA-specific parameters, we refer to the original [DynaMOSA paper]().
+- **max_accounts**: The number of different accounts that are used to call methods in the smart contract. This should never be higher than the number of accounts that are on the blockchain. 
+- **max_method_calls**: The maximum number of method calls in a single test in the test suite. Larger numbers theoretically allow for more complex behaviour but significantly affect runtime.
+- **min_method_calls**: The minimum number of method calls in a single test in the test suite. Can be useful if you know certain branches can only be reached with a specific number of method calls.
+- **maxArrayLength**: The maximum length of an array when generating input values for method calls. Longer arrays theoretically allow for more complex behaviour but significantly affect runtime.
+- **minArrayLength**: The minimum length of an array when generating input values for method calls.
+- **population_size**: The number of tests that generated during each iteration of the DynaMOSA or Fuzzer algorithm. Greatly affects runtime.
+- **deploying_accounts**: A list of accounts that will always be used when constructing the smart contract. Useful if you want a specific account to always be the owner (e.g., when hardcoded).
+- **tournament_size**: The size of the tournament used for to generate offspring in the DynaMOSA algorithm.
+- **crossover_probability**: The probability of crossover when generating offspring in the DynaMOSA algorithm.
+- **remove_probability**: The probability of removing when generating offspring in the DynaMOSA algorithm.
+- **change_probability**: The probability of changing when generating offspring in the DynaMOSA algorithm.
+- **insert_probability**: The probability of inserting when generating offspring in the DynaMOSA algorithm.
+- **search_budget**: The amount of times SolAR will go through a full loop of generating new test cases if it doesn't achieve full branch coverage. If this is set to N; N+1 suites will be generated. Greatly affects runtime.
+- **execution_times**: The number of optimal test suites to generate. Extremely bad for increasing runtime, mostly useful when conducting experiments.
+- **passBlocks**: If set to True, test cases will include a special passBlocks method, which mines a couple of empty blocks and does nothing else. This is useful when contract functionality depends on the block number.
+- **passTime**: If set to True, test cases will include a special passTime method, which artificially sets the clock of the blockchain a passTimeTime amount of time into the future. This is useful when contract funcitonality depends on the blockchain time.
+- **passTimeTime**: The amount of time to set the blockchain into the future with the special passTime method.
+- **standardPassTimeTime**: Fallback if no passTimeTime is specified.
+- **memory_efficient**: Experimental parameter that was used when running experiments in containers where memory was an issue.
+- **zeroAddress**: When set to true allows the special [zero address]() to be passed as an input variable to method calls.
+- **maxWei**: The maximum amount of Wei that can be passed along with a method call.
+- **IgnoreFunctions**: A list of methods that should not be called by the test suites.
+- **ignoreStateVariables**: When set to true, does not call state variables.
+- **nonExistantAccount**: A valid account hash that need not exist on the local blockchain environment. Useful for testing functionality that relies on non-existant accounts.
+
+#### Files
+Parameters surrounding the files that are used and created by SolAR.
+
+- **accounts_file_location**: The location where the accounts in the local blockchain environment are stored.
+- **rapports_folder**: The directory where the output of SolAR is saved to.
+- **SmartContract_folder**: The folder where the smart contracts that are to be tested are stored.
