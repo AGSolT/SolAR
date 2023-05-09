@@ -85,6 +85,7 @@ These are the main paremeters that can configure the DynaMOSA and Fuzzer algorit
 - **IgnoreFunctions**: A list of methods that should not be called by the test suites.
 - **ignoreStateVariables**: When set to true, does not call state variables.
 - **nonExistantAccount**: A valid account hash that need not exist on the local blockchain environment. Useful for testing functionality that relies on non-existant accounts.
+- **logToTerminal**: If set to true will output some logs to the terminal.
 
 #### Files
 Parameters surrounding the files that are used and created by SolAR.
