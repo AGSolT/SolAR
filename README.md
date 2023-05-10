@@ -95,4 +95,4 @@ Parameters surrounding the files that are used and created by SolAR.
 - **SmartContract_folder**: The folder where the smart contracts that are to be tested are stored.
 
 ## Debugging
-As SolAR runs, it outputs logging information to two different files. The `SolMOSA.log`-file can be found for both the [DynaMOSA]() and the [Fuzzer]() implementation. This is the main log for running the SolAR code. In the same directory, there will be a Ganache-interaction log that tracks the interaction with the blockchain environment.
+As SolAR runs, it outputs logging information to two different files. The `SolMOSA.log`-file can be found for both the [DynaMOSA]() and the [Fuzzer]() implementation. This is the main log for running the SolAR code. In the same directory, there will be a `Ganache-interaction.log` that tracks the interaction with the blockchain environment.
