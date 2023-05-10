@@ -4,7 +4,7 @@ SolAR is a tool that generates full test suites that are optimised for [](branch
 If full branch coverage is achieved, running all the tests in the final test suite will guarantee that each branch of the smart contract is executed at least once, the user can then manually check to see if the results of the method calls match the expected behaviour to ensure proper testing. Otherwise, the user can check which branch is not covered and see if this branch can be covered manually (or if the code needs to be adapted).
 
 ## Quickstart
-The easiest way to try out the SolAR is to download the dynamosadocker.tar and or fuzzerdocker.tar files from <a href="https://drive.google.com/drive/folders/1qAxzToqqCNkGBWFmDPC_O03BVCLDHbDX?usp=sharing">Google drive.</a>
+The easiest way to try out the SolAR is to download the dynamosadocker.tar and or fuzzerdocker.tar files from <a href="[https://drive.google.com/drive/folders/1qAxzToqqCNkGBWFmDPC_O03BVCLDHbDX?usp=sharing](https://zenodo.org/record/7139982)">Zenodo.</a>
 
 These can be used in conjunction with docker using the commands:
 
