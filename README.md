@@ -1,5 +1,5 @@
 # SolAR
-SolAR is a tool that generates full test suites that are optimised for [](branch coverage) first, and minimum number of method calls second. Each test in the resulting test suite consists of an initial construction statement to create a fresh instance of the smart contract, followed by one or more method calls that manipulate the state of the contract (see e.g. [here]()). Every branch in the [control dependency graph]() of the contract has one test dedicated to it.
+SolAR is a tool that generates full test suites that are optimised for [](branch coverage) first, and minimum number of method calls second. Each test in the resulting test suite consists of an initial construction statement to create a fresh instance of the smart contract, followed by one or more method calls that manipulate the state of the contract (see e.g. [here](https://github.com/AGSolT/SolAR/blob/220b13c7479502950091d3cfe8146c522b90d518/Results/DynaMOSA/AddressBook_1.txt#L29)). Every branch in the [control dependency graph](https://en.wikipedia.org/wiki/Program_dependence_graph) of the contract has one test dedicated to it.
 
 If full branch coverage is achieved, running all the tests in the final test suite will guarantee that each branch of the smart contract is executed at least once, the user can then manually check to see if the results of the method calls match the expected behaviour to ensure proper testing. Otherwise, the user can check which branch is not covered and see if this branch can be covered manually (or if the code needs to be adapted).
 
@@ -34,22 +34,22 @@ If you want to download the tool and play with the code locally, simply:
 5. You're ready to go! Follow the instructions below to start testing.
 
 ## Generating test suites for a smart contract.
-SolAR runs in a unix-like terminal and requires a locally running Ethereum blockchain. We recommend the [ganache-cli]() implementation, which can be run from the terminal. If you have installed ganache-cli, you can run it yourself, or SolAR can start an instance in the background using [GNU-screen](), which is also what happens in the docker files. Nevertheless, for local test we recommend running your own instance in another terminal window with `ganache-cli` so you can see the interaction.
+SolAR runs in a unix-like terminal and requires a locally running Ethereum blockchain. We recommend the [ganache-cli](https://www.npmjs.com/package/ganache-cli) implementation, which can be run from the terminal. If you have installed ganache-cli, you can run it yourself, or SolAR can start an instance in the background using [GNU-screen](https://www.ecosia.org/search?q=gnu%20screen&addon=firefox&addonversion=4.1.0&method=topbar), which is also what happens in the docker files. Nevertheless, for local test we recommend running your own instance in another terminal window with `ganache-cli` so you can see the interaction.
 
-In order to generate tests for your smart contract, you should create a folder with your smart contract's name and point SolAR to this directory. The path to the directory is stored in the Config.ini files, which can be found [here]() for DynaMOSA, and [here]() for the Fuzzer. If you want, you can put multiple such folders in this directory, and SolAR will generate test suites for all of them.
+In order to generate tests for your smart contract, you should create a folder with your smart contract's name and point SolAR to this directory. The path to the directory is stored in the Config.ini files, which can be found [here](./DynaMOSA/SolMOSA/Config.ini) for DynaMOSA, and [here](./Fuzzer/FuzzerCode/Config.ini) for the Fuzzer. If you want, you can put multiple such folders in this directory, and SolAR will generate test suites for all of them.
 
-The folders of your smart contracts should have a similar structure to the examples you can find in [RWContracts](). In particular, the tool expects an [ABI](), at `[SMART_CONTRACT_NAME]/build/contracts/[SMART_CONTRACT_NAME].json` for building the Control Dependency Graph, and the solidity contract itself at `[SMART_CONTRACT_NAME]/contracts/[[SMART_CONTRACT_NAME].sol` for scraping hardcoded values from the smart contract. SolAR works best with smart contracts that have been compiled with the [Truffle Suite](), which also ensures this structure automatically.
+The folders of your smart contracts should have a similar structure to the examples you can find in [RWContracts](./DynaMOSA/Smart Contracts/RWContracts). In particular, the tool expects an [ABI](https://docs.soliditylang.org/en/latest/abi-spec.html), at `[SMART_CONTRACT_NAME]/build/contracts/[SMART_CONTRACT_NAME].json` for building the Control Dependency Graph, and the solidity contract itself at `[SMART_CONTRACT_NAME]/contracts/[[SMART_CONTRACT_NAME].sol` for scraping hardcoded values from the smart contract. SolAR works best with smart contracts that have been compiled with the [Truffle Suite](https://trufflesuite.com/), which also ensures this structure automatically.
 
 Once you've added your smart contracts in the right location, navigate to the main folder in your terminal
-and execute [Generate_Tests.sh]() (don't forget to make this, the [dynamosa script]() and the [fuzzer script]() [executable]()). The script will provide you with prompts to run you through the execution of the tool.
+and execute [Generate_Tests.sh](./Generate_Tests.sh) (don't forget to make this, the [dynamosa script](./DynaMOSA/Generate_Tests.sh) and the [fuzzer script](./Fuzzer/Generate_Tests.sh) [executable](https://askubuntu.com/questions/229589/how-to-make-a-file-e-g-a-sh-script-executable-so-it-can-be-run-from-a-termi)). The script will provide you with prompts to run you through the execution of the tool.
 
-Once SolAR is finished generating test suites, you can find the resulting test suites, as well as some stasticis, in the [Rapports Folder]().
+Once SolAR is finished generating test suites, you can find the resulting test suites, as well as some stasticis, in the [Rapports Folder](#Files).
 
 ## Options and hyperparameters.
-Hyperparameters are currently stored separately for the two algorithms in a Config.ini file which can be found [here]() for DynaMOSA, and [here]() for the fuzzer. They come in four categories, and are explained below.
+Hyperparameters are currently stored separately for the two algorithms in a Config.ini file which can be found [here](./DynaMOSA/SolMOSA/Config.ini) for DynaMOSA, and [here](./Fuzzer/FuzzerCode/Config.ini) for the fuzzer. They come in four categories, and are explained below.
 
 #### CFG
-These parameters are used by the [CDG.py]() component to generate control-flow and control dependency graphs.
+These parameters are used by the [CDG.py](./DynaMOSA/SolMOSA/CDG.py) component to generate control-flow and control dependency graphs.
 
 - **Ignorefiles**: A list of ABI's that should be ignored when generating control flow graphs. Useful when your contract has dependencies such as libraries that are needed when constructing a new instance of the contract.
 - **Predicates**: The predicates that can dominate a branch, these should generally not be changed.
@@ -60,7 +60,7 @@ Parameters that are related to the local blockchain environment that SolAR inter
 - **ETH_port**: the port where the local blockchain client is exposed.
 
 #### Parameters
-These are the main paremeters that can configure the DynaMOSA and Fuzzer algorithms. For more information on the DynaMOSA-specific parameters, we refer to the original [DynaMOSA paper]().
+These are the main paremeters that can configure the DynaMOSA and Fuzzer algorithms. For more information on the DynaMOSA-specific parameters, we refer to the original [DynaMOSA paper](https://ieeexplore.ieee.org/document/7840029/).
 - **max_accounts**: The number of different accounts that are used to call methods in the smart contract. This should never be higher than the number of accounts that are on the blockchain. 
 - **max_method_calls**: The maximum number of method calls in a single test in the test suite. Larger numbers theoretically allow for more complex behaviour but significantly affect runtime.
 - **min_method_calls**: The minimum number of method calls in a single test in the test suite. Can be useful if you know certain branches can only be reached with a specific number of method calls.
@@ -80,7 +80,7 @@ These are the main paremeters that can configure the DynaMOSA and Fuzzer algorit
 - **passTimeTime**: The amount of time to set the blockchain into the future with the special passTime method.
 - **standardPassTimeTime**: Fallback if no passTimeTime is specified.
 - **memory_efficient**: Experimental parameter that was used when running experiments in containers where memory was an issue.
-- **zeroAddress**: When set to true allows the special [zero address]() to be passed as an input variable to method calls.
+- **zeroAddress**: When set to true allows the special zero address (`0x00`) to be passed as an input variable to method calls.
 - **maxWei**: The maximum amount of Wei that can be passed along with a method call.
 - **IgnoreFunctions**: A list of methods that should not be called by the test suites.
 - **ignoreStateVariables**: When set to true, does not call state variables.
@@ -95,4 +95,4 @@ Parameters surrounding the files that are used and created by SolAR.
 - **SmartContract_folder**: The folder where the smart contracts that are to be tested are stored.
 
 ## Debugging
-As SolAR runs, it outputs logging information to two different files. The `SolMOSA.log`-file can be found for both the [DynaMOSA]() and the [Fuzzer]() implementation. This is the main log for running the SolAR code. In the same directory, there will be a `Ganache-interaction.log` that tracks the interaction with the blockchain environment.
+As SolAR runs, it outputs logging information to two different files. The `SolMOSA.log`-file can be found in the code folder for both the [DynaMOSA](./DynaMOSA/SolMOSA) and the [Fuzzer](./Fuzzer/FuzzerCode) implementation. This is the main log for running the SolAR code. In the same directory, there will be a `Ganache-interaction.log` that tracks the interaction with the blockchain environment.
